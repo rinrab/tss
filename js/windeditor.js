@@ -150,13 +150,13 @@ function editorSetReadonlyState(rs) {
     nameinput.readOnly = rs;
 }
 
-function windEditorStart() {
-    if (windscenariocontrol.selectedIndex == wind.length) {
+function windEditorStart(iscreate) {
+    if (iscreate) {
         editIndex = -1
         editorSetReadonlyState(false);
     } else {
+        editIndex = windscenario;
         if (wind[windscenariocontrol.selectedIndex].type == windTypes.userdefined) {
-            editIndex = windscenario;
             editorSetReadonlyState(false);
         } else {
             editorSetReadonlyState(true);

@@ -212,12 +212,7 @@ function addWind() {
 		optgroup.appendChild(newoption);
 	}
 
-	var newoption = document.createElement("option");
-	newoption.innerText = "Create wind";
-	newoption.setAttribute("data-bs-toggle", "modal");
-	newoption.setAttribute("data-bs-target", "#wind-editor-window");
-	windscenarioselect.appendChild(newoption);
-	windscenarioselect.selectedIndex = windscenario;
+	
 }
 function addPlayer() {
 	var i = game.players.length;
@@ -250,6 +245,7 @@ function addPlayer() {
 	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
 		new bootstrap.Tooltip(tooltipTriggerEl))
 	new bootstrap.Tooltip(document.getElementById("edit-btn"))
+	new bootstrap.Tooltip(document.getElementById("add-wind-btn"))
 }
 
 addEventListener("load", init);
@@ -268,7 +264,13 @@ function init() {
 	drawAll();
 	console.log("load");
 	document.getElementById("show-future-wind").addEventListener("click", windDataInit);
-	document.getElementById("edit-btn").addEventListener("click", windEditorStart, windscenario);
+	document.getElementById("edit-btn").addEventListener("click", function() {
+        windEditorStart(false);
+    });
+
+    document.getElementById("add-wind-btn").addEventListener("click", function() { 
+        windEditorStart(true);
+    });
 
 	addEventListener("resize", function () {
 		renderGridSize();
