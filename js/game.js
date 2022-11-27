@@ -212,7 +212,7 @@ function addWind() {
 		optgroup.appendChild(newoption);
 	}
 
-	
+
 }
 function addPlayer() {
 	var i = game.players.length;
@@ -223,21 +223,21 @@ function addPlayer() {
 	var gamearea = document.getElementById("boats");
 
 	game.players[i] = new Boat(startx + (i * 0.2) + (i * 1), starty, false, game.players.length);
-	
+
 	var newboatcont = document.createElement("div");
 	newboatcont.className = "game-elem pn-boat";
-	
+
 	var newboat = document.createElementNS('http://www.w3.org/2000/svg', "svg");
 	newboat.setAttribute("stroke", colors[i]);
 	newboat.setAttribute("viewBox", "0 0 16 32");
-	
+
 	newboatcont.appendChild(newboat);
 	game.players[i].html = newboatcont;
 	gamearea.appendChild(newboatcont);
-	
+
 	applySettings();
 	addControll(i);
-	
+
 	game.players[i].startPositionChange();
 	game.placeBoatsOnStart();
 
@@ -264,13 +264,13 @@ function init() {
 	drawAll();
 	console.log("load");
 	document.getElementById("show-future-wind").addEventListener("click", windDataInit);
-	document.getElementById("edit-btn").addEventListener("click", function() {
-        windEditorStart(false);
-    });
+	document.getElementById("edit-btn").addEventListener("click", function () {
+		windEditorStart(false);
+	});
 
-    document.getElementById("add-wind-btn").addEventListener("click", function() { 
-        windEditorStart(true);
-    });
+	document.getElementById("add-wind-btn").addEventListener("click", function () {
+		windEditorStart(true);
+	});
 
 	addEventListener("resize", function () {
 		renderGridSize();
