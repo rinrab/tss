@@ -158,14 +158,7 @@ class Boat {
 			this.myOldStartPosIndex = index;
 			game.placeBoatsOnStart();
 
-			// 	game.boatsStartMiddle[index] = this.indexInGame;
-			// 	if (index % 2 == 0) {
-			// 		this.x = (-index * startdist) + (game.width / 2);
-			// 	} else {
-			// 		this.x = (index * startdist) + (game.width / 2);
-			// 	}
-			// 	this.oldStartPos = 1;
-			// }
+			
 		}
 
 	}
@@ -244,18 +237,32 @@ class Game {
 	placeBoatsOnStart() {
 		const startdist = 0.5;
 		for (var i = 0; i < this.boatsStartLeft.length; i++) {
-			this.players[this.boatsStartLeft[i]].x = 5 + i;
-			// this.marks[0].x + 1 + (i * startdist);
+			this.players[this.boatsStartLeft[i]].x = this.marks[0].x + 1 + (i * startdist);
 		}
 
 		for (var i = 0; i < this.boatsStartMiddle.length; i++) {
-			this.players[this.boatsStartMiddle[i]].x = 10 + i;
-			// this.marks[1].x - 1 - (i * startdist);
-		}
-
+            var k = 0.5;
+            switch (i) {
+                case 0:
+                case 1:
+                    k = 1;
+                    break;
+                case 3:
+                    k = 0.6
+                    break;
+            }
+            if (i < 2) {
+                k = 1;
+            }
+			if (i % 2 == 0) {
+				this.players[this.boatsStartMiddle[i]].x = (-i * startdist * k) + (this.width / 2);
+			} else {
+				this.players[this.boatsStartMiddle[i]].x = (i * startdist * k) + (this.width / 2);
+			}
+        }
+        
 		for (var i = 0; i < this.boatsStartRight.length; i++) {
-			this.players[this.boatsStartRight[i]].x = 15 + i;
-			// this.marks[1].x - 1 - (i * startdist);
+            this.players[this.boatsStartRight[i]].x = this.marks[1].x - 1 - (i * startdist);
 		}
 	}
 
