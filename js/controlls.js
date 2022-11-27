@@ -15,6 +15,9 @@ function createContolls() {
 }
 
 function apply() {
+	var labels = ["&#8593;", "&#8630;", "&#8857;&#8592;"];
+	var tooltips = ["Forward", "Tack", "To mark"];
+
 	for (var i = 0; i < game.players.length; i++) {
 		var checkcontroll = document.getElementById("input-player-name" + i);
 		if (checkcontroll.value == "") {
@@ -22,6 +25,10 @@ function apply() {
 		}
 
 		game.players[i].apply();
+		for (var j = 0; j < game.players[i].btnLabels.length; j++) {
+			game.players[i].btnLabels[j].innerHTML = labels[j];
+			game.players[i].btnLabels[j].setAttribute("data-bs-title", tooltips[j]);
+		}
 	}
 
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -40,12 +47,12 @@ function apply() {
 	for (var i = 0; i < game.players.length; i++) {
 		document.getElementById("input-player-name" + i).disabled = true;
 	}
-
 }
+
 function addControll(i) {
 	var controlls = document.getElementById("controlls");
-	var labels = ["&#8593;", "&#8630;", "&#8857;&#8592;"];
-	var tooltips = ["Forward", "Tack", "To mark"];
+	var labels = ["Left", "Middle", "Right"];
+	var tooltips = labels;
 
 	var nc = document.createElement("div");
 	nc.className = "btn-group";
@@ -76,6 +83,7 @@ function addControll(i) {
 		nei.className = "btn-check";
 		nei.addEventListener("change", function () {
 			game.players[i].startPositionChange();
+			game.placeBoatsOnStart();
 			drawAll();
 		});
 		if (j == 0) {
@@ -106,31 +114,6 @@ function addControll(i) {
 				break;
 		}
 	}
-	var newMoveRight = document.createElement("button");
-	var newMoveLeft = document.createElement("button");
-	newMoveLeft.className = newMoveRight.className = "btn btn-success";
-	newMoveLeft.innerHTML = "&#8592;";
-	newMoveRight.innerHTML = "&#8594;";
-	newMoveLeft.setAttribute("data-bs-toggle", "tooltip");
-	newMoveLeft.setAttribute("data-bs-title", "Move left");
-	newMoveRight.setAttribute("data-bs-toggle", "tooltip");
-	newMoveRight.setAttribute("data-bs-title", "Move right");
-	newMoveLeft.addEventListener("click", function(){
-		game.players[i].moveLeft();
-		drawAll();
-	})
-	newMoveRight.addEventListener("click", function(){
-		game.players[i].moveRight();
-		drawAll();
-	})
-	game.players[i].removeStartArrows = function(){
-		newMoveLeft.remove();
-		newMoveRight.remove();
-	}
-	nc.appendChild(newMoveLeft);
-	nc.appendChild(newMoveRight);
-
-
 
 	var t = document.getElementById("track");
 	var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
