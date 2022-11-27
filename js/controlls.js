@@ -83,7 +83,6 @@ function addControll(i) {
 		nei.className = "btn-check";
 		nei.addEventListener("change", function () {
 			game.players[i].startPositionChange();
-			game.placeBoatsOnStart();
 			drawAll();
 		});
 		if (j == 0) {

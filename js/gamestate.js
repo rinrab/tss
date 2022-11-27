@@ -156,6 +156,8 @@ class Boat {
 				this.oldStartPos = 2;
 			}
 			this.myOldStartPosIndex = index;
+			game.placeBoatsOnStart();
+
 			// 	game.boatsStartMiddle[index] = this.indexInGame;
 			// 	if (index % 2 == 0) {
 			// 		this.x = (-index * startdist) + (game.width / 2);
