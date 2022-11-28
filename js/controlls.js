@@ -31,6 +31,9 @@ function apply() {
 		}
 	}
 
+	document.getElementById("start-alert").hidden = true;
+	document.getElementById("game-alert").hidden = false;
+
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
 		new bootstrap.Tooltip(tooltipTriggerEl))
