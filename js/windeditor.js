@@ -228,6 +228,7 @@ function shareBtnClick() {
     navigator.clipboard.writeText(text);
     var tooltip = new bootstrap.Tooltip("shar-btn");
     tooltip.show();
+    saveWind();
 }
 
 function getTypeIndex(type) {
