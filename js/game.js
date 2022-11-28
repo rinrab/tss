@@ -38,21 +38,25 @@ function turn() {
 	}
 
 	setTimeout(() => {
-		redrawTrack();
+		redrawTracks();
 	}, 200);
 
 	drawAll();
 }
 
-function redrawTrack() {
+function redrawTracks() {
 	for (var i = 0; i < game.players.length; i++) {
-		game.players[i].track.setAttribute("points", "");
-		for (var j = 0; j < turncount + 1; j++) {
-			game.players[i].track.setAttribute("points",
-				game.players[i].track.getAttribute("points")
-				+ " " + (game.players[i].turns[j].x)
-				+ "," + (game.players[i].turns[j].y));
-		}
+		redrawTrack(i)
+	}
+}
+
+function redrawTrack(i) {
+	game.players[i].track.setAttribute("points", "");
+	for (var j = 0; j < turncount + 1; j++) {
+		game.players[i].track.setAttribute("points",
+			game.players[i].track.getAttribute("points")
+			+ " " + (game.players[i].turns[j].x)
+			+ "," + (game.players[i].turns[j].y));
 	}
 }
 
@@ -63,7 +67,7 @@ function backTurn() {
 		for (var i = 0; i < game.players.length; i++) {
 			game.players[i].back();
 		}
-		setTimeout(redrawTrack, 200);
+		setTimeout(redrawTracks, 200);
 		drawAll();
 	}
 }
@@ -222,7 +226,7 @@ function addPlayer() {
 	}
 	var gamearea = document.getElementById("boats");
 
-	game.players[i] = new Boat(startx + (i * 0.2) + (i * 1), starty, false, game.players.length);
+	game.players[i] = new Boat(6, starty, false, game.players.length);
 
 	var newboatcont = document.createElement("div");
 	newboatcont.className = "game-elem pn-boat";

@@ -35,55 +35,72 @@ class Boat {
 	turn() {
 		var turntype;
 		if (this.isinrace) {
-			if (this.tackBtn.checked) {
-				this.tack = !this.tack;
+			var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
 
-				if (this.tack) {
-					this.rotation = 45 + game.wind[turncount];
-				} else {
-					this.rotation = -45 + game.wind[turncount];
-				}
-				this.forwardBtn.checked = true;
-				turntype = turnTupes.tack;
-			} else if (this.toMarkBtn.checked) {
-				var a = Math.atan((this.x - game.marks[2].x) /
-					(this.y - game.marks[2].y)) * 180 / Math.PI
-				if (a + game.wind[turncount] > 45 ||
-					a + game.wind[turncount] < -45) {
-					if (game.marks[2].y > this.y) {
-						this.rotation = -a - 180;
+			if (dist < 1) {
+				this.x = game.marks[2].x;
+				this.y = game.marks[2].y - 0.1;
+
+				this.saveTurn(turntype);
+				redrawTrack(this.indexInGame);
+				drawAll();
+
+				this.rotation = -100;
+				this.x += Math.sin(this.rotation * Math.PI / 180) * (1 - dist);
+				this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
+				this.isinrace = false;
+			} else {
+				if (this.tackBtn.checked) {
+					this.tack = !this.tack;
+
+					if (this.tack) {
+						this.rotation = 45 + game.wind[turncount];
 					} else {
-						this.rotation = -a
+						this.rotation = -45 + game.wind[turncount];
 					}
+					this.forwardBtn.checked = true;
+					turntype = turnTupes.tack;
+				} else if (this.toMarkBtn.checked) {
+					var a = Math.atan((this.x - game.marks[2].x) /
+						(this.y - game.marks[2].y)) * 180 / Math.PI
+					if (a + game.wind[turncount] > 45 ||
+						a + game.wind[turncount] < -45) {
+						if (game.marks[2].y > this.y) {
+							this.rotation = -a - 180;
+						} else {
+							this.rotation = -a
+						}
+					}
+					else if (this.tack) {
+						this.rotation = 45 + game.wind[turncount];
+					} else {
+						this.rotation = -45 + game.wind[turncount];
+					}
+					turntype = turnTupes.toMark;
 				}
-				else if (this.tack) {
-					this.rotation = 45 + game.wind[turncount];
-				} else {
-					this.rotation = -45 + game.wind[turncount];
+
+
+				else {
+					if (this.tack) {
+						this.rotation = 45 + game.wind[turncount];
+					} else {
+						this.rotation = -45 + game.wind[turncount];
+					}
+					turntype = turnTupes.forward;
 				}
-				turntype = turnTupes.toMark;
+
+				this.rotation = this.rotation % 360;
+
+				this.x += Math.sin(this.rotation * Math.PI / 180);
+				this.y -= Math.cos(this.rotation * Math.PI / 180);
 			}
-
-
-			else {
-				if (this.tack) {
-					this.rotation = 45 + game.wind[turncount];
-				} else {
-					this.rotation = -45 + game.wind[turncount];
-				}
-				turntype = turnTupes.forward;
-			}
-
-			this.rotation = this.rotation % 360;
+		} else {
 			this.x += Math.sin(this.rotation * Math.PI / 180);
 			this.y -= Math.cos(this.rotation * Math.PI / 180);
-
-			this.x = Math.round(this.x * 100) / 100;
-			this.y = Math.round(this.y * 100) / 100;
-
-			this.dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
-			this.saveTurn(turntype);
 		}
+		this.x = Math.round(this.x * 100) / 100;
+		this.y = Math.round(this.y * 100) / 100;
+		this.saveTurn(turntype);
 	}
 
 	apply() {
@@ -221,8 +238,8 @@ class Game {
 		this.width = this.windscenario.width;
 		this.height = this.windscenario.height;
 		this.marks = [
-			{ "x": 5, "y": 28, "type": Marks.startleft },
-			{ "x": this.width - 5, "y": 28, "type": Marks.startright },
+			{ "x": 5, "y": this.height - 2, "type": Marks.startleft },
+			{ "x": this.width - 5, "y": this.height - 2, "type": Marks.startright },
 			{ "x": this.width / 2, "y": 2, "type": Marks.mark1 },
 		];
 	}
@@ -234,28 +251,28 @@ class Game {
 		}
 
 		for (var i = 0; i < this.boatsStartMiddle.length; i++) {
-            var k = 0.5;
-            switch (i) {
-                case 0:
-                case 1:
-                    k = 1;
-                    break;
-                case 3:
-                    k = 0.6
-                    break;
-            }
-            if (i < 2) {
-                k = 1;
-            }
+			var k = 0.5;
+			switch (i) {
+				case 0:
+				case 1:
+					k = 1;
+					break;
+				case 3:
+					k = 0.6
+					break;
+			}
+			if (i < 2) {
+				k = 1;
+			}
 			if (i % 2 == 0) {
 				this.players[this.boatsStartMiddle[i]].x = (-i * startdist * k) + (this.width / 2);
 			} else {
 				this.players[this.boatsStartMiddle[i]].x = (i * startdist * k) + (this.width / 2);
 			}
-        }
-        
+		}
+
 		for (var i = 0; i < this.boatsStartRight.length; i++) {
-            this.players[this.boatsStartRight[i]].x = this.marks[1].x - 1 - (i * startdist);
+			this.players[this.boatsStartRight[i]].x = this.marks[1].x - 1 - (i * startdist);
 		}
 	}
 
