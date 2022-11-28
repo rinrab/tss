@@ -131,9 +131,9 @@ class Boat {
 			if (this.oldStartPos == 0) {
 				game.boatsStartLeft.splice(findIndexByValue(game.boatsStartLeft, this.indexInGame), 1)
 			} else if (this.oldStartPos == 1) {
-				game.boatsStartMiddle.splice(findIndexByValue(game.boatsStartLeft, this.indexInGame), 1)
+				game.boatsStartMiddle.splice(findIndexByValue(game.boatsStartMiddle, this.indexInGame), 1)
 			} else if (this.oldStartPos == 2) {
-				game.boatsStartRight.splice(findIndexByValue(game.boatsStartLeft, this.indexInGame), 1)
+				game.boatsStartRight.splice(findIndexByValue(game.boatsStartRight, this.indexInGame), 1)
 			}
 
 			if (this.forwardBtn.checked) {
