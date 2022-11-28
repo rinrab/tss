@@ -36,7 +36,7 @@ function apply() {
 		new bootstrap.Tooltip(tooltipTriggerEl))
 
 	var done = document.getElementById("btn-done");
-	done.innerText = "Done";
+	done.innerText = "Next";
 	done.removeEventListener("click", apply);
 	done.addEventListener("click", turn);
 
