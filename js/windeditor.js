@@ -25,6 +25,7 @@ function windInit() {
     } else {
         loadWind();
     }
+    loadWindFromURL();
     nameinput = document.getElementById("editor-wind-name");
     windtext = document.getElementById("editor-wind");
     var validtext = document.getElementById("wind-valid");
@@ -183,6 +184,35 @@ function windEditorStart(iscreate) {
             }
         }
     }
+}
+
+function loadWindFromURL() {
+    var hash = location.hash;
+    hash = hash.replace("#", "");
+    if (hash[0] == "w") {
+        hash = hash.replace("w", "");
+        hash = decodeURI(hash);
+        console.log(hash);
+        try {
+            var newwind = JSON.parse(hash);
+            var addWindModal = new bootstrap.Modal("#add-wind-url-window");
+            var text = "";
+            for (var i = 0; i < newwind.wind.length; i++) {
+                text += newwind.wind[i];
+                if (i != newwind.length - 1) {
+                    text += ", ";
+                }
+            }
+            document.getElementById("add-wind-text").value = text;
+            document.getElementById("add-wind-name").value = newwind.name;
+            addWindModal.show();
+            wind[wind.length] = newwind;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    location.hash = "";
 }
 
 function getTypeIndex(type) {
