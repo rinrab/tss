@@ -221,10 +221,7 @@ function loadWindFromURL() {
 }
 function shareBtnClick() {
     var text = "https://tss.boats/#w" + JSON.stringify(wind[windscenariocontrol.selectedIndex]);
-    text = text.replaceAll("{", "%7B");
-    text = text.replaceAll("}", "%7D");
-    text = text.replaceAll('"', "%22");
-    text = text.replaceAll(' ', "%20");
+    text = encodeURI(text);
     navigator.clipboard.writeText(text);
     var tooltip = new bootstrap.Tooltip("shar-btn");
     tooltip.show();
