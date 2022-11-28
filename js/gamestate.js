@@ -144,7 +144,6 @@ class Boat {
 				index = game.boatsStartRight.length;
 			}
 
-
 			if (this.forwardBtn.checked) {
 				game.boatsStartLeft[index] = this.indexInGame;
 				this.oldStartPos = 0;
@@ -157,12 +156,8 @@ class Boat {
 			}
 			this.myOldStartPosIndex = index;
 			game.placeBoatsOnStart();
-
-			
 		}
-
 	}
-
 }
 
 function findIndexByValue(arr, value) {
@@ -193,7 +188,6 @@ class Game {
 
 	setWindFromScenario() {
 		this.wind = this.windscenario.wind;
-
 		this.setMapData();
 	}
 
@@ -231,7 +225,6 @@ class Game {
 			{ "x": this.width - 5, "y": 28, "type": Marks.startright },
 			{ "x": this.width / 2, "y": 2, "type": Marks.mark1 },
 		];
-
 	}
 
 	placeBoatsOnStart() {
