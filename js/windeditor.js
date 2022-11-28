@@ -18,6 +18,7 @@ var errorTypes = {
     lensmall: 1,
 };
 
+var shareBtn;
 
 function windInit() {
     if (localStorage.getItem(localStorageNames.windlist) == null) {
@@ -73,9 +74,11 @@ function windInit() {
 
     saveWindBtn = document.getElementById("editor-save");
     deleteWindBtn = document.getElementById("delete-btn");
+    shareBtn = document.getElementById("share-btn");
 
     saveWindBtn.addEventListener("click", editorSaveClick);
     deleteWindBtn.addEventListener("click", deleteClick);
+    shareBtn.addEventListener("click", shareBtnClick);
 
     windReadOnlyText = document.getElementById("wind-readonly-text");
 }
@@ -152,6 +155,7 @@ function editorSetReadonlyState(rs) {
 }
 
 function windEditorStart(iscreate) {
+    shareBtn.hidden = true;
     if (iscreate) {
         editIndex = -1
         editorSetReadonlyState(false);
@@ -159,6 +163,7 @@ function windEditorStart(iscreate) {
         editIndex = windscenario;
         if (wind[windscenariocontrol.selectedIndex].type == windTypes.userdefined) {
             editorSetReadonlyState(false);
+            shareBtn.hidden = false;
         } else {
             editorSetReadonlyState(true);
         }
@@ -213,6 +218,12 @@ function loadWindFromURL() {
     }
 
     location.hash = "";
+}
+function shareBtnClick() {
+    var text = "https://tss.boats/#w" + JSON.stringify(wind[windscenariocontrol.selectedIndex]);
+    navigator.clipboard.writeText(text);
+    var tooltip = new bootstrap.Tooltip("shar-btn");
+    tooltip.show();
 }
 
 function getTypeIndex(type) {
