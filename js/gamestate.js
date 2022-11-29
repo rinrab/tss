@@ -37,18 +37,19 @@ class Boat {
 		if (!this.finished) {
 			var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
 
-			if (dist < 1) {
-				this.x = game.marks[2].x;
-				this.y = game.marks[2].y - 0.1;
+			var a = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y)
+			if (dist < 1 && (a - game.getwind(turncount) > 45 || a - game.getwind(turncount) < -45)) {
+					this.x = game.marks[2].x;
+					this.y = game.marks[2].y - 0.1;
 
-				this.saveTurn(turntype);
-				redrawTrack(this.indexInGame);
-				drawAll();
+					this.saveTurn(turntype);
+					redrawTrack(this.indexInGame);
+					drawAll();
 
-				this.rotation = -100;
-				this.x += Math.sin(this.rotation * Math.PI / 180) * (1 - dist);
-				this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
-				this.finished = true;
+					this.rotation = -100;
+					this.x += Math.sin(this.rotation * Math.PI / 180) * (1 - dist);
+					this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
+					this.finished = true;
 			} else {
 				if (this.tackBtn.checked) {
 					this.tack = !this.tack;
@@ -61,8 +62,6 @@ class Boat {
 					this.forwardBtn.checked = true;
 					turntype = turnTupes.tack;
 				} else if (this.toMarkBtn.checked) {
-					var a = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y)
-
 					if (a - game.getwind(turncount) > 45 || a - game.getwind(turncount) < -45) {
 						this.rotation = a;
 					}
