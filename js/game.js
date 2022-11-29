@@ -166,7 +166,7 @@ function drawMarks() {
 
 	upmarllines.style.left = game.marks[2].x * gridsize + "px";
 	upmarllines.style.top = game.marks[2].y * gridsize + "px";
-	upmarllines.style.rotate = game.getwind(turncount) + "deg";
+	upmarllines.style.rotate = game.getwind(turncount + 1) + "deg";
 }
 
 function renderGridSize() {
