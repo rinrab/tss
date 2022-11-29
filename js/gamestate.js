@@ -19,7 +19,7 @@ class Boat {
 	tackBtn;
 	toMarkBtn;
 	track;
-	isinrace;
+	finished;
 	btnLabels;
 	// tack == false: startport
 	// tack == true: port
@@ -34,7 +34,7 @@ class Boat {
 
 	turn() {
 		var turntype;
-		if (this.isinrace) {
+		if (!this.finished) {
 			var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
 
 			if (dist < 1) {
@@ -48,7 +48,7 @@ class Boat {
 				this.rotation = -100;
 				this.x += Math.sin(this.rotation * Math.PI / 180) * (1 - dist);
 				this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
-				this.isinrace = false;
+				this.finished = true;
 			} else {
 				if (this.tackBtn.checked) {
 					this.tack = !this.tack;
@@ -111,7 +111,7 @@ class Boat {
 
 	saveTurn(turntype) {
 		this.turns[turncount] = new PlayerStory(turntype, this.x, this.y,
-			this.rotation, this.tack);
+			this.rotation, this.tack, this.finished);
 	}
 
 	back() {
@@ -126,6 +126,7 @@ class Boat {
 		} else if (this.turns[turncount + 1].turnType == turnTupes.toMark) {
 			this.toMarkBtn.checked = true;
 		}
+		this.finished = this.turns[turncount].finished;
 	}
 
 	constructor(x, y, tack, index) {
@@ -133,7 +134,7 @@ class Boat {
 		this.y = y;
 		this.tack = tack;
 		this.rotation = -45;
-		this.isinrace = true;
+		this.finished = false;
 		this.turns = [];
 		this.isStart = true;
 		this.oldStartPos = -1;
@@ -309,12 +310,14 @@ class PlayerStory {
 	y;
 	rotation;
 	tack;
+	finished;
 
-	constructor(turnType, x, y, rotation, tack) {
+	constructor(turnType, x, y, rotation, tack, finished) {
 		this.turnType = turnType;
 		this.x = x;
 		this.y = y;
 		this.rotation = rotation;
 		this.tack = tack;
+		this.finished;
 	}
 }
