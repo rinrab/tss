@@ -79,7 +79,6 @@ function drawAll() {
 	windDataInit();
 	for (var i = 0; i < game.players.length; i++) {
 		drawBoat(game.players[i]);
-
 	}
 	drawMarks();
 	console.log("draw");
