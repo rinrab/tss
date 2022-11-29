@@ -61,15 +61,10 @@ class Boat {
 					this.forwardBtn.checked = true;
 					turntype = turnTupes.tack;
 				} else if (this.toMarkBtn.checked) {
-					var a = Math.atan((this.x - game.marks[2].x) /
-						(this.y - game.marks[2].y)) * 180 / Math.PI
-					if (a + game.getwind(turncount) > 45 ||
-						a + game.getwind(turncount) < -45) {
-						if (game.marks[2].y > this.y) {
-							this.rotation = -a - 180;
-						} else {
-							this.rotation = -a
-						}
+					var a = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y)
+
+					if (a - game.getwind(turncount) > 45 || a - game.getwind(turncount) < -45) {
+						this.rotation = a;
 					}
 					else if (this.tack) {
 						this.rotation = 45 + game.getwind(turncount);
@@ -327,4 +322,8 @@ class PlayerStory {
 		this.tack = tack;
 		this.finished;
 	}
+}
+
+function getRotateAngel(x1, y1, x2, y2) {
+	return (Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI + 90);
 }
