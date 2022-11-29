@@ -88,7 +88,7 @@ function drawWindArrow() {
 	var e = document.getElementById("wind");
 	e.style.width = "50px"
 	e.style.left = "25px"
-	e.style.rotate = game.wind[turncount + 1] * 2 + "deg";
+	e.style.rotate = game.getwind(turncount + 1) * 2 + "deg";
 }
 
 function windDataInit() {
@@ -108,7 +108,7 @@ function windDataInit() {
 			newelem.appendChild(newlabel);
 
 			var newlabel = document.createElement("label");
-			var windtext = game.wind[i];
+			var windtext = game.getwind(i);
 			if (windtext > 0) {
 				windtext = "+" + windtext;
 			}
@@ -121,7 +121,7 @@ function windDataInit() {
 			var img = document.createElement("img");
 			img.src = "img/wind.svg";
 			img.className = "wind-data-arrow wind";
-			img.style.rotate = game.wind[i] * 2 + "deg";
+			img.style.rotate = game.getwind(i) * 2 + "deg";
 			newelem.appendChild(img);
 
 			winddata.appendChild(newelem);

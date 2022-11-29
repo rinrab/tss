@@ -1,3 +1,11 @@
+function getWind(scenario, index) {
+    if (index < wind[scenario].length) {
+        return wind[scenario][index];
+    } else {
+        return 0;
+    }
+}
+
 var windTypes = {
     presets: "Presets",
     userdefined: "User defined"

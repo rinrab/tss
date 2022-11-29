@@ -54,17 +54,17 @@ class Boat {
 					this.tack = !this.tack;
 
 					if (this.tack) {
-						this.rotation = 45 + game.wind[turncount];
+						this.rotation = 45 + game.getwind(turncount);
 					} else {
-						this.rotation = -45 + game.wind[turncount];
+						this.rotation = -45 + game.getwind(turncount);
 					}
 					this.forwardBtn.checked = true;
 					turntype = turnTupes.tack;
 				} else if (this.toMarkBtn.checked) {
 					var a = Math.atan((this.x - game.marks[2].x) /
 						(this.y - game.marks[2].y)) * 180 / Math.PI
-					if (a + game.wind[turncount] > 45 ||
-						a + game.wind[turncount] < -45) {
+					if (a + game.getwind(turncount) > 45 ||
+						a + game.getwind(turncount) < -45) {
 						if (game.marks[2].y > this.y) {
 							this.rotation = -a - 180;
 						} else {
@@ -72,9 +72,9 @@ class Boat {
 						}
 					}
 					else if (this.tack) {
-						this.rotation = 45 + game.wind[turncount];
+						this.rotation = 45 + game.getwind(turncount);
 					} else {
-						this.rotation = -45 + game.wind[turncount];
+						this.rotation = -45 + game.getwind(turncount);
 					}
 					turntype = turnTupes.toMark;
 				}
@@ -82,9 +82,9 @@ class Boat {
 
 				else {
 					if (this.tack) {
-						this.rotation = 45 + game.wind[turncount];
+						this.rotation = 45 + game.getwind(turncount);
 					} else {
-						this.rotation = -45 + game.wind[turncount];
+						this.rotation = -45 + game.getwind(turncount);
 					}
 					turntype = turnTupes.forward;
 				}
@@ -195,6 +195,13 @@ class Game {
 	height;
 	marks;
 	wind;
+	getwind(index) {
+		if (index < this.wind.length) {
+			return this.wind[index];
+		} else {
+			return 0;
+		}
+	}
 
 	boatsStartLeft;
 	boatsStartMiddle;
