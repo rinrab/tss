@@ -30,6 +30,8 @@ var marksvg = `<g>
 var startx = 6;
 var starty = 28;
 
+var upmarllines;
+
 function turn() {
 	turncount++;
 
@@ -162,6 +164,10 @@ function drawMarks() {
 		newmarkcont.appendChild(newmark);
 		marksHtmlelem.appendChild(newmarkcont);
 	}
+
+	upmarllines.style.left = game.marks[2].x * gridsize + "px";
+	upmarllines.style.top = game.marks[2].y * gridsize + "px";
+	upmarllines.style.rotate = game.getwind(turncount) + "deg";
 }
 
 function renderGridSize() {
@@ -191,7 +197,6 @@ function windChange() {
 			game.setWindFromScenario();
 		}
 		renderGridSize();
-		drawAll();
 	}
 }
 
@@ -251,16 +256,20 @@ function addPlayer() {
 addEventListener("load", init);
 
 function init() {
-	windInit();
-	settingsInit();
-	createGame(2);
-
 	winddata = document.getElementById("wind-data");
 	windDataScroller = document.getElementById("wind-data.scroller");
 	windscenariocontrol = document.getElementById("select-wind");
+	var gamearea = document.getElementById("game-area");
+	windInit();
+	settingsInit();
+	createGame(2);
 	addWind();
-	createContolls();
 	applySettings();
+	createContolls();
+	upmarllines = document.createElement("img");
+	upmarllines.src = "img/marklaneline.svg";
+	upmarllines.className = "pn-lines game-elem";
+	gamearea.appendChild(upmarllines);
 	drawAll();
 	console.log("load");
 	document.getElementById("show-future-wind").addEventListener("click", windDataInit);
@@ -278,7 +287,6 @@ function init() {
 	});
 	var track = document.getElementById("track");
 	track.setAttribute("viewBox", "0 0 " + game.width + " " + game.height);
-	var gamearea = document.getElementById("game-area");
 	gamearea.style.height = (game.height * gridsize) + "px";
 	gamearea.style.width = (game.width * gridsize) + "px";
 

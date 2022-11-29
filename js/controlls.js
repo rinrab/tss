@@ -1,6 +1,8 @@
 
 function createContolls() {
-	document.getElementById("select-wind").addEventListener("change", windChange);
+	document.getElementById("select-wind").addEventListener("change", function () {
+		windChange()
+	});
 
 	document.getElementById("btn-add-player").addEventListener("click", function () {
 		addPlayer();
@@ -10,8 +12,6 @@ function createContolls() {
 	document.getElementById("back-btn").addEventListener("click", backTurn);
 
 	windChange();
-
-	drawAll();
 }
 
 function apply() {

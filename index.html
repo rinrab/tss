@@ -42,6 +42,14 @@
       }
     }
 
+    .pn-lines {
+      width: 1000px;
+      height: 1000px;
+      margin-left: -500px;
+      transform-origin: center top;
+      transition: all 0.5s ease-in-out;
+    }
+
     #wind {
       transition: all 0.5s ease-in-out;
     }
@@ -123,6 +131,7 @@
 
     #game-area {
       transform-origin: left top;
+      overflow: hidden;
     }
 
     #game-area svg {
