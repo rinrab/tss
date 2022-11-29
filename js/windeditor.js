@@ -218,6 +218,7 @@ function loadWindFromURL() {
     }
 
     location.hash = "";
+    history.pushState("", document.title, window.location.pathname + window.location.search);
 }
 function shareBtnClick() {
     var text = "https://tss.boats/#w" + JSON.stringify(wind[windscenariocontrol.selectedIndex]);
