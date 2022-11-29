@@ -96,50 +96,46 @@ function windDataInit() {
 	var showfuturewind = document.getElementById("show-future-wind").checked;
 
 	for (var i = game.wind.length - 1; i >= 1; i--) {
-		if (showfuturewind || i < turncount + 2) {
-			var newelem = document.createElement("li");
-			newelem.className = "list-group-item";
-			if (i == turncount + 1) {
-				newelem.classList.add("active");
-			}
+		var isshow;
+		isshow = showfuturewind || i < turncount + 2;
+		var newelem = document.createElement("li");
+		newelem.className = "list-group-item";
+		if (i == turncount + 1) {
+			newelem.classList.add("active");
+		}
 
-			var newlabel = document.createElement("label");
-			newlabel.innerText = i.toString() + ":";
-			newelem.appendChild(newlabel);
+		var newlabel = document.createElement("label");
+		newlabel.innerText = i.toString() + ":";
+		newelem.appendChild(newlabel);
 
-			var newlabel = document.createElement("label");
-			var windtext = game.getwind(i);
+		var newlabel = document.createElement("label");
+		var windtext = game.getwind(i);
+		if (isshow) {
 			if (windtext > 0) {
 				windtext = "+" + windtext;
 			}
 			windtext += "º";
-			newlabel.innerText = windtext.toString();;
-			newlabel.style.position = "absolute";
-			newlabel.style.right = "50px";
-			newelem.appendChild(newlabel);
+		} else {
+			windtext = "??º";
+		}
+		newlabel.innerText = windtext.toString();;
+		newlabel.style.position = "absolute";
+		newlabel.style.right = "50px";
+		newelem.appendChild(newlabel);
 
-			var img = document.createElement("img");
+		var img = document.createElement("img");
+		if (isshow) {
 			img.src = "img/wind.svg";
 			img.className = "wind-data-arrow wind";
 			img.style.rotate = game.getwind(i) * 2 + "deg";
-			newelem.appendChild(img);
-
-			winddata.appendChild(newelem);
+		} else {
+			img.src = "img/wind-hide.svg";
+			img.className = "pn-wind-hide";
 		}
-		else {
-			var newelem = document.createElement("li");
-			newelem.className = "list-group-item";
-			newelem.innerText = i + ": Hide"
-
-			var newimg = document.createElement("img");
-			newimg.src = "img/wind-hide.svg";
-			newimg.className = "pn-wind-hide";
-			newelem.appendChild(newimg);
-			winddata.appendChild(newelem);
-		}
+		newelem.appendChild(img);
+		winddata.appendChild(newelem);
 	}
 	windDataScroller.scrollTop = (30 * (game.wind.length - turncount)) - window.innerHeight * 0.5;
-
 }
 
 
