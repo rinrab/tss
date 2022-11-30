@@ -89,4 +89,28 @@ var wind =
             stepscount: 48,
             wind: [0, 5, 10, 15, 15, 10, 20, 15, 10, 20, 20, 15, 15, 10, 5, 10, 5, 0, -5, -10, -15, -5, 0, -10, -5, 0, 5, 10, 15, 10, 5, 10, 15, 20, 25, 25, 20, 15, 10, 10, 10, 5, 5, 0, 0, -10, 0, 10]
         },
+        {
+            name: "static 0",
+            type: windTypes.presets,
+            height: 30,
+            width: 30,
+            stepscount: 50,
+            wind: [0]
+        },
+        {
+            name: "static +5",
+            type: windTypes.presets,
+            height: 30,
+            width: 30,
+            stepscount: 50,
+            wind: [5]
+        },
+        {
+            name: "static -5",
+            type: windTypes.presets,
+            height: 30,
+            width: 30,
+            stepscount: 50,
+            wind: [-5]
+        },
     ];

@@ -202,7 +202,10 @@ class Game {
 	}
 
 	setWindFromScenario() {
-		this.wind = this.windscenario.wind;
+        this.wind = [];
+        for (var i = 0; i < this.windscenario.stepscount; i++) {
+            this.wind[i] = this.windscenario.wind[i % this.windscenario.wind.length];
+        }
 		this.setMapData();
 	}
 
