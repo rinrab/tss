@@ -11,11 +11,9 @@ var windlist;
 
 var errortexts = {
     notnumber: 'is not number',
-    lensmall: 'Lenght is small, minimum lenght is 20 wind changes',
 };
 var errorTypes = {
     notnumber: 0,
-    lensmall: 1,
 };
 
 var shareBtn;
@@ -33,13 +31,11 @@ function windInit() {
     windtext.addEventListener("input", function () {
         var windtmp = splitWind(windtext.value);
         var errors = [];
-        if (windtmp.length < 20) {
-            errors[0] = { type: errorTypes.lensmall, text: errortexts.lensmall, char: -1 }
-        }
         var c = 0;
         for (var i = 0; i < windtmp.length; i++) {
             if (isNaN(parseInt(windtmp[i]))) {
-                errors[errors.length] = { type: errorTypes.notnumber, text: '"' + windtmp[i] + '" ' + errortexts.notnumber, char: c }
+                errors[errors.length] = { type: errorTypes.notnumber, text: '"' + windtmp[i] + 
+                '" ' + errortexts.notnumber, char: c }
             }
             c += windtmp[i].length + 1;
         }
@@ -47,10 +43,6 @@ function windInit() {
         if (errors.length > 0) {
             var notnambercount = 0;
             var numberspaces = 0;
-            var lensm = "";
-            if (errors[0].type == errorTypes.lensmall) {
-                lensm = errortexts.lensmall;
-            }
             for (var i = 0; i < errors.length; i++) {
                 if (errors[i].type == errorTypes.numberisspace) {
                     numberspaces++;
@@ -58,12 +50,11 @@ function windInit() {
                 notnambercount++;
             }
             validtext.innerText =
-                `You have ${errors.length} error${(errors.length > 1) ? "s" : ""} in wind. ${lensm}\n`;
+                `You have ${errors.length} error${(errors.length > 1) ? "s" : ""} in wind.\n`;
             for (var i = 0; i < errors.length; i++) {
                 if (errors[i].type == errorTypes.notnumber) {
                     validtext.innerText += errors[i].text + "\n";
                 }
-                // windtext.value += 
             }
             validtext.className = "invalid-feedback d-block";
         } else {
