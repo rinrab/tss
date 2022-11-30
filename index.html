@@ -160,10 +160,14 @@
       width: 300px;
     }
 
-    @media only screen and (max-height: 600px) {
-      .november-container {
-        visibility: collapse;
-      }
+    #btn-nowember {
+      width: 3em;
+      height: 2em;
+    }
+
+    #btn-ap {
+      width: 3.5em;
+      height: 2em;
     }
   </style>
 </head>
@@ -209,9 +213,16 @@
     </div>
     <div style="width: 350px;" id="controll-container">
       <div>
-        <div id="start-alert" class="alert alert-warning text-center">Start procedure</div>
-        <div id="game-alert" hidden class="alert alert-info text-center">Race: <span
-            id="wind-scenario-name-inrace-alert"></span></div>
+        <div id="start-alert" class="alert alert-warning text-center">
+          Start procedure
+          <label style="width: 10px;"></label>
+          <input type="image" class="btn btn-outline-primary btn-sm" id="btn-ap" src="img/ap.png">
+        </div>
+        <div id="game-alert" hidden class="alert alert-info text-center">Race:
+          <span id="wind-scenario-name-inrace-alert"></span>
+          <label style="width: 10px;"></label>
+          <input type="image" class="btn btn-outline-primary btn-sm" id="btn-nowember" src="img/november.svg">
+        </div>
       </div>
       <div id="create">
         <div class="input-group mb-3">
@@ -237,14 +248,9 @@
       <div class="row november-container">
         <div class="col-5">
         </div>
-        <div class="col-7">
+        <div class="col-12">
           <div>
-            <a class="btn btn-outline-primary" href="" style="width: 100%; height: 100px; ">
-              <img src="img/november.svg" style="width: 100%; height: 100%; border: 2px solid" />
-            </a>
-          </div>
-          <div>
-            <label style="width: 100%; text-align: center;">
+            <label style="width: 100%; text-align: right;">
               PENTIUM (c) Rautu & Rinrab
             </label>
           </div>
