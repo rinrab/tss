@@ -231,17 +231,18 @@ function addPlayer() {
     var newboat = document.createElementNS('http://www.w3.org/2000/svg', "svg");
     newboat.setAttribute("stroke", colors[i]);
     newboat.setAttribute("viewBox", "0 0 16 32");
-
+    
     newboatcont.appendChild(newboat);
     game.players[i].html = newboatcont;
     gamearea.appendChild(newboatcont);
-
+    
     applySettings();
     addControll(i);
+    game.players[i].tackBtn.checked = true;
 
     game.players[i].startPositionChange();
     game.placeBoatsOnStart();
-
+    
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
         new bootstrap.Tooltip(tooltipTriggerEl))
