@@ -197,6 +197,8 @@ function windChange() {
 		}
 		renderGridSize();
 	}
+
+    windDataInit();
 }
 
 function addWind() {
