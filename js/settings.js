@@ -4,6 +4,7 @@ var localStorageNames = {
     settingsshowlanelines: "settings-show-lanelines",
     wind: "wind-data#",
     windlist: "wind-list",
+    selectedWind: "selected-wind",
 }
 var defaultSetting = {
     showboats: true,
@@ -88,5 +89,15 @@ function applySettings() {
         for (var i = 0; i < game.players.length; i++) {
             game.players[i].html.children[0].innerHTML = boathidesvg;
         }
+    }
+}
+
+function readIntSetting(settingName, defaultValue) {
+    var val = parseInt(localStorage.getItem(settingName));
+
+    if (isNaN(val)) {
+        return defaultValue;
+    } else {
+        return val;
     }
 }
