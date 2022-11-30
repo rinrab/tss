@@ -48,6 +48,7 @@ function apply() {
 
 
 	document.getElementById("create").remove();
+	document.getElementById("btn-add-player").remove();
 
 	for (var i = 0; i < game.players.length; i++) {
 		document.getElementById("input-player-name" + i).readOnly = true;
