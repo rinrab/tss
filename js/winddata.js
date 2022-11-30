@@ -14,6 +14,17 @@ var wind =
     [
         {
             name: "Random",
+            probability: [4, 3, 3, 2, 2, 1, 1],
+            wind: [0, 5, -5, 10, -10, 15, -15],
+            israndom: true,
+            stepscount: 50,
+            width: 30,
+            height: 30,
+            maxwindsetting: 20,
+            type: windTypes.presets,
+        },
+        {
+            name: "High Random",
             probability: [8, 4, 4, 3, 3, 2, 2, 1, 1],
             wind: [0, 5, -5, 10, -10, 15, -15, 20, -20],
             israndom: true,
