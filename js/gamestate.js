@@ -190,11 +190,7 @@ class Game {
 	marks;
 	wind;
 	getwind(index) {
-		if (index < this.wind.length) {
-			return this.wind[index];
-		} else {
-			return 0;
-		}
+        return this.wind[index % this.wind.length];
 	}
 
 	boatsStartLeft;
