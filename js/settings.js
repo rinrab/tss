@@ -1,57 +1,85 @@
 var localStorageNames = {
-    settings: "settings",
+    settingsshowboats: "settings-show-boats",
+    settingsshowtracks: "settings-show-tarcks",
+    settingsshowlanelines: "settings-show-lanelines",
     wind: "wind-data#",
     windlist: "wind-list",
 }
 var defaultSetting = {
     showboats: true,
     showtracks: true,
-    showleaders: false,
+    showlaneline: true,
 };
 class Settings {
     showboats;
     showtracks;
-    showleaders;
+    showlaneline;
 }
 
-var settings;
+var setShowBoatsCheck;
+var setShowTracksCheck;
+var setShowLanelinesCheck;
+
+var settings = defaultSetting;
 
 function settingsInit() {
-    if (localStorage.getItem(localStorageNames.settings) == null) {
-        settings = defaultSetting;
-        saveSettings();
-    } else {
-        loadSettings();
-    }
+    loadSettings();
 
-    document.getElementById("set-show-boats").addEventListener("click", settingsChanged);
-    document.getElementById("set-show-tracks").addEventListener("click", settingsChanged);
+    setShowBoatsCheck = document.getElementById("set-show-boats");
+    setShowTracksCheck = document.getElementById("set-show-tracks")
+    setShowLanelinesCheck = document.getElementById("set-show-lanelines")
+    
+    setShowBoatsCheck.addEventListener("click", settingsChanged);
+    setShowTracksCheck.addEventListener("click", settingsChanged);
+    setShowLanelinesCheck.addEventListener("click", settingsChanged);
 }
 
 function saveSettings() {
-    localStorage.setItem(localStorageNames.settings, JSON.stringify(settings));
+    localStorage.setItem(localStorageNames.settingsshowboats, settings.showboats)
+    localStorage.setItem(localStorageNames.settingsshowtracks, settings.showtracks)
+    localStorage.setItem(localStorageNames.settingsshowlanelines, settings.showlaneline);
 }
 
 function loadSettings() {
-    settings = JSON.parse(localStorage.getItem(localStorageNames.settings));
-    document.getElementById("set-show-boats").checked = settings.showboats;
-    document.getElementById("set-show-tracks").checked = settings.showtracks;
+    settings.showboats =  readBoolSettings(localStorageNames.settingsshowboats, defaultSetting.showboats);
+    settings.showtracks = readBoolSettings(localStorageNames.settingsshowtracks, defaultSetting.showtracks);
+    settings.showlaneline = readBoolSettings(localStorageNames.settingsshowlanelines, defaultSetting.showlaneline);
+}
+
+function readBoolSettings(settingName, defaultValue) {
+    var val = localStorage.getItem(settingName);
+    if (val === "true") {
+        return true;
+    } else if (val === "false") {
+        return false;
+    } else {
+        return defaultValue;
+    }
 }
 
 function settingsChanged() {
-    settings.showboats = document.getElementById("set-show-boats").checked;
-    settings.showtracks = document.getElementById("set-show-tracks").checked;
-
+    settings.showboats = setShowBoatsCheck.checked;
+    settings.showtracks = setShowTracksCheck.checked;
+    settings.showlaneline = setShowLanelinesCheck.checked;
+    
     saveSettings();
     applySettings();
 }
 
 function applySettings() {
+    setShowTracksCheck.checked = settings.showtracks;
     if (settings.showtracks) {
         document.getElementById("track-cont").style.opacity = "100%";
     } else {
         document.getElementById("track-cont").style.opacity = "0";
     }
+    setShowLanelinesCheck.checked = settings.showlaneline;
+    if (settings.showlaneline) {
+        upmarllines.hidden = false;
+    } else {
+        upmarllines.hidden = true;
+    }
+    setShowBoatsCheck.checked = settings.showboats;
     if (settings.showboats) {
         for (var i = 0; i < game.players.length; i++) {
             game.players[i].html.children[0].innerHTML = boatsvg;
