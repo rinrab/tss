@@ -105,6 +105,12 @@
       margin-top: -14px;
     }
 
+    .pn-control-color {
+      width: 1em;
+      height: 1em;
+      border-radius: 4px;
+    }
+
     .pn-mark {
       width: 20px;
       height: 20px;
@@ -114,15 +120,14 @@
 
     #btn-add-player {
       width: 100%;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+    }
+
+    #back-btn {
+      width: 25%;
     }
 
     #btn-done {
-      width: 100%;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-
+      width: 75%;
     }
 
     #lines-img {
@@ -159,10 +164,6 @@
       .november-container {
         visibility: collapse;
       }
-    }
-
-    #back-btn {
-      width: 100px;
     }
   </style>
 </head>
@@ -222,13 +223,11 @@
         </div>
       </div>
       <div>
-        <div class="btn-group-vertical" style="width: 100%;">
-          <div class="btn-group-vertical" id="controlls" style="width: 100%;">
-            <div class="btn-group" id="cont-add-player">
-              <button class="btn btn-outline-danger" id="btn-add-player">+</button>
-            </div>
-            <div id="last-controll"></div>
-            <div class="btn-group">
+        <div class="" style="width: 100%;">
+          <div class="" id="controlls" style="width: 100%;">
+            <button class="btn btn-outline-danger mb-2" id="btn-add-player">+</button>
+            <div id="last-controll" class="mb-2"></div>
+            <div class="w-100 input-group">
               <button class="btn btn-outline-primary" id="back-btn">Back</button>
               <button class="btn btn-outline-primary" id="btn-done">Start!</button>
             </div>

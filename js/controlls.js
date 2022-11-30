@@ -46,10 +46,8 @@ function apply() {
 
 	document.getElementById("create").remove();
 
-	document.getElementById("cont-add-player").remove();
-
 	for (var i = 0; i < game.players.length; i++) {
-		document.getElementById("input-player-name" + i).disabled = true;
+		document.getElementById("input-player-name" + i).readOnly = true;
 	}
 }
 
@@ -59,23 +57,24 @@ function addControll(i) {
 	var tooltips = labels;
 
 	var nc = document.createElement("div");
-	nc.className = "btn-group";
-	var newcontrolls;
+	nc.className = "input-group mb-1";
 
-	var ncolor = document.createElement("button");
-	ncolor.className = "btn btn-outline-primary";
-	ncolor.style.backgroundColor = colors[i];
-	ncolor.style.border = "0";
-	ncolor.style.width = "30px";
+	var newcolor = document.createElement("span");
+	newcolor.className = "input-group-text";
+	nc.appendChild(newcolor);
+
+	var newcolordiv = document.createElement("div");
+	newcolordiv.className = "pn-control-color";
+	newcolordiv.style.backgroundColor = colors[i];
+	newcolor.appendChild(newcolordiv);
 
 	var nnameinput = document.createElement("input");
 	nnameinput.type = "text";
-	nnameinput.style.width = "70px"
 	nnameinput.placeholder = "Name";
+    nnameinput.className = "form-control";
 	nnameinput.id = "input-player-name" + i;
-
-	nc.appendChild(ncolor);
 	nc.appendChild(nnameinput);
+
 	game.players[i].btnLabels = [];
 	for (var j = 0; j < 3; j++) {
 		var nel = document.createElement("label");
