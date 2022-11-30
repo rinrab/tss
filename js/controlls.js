@@ -15,27 +15,29 @@ function createContolls() {
 }
 
 function apply() {
-	var labels = ["&#8593;", "&#8630;", "&#8857;&#8592;"];
+    var labels = ["&#8593;", "&#8630;", "&#8857;&#8592;"];
 	var tooltips = ["Forward", "Tack", "To mark"];
-
+    
 	for (var i = 0; i < game.players.length; i++) {
 		var checkcontroll = document.getElementById("input-player-name" + i);
 		if (checkcontroll.value == "") {
-			checkcontroll.value = "Player " + (i + 1);
+            checkcontroll.value = "Player " + (i + 1);
 		}
-
+        
 		game.players[i].apply();
 		for (var j = 0; j < game.players[i].btnLabels.length; j++) {
-			game.players[i].btnLabels[j].innerHTML = labels[j];
+            game.players[i].btnLabels[j].innerHTML = labels[j];
 			game.players[i].btnLabels[j].setAttribute("data-bs-title", tooltips[j]);
 		}
 	}
-
+    
 	document.getElementById("start-alert").hidden = true;
 	document.getElementById("game-alert").hidden = false;
 	document.getElementById("wind-scenario-name-inrace-alert").innerText = wind[windscenario].name.toLowerCase();
-
-	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    
+    document.getElementById("controll-container").style.width = "280px";
+	
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
 		new bootstrap.Tooltip(tooltipTriggerEl))
 
@@ -44,11 +46,14 @@ function apply() {
 	done.removeEventListener("click", apply);
 	done.addEventListener("click", turn);
 
+
 	document.getElementById("create").remove();
 
 	for (var i = 0; i < game.players.length; i++) {
 		document.getElementById("input-player-name" + i).readOnly = true;
 	}
+
+    renderGridSize();
 }
 
 function addControll(i) {

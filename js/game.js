@@ -173,7 +173,7 @@ function renderGridSize() {
     var gamecont = document.getElementById("game-cont");
     var gamearea = document.getElementById("game-area");
     var w = window.innerWidth - windDataScroller.clientWidth -
-        document.getElementById("controll-container").clientWidth - 30;
+        document.getElementById("controll-container").clientWidth;
     var h = window.innerHeight;
     if (h < w) {
         gamearea.style.scale = h / (game.height * gridsize);
