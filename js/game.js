@@ -171,6 +171,16 @@ function drawMarks() {
     upmarllines.style.left = game.marks[2].x * gridsize + "px";
     upmarllines.style.top = game.marks[2].y * gridsize + "px";
     upmarllines.style.rotate = game.getwind(turncount + 1) + "deg";
+
+    var startlinecontainer = document.getElementById("start-line");
+    for (var i = game.marks[0].x; i < game.marks[1].x; i++) {
+        var newelem = document.createElement("img");
+        newelem.src = "img/startline.svg";
+        newelem.className = "pn-start-line";
+        newelem.style.left = (i * gridsize) + "px";
+        newelem.style.top = (game.marks[0].y * gridsize) + "px";
+        startlinecontainer.appendChild(newelem);
+    }
 }
 
 function renderGridSize() {
