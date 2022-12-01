@@ -177,10 +177,18 @@ function windEditorStart(iscreate) {
         // TODO: | * User defined 1
         // TODO: | * Named wind
         // TODO: | * User defined 3
-
-        windtext.value = "";
-
+        
+        windtext.value = "0, 0, 0";
+        
     } else {
+        if (wind[windscenario].width == 30 && wind[windscenario].height == 30) {
+            document.getElementById("edit-size-30-30").checked = true;
+        } else if (wind[windscenario].width == 40 && wind[windscenario].height == 30) {
+            document.getElementById("edit-size-40-30").checked = true;
+        } else if (wind[windscenario].width == 30 && wind[windscenario].height == 40) {
+            document.getElementById("edit-size-30-40").checked = true;
+        }
+
         nameinput.value = wind[windscenario].name;
 
         windtext.value = "";
