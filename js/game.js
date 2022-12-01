@@ -56,7 +56,7 @@ function redrawTrack(i) {
     game.players[i].track.setAttribute("points", "");
     for (var j = 0; j < turncount + 1; j++) {
         if (game.players[i].turns[j].isFinishTurn) {
-            addPointToTrack(game.players[i].track, game.marks[2].x + 0.2, game.marks[2].y - 0.2);
+            addPointToTrack(game.players[i].track, game.marks[2].x, game.marks[2].y);
         }
         addPointToTrack(game.players[i].track, game.players[i].turns[j].x, game.players[i].turns[j].y);
     }
