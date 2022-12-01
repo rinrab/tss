@@ -197,6 +197,9 @@ class Game {
     boatsStartRight;
 
     get windscenario() {
+        if (windscenario > this.wind.length - 1) {
+            windscenario = 0;
+        }
         return wind[windscenario];
     }
 
