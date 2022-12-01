@@ -117,4 +117,12 @@ var wind =
             stepscount: 50,
             wind: [-5]
         },
+        {
+            "name": "Pendulum 1",
+            "type": windTypes.presets,
+            "wind": [0, 5, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5],
+            "width": 30,
+            "height": 30,
+            "stepscount": 50,
+        }
     ];
