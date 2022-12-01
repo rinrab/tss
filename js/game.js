@@ -284,7 +284,7 @@ function init() {
     upmarllines = document.createElement("img");
     upmarllines.src = "img/marklaneline.svg";
     upmarllines.className = "pn-lines game-elem";
-    gamearea.insertBefore(upmarllines, document.getElementById("set-cont"));
+    gamearea.insertBefore(upmarllines, document.getElementById("wind"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
         location.reload();
     });
