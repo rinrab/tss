@@ -201,6 +201,9 @@ function renderGridSize() {
         gamearea.style.scale = w / (game.width * gridsize);
         gamearea.style.top = ((h - game.height * gamearea.style.scale * gridsize) / 2) + "px";
     }
+    gamearea.style.height = (game.height * gridsize) + "px";
+    gamearea.style.width = (game.width * gridsize) + "px";
+
     console.log("gs");
 }
 
@@ -211,10 +214,13 @@ function windChange() {
     } else {
         game.setWindFromScenario();
     }
-    renderGridSize();
-
+    
     localStorage.setItem(localStorageNames.selectedWind, windscenario);
-
+    
+    renderGridSize();
+    for (var i = 0; i < game.players.length; i++) {
+        game.players[i].y = game.height - 2;
+    }
     windDataInit();
     drawAll()
 }
@@ -315,9 +321,7 @@ function init() {
 
     var track = document.getElementById("track");
     track.setAttribute("viewBox", "0 0 " + game.width + " " + game.height);
-    gamearea.style.height = (game.height * gridsize) + "px";
-    gamearea.style.width = (game.width * gridsize) + "px";
-
+    
     applySettings();
 }
 
