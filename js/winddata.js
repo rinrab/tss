@@ -54,27 +54,11 @@ var wind =
             stepscount: 50
         },
         {
-            name: "crazy",
-            width: 30,
-            height: 30,
-            type: windTypes.presets,
-            wind: [0, 0, 0, 5, 5, 5, 10, 5, 10, 10, 15, 10, 0, 15, 15, 30, 0, -10, 35, 40, 35, 30, 40, 45, 30, 15, 25, 20, 15, 10, 5, 0, -5, -10, 180, 180, 180],
-            stepscount: 50
-        },
-        {
             name: "by fokey",
             width: 30,
             height: 30,
             type: windTypes.presets,
             wind: [0, 5, 5, 5, 10, 10, 5, 0, 0, 0, 5, 5, 10, 10, 10, 10, 15, 20, 20, 20, 20, 15, 10, 5, 0, 0, -5, -10, -15, -20, -20, -20, -15, -15, -10, -5, 0, 0, 0, 0, 0, -5, -5, -5, -10, -15, -10, -5, 0],
-            stepscount: 50
-        },
-        {
-            name: "very crazy",
-            width: 30,
-            height: 30,
-            type: windTypes.presets,
-            wind: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 60, 80, 100, 999999999999, 999999],
             stepscount: 50
         },
         {
