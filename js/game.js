@@ -2,8 +2,7 @@ var gridsize = 20;
 
 var turncount = 0;
 const colors = ["red", "blue", "black", "green", "cyan", "magenta", "purple", "gray", "yellow",
-    "darkred", "darkblue", "darkcyan", "lightgray"
-    , "lightblue", "lightgreen", "lightcyan"]
+    "darkred", "darkblue"]
 var winddata
 var windDataScroller;
 var boatSize = 32;
