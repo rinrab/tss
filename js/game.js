@@ -176,10 +176,13 @@ function drawMarks() {
 function renderGridSize() {
     var gamecont = document.getElementById("game-cont");
     var gamearea = document.getElementById("game-area");
+    document.getElementById("track").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
+    document.getElementById("background").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
+
     var w = window.innerWidth - windDataScroller.clientWidth -
         document.getElementById("controll-container").clientWidth;
     var h = window.innerHeight;
-    if (h < w) {
+    if (h / game.height < w / game.width) {
         gamearea.style.scale = h / (game.height * gridsize);
     } else {
         gamearea.style.scale = w / (game.width * gridsize);

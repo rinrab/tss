@@ -238,8 +238,8 @@ class Game {
         this.width = this.windscenario.width;
         this.height = this.windscenario.height;
         this.marks = [
-            { "x": 7, "y": this.height - 2, "type": Marks.startleft },
-            { "x": this.width - 7, "y": this.height - 2, "type": Marks.startright },
+            { "x": 12, "y": this.height - 2, "type": Marks.startleft },
+            { "x": this.width - 12, "y": this.height - 2, "type": Marks.startright },
             { "x": this.width / 2, "y": 2, "type": Marks.mark1 },
         ];
     }

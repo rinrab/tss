@@ -97,7 +97,7 @@ function editorSaveClick() {
         newwind.wind[i] = parseInt(newwind.wind[i])
     }
     newwind.height = 30; //todo
-    newwind.width = 30; //todo
+    newwind.width = 40; //todo
     newwind.stepscount = newwind.wind.length;
     newwind.allowedit = true;
     if (editIndex == -1) {
