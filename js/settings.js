@@ -29,7 +29,7 @@ function settingsInit() {
     setShowBoatsCheck = document.getElementById("set-show-boats");
     setShowTracksCheck = document.getElementById("set-show-tracks")
     setShowLanelinesCheck = document.getElementById("set-show-lanelines")
-    
+
     setShowBoatsCheck.addEventListener("click", settingsChanged);
     setShowTracksCheck.addEventListener("click", settingsChanged);
     setShowLanelinesCheck.addEventListener("click", settingsChanged);
@@ -42,7 +42,7 @@ function saveSettings() {
 }
 
 function loadSettings() {
-    settings.showboats =  readBoolSettings(localStorageNames.settingsshowboats, defaultSetting.showboats);
+    settings.showboats = readBoolSettings(localStorageNames.settingsshowboats, defaultSetting.showboats);
     settings.showtracks = readBoolSettings(localStorageNames.settingsshowtracks, defaultSetting.showtracks);
     settings.showlaneline = readBoolSettings(localStorageNames.settingsshowlanelines, defaultSetting.showlaneline);
 }
@@ -62,7 +62,7 @@ function settingsChanged() {
     settings.showboats = setShowBoatsCheck.checked;
     settings.showtracks = setShowTracksCheck.checked;
     settings.showlaneline = setShowLanelinesCheck.checked;
-    
+
     saveSettings();
     applySettings();
 }
