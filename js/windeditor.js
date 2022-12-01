@@ -96,8 +96,18 @@ function editorSaveClick() {
     for (var i = 0; i < newwind.wind.length; i++) {
         newwind.wind[i] = parseInt(newwind.wind[i])
     }
-    newwind.height = 30; //todo
-    newwind.width = 40; //todo
+    if (document.getElementById("edit-size-30-30").checked) {
+        newwind.width = 30;
+        newwind.height = 30;
+    }
+    if (document.getElementById("edit-size-30-40").checked) {
+        newwind.width = 30;
+        newwind.height = 40;
+    }
+    if (document.getElementById("edit-size-40-30").checked) {
+        newwind.width = 40;
+        newwind.height = 30;
+    }
     newwind.stepscount = newwind.wind.length;
     newwind.allowedit = true;
     if (editIndex == -1) {
