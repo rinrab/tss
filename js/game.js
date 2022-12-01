@@ -12,6 +12,8 @@ var windscenario;
 var windscenariocontrol;
 var windtype = 0;
 
+const startLineSize = 15;
+
 var boatsvg =
     `<g>
 <title>Layer 1</title>
