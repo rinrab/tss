@@ -138,7 +138,9 @@
     #controll-container {
       position: absolute;
       right: 10px;
-      height: 100vh;
+      scale: var(--control-scale);
+      height: calc(100vh / var(--control-scale));
+      transform-origin: top right;
     }
 
     .november-container {
@@ -192,7 +194,7 @@
         </div>
       </div>
     </div>
-    <div style="width: 350px;" id="controll-container" class="pad0">
+    <div style="width: 350px; --control-scale: 1" id="controll-container" class="pad0">
       <div>
         <div id="start-alert" class="alert alert-warning text-center">
           Start procedure
