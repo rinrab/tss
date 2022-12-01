@@ -195,6 +195,7 @@ function windChange() {
     localStorage.setItem(localStorageNames.selectedWind, windscenario);
 
     windDataInit();
+    drawAll()
 }
 
 function addWind() {
