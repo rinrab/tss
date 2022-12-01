@@ -60,7 +60,6 @@ function apply() {
 function addControll(i) {
 	var controlls = document.getElementById("controlls");
 	var labels = ["Left", "Middle", "Right"];
-	var tooltips = labels;
 
 	var nc = document.createElement("div");
 	nc.className = "input-group mb-1";
@@ -103,7 +102,6 @@ function addControll(i) {
 		nel.innerHTML = labels[j];
 		nel.setAttribute("data-bs-toggle", "tooltip");
 		nel.setAttribute("data-bs-placement", "top");
-		nel.setAttribute("data-bs-title", tooltips[j]);
 
 		nc.appendChild(nei);
 		nc.appendChild(nel);
