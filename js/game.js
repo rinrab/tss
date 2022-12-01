@@ -188,14 +188,16 @@ function renderGridSize() {
     var gamearea = document.getElementById("game-area");
     document.getElementById("track").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
     document.getElementById("background").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
-
+    gamecont.style.height = window.innerHeight + "px";
     var w = window.innerWidth - windDataScroller.clientWidth -
         document.getElementById("controll-container").clientWidth;
     var h = window.innerHeight;
     if (h / game.height < w / game.width) {
         gamearea.style.scale = h / (game.height * gridsize);
+        gamearea.style.top = "0px";
     } else {
         gamearea.style.scale = w / (game.width * gridsize);
+        gamearea.style.top = ((h - game.height * gamearea.style.scale * gridsize) / 2) + "px";
     }
     console.log("gs");
 }
