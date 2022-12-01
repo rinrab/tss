@@ -10,7 +10,7 @@ var windTypes = {
     presets: "Presets",
     userdefined: "User defined"
 }
-var wind =
+var windPresets =
     [
         {
             name: "Random",
@@ -110,3 +110,5 @@ var wind =
             "stepscount": 50,
         }
     ];
+
+var wind = [];

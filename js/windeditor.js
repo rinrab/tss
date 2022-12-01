@@ -34,8 +34,10 @@ function windInit() {
         var c = 0;
         for (var i = 0; i < windtmp.length; i++) {
             if (isNaN(parseInt(windtmp[i]))) {
-                errors[errors.length] = { type: errorTypes.notnumber, text: '"' + windtmp[i] + 
-                '" ' + errortexts.notnumber, char: c }
+                errors[errors.length] = {
+                    type: errorTypes.notnumber, text: '"' + windtmp[i] +
+                        '" ' + errortexts.notnumber, char: c
+                }
             }
             c += windtmp[i].length + 1;
         }
@@ -124,11 +126,7 @@ function editorSaveClick() {
 function saveWind() {
     windlist = {};
     windlist.names = [];
-    var startI = 0;
-    while ((startI < wind.length)
-        && (wind[startI].type == windTypes.presets)) {
-        startI++;
-    }
+    var startI = windPresets.length;
     for (var i = startI; i < wind.length; i++) {
         localStorage.setItem(localStorageNames.wind.toString() + (i - startI).toString(),
             JSON.stringify(wind[i]));
@@ -140,7 +138,10 @@ function saveWind() {
 
 function loadWind() {
     windlist = JSON.parse(localStorage.getItem(localStorageNames.windlist));
-    var startI = wind.length;
+    for (var i = 0; i < windPresets.length; i++) {
+        wind[i] = windPresets[i];
+    }
+    var startI = windPresets.length;
     for (var i = 0; i < windlist.names.length; i++) {
         var newwind = JSON.parse(localStorage.getItem(localStorageNames.wind + i.toString()))
         wind[i + startI] = newwind;
