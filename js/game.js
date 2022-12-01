@@ -175,6 +175,7 @@ function drawMarks() {
     upmarllines.style.rotate = game.getwind(turncount + 1) + "deg";
 
     var startlinecontainer = document.getElementById("start-line");
+    startlinecontainer.innerHTML = "";
     for (var i = game.marks[0].x; i < game.marks[1].x; i++) {
         var newelem = document.createElement("img");
         newelem.src = "img/startline.svg";
