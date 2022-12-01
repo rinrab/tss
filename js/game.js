@@ -55,11 +55,15 @@ function redrawTracks() {
 function redrawTrack(i) {
     game.players[i].track.setAttribute("points", "");
     for (var j = 0; j < turncount + 1; j++) {
-        game.players[i].track.setAttribute("points",
-            game.players[i].track.getAttribute("points")
-            + " " + (game.players[i].turns[j].x)
-            + "," + (game.players[i].turns[j].y));
+        if (game.players[i].turns[j].isFinishTurn) {
+            addPointToTrack(game.players[i].track, game.marks[2].x + 0.2, game.marks[2].y - 0.2);
+        }
+        addPointToTrack(game.players[i].track, game.players[i].turns[j].x, game.players[i].turns[j].y);
     }
+}
+
+function addPointToTrack(track, x, y) {
+    track.setAttribute("points", track.getAttribute("points") + " " + x + "," + y);
 }
 
 function backTurn() {
@@ -232,18 +236,18 @@ function addPlayer() {
     var newboat = document.createElementNS('http://www.w3.org/2000/svg', "svg");
     newboat.setAttribute("stroke", colors[i]);
     newboat.setAttribute("viewBox", "0 0 16 32");
-    
+
     newboatcont.appendChild(newboat);
     game.players[i].html = newboatcont;
     gamearea.appendChild(newboatcont);
-    
+
     applySettings();
     addControll(i);
     game.players[i].tackBtn.checked = true;
 
     game.players[i].startPositionChange();
     game.placeBoatsOnStart();
-    
+
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
         new bootstrap.Tooltip(tooltipTriggerEl))
@@ -263,11 +267,11 @@ function init() {
     upmarllines.src = "img/marklaneline.svg";
     upmarllines.className = "pn-lines game-elem";
     gamearea.insertBefore(upmarllines, document.getElementById("set-cont"));
-    document.getElementById("btn-nowember").addEventListener("click", function() {
+    document.getElementById("btn-nowember").addEventListener("click", function () {
         location.reload();
     });
     windInit();
-    document.getElementById("btn-ap").addEventListener("click", function() {
+    document.getElementById("btn-ap").addEventListener("click", function () {
         location.reload();
     });
     windInit();

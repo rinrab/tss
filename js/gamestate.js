@@ -36,20 +36,19 @@ class Boat {
         var turntype;
         if (!this.finished) {
             var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
-
+            var isFinishTurn = false;
             var a = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y)
             if (dist < 1 && (a - game.getwind(turncount) > 45 || a - game.getwind(turncount) < -45)) {
                 this.x = game.marks[2].x;
                 this.y = game.marks[2].y - 0.1;
 
-                this.saveTurn(turntype);
-                redrawTrack(this.indexInGame);
                 drawAll();
 
                 this.rotation = -100;
                 this.x += Math.sin(this.rotation * Math.PI / 180) * (1 - dist);
                 this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
                 this.finished = true;
+                isFinishTurn = true;
             } else {
                 if (this.tackBtn.checked) {
                     this.tack = !this.tack;
@@ -94,7 +93,7 @@ class Boat {
         }
         this.x = Math.round(this.x * 100) / 100;
         this.y = Math.round(this.y * 100) / 100;
-        this.saveTurn(turntype);
+        this.saveTurn(turntype, isFinishTurn);
     }
 
     apply() {
@@ -103,9 +102,9 @@ class Boat {
         this.forwardBtn.checked = true;
     }
 
-    saveTurn(turntype) {
+    saveTurn(turntype, isFinishTurn) {
         this.turns[turncount] = new PlayerStory(turntype, this.x, this.y,
-            this.rotation, this.tack, this.finished);
+            this.rotation, this.tack, this.finished, isFinishTurn);
     }
 
     back() {
@@ -311,14 +310,16 @@ class PlayerStory {
     rotation;
     tack;
     finished;
+    isFinishTurn;
 
-    constructor(turnType, x, y, rotation, tack, finished) {
+    constructor(turnType, x, y, rotation, tack, finished, isFinishTurn) {
         this.turnType = turnType;
         this.x = x;
         this.y = y;
         this.rotation = rotation;
         this.tack = tack;
-        this.finished;
+        this.finished = finished;
+        this.isFinishTurn = isFinishTurn;
     }
 }
 
