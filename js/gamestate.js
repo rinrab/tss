@@ -65,11 +65,12 @@ class Boat {
                 } else if (this.toMarkBtn.checked) {
                     if (game.isOutLaneline(this.x, this.y)) {
                         this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);;
-                    }
-                    else if (this.tack) {
-                        this.rotation = 45 + game.getwind(turncount);
                     } else {
-                        this.rotation = -45 + game.getwind(turncount);
+                        if (this.tack) {
+                            this.rotation = 45 + game.getwind(turncount);
+                        } else {
+                            this.rotation = -45 + game.getwind(turncount);
+                        }
                     }
                     turntype = turnTupes.toMark;
                 }
