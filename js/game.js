@@ -56,10 +56,11 @@ function redrawTracks() {
 function redrawTrack(i) {
     game.players[i].track.setAttribute("points", "");
     for (var j = 0; j < turncount + 1; j++) {
-        if (game.players[i].turns[j].isFinishTurn) {
-            addPointToTrack(game.players[i].track, game.marks[2].x, game.marks[2].y);
+        for (var k = 0; k < game.players[i].turns[j].points.length; k++) {
+            addPointToTrack(game.players[i].track,
+                game.players[i].turns[j].points[k].x,
+                game.players[i].turns[j].points[k].y);
         }
-        addPointToTrack(game.players[i].track, game.players[i].turns[j].x, game.players[i].turns[j].y);
     }
 }
 
@@ -214,9 +215,9 @@ function windChange() {
     } else {
         game.setWindFromScenario();
     }
-    
+
     localStorage.setItem(localStorageNames.selectedWind, windscenario);
-    
+
     renderGridSize();
     for (var i = 0; i < game.players.length; i++) {
         game.players[i].y = game.height - 2;
@@ -321,7 +322,7 @@ function init() {
 
     var track = document.getElementById("track");
     track.setAttribute("viewBox", "0 0 " + game.width + " " + game.height);
-    
+
     applySettings();
 }
 

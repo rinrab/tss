@@ -34,13 +34,16 @@ class Boat {
 
     turn() {
         var turntype;
+        var points = [];
+
         if (!this.finished) {
             var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
 
-            var isFinishTurn = false;
             if (dist < 1 && game.isUnderLaneline(this.x, this.y)) {
                 this.x = game.marks[2].x;
                 this.y = game.marks[2].y - 0.1;
+
+                points.push({ x: this.x, y: this.y });
 
                 drawAll();
 
@@ -48,7 +51,6 @@ class Boat {
                 this.x += Math.sin(this.rotation * Math.PI / 180) * (1 - dist);
                 this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
                 this.finished = true;
-                isFinishTurn = true;
             } else {
                 if (this.tackBtn.checked) {
                     this.tack = !this.tack;
@@ -93,18 +95,21 @@ class Boat {
         }
         this.x = Math.round(this.x * 100) / 100;
         this.y = Math.round(this.y * 100) / 100;
-        this.saveTurn(turntype, isFinishTurn);
+
+        points.push({ x: this.x, y: this.y });
+
+        this.saveTurn(turntype, points);
     }
 
     apply() {
-        this.saveTurn(turnTupes.forward);
+        this.saveTurn(turnTupes.forward, [{ x: this.x, y: this.y }]);
         this.isStart = false;
         this.forwardBtn.checked = true;
     }
 
-    saveTurn(turntype, isFinishTurn) {
-        this.turns[turncount] = new PlayerStory(turntype, this.x, this.y,
-            this.rotation, this.tack, this.finished, isFinishTurn);
+    saveTurn(turntype, points) {
+        this.turns[turncount] = new PlayerStory(turntype, points,
+            this.rotation, this.tack, this.finished);
     }
 
     back() {
@@ -313,21 +318,17 @@ const turnTupes = {
 
 class PlayerStory {
     turnType;
-    x;
-    y;
+    points;
     rotation;
     tack;
     finished;
-    isFinishTurn;
 
-    constructor(turnType, x, y, rotation, tack, finished, isFinishTurn) {
+    constructor(turnType, points, rotation, tack, finished) {
         this.turnType = turnType;
-        this.x = x;
-        this.y = y;
+        this.points = points;
         this.rotation = rotation;
         this.tack = tack;
         this.finished = finished;
-        this.isFinishTurn = isFinishTurn;
     }
 }
 
@@ -344,7 +345,7 @@ function distanceToLine(x, y, lX, lY, angle) {
     angle = angle - 90;
     y = -y;
     lY = -lY;
- 
+
     var rad = degToRad(angle - 90);
     return Math.abs(
         Math.cos(rad) * (lY - y) -
