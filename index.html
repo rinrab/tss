@@ -109,12 +109,15 @@
       width: 100%;
     }
 
+    #btn-add-player {
+      width: auto;
+    }
     #back-btn {
       width: 25%;
     }
 
     #btn-done {
-      width: 75%;
+      flex: auto;
     }
 
     #lines-img {
@@ -171,7 +174,7 @@
     }
 
     .control-scroll {
-      max-height: calc(100vh - 250px);
+      max-height: calc(100vh - 290px);
       overflow: auto;
     }
   </style>
@@ -225,15 +228,15 @@
             data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">+</button>
         </div>
       </div>
+      <div class="w-100 mb-2 input-group">
+        <button class="btn btn-outline-danger" id="btn-add-player">+</button>
+        <button class="btn btn-outline-primary" id="back-btn">Back</button>
+        <button class="btn btn-outline-primary" id="btn-done">Start!</button>
+      </div>
       <div class="control-scroll">
         <div style="width: 100%;">
           <div id="controlls" style="width: 100%;">
-            <button class="btn btn-outline-danger mb-2" id="btn-add-player">+</button>
             <div id="last-controll" class="mb-2"></div>
-            <div class="w-100 input-group">
-              <button class="btn btn-outline-primary" id="back-btn">Back</button>
-              <button class="btn btn-outline-primary" id="btn-done">Start!</button>
-            </div>
           </div>
         </div>
       </div>
