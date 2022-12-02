@@ -39,7 +39,7 @@ class Boat {
         if (!this.finished) {
             var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
 
-            if (dist < 1 && game.isUnderLaneline(this.x, this.y)) {
+            if (dist < 1 && game.isOutLaneline(this.x, this.y)) {
                 this.x = game.marks[2].x;
                 this.y = game.marks[2].y - 0.1;
 
@@ -63,7 +63,7 @@ class Boat {
                     this.forwardBtn.checked = true;
                     turntype = turnTupes.tack;
                 } else if (this.toMarkBtn.checked) {
-                    if (game.isUnderLaneline(this.x, this.y)) {
+                    if (game.isOutLaneline(this.x, this.y)) {
                         this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);;
                     }
                     else if (this.tack) {
@@ -208,7 +208,7 @@ class Game {
         return wind[windscenario];
     }
 
-    isUnderLaneline(x, y) {
+    isOutLaneline(x, y) {
         var a = getRotateAngel(x, y, this.marks[2].x, this.marks[2].y);
         return (a - this.getwind(turncount) > 45 || a - this.getwind(turncount) < -45);
     }
