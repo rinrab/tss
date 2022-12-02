@@ -65,7 +65,7 @@ function redrawTrack(i) {
 }
 
 function addPointToTrack(track, x, y) {
-    track.setAttribute("points", track.getAttribute("points") + " " + x + "," + y);
+    track.setAttribute("points", track.getAttribute("points") + " " + x.toFixed(3) + "," + y.toFixed(3));
 }
 
 function backTurn() {

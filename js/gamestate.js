@@ -94,9 +94,6 @@ class Boat {
             this.x += Math.sin(this.rotation * Math.PI / 180);
             this.y -= Math.cos(this.rotation * Math.PI / 180);
         }
-        this.x = Math.round(this.x * 100) / 100;
-        this.y = Math.round(this.y * 100) / 100;
-
         points.push({ x: this.x, y: this.y });
 
         this.saveTurn(turntype, points);
