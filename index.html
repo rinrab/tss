@@ -169,6 +169,11 @@
     .label-control svg {
       width: 25px;
     }
+
+    .control-scroll {
+      max-height: calc(100vh - 250px);
+      overflow: auto;
+    }
   </style>
 </head>
 
@@ -220,9 +225,9 @@
             data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">+</button>
         </div>
       </div>
-      <div>
-        <div class="" style="width: 100%;">
-          <div class="" id="controlls" style="width: 100%;">
+      <div class="control-scroll">
+        <div style="width: 100%;">
+          <div id="controlls" style="width: 100%;">
             <button class="btn btn-outline-danger mb-2" id="btn-add-player">+</button>
             <div id="last-controll" class="mb-2"></div>
             <div class="w-100 input-group">
