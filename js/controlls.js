@@ -71,7 +71,7 @@ function getSvgStartControl(translateX) {
 
 function addControll(i) {
 	var controlls = document.getElementById("controlls");
-	var labels = ["Left", "Middle", "Right"];
+	var tooltips = ["Start left", "Start middle", "Start right"];
     var startTranslations = [0, 4, 8];
 
 	var nc = document.createElement("div");
@@ -115,6 +115,7 @@ function addControll(i) {
 		nel.innerHTML = getSvgStartControl(startTranslations[j]);
 		nel.setAttribute("data-bs-toggle", "tooltip");
 		nel.setAttribute("data-bs-placement", "top");
+		nel.setAttribute("data-bs-title", tooltips[j]);
 
 		nc.appendChild(nei);
 		nc.appendChild(nel);
