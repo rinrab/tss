@@ -128,8 +128,8 @@ class Boat {
     }
 
     back() {
-        this.x = this.turns[turncount].x;
-        this.y = this.turns[turncount].y;
+        this.x = this.turns[turncount].points[this.turns[turncount].points.length - 1].x;
+        this.y = this.turns[turncount].points[this.turns[turncount].points.length - 1].y;
         this.rotation = this.turns[turncount].rotation;
         this.tack = this.turns[turncount].tack;
         if (this.turns[turncount + 1].turnType == turnTupes.forward) {
