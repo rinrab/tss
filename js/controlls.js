@@ -35,8 +35,6 @@ function apply() {
 	document.getElementById("game-alert").hidden = false;
 	document.getElementById("wind-scenario-name-inrace-alert").innerText = wind[windscenario].name.toLowerCase();
     
-    document.getElementById("controll-container").style.width = "280px";
-	
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
 		new bootstrap.Tooltip(tooltipTriggerEl))
