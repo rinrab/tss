@@ -35,6 +35,7 @@ class Boat {
     turn() {
         var turntype;
         var points = [];
+        var moveDist = 1;
 
         if (!this.finished) {
             var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
@@ -66,16 +67,32 @@ class Boat {
                     if (game.isOutLaneline(this.x, this.y)) {
                         this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);;
                     } else {
+                        var moveAngle;
+                        var lanelineAngle;
+
                         if (this.tack) {
-                            this.rotation = 45 + game.getwind(turncount);
+                            lanelineAngle = -45 - game.getwind(turncount);
+                            moveAngle = 45 + game.getwind(turncount);
                         } else {
-                            this.rotation = -45 + game.getwind(turncount);
+                            lanelineAngle = 45 - game.getwind(turncount);
+                            moveAngle = -45 + game.getwind(turncount);
+                        }
+
+                        this.rotation = moveAngle;
+
+                        var lanelineDistance = distanceToLine(
+                            this.x, this.y, game.marks[2].x, game.marks[2].y,
+                            lanelineAngle);
+                        if (lanelineDistance < 1) {
+                            this.x += Math.sin(this.rotation * Math.PI / 180) * lanelineDistance;
+                            this.y -= Math.cos(this.rotation * Math.PI / 180) * lanelineDistance;
+                            points.push({ x: this.x, y: this.y });
+                            moveDist -= lanelineDistance;
+                            this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);
                         }
                     }
                     turntype = turnTupes.toMark;
                 }
-
-
                 else {
                     if (this.tack) {
                         this.rotation = 45 + game.getwind(turncount);
@@ -87,8 +104,8 @@ class Boat {
 
                 this.rotation = this.rotation % 360;
 
-                this.x += Math.sin(this.rotation * Math.PI / 180);
-                this.y -= Math.cos(this.rotation * Math.PI / 180);
+                this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
+                this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
             }
         } else {
             this.x += Math.sin(this.rotation * Math.PI / 180);
