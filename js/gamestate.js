@@ -225,7 +225,7 @@ class Game {
 
     isOutLaneline(x, y) {
         var a = getRotateAngel(x, y, this.marks[2].x, this.marks[2].y);
-        return (a - this.getwind(turncount) > 45 || a - this.getwind(turncount) < -45);
+        return (a - this.getwind(turncount) >= 44.99 || a - this.getwind(turncount) <= -44.99);
     }
 
     setWindFromScenario() {
