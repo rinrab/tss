@@ -56,20 +56,9 @@ function apply() {
     renderGridSize();
 }
 
-function getSvgStartControl(translateX) {
-    return `
-    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-        <g>
-            <line x1="1" x2="15" y1="8" y2="8" stroke="gray" stroke-width="0.5" />
-            <ellipse fill="darkred" cx="1" cy="8" rx="1" ry="1" />
-            <ellipse fill="darkred" cx="15" cy="8" rx="1" ry="1" />
-            <polygon points="4 10 5 9.4 3 7" stroke="red" transform="translate(${translateX} 0)" />
-        </g>
-    </svg>`
-}
-
 function addControll(i) {
 	var controlls = document.getElementById("controlls");
+    var labels = ["L", "M", "R"];
 	var tooltips = ["Start left", "Start middle", "Start right"];
     var startTranslations = [0, 4, 8];
 
@@ -111,7 +100,7 @@ function addControll(i) {
 
 		nel.className = "btn btn-outline-primary label-control";
 		nel.setAttribute("for", "btn-contoll" + i.toString() + j.toString());
-		nel.innerHTML = getSvgStartControl(startTranslations[j]);
+		nel.innerHTML = labels[j];
 		nel.setAttribute("data-bs-toggle", "tooltip");
 		nel.setAttribute("data-bs-placement", "top");
 		nel.setAttribute("data-bs-title", tooltips[j]);
