@@ -57,9 +57,22 @@ function apply() {
     renderGridSize();
 }
 
+function getSvgStartControl(translateX) {
+    return `
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <g>
+            <line x1="1" x2="15" y1="8" y2="8" stroke="gray" stroke-width="0.5" />
+            <ellipse fill="darkred" cx="1" cy="8" rx="1" ry="1" />
+            <ellipse fill="darkred" cx="15" cy="8" rx="1" ry="1" />
+            <polygon points="4 10 5 9.4 3 7" stroke="red" transform="translate(${translateX} 0)" />
+        </g>
+    </svg>`
+}
+
 function addControll(i) {
 	var controlls = document.getElementById("controlls");
 	var labels = ["Left", "Middle", "Right"];
+    var startTranslations = [0, 4, 8];
 
 	var nc = document.createElement("div");
 	nc.className = "input-group mb-1";
@@ -97,9 +110,9 @@ function addControll(i) {
 			nei.checked = true;
 		}
 
-		nel.className = "btn btn-outline-primary";
+		nel.className = "btn btn-outline-primary label-control";
 		nel.setAttribute("for", "btn-contoll" + i.toString() + j.toString());
-		nel.innerHTML = labels[j];
+		nel.innerHTML = getSvgStartControl(startTranslations[j]);
 		nel.setAttribute("data-bs-toggle", "tooltip");
 		nel.setAttribute("data-bs-placement", "top");
 
