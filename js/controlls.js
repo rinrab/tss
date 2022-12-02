@@ -44,6 +44,7 @@ function apply() {
 	done.removeEventListener("click", apply);
 	done.addEventListener("click", turn);
 
+    document.body.className = "race";
 
 	document.getElementById("create").remove();
 	document.getElementById("btn-add-player").remove();

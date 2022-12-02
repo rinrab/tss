@@ -173,14 +173,21 @@
       width: 25px;
     }
 
-    .control-scroll {
+    .start .control-scroll {
       max-height: calc(100vh - 290px);
       overflow: auto;
     }
+    
+    .race .control-scroll {
+      max-height: calc(100vh - 235px);
+      overflow: auto;
+    }
+
+
   </style>
 </head>
 
-<body>
+<body class="start">
   <div class="row">
     <div id="wind-scroll-cont" style="width: 150px;" class="pad0">
       <input type="checkbox" class="btn-check" id="show-future-wind" autocomplete="off">
