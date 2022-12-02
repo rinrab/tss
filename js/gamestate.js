@@ -334,3 +334,19 @@ class PlayerStory {
 function getRotateAngel(x1, y1, x2, y2) {
     return (Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI + 90);
 }
+
+function degToRad(deg) {
+    return deg * Math.PI / 180;
+}
+
+function distanceToLine(x, y, lX, lY, angle) {
+    // Convert coordinate system. 
+    angle = angle - 90;
+    y = -y;
+    lY = -lY;
+ 
+    var rad = degToRad(angle - 90);
+    return Math.abs(
+        Math.cos(rad) * (lY - y) -
+        Math.sin(rad) * (lX - x))
+}
