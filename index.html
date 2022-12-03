@@ -168,13 +168,18 @@
       max-height: calc(100vh - 235px);
       overflow: auto;
     }
+
+    .wind-data-scroller {
+      height: 100vh;
+      overflow: auto;
+    }
   </style>
 </head>
 
 <body class="start">
   <div class="row">
     <div id="wind-scroll-cont" style="width: 150px;" class="pad0">
-      <div class="overflow-scroll" id="wind-data.scroller">
+      <div class="wind-data-scroller" id="wind-data.scroller">
         <ul class="list-group list-group-flush" id="wind-data"></ul>
       </div>
     </div>
