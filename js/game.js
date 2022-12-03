@@ -88,6 +88,24 @@ function drawAll() {
     drawMarks();
     console.log("draw");
     setTimeout(drawWindArrow, 250);
+    drawLines()
+}
+
+function drawLines() {
+    var linesSvg = document.getElementById("lines-svg");
+    linesSvg.setAttribute("viewBox", `0 0 ${game.width} ${game.height}`);
+    var linesDrawing = document.getElementById("lines-drawing");
+    linesDrawing.innerHTML = "";
+    
+
+    for (var i = 0; i < game.height; i++) {
+        var newLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        newLine.setAttribute("x1", 0);
+        newLine.setAttribute("x2", game.width);
+        newLine.setAttribute("y1", i * 2);
+        newLine.setAttribute("y2", i * 2);
+        linesDrawing.appendChild(newLine);
+    }
 }
 
 function drawWindArrow() {
