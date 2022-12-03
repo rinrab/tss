@@ -104,8 +104,8 @@ function editorSaveClick() {
     for (var i = 0; i < newwind.wind.length; i++) {
         newwind.wind[i] = parseInt(newwind.wind[i])
     }
-    newwind.width = parseInt(mapWidth.value);
-    newwind.height = parseInt(mapHeight.value);
+    newwind.width = formatNumber(parseInt(mapWidth.value), 40);
+    newwind.height = formatNumber(parseInt(mapHeight.value), 30);
     newwind.stepscount = newwind.wind.length;
     newwind.allowedit = true;
     if (editIndex == -1) {
@@ -119,6 +119,16 @@ function editorSaveClick() {
     windChange();
     addWind();
 }
+
+function formatNumber(num, defaultValue) {
+    num = Math.round(num);
+    if (isNaN(num)) {
+        return defaultValue;
+    } else {
+        return num;
+    }
+}
+
 function saveWind() {
     windlist = {};
     windlist.names = [];
