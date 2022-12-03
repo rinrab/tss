@@ -53,6 +53,12 @@ class Boat {
                 this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
                 this.finished = true;
             } else {
+                if (this.x < 0.5) {
+                    this.tack = true;
+                }
+                if (this.x > game.width - 0.5) {
+                    this.tack = false;
+                }
                 if (this.tackBtn.checked) {
                     this.tack = !this.tack;
 
