@@ -189,8 +189,8 @@ function windEditorStart(iscreate) {
         windtext.value = "0, 0, 0";
 
     } else {
-        mapWidth = wind[windscenario].width;
-        mapHeight = wind[windscenario].height;
+        mapWidth.value = wind[windscenario].width;
+        mapHeight.value = wind[windscenario].height;
 
         nameinput.value = wind[windscenario].name;
 
