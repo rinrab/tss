@@ -110,14 +110,16 @@ function editorSaveClick() {
     newwind.allowedit = true;
     if (editIndex == -1) {
         wind.splice(wind.length, 0, newwind);
+        windscenario = wind.length - 1;
     } else {
         wind[windIndex] = newwind;
+        windscenario = windIndex;
     }
-    windscenario = windIndex;
 
     saveWind();
-    windChange();
     addWind();
+    windscenariocontrol.selectedIndex = windscenario;
+    windChange();
 }
 
 function formatNumber(num, defaultValue) {

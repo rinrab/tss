@@ -233,10 +233,10 @@ function windChange() {
 
     localStorage.setItem(localStorageNames.selectedWind, windscenario);
 
-    renderGridSize();
     for (var i = 0; i < game.players.length; i++) {
         game.players[i].y = game.height - 2;
     }
+    renderGridSize();
     windDataInit();
     drawAll()
 }
