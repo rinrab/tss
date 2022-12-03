@@ -99,7 +99,18 @@ function drawWindArrow() {
 
 function windDataInit() {
     winddata.innerHTML = "";
+    
     var showfuturewind = document.getElementById("show-future-wind").checked;
+    console.log("bfbhdsb")
+
+    if (showfuturewind) {
+        document.getElementById("wind-scroll-cont").hidden = false;
+    } else {
+        document.getElementById("wind-scroll-cont").hidden = true;
+        return;
+    }
+    renderGridSize();
+
 
     for (var i = game.wind.length - 1; i >= 1; i--) {
         var isshow;
