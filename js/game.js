@@ -94,7 +94,7 @@ function drawAll() {
 function drawLines() {
     var linesSvg = document.getElementById("lines-svg");
     linesSvg.setAttribute("viewBox", `0 0 ${game.width} ${game.height}`);
-    document.getElementById("lines-container").style.rotate = game.getwind(turncount) + "deg";
+    document.getElementById("lines-container").style.rotate = game.getwind(turncount + 1) + "deg";
 
     var linesDrawing = document.getElementById("lines-drawing");
     linesDrawing.innerHTML = "";
