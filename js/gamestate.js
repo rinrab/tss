@@ -37,87 +37,110 @@ class Boat {
         var points = [];
         var moveDist = 1;
 
-        if (!this.finished) {
-            var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
+        if (this.tackBtn.checked) {
+            turntype = turnTupes.tack;
+        } else if (this.toMarkBtn.checked) {
+            turntype = turnTupes.toMark;
+        } else {
+            turntype = turnTupes.forward;
+        }
 
-            if (dist < 1 && game.isOutLaneline(this.x, this.y)) {
-                this.x = game.marks[2].x;
-                this.y = game.marks[2].y - 0.1;
+        while (moveDist > 0) {
+            if (!this.finished) {
+                var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
 
-                points.push({ x: this.x, y: this.y });
+                if (moveDist >= dist && game.isOutLaneline(this.x, this.y)) {
+                    this.x = game.marks[2].x;
+                    this.y = game.marks[2].y - 0.1;
+                    points.push({ x: this.x, y: this.y });
+                    moveDist -= dist;
 
-                drawAll();
+                    drawAll();
 
-                this.rotation = -100;
-                this.x += Math.sin(this.rotation * Math.PI / 180) * (1 - dist);
-                this.y -= Math.cos(this.rotation * Math.PI / 180) * (1 - dist);
-                this.finished = true;
-            } else {
-                if (this.x < 0.5) {
-                    this.tack = true;
-                }
-                if (this.x > game.width - 0.5) {
-                    this.tack = false;
-                }
-                if (this.tackBtn.checked) {
-                    this.tack = !this.tack;
-
-                    if (this.tack) {
-                        this.rotation = 45 + game.getwind(turncount);
-                    } else {
-                        this.rotation = -45 + game.getwind(turncount);
+                    this.rotation = -100;
+                    this.x += Math.sin(this.rotation * Math.PI / 180) * (moveDist - dist);
+                    this.y -= Math.cos(this.rotation * Math.PI / 180) * (moveDist - dist);
+                    moveDist -= moveDist - dist;
+                    this.finished = true;
+                } else {
+                    if (this.x < 0.5) {
+                        this.tack = true;
                     }
-                    this.forwardBtn.checked = true;
-                    turntype = turnTupes.tack;
-                } else if (this.toMarkBtn.checked) {
-                    if (game.isOutLaneline(this.x, this.y)) {
-                        this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);;
-                    } else {
-                        var moveAngle;
-                        var lanelineAngle;
+                    if (this.x > game.width - 0.5) {
+                        this.tack = false;
+                    }
+                    if (this.tackBtn.checked) {
+                        this.tack = !this.tack;
 
                         if (this.tack) {
-                            lanelineAngle = -45 - game.getwind(turncount);
-                            moveAngle = 45 + game.getwind(turncount);
+                            this.rotation = 45 + game.getwind(turncount);
                         } else {
-                            lanelineAngle = 45 - game.getwind(turncount);
-                            moveAngle = -45 + game.getwind(turncount);
+                            this.rotation = -45 + game.getwind(turncount);
                         }
+                        this.forwardBtn.checked = true;
+                    }
 
-                        this.rotation = moveAngle;
-
-                        var lanelineDistance = distanceToLine(
-                            this.x, this.y, game.marks[2].x, game.marks[2].y,
-                            lanelineAngle);
-                        if (lanelineDistance < 1) {
-                            this.x += Math.sin(this.rotation * Math.PI / 180) * lanelineDistance;
-                            this.y -= Math.cos(this.rotation * Math.PI / 180) * lanelineDistance;
-                            points.push({ x: this.x, y: this.y });
-                            moveDist -= lanelineDistance;
+                    if (this.toMarkBtn.checked) {
+                        if (game.isOutLaneline(this.x, this.y)) {
                             this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);
+                            this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
+                            this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
+                            points.push({ x: this.x, y: this.y });
+                            moveDist = 0.0;
+                        } else {
+                            var moveAngle;
+                            var lanelineAngle;
+
+                            if (this.tack) {
+                                lanelineAngle = -45 - game.getwind(turncount);
+                                moveAngle = 45 + game.getwind(turncount);
+                            } else {
+                                lanelineAngle = 45 - game.getwind(turncount);
+                                moveAngle = -45 + game.getwind(turncount);
+                            }
+
+                            this.rotation = moveAngle;
+
+                            var lanelineDistance = distanceToLine(
+                                this.x, this.y, game.marks[2].x, game.marks[2].y,
+                                lanelineAngle);
+
+                            if (lanelineDistance < moveDist) {
+                                this.x += Math.sin(this.rotation * Math.PI / 180) * lanelineDistance;
+                                this.y -= Math.cos(this.rotation * Math.PI / 180) * lanelineDistance;
+                                points.push({ x: this.x, y: this.y });
+                                moveDist -= lanelineDistance;
+                                this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);
+                            } else {
+                                this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
+                                this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
+                                points.push({ x: this.x, y: this.y });
+                                moveDist = 0.0;
+                            }
                         }
                     }
-                    turntype = turnTupes.toMark;
-                }
-                else {
-                    if (this.tack) {
-                        this.rotation = 45 + game.getwind(turncount);
-                    } else {
-                        this.rotation = -45 + game.getwind(turncount);
+                    else {
+                        if (this.tack) {
+                            this.rotation = 45 + game.getwind(turncount);
+                        } else {
+                            this.rotation = -45 + game.getwind(turncount);
+                        }
+
+                        this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
+                        this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
+                        points.push({ x: this.x, y: this.y });
+                        moveDist = 0.0;
                     }
-                    turntype = turnTupes.forward;
+
+                    this.rotation = this.rotation % 360;
                 }
-
-                this.rotation = this.rotation % 360;
-
+            } else {
                 this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
                 this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
+                points.push({ x: this.x, y: this.y });
+                moveDist = 0.0;
             }
-        } else {
-            this.x += Math.sin(this.rotation * Math.PI / 180);
-            this.y -= Math.cos(this.rotation * Math.PI / 180);
         }
-        points.push({ x: this.x, y: this.y });
 
         this.saveTurn(turntype, points);
     }
