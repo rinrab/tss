@@ -91,15 +91,20 @@ function drawAll() {
 }
 
 function drawWindArrow() {
+    var windDerection = game.getwind(turncount + 1);
     var e = document.getElementById("wind");
     e.style.width = "50px"
     e.style.left = "25px"
-    e.style.rotate = game.getwind(turncount + 1) * 2 + "deg";
+    e.style.rotate = windDerection * 2 + "deg";
+    if (windDerection > 0) {
+        windDerection = "+" + windDerection;
+    }
+    document.getElementById("wind-label").innerText = `${windDerection}º`
 }
 
 function windDataInit() {
     winddata.innerHTML = "";
-    
+
     var showfuturewind = document.getElementById("show-future-wind").checked;
     console.log("bfbhdsb")
 
