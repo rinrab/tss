@@ -94,16 +94,17 @@ function drawAll() {
 function drawLines() {
     var linesSvg = document.getElementById("lines-svg");
     linesSvg.setAttribute("viewBox", `0 0 ${game.width} ${game.height}`);
+    document.getElementById("lines-container").style.rotate = game.getwind(turncount) + "deg";
+
     var linesDrawing = document.getElementById("lines-drawing");
     linesDrawing.innerHTML = "";
-    
 
-    for (var i = 0; i < game.height; i++) {
+    for (var i = 0; i < game.height * 2; i++) {
         var newLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
         newLine.setAttribute("x1", 0);
         newLine.setAttribute("x2", game.width);
-        newLine.setAttribute("y1", i * 2);
-        newLine.setAttribute("y2", i * 2);
+        newLine.setAttribute("y1", i);
+        newLine.setAttribute("y2", i);
         linesDrawing.appendChild(newLine);
     }
 }

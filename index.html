@@ -172,6 +172,15 @@
       height: 100vh;
       overflow: auto;
     }
+
+    #lines-container {
+      height: 200%;
+      width: 200%;
+      transform-origin: center;
+      margin-top: -50%;
+      margin-left: -50%;
+      transition: all 0.5s ease-in-out;
+    }
   </style>
 </head>
 
@@ -186,9 +195,11 @@
       <div id="game-cont" class="position-absolute">
         <div id="game-area" style="position: relative;  height: 100%; width: 100%;">
           <svg viewBox="0 0 1 1" id="background" style="height: 100%;  background-color: #ebeaff;"></svg>
-          <svg id="lines-svg" stroke="red" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg" stroke-width="0.05">
-            <g id="lines-drawing"></g>
-          </svg>
+          <div id="lines-container">
+            <svg id="lines-svg" stroke="gray" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg" stroke-width="0.005">
+              <g id="lines-drawing"></g>
+            </svg>
+          </div>
           <div id="track-cont" style="width:100%; height: 100%;">
             <svg id="track" xmlns="http://www.w3.org/2000/svg" class="game-elem" style="height: 100%;">
             </svg>
