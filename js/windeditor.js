@@ -16,6 +16,9 @@ var errorTypes = {
     notnumber: 0,
 };
 
+var mapWidth;
+var mapHeight;
+
 var shareBtn;
 
 function windInit() {
@@ -24,6 +27,9 @@ function windInit() {
     } else {
         loadWind();
     }
+    mapWidth = document.getElementById("map-width");
+    mapHeight = document.getElementById("map-height");
+
     loadWindFromURL();
     nameinput = document.getElementById("editor-wind-name");
     windtext = document.getElementById("editor-wind");
@@ -98,18 +104,8 @@ function editorSaveClick() {
     for (var i = 0; i < newwind.wind.length; i++) {
         newwind.wind[i] = parseInt(newwind.wind[i])
     }
-    if (document.getElementById("edit-size-30-30").checked) {
-        newwind.width = 30;
-        newwind.height = 30;
-    }
-    if (document.getElementById("edit-size-30-40").checked) {
-        newwind.width = 30;
-        newwind.height = 40;
-    }
-    if (document.getElementById("edit-size-40-30").checked) {
-        newwind.width = 40;
-        newwind.height = 30;
-    }
+    newwind.width = parseInt(mapWidth.value);
+    newwind.height = parseInt(mapHeight.value);
     newwind.stepscount = newwind.wind.length;
     newwind.allowedit = true;
     if (editIndex == -1) {
@@ -177,17 +173,12 @@ function windEditorStart(iscreate) {
         // TODO: | * User defined 1
         // TODO: | * Named wind
         // TODO: | * User defined 3
-        
+
         windtext.value = "0, 0, 0";
-        
+
     } else {
-        if (wind[windscenario].width == 30 && wind[windscenario].height == 30) {
-            document.getElementById("edit-size-30-30").checked = true;
-        } else if (wind[windscenario].width == 40 && wind[windscenario].height == 30) {
-            document.getElementById("edit-size-40-30").checked = true;
-        } else if (wind[windscenario].width == 30 && wind[windscenario].height == 40) {
-            document.getElementById("edit-size-30-40").checked = true;
-        }
+        mapWidth = wind[windscenario].width;
+        mapHeight = wind[windscenario].height;
 
         nameinput.value = wind[windscenario].name;
 
