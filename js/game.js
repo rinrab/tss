@@ -81,7 +81,7 @@ function backTurn() {
 }
 
 function drawAll() {
-    windDataScroller.style.height = (window.innerHeight - 30) + "px";
+    windDataScroller.style.height = (window.innerHeight) + "px";
     windDataInit();
     for (var i = 0; i < game.players.length; i++) {
         drawBoat(game.players[i]);
