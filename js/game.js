@@ -110,8 +110,6 @@ function drawLines() {
 function drawWindArrow() {
     var windDerection = game.getwind(turncount + 1);
     var e = document.getElementById("wind");
-    e.style.width = "50px"
-    e.style.left = "25px"
     e.style.rotate = windDerection * 2 + "deg";
     if (windDerection > 0) {
         windDerection = "+" + windDerection;
