@@ -85,9 +85,9 @@ function applySettings() {
     }
     setShowLanelinesCheck.checked = settings.showlaneline;
     if (settings.showlaneline) {
-        upmarllines.hidden = false;
+        upMarkLanelines.hidden = false;
     } else {
-        upmarllines.hidden = true;
+        upMarkLanelines.hidden = true;
     }
     setShowBoatsCheck.checked = settings.showboats;
     if (settings.showboats) {

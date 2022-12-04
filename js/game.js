@@ -31,7 +31,7 @@ var marksvg = `<g>
 var startx = 6;
 var starty = 28;
 
-var upmarllines;
+var upMarkLanelines;
 
 function formatCssPx(val) {
     return val.toFixed(3) + "px";
@@ -205,9 +205,9 @@ function drawMarks() {
         marksHtmlelem.appendChild(newmarkcont);
     }
 
-    upmarllines.style.left = formatCssPx(game.marks[2].x * gridsize);
-    upmarllines.style.top = formatCssPx(game.marks[2].y * gridsize);
-    upmarllines.style.rotate = formatCssDeg(game.getwind(turncount + 1));
+    upMarkLanelines.style.left = formatCssPx(game.marks[2].x * gridsize);
+    upMarkLanelines.style.top = formatCssPx(game.marks[2].y * gridsize);
+    upMarkLanelines.style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
     var startlinecontainer = document.getElementById("start-line");
     startlinecontainer.innerHTML = "";
@@ -322,10 +322,10 @@ function init() {
     windDataScroller = document.getElementById("wind-data.scroller");
     windscenariocontrol = document.getElementById("select-wind");
     var gamearea = document.getElementById("game-area");
-    upmarllines = document.createElement("img");
-    upmarllines.src = "img/marklaneline.svg";
-    upmarllines.className = "pn-lines game-elem";
-    gamearea.insertBefore(upmarllines, document.getElementById("wind"));
+    upMarkLanelines = document.createElement("img");
+    upMarkLanelines.src = "img/marklaneline.svg";
+    upMarkLanelines.className = "pn-lines game-elem";
+    gamearea.insertBefore(upMarkLanelines, document.getElementById("wind"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
         location.reload();
     });
