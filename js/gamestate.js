@@ -21,6 +21,7 @@ class Boat {
     track;
     finished;
     btnLabels;
+    nameText
     // tack == false: startport
     // tack == true: port
     tack;
@@ -31,6 +32,8 @@ class Boat {
 
     oldStartPos;
     myOldStartPosIndex;
+
+    startInputs;
 
     turn() {
         var turntype;
@@ -183,29 +186,26 @@ class Boat {
         this.isStart = true;
         this.startPos = 1;
         this.startPriority = game.currentStartPriority++;
+        this.startInputs = [];
         this.color = color;
     }
 
     startPositionChange() {
-        if (this.isStart) {
-            const startdist = 0.5;
-            var newStartPos;
+        const startdist = 0.5;
+        var newStartPos;
 
-            if (this.forwardBtn.checked) {
-                newStartPos = 0;
-            } else if (this.tackBtn.checked) {
-                newStartPos = 1;
-            } else if (this.toMarkBtn.checked) {
-                newStartPos = 2;
+        for (var i = 0; i < this.startInputs.length; i++) {
+            if (this.startInputs[i].checked) {
+                newStartPos = i;
             }
-
-            if (newStartPos != this.startPos) {
-                this.startPos = newStartPos;
-                this.startPriority = game.currentStartPriority++;
-            }
-
-            game.placeBoatsOnStart();
         }
+        
+        if (newStartPos != this.startPos) {
+            this.startPos = newStartPos;
+            this.startPriority = game.currentStartPriority++;
+        }
+
+        game.placeBoatsOnStart();
     }
 }
 
