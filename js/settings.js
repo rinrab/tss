@@ -49,10 +49,21 @@ function saveSettings() {
 }
 
 function loadSettings() {
-    settings.showboats = readBoolSettings(localStorageNames.settingsshowboats, defaultSetting.showboats);
-    settings.showtracks = readBoolSettings(localStorageNames.settingsshowtracks, defaultSetting.showtracks);
-    settings.showlaneline = readBoolSettings(localStorageNames.settingsshowlanelines, defaultSetting.showlaneline);
-    settings.showequallines = readBoolSettings(localStorageNames.settingsshowequallines, defaultSetting.showequallines);
+    settings.showboats = readBoolSettings(
+        localStorageNames.settingsshowboats,
+        defaultSetting.showboats);
+
+    settings.showtracks = readBoolSettings(
+        localStorageNames.settingsshowtracks,
+        defaultSetting.showtracks);
+
+    settings.showlaneline = readBoolSettings(
+        localStorageNames.settingsshowlanelines,
+        defaultSetting.showlaneline);
+        
+    settings.showequallines = readBoolSettings(
+        localStorageNames.settingsshowequallines,
+        defaultSetting.showequallines);
 }
 
 function readBoolSettings(settingName, defaultValue) {
