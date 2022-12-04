@@ -177,9 +177,9 @@ function windDataInit() {
 
 
 function drawBoat(player) {
-    player.html.style.left = (player.x * gridsize) + "px";
-    player.html.style.top = (player.y * gridsize).toString() + "px";
-    player.html.style.rotate = player.rotation + "deg";
+    player.html.style.left = (player.x * gridsize).toFixed(3) + "px";
+    player.html.style.top = (player.y * gridsize).toFixed(3) + "px";
+    player.html.style.rotate = player.rotation.toFixed(3) + "deg";
 }
 
 function drawMarks() {
