@@ -8,16 +8,16 @@ var localStorageNames = {
     selectedWind: "selected-wind",
 }
 var defaultSetting = {
-    showboats: true,
-    showtracks: true,
-    showlaneline: true,
-    showequallines: false,
+    showBoats: true,
+    showTracks: true,
+    showLanelines: true,
+    showEqualLines: false,
 };
 class Settings {
-    showboats;
-    showtracks;
-    showlaneline;
-    showequallines;
+    showBoats;
+    showTracks;
+    showLanelines;
+    showEqualLines;
 }
 
 var setShowBoatsCheck;
@@ -42,28 +42,28 @@ function settingsInit() {
 }
 
 function saveSettings() {
-    localStorage.setItem(localStorageNames.settingsShowBoats, settings.showboats)
-    localStorage.setItem(localStorageNames.settingsShowTracks, settings.showtracks)
-    localStorage.setItem(localStorageNames.settingsShowLanelines, settings.showlaneline);
-    localStorage.setItem(localStorageNames.settingsShowEqualLines, settings.showequallines);
+    localStorage.setItem(localStorageNames.settingsShowBoats, settings.showBoats)
+    localStorage.setItem(localStorageNames.settingsShowTracks, settings.showTracks)
+    localStorage.setItem(localStorageNames.settingsShowLanelines, settings.showLanelines);
+    localStorage.setItem(localStorageNames.settingsShowEqualLines, settings.showEqualLines);
 }
 
 function loadSettings() {
-    settings.showboats = readBoolSettings(
+    settings.showBoats = readBoolSettings(
         localStorageNames.settingsShowBoats,
-        defaultSetting.showboats);
+        defaultSetting.showBoats);
 
-    settings.showtracks = readBoolSettings(
+    settings.showTracks = readBoolSettings(
         localStorageNames.settingsShowTracks,
-        defaultSetting.showtracks);
+        defaultSetting.showTracks);
 
-    settings.showlaneline = readBoolSettings(
+    settings.showLanelines = readBoolSettings(
         localStorageNames.settingsShowLanelines,
-        defaultSetting.showlaneline);
+        defaultSetting.showLanelines);
 
-    settings.showequallines = readBoolSettings(
+    settings.showEqualLines = readBoolSettings(
         localStorageNames.settingsShowEqualLines,
-        defaultSetting.showequallines);
+        defaultSetting.showEqualLines);
 }
 
 function readBoolSettings(settingName, defaultValue) {
@@ -78,10 +78,10 @@ function readBoolSettings(settingName, defaultValue) {
 }
 
 function settingsChanged() {
-    settings.showboats = setShowBoatsCheck.checked;
-    settings.showtracks = setShowTracksCheck.checked;
-    settings.showlaneline = setShowLanelinesCheck.checked;
-    settings.showequallines = setShowEqualLines.checked;
+    settings.showBoats = setShowBoatsCheck.checked;
+    settings.showTracks = setShowTracksCheck.checked;
+    settings.showLanelines = setShowLanelinesCheck.checked;
+    settings.showEqualLines = setShowEqualLines.checked;
 
     saveSettings();
     applySettings();
@@ -90,21 +90,21 @@ function settingsChanged() {
 function applySettings() {
     var gameArea = document.getElementById("game-area");
 
-    setShowTracksCheck.checked = settings.showtracks;
-    if (settings.showtracks) {
+    setShowTracksCheck.checked = settings.showTracks;
+    if (settings.showTracks) {
         document.getElementById("track-cont").style.opacity = "100%";
     } else {
         document.getElementById("track-cont").style.opacity = "0";
     }
-    setShowLanelinesCheck.checked = settings.showlaneline;
-    if (settings.showlaneline) {
+    setShowLanelinesCheck.checked = settings.showLanelines;
+    if (settings.showLanelines) {
         upMarkLanelines.hidden = false;
     } else {
         upMarkLanelines.hidden = true;
     }
-    setShowBoatsCheck.checked = settings.showboats;
+    setShowBoatsCheck.checked = settings.showBoats;
 
-    if (settings.showboats) {
+    if (settings.showBoats) {
         gameArea.setAttribute("data-show-boats", "full");
     } else {
         gameArea.setAttribute("data-show-boats", "dot");
@@ -113,8 +113,8 @@ function applySettings() {
         game.players[i].html.innerHTML = boathidesvg + boatsvg;
     }
 
-    setShowEqualLines.checked = settings.showequallines;
-    if (settings.showequallines) {
+    setShowEqualLines.checked = settings.showEqualLines;
+    if (settings.showEqualLines) {
         document.getElementById("lines-container").hidden = false;
     } else {
         document.getElementById("lines-container").hidden = true;
