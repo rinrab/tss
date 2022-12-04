@@ -294,20 +294,21 @@ function addPlayer() {
     var gamearea = document.getElementById("boats");
 
     var newColor = colors[i];
-    game.players[i] = new Boat(6, starty, false, newColor);
+    var newPlayer = new Boat(6, starty, false, newColor);
+    game.players[i] = newPlayer;
 
     var newboatcont = document.createElement("div");
     newboatcont.className = "game-elem pn-boat";
-    newboatcont.style.color = game.players[i].color;
+    newboatcont.style.color = newPlayer.color;
 
-    game.players[i].html = newboatcont;
+    newPlayer.html = newboatcont;
     gamearea.appendChild(newboatcont);
 
     applySettings();
     addControll(i);
-    game.players[i].tackBtn.checked = true;
+    newPlayer.tackBtn.checked = true;
 
-    game.players[i].startPositionChange();
+    newPlayer.startPositionChange();
     game.placeBoatsOnStart();
 
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
