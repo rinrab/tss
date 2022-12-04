@@ -179,42 +179,29 @@ class Boat {
         this.finished = false;
         this.turns = [];
         this.isStart = true;
-        this.oldStartPos = -1;
+        this.startPos = 1;
+        this.startPriority = game.currentStartPriority++;
         this.indexInGame = index;
     }
 
     startPositionChange() {
         if (this.isStart) {
             const startdist = 0.5;
-            var index;
-
-            if (this.oldStartPos == 0) {
-                game.boatsStartLeft.splice(findIndexByValue(game.boatsStartLeft, this.indexInGame), 1)
-            } else if (this.oldStartPos == 1) {
-                game.boatsStartMiddle.splice(findIndexByValue(game.boatsStartMiddle, this.indexInGame), 1)
-            } else if (this.oldStartPos == 2) {
-                game.boatsStartRight.splice(findIndexByValue(game.boatsStartRight, this.indexInGame), 1)
-            }
+            var newStartPos;
 
             if (this.forwardBtn.checked) {
-                index = game.boatsStartLeft.length;
+                newStartPos = 0;
             } else if (this.tackBtn.checked) {
-                index = game.boatsStartMiddle.length;
+                newStartPos = 1;
             } else if (this.toMarkBtn.checked) {
-                index = game.boatsStartRight.length;
+                newStartPos = 2;
             }
 
-            if (this.forwardBtn.checked) {
-                game.boatsStartLeft[index] = this.indexInGame;
-                this.oldStartPos = 0;
-            } else if (this.tackBtn.checked) {
-                game.boatsStartMiddle[index] = this.indexInGame;
-                this.oldStartPos = 1;
-            } else if (this.toMarkBtn.checked) {
-                game.boatsStartRight[index] = this.indexInGame;
-                this.oldStartPos = 2;
+            if (newStartPos != this.startPos) {
+                this.startPos = newStartPos;
+                this.startPriority = game.currentStartPriority++;
             }
-            this.myOldStartPosIndex = index;
+
             game.placeBoatsOnStart();
         }
     }
@@ -237,13 +224,11 @@ class Game {
     height;
     marks;
     wind;
+    currentStartPriority;
+
     getwind(index) {
         return this.wind[index % this.wind.length];
     }
-
-    boatsStartLeft;
-    boatsStartMiddle;
-    boatsStartRight;
 
     get windscenario() {
         if (windscenario > wind.length - 1) {
@@ -302,12 +287,36 @@ class Game {
     }
 
     placeBoatsOnStart() {
-        const startdist = 0.5;
-        for (var i = 0; i < this.boatsStartLeft.length; i++) {
-            this.players[this.boatsStartLeft[i]].x = this.marks[0].x + 1 + (i * startdist);
+        var boatsStartLeft = [];
+        var boatsStartMiddle = [];
+        var boatsStartRight = [];
+
+        for (var i = 0; i < this.players.length; i++) {
+            var player = this.players[i];
+            if (player.startPos === 0) {
+                boatsStartLeft.push(player);
+            } else if (player.startPos === 2) {
+                boatsStartRight.push(player);
+            }
+            else {
+                boatsStartMiddle.push(player);
+            }
         }
 
-        for (var i = 0; i < this.boatsStartMiddle.length; i++) {
+        function compareBoatStartPriority(a, b) {
+            return (a.startPriority - b.startPriority);
+        }
+
+        boatsStartLeft.sort(compareBoatStartPriority);
+        boatsStartMiddle.sort(compareBoatStartPriority);
+        boatsStartRight.sort(compareBoatStartPriority);
+
+        const startdist = 0.5;
+        for (var i = 0; i < boatsStartLeft.length; i++) {
+            boatsStartLeft[i].x = this.marks[0].x + 1 + (i * startdist);
+        }
+
+        for (var i = 0; i < boatsStartMiddle.length; i++) {
             var k = 0.5;
             switch (i) {
                 case 0:
@@ -322,21 +331,19 @@ class Game {
                 k = 1;
             }
             if (i % 2 == 0) {
-                this.players[this.boatsStartMiddle[i]].x = (-i * startdist * k) + (this.width / 2);
+                boatsStartMiddle[i].x = (-i * startdist * k) + (this.width / 2);
             } else {
-                this.players[this.boatsStartMiddle[i]].x = (i * startdist * k) + (this.width / 2);
+                boatsStartMiddle[i].x = (i * startdist * k) + (this.width / 2);
             }
         }
 
-        for (var i = 0; i < this.boatsStartRight.length; i++) {
-            this.players[this.boatsStartRight[i]].x = this.marks[1].x - 1 - (i * startdist);
+        for (var i = 0; i < boatsStartRight.length; i++) {
+            boatsStartRight[i].x = this.marks[1].x - 1 - (i * startdist);
         }
     }
 
     constructor() {
-        this.boatsStartLeft = [];
-        this.boatsStartMiddle = [];
-        this.boatsStartRight = [];
+        this.currentStartPriority = 0;
     }
 }
 
