@@ -286,8 +286,6 @@ function addWind() {
 
 }
 function addPlayer() {
-    var i = game.players.length;
-    
     var gamearea = document.getElementById("boats");
 
     var newColor = game.findFreeColor();
@@ -298,7 +296,7 @@ function addPlayer() {
 
     var newPlayer = new Boat(6, starty, false, newColor);
 
-    game.players[i] = newPlayer;
+    game.players.push(newPlayer);
 
     var newboatcont = document.createElement("div");
     newboatcont.className = "game-elem pn-boat";
