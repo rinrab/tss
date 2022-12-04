@@ -24,6 +24,8 @@ function apply() {
             checkcontroll.value = "Player " + (i + 1);
         }
 
+        game.players[i].deleteBtn.remove();
+
         game.players[i].apply();
         for (var j = 0; j < game.players[i].btnLabels.length; j++) {
             game.players[i].btnLabels[j].innerHTML = labels[j];
@@ -124,6 +126,20 @@ function addControll(player) {
                 break;
         }
     }
+
+    var newDeleteBtn = document.createElement("button");
+    newDeleteBtn.className = "btn btn-outline-danger";
+    newDeleteBtn.innerHTML = "-";
+    newDeleteBtn.addEventListener("click", function () {
+        player.html.remove();
+        nc.remove();
+        game.players.splice(game.players.findIndex(function (obj) { return obj == player }), 1);
+
+        game.placeBoatsOnStart();
+        drawAll();
+    });
+    player.deleteBtn = newDeleteBtn;
+    nc.appendChild(newDeleteBtn);
 
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');

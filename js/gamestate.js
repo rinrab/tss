@@ -225,6 +225,7 @@ class Game {
     marks;
     wind;
     currentStartPriority;
+    deleteBtn;
 
     getwind(index) {
         return this.wind[index % this.wind.length];
