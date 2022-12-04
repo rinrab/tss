@@ -19,7 +19,7 @@ function apply() {
     var tooltips = ["Forward", "Tack", "To mark"];
 
     for (var i = 0; i < game.players.length; i++) {
-        var checkcontroll = document.getElementById("input-player-name" + i);
+        var checkcontroll = game.players[i].nameInput;
         if (checkcontroll.value == "") {
             checkcontroll.value = "Player " + (i + 1);
         }
@@ -52,7 +52,7 @@ function apply() {
     document.getElementById("btn-add-player").remove();
 
     for (var i = 0; i < game.players.length; i++) {
-        document.getElementById("input-player-name" + i).readOnly = true;
+        game.players[i].nameInput.readOnly = true;
     }
 
     renderGridSize();
@@ -79,8 +79,8 @@ function addControll(i) {
     nnameinput.type = "text";
     nnameinput.placeholder = "Name";
     nnameinput.className = "form-control";
-    nnameinput.id = "input-player-name" + i;
     nc.appendChild(nnameinput);
+    game.players[i].nameInput = nnameinput;
 
     game.players[i].btnLabels = [];
     for (var j = 0; j < 3; j++) {
