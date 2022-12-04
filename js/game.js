@@ -174,7 +174,8 @@ function windDataInit() {
         newlabel.innerText = windtext.toString();;
         newlabel.style.position = "absolute";
         newlabel.style.right = "50px";
-        newlabel.style.width = "30px";
+        newlabel.style.width = "50px";
+        newlabel.style.textAlign = "right";
         newlabel.className = "font-monospace";
         newelem.appendChild(newlabel);
 
