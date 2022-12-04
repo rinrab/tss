@@ -54,18 +54,17 @@ function redrawTracks() {
 }
 
 function redrawTrack(i) {
-    game.players[i].track.setAttribute("points", "");
+    var player = game.players[i];
+    var points = "";
+ 
     for (var j = 0; j < turncount + 1; j++) {
-        for (var k = 0; k < game.players[i].turns[j].points.length; k++) {
-            addPointToTrack(game.players[i].track,
-                game.players[i].turns[j].points[k].x,
-                game.players[i].turns[j].points[k].y);
+        for (var k = 0; k < player.turns[j].points.length; k++) {
+            var pt = player.turns[j].points[k];
+
+            points += " " + pt.x.toFixed(3) + "," + pt.y.toFixed(3);
         }
     }
-}
-
-function addPointToTrack(track, x, y) {
-    track.setAttribute("points", track.getAttribute("points") + " " + x.toFixed(3) + "," + y.toFixed(3));
+    player.track.setAttribute("points", points); 
 }
 
 function backTurn() {
