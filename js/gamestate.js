@@ -27,6 +27,8 @@ class Boat {
     startPosInputs;
     isStart;
 
+    color;
+
     oldStartPos;
     myOldStartPosIndex;
 
@@ -169,7 +171,7 @@ class Boat {
         this.finished = this.turns[turncount].finished;
     }
 
-    constructor(x, y, tack, index) {
+    constructor(x, y, tack, color) {
         this.x = x;
         this.y = y;
         this.tack = tack;
@@ -179,6 +181,7 @@ class Boat {
         this.isStart = true;
         this.startPos = 1;
         this.startPriority = game.currentStartPriority++;
+        this.color = color;
     }
 
     startPositionChange() {

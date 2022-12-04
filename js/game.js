@@ -293,11 +293,12 @@ function addPlayer() {
     }
     var gamearea = document.getElementById("boats");
 
-    game.players[i] = new Boat(6, starty, false, game.players.length);
+    var newColor = colors[i];
+    game.players[i] = new Boat(6, starty, false, newColor);
 
     var newboatcont = document.createElement("div");
     newboatcont.className = "game-elem pn-boat";
-    newboatcont.style.color = colors[i];
+    newboatcont.style.color = game.players[i].color;
 
     game.players[i].html = newboatcont;
     gamearea.appendChild(newboatcont);
