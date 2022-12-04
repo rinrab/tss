@@ -286,6 +286,16 @@ class Game {
         ];
     }
 
+    findFreeColor() {
+        for (var i = 0; i < colors.length; i++) {
+            if (!this.players.find(function (o) { return o.color == colors[i]; })) {
+                return colors[i];
+            }
+        }
+
+        return null;
+    }
+
     placeBoatsOnStart() {
         var boatsStartLeft = [];
         var boatsStartMiddle = [];

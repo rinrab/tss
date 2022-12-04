@@ -287,14 +287,17 @@ function addWind() {
 }
 function addPlayer() {
     var i = game.players.length;
-    if (i > colors.length - 2) {
+    
+    var gamearea = document.getElementById("boats");
+
+    var newColor = game.findFreeColor();
+    if (newColor == null) {
         alert("too many boats")
         return;
     }
-    var gamearea = document.getElementById("boats");
 
-    var newColor = colors[i];
     var newPlayer = new Boat(6, starty, false, newColor);
+
     game.players[i] = newPlayer;
 
     var newboatcont = document.createElement("div");
