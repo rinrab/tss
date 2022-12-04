@@ -107,6 +107,9 @@
     #btn-done {
       flex: auto;
     }
+    #btn-apply {
+      flex: auto;
+    }
 
     #lines-img {
       width: 100%;
@@ -199,6 +202,13 @@
     .start .race-controls {
       display: none;
     }
+
+    .race .start-control-header {
+      display: none;
+    }
+    .start .race-control-header {
+      display: none;
+    }
   </style>
 </head>
 
@@ -253,8 +263,11 @@
             data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">+</button>
         </div>
       </div>
-      <div class="w-100 mb-2 input-group">
+      <div class="w-100 mb-2 input-group start-control-header">
         <button class="btn btn-outline-danger" id="btn-add-player">+</button>
+        <button class="btn btn-outline-primary" id="btn-apply">Start!</button>
+      </div>
+      <div class="w-100 mb-2 input-group race-control-header">
         <button class="btn btn-outline-primary" hidden id="back-btn">Back</button>
         <button class="btn btn-outline-primary" id="btn-done">Start!</button>
       </div>

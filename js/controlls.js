@@ -8,7 +8,8 @@ function createContolls() {
         addPlayer();
         drawAll();
     });
-    document.getElementById("btn-done").addEventListener("click", apply);
+    document.getElementById("btn-apply").addEventListener("click", apply);
+    document.getElementById("btn-done").addEventListener("click", turn);
     document.getElementById("back-btn").addEventListener("click", backTurn);
 
     windChange();
