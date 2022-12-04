@@ -1,23 +1,23 @@
 var localStorageNames = {
-    settingsshowboats: "settings-show-boats",
-    settingsshowtracks: "settings-show-tarcks",
-    settingsshowlanelines: "settings-show-lanelines",
-    settingsshowequallines: "equal-lines",
+    settingsShowBoats: "settings-show-boats",
+    settingsShowTracks: "settings-show-tarcks",
+    settingsShowLanelines: "settings-show-lanelines",
+    settingsShowEqualLines: "equal-lines",
     wind: "wind-data#",
     windlist: "wind-list",
     selectedWind: "selected-wind",
 }
 var defaultSetting = {
-    showboats: true,
-    showtracks: true,
-    showlaneline: true,
-    showequallines: false,
+    showBoats: true,
+    showTracks: true,
+    showLanelines: true,
+    showEqualLines: false,
 };
 class Settings {
-    showboats;
-    showtracks;
-    showlaneline;
-    showequallines;
+    showBoats;
+    showTracks;
+    showLanelines;
+    showEqualLines;
 }
 
 var setShowBoatsCheck;
@@ -42,17 +42,28 @@ function settingsInit() {
 }
 
 function saveSettings() {
-    localStorage.setItem(localStorageNames.settingsshowboats, settings.showboats)
-    localStorage.setItem(localStorageNames.settingsshowtracks, settings.showtracks)
-    localStorage.setItem(localStorageNames.settingsshowlanelines, settings.showlaneline);
-    localStorage.setItem(localStorageNames.settingsshowequallines, settings.showequallines);
+    localStorage.setItem(localStorageNames.settingsShowBoats, settings.showBoats)
+    localStorage.setItem(localStorageNames.settingsShowTracks, settings.showTracks)
+    localStorage.setItem(localStorageNames.settingsShowLanelines, settings.showLanelines);
+    localStorage.setItem(localStorageNames.settingsShowEqualLines, settings.showEqualLines);
 }
 
 function loadSettings() {
-    settings.showboats = readBoolSettings(localStorageNames.settingsshowboats, defaultSetting.showboats);
-    settings.showtracks = readBoolSettings(localStorageNames.settingsshowtracks, defaultSetting.showtracks);
-    settings.showlaneline = readBoolSettings(localStorageNames.settingsshowlanelines, defaultSetting.showlaneline);
-    settings.showequallines = readBoolSettings(localStorageNames.settingsshowequallines, defaultSetting.showequallines);
+    settings.showBoats = readBoolSettings(
+        localStorageNames.settingsShowBoats,
+        defaultSetting.showBoats);
+
+    settings.showTracks = readBoolSettings(
+        localStorageNames.settingsShowTracks,
+        defaultSetting.showTracks);
+
+    settings.showLanelines = readBoolSettings(
+        localStorageNames.settingsShowLanelines,
+        defaultSetting.showLanelines);
+
+    settings.showEqualLines = readBoolSettings(
+        localStorageNames.settingsShowEqualLines,
+        defaultSetting.showEqualLines);
 }
 
 function readBoolSettings(settingName, defaultValue) {
@@ -67,40 +78,43 @@ function readBoolSettings(settingName, defaultValue) {
 }
 
 function settingsChanged() {
-    settings.showboats = setShowBoatsCheck.checked;
-    settings.showtracks = setShowTracksCheck.checked;
-    settings.showlaneline = setShowLanelinesCheck.checked;
-    settings.showequallines = setShowEqualLines.checked;
+    settings.showBoats = setShowBoatsCheck.checked;
+    settings.showTracks = setShowTracksCheck.checked;
+    settings.showLanelines = setShowLanelinesCheck.checked;
+    settings.showEqualLines = setShowEqualLines.checked;
 
     saveSettings();
     applySettings();
 }
 
 function applySettings() {
-    setShowTracksCheck.checked = settings.showtracks;
-    if (settings.showtracks) {
+    var gameArea = document.getElementById("game-area");
+
+    setShowTracksCheck.checked = settings.showTracks;
+    if (settings.showTracks) {
         document.getElementById("track-cont").style.opacity = "100%";
     } else {
         document.getElementById("track-cont").style.opacity = "0";
     }
-    setShowLanelinesCheck.checked = settings.showlaneline;
-    if (settings.showlaneline) {
-        upmarllines.hidden = false;
+    setShowLanelinesCheck.checked = settings.showLanelines;
+    if (settings.showLanelines) {
+        upMarkLanelines.hidden = false;
     } else {
-        upmarllines.hidden = true;
+        upMarkLanelines.hidden = true;
     }
-    setShowBoatsCheck.checked = settings.showboats;
-    if (settings.showboats) {
-        for (var i = 0; i < game.players.length; i++) {
-            game.players[i].html.children[0].innerHTML = boatsvg;
-        }
+    setShowBoatsCheck.checked = settings.showBoats;
+
+    if (settings.showBoats) {
+        gameArea.setAttribute("data-show-boats", "full");
     } else {
-        for (var i = 0; i < game.players.length; i++) {
-            game.players[i].html.children[0].innerHTML = boathidesvg;
-        }
+        gameArea.setAttribute("data-show-boats", "dot");
     }
-    setShowEqualLines.checked = settings.showequallines;
-    if (settings.showequallines) {
+    for (var i = 0; i < game.players.length; i++) {
+        game.players[i].html.innerHTML = boathidesvg + boatsvg;
+    }
+
+    setShowEqualLines.checked = settings.showEqualLines;
+    if (settings.showEqualLines) {
         document.getElementById("lines-container").hidden = false;
     } else {
         document.getElementById("lines-container").hidden = true;

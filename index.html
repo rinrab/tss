@@ -38,6 +38,8 @@
 
     #wind {
       transition: all 0.5s ease-in-out;
+      width: 50px;
+      left: 25px;
     }
 
     #boats>.game-elem {
@@ -78,6 +80,7 @@
       height: 28px;
       margin-left: -7px;
       margin-top: -14px;
+      transform-origin: center;
     }
 
     .pn-control-color {
@@ -169,17 +172,24 @@
     }
 
     .wind-data-scroller {
-      height: 100vh;
+      height: 100vh;  
       overflow: auto;
     }
 
-    #lines-container {
+    #lines-container {  
       height: 200%;
       width: 200%;
       transform-origin: center;
       margin-top: -50%;
       margin-left: -50%;
       transition: all 0.5s ease-in-out;
+    }
+
+    #game-area[data-show-boats="dot"] .boat-full-svg {
+      display: none;
+    }
+    #game-area[data-show-boats="full"] .boat-hidden-svg {
+      display: none;
     }
   </style>
 </head>
@@ -196,7 +206,8 @@
         <div id="game-area" style="position: relative;  height: 100%; width: 100%;">
           <svg viewBox="0 0 1 1" id="background" style="height: 100%;  background-color: #ebeaff;"></svg>
           <div id="lines-container">
-            <svg id="lines-svg" stroke="gray" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg" stroke-width="0.005">
+            <svg id="lines-svg" stroke="gray" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg"
+              stroke-width="0.005">
               <g id="lines-drawing"></g>
             </svg>
           </div>

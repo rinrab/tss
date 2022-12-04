@@ -14,24 +14,38 @@ var windtype = 0;
 const startLineSize = 15;
 
 var boatsvg =
-    `<g>
-<title>Layer 1</title>
-<polygon points="8,0 0,32 16,32"  fill="white"/>
-<line y1="10" x1="8" y2="28" x2="8" fill="none" stroke="black"></line>
-</g>`;
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 32" class="boat-full-svg">
+        <g>
+            <polygon points="8,0 0,32 16,32" fill="white" stroke="currentColor"/>
+            <line y1="10" x1="8" y2="28" x2="8" fill="none" stroke="black"></line>
+        </g>
+    </svg>
+    `;
 var boathidesvg = `
-<g>
-<ellipse rx="2" ry="2" cx="8" cy="16" stroke-width="3"></ellipse>
-</g>`
-var marksvg = `<g>
-  <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
-  <ellipse cx="8" cy="8" rx="2" ry="2" fill="#6d2121"/>
-</g>`;
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 32" class="boat-hidden-svg">
+        <g>
+            <ellipse rx="2" ry="2" cx="8" cy="16" stroke-width="3" fill="currentColor"
+                stroke="currentColor"></ellipse>
+        </g>
+    </svg>`
+var marksvg =
+    `<g>
+        <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
+        <ellipse cx="8" cy="8" rx="2" ry="2" fill="#6d2121"/>
+    </g>`;
 
 var startx = 6;
 var starty = 28;
 
-var upmarllines;
+var upMarkLanelines;
+
+function formatCssPx(val) {
+    return val.toFixed(3) + "px";
+}
+
+function formatCssDeg(val) {
+    return val.toFixed(3) + "deg";
+}
 
 function turn() {
     turncount++;
@@ -49,23 +63,21 @@ function turn() {
 
 function redrawTracks() {
     for (var i = 0; i < game.players.length; i++) {
-        redrawTrack(i)
+        redrawTrack(game.players[i]);
     }
 }
 
-function redrawTrack(i) {
-    game.players[i].track.setAttribute("points", "");
-    for (var j = 0; j < turncount + 1; j++) {
-        for (var k = 0; k < game.players[i].turns[j].points.length; k++) {
-            addPointToTrack(game.players[i].track,
-                game.players[i].turns[j].points[k].x,
-                game.players[i].turns[j].points[k].y);
+function redrawTrack(player) {
+    var points = "";
+
+    for (var i = 0; i < turncount + 1; i++) {
+        for (var j = 0; j < player.turns[i].points.length; j++) {
+            var pt = player.turns[i].points[j];
+
+            points += " " + pt.x.toFixed(3) + "," + pt.y.toFixed(3);
         }
     }
-}
-
-function addPointToTrack(track, x, y) {
-    track.setAttribute("points", track.getAttribute("points") + " " + x.toFixed(3) + "," + y.toFixed(3));
+    player.track.setAttribute("points", points);
 }
 
 function backTurn() {
@@ -94,7 +106,7 @@ function drawAll() {
 function drawLines() {
     var linesSvg = document.getElementById("lines-svg");
     linesSvg.setAttribute("viewBox", `0 0 ${game.width} ${game.height}`);
-    document.getElementById("lines-container").style.rotate = game.getwind(turncount + 1) + "deg";
+    document.getElementById("lines-container").style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
     var linesDrawing = document.getElementById("lines-drawing");
     linesDrawing.innerHTML = "";
@@ -112,9 +124,7 @@ function drawLines() {
 function drawWindArrow() {
     var windDerection = game.getwind(turncount + 1);
     var e = document.getElementById("wind");
-    e.style.width = "50px"
-    e.style.left = "25px"
-    e.style.rotate = windDerection * 2 + "deg";
+    e.style.rotate = formatCssDeg(windDerection * 2);
     if (windDerection > 0) {
         windDerection = "+" + windDerection;
     }
@@ -157,7 +167,7 @@ function windDataInit() {
             }
             windtext += "º";
         } else {
-            windtext = "??º";
+            windtext = "??";
         }
         newlabel.innerText = windtext.toString();;
         newlabel.style.position = "absolute";
@@ -168,7 +178,7 @@ function windDataInit() {
         if (isshow) {
             img.src = "img/wind.svg";
             img.className = "wind-data-arrow wind";
-            img.style.rotate = game.getwind(i) * 2 + "deg";
+            img.style.rotate = formatCssDeg(game.getwind(i) * 2);
         } else {
             img.src = "img/wind-hide.svg";
             img.className = "pn-wind-hide";
@@ -181,12 +191,9 @@ function windDataInit() {
 
 
 function drawBoat(player) {
-    //player.html.children[0].style.height = gridsize + "px";
-
-    player.html.style.left = (player.x * gridsize) + "px";
-    player.html.style.top = (player.y * gridsize).toString() + "px";
-    player.html.style.rotate = player.rotation + "deg";
-    player.html.style.transformOrigin = "center"
+    player.html.style.left = formatCssPx(player.x * gridsize);
+    player.html.style.top = formatCssPx(player.y * gridsize);
+    player.html.style.rotate = formatCssDeg(player.rotation);
 }
 
 function drawMarks() {
@@ -197,16 +204,16 @@ function drawMarks() {
         var newmarkcont = document.createElement("div");
         newmark.innerHTML = marksvg;
         newmark.setAttribute("viewBox", "0 0 16 16");
-        newmarkcont.style.left = game.marks[i].x * gridsize + "px";
-        newmarkcont.style.top = game.marks[i].y * gridsize + "px";
+        newmarkcont.style.left = formatCssPx(game.marks[i].x * gridsize);
+        newmarkcont.style.top = formatCssPx(game.marks[i].y * gridsize);
         newmarkcont.className = "game-elem pn-mark";
         newmarkcont.appendChild(newmark);
         marksHtmlelem.appendChild(newmarkcont);
     }
 
-    upmarllines.style.left = game.marks[2].x * gridsize + "px";
-    upmarllines.style.top = game.marks[2].y * gridsize + "px";
-    upmarllines.style.rotate = game.getwind(turncount + 1) + "deg";
+    upMarkLanelines.style.left = formatCssPx(game.marks[2].x * gridsize);
+    upMarkLanelines.style.top = formatCssPx(game.marks[2].y * gridsize);
+    upMarkLanelines.style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
     var startlinecontainer = document.getElementById("start-line");
     startlinecontainer.innerHTML = "";
@@ -214,8 +221,8 @@ function drawMarks() {
         var newelem = document.createElement("img");
         newelem.src = "img/startline.svg";
         newelem.className = "pn-start-line";
-        newelem.style.left = (i * gridsize) + "px";
-        newelem.style.top = (game.marks[0].y * gridsize) + "px";
+        newelem.style.left = formatCssPx(i * gridsize);
+        newelem.style.top = formatCssPx(game.marks[0].y * gridsize);
         startlinecontainer.appendChild(newelem);
     }
 }
@@ -225,19 +232,19 @@ function renderGridSize() {
     var gamearea = document.getElementById("game-area");
     document.getElementById("track").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
     document.getElementById("background").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
-    gamecont.style.height = window.innerHeight + "px";
+    gamecont.style.height = formatCssPx(window.innerHeight);
     var w = window.innerWidth - windDataScroller.clientWidth -
         document.getElementById("controll-container").clientWidth;
     var h = window.innerHeight;
     if (h / game.height < w / game.width) {
         gamearea.style.scale = h / (game.height * gridsize);
-        gamearea.style.top = "0px";
+        gamearea.style.top = formatCssPx(0);
     } else {
         gamearea.style.scale = w / (game.width * gridsize);
-        gamearea.style.top = ((h - game.height * gamearea.style.scale * gridsize) / 2) + "px";
+        gamearea.style.top = formatCssPx((h - game.height * gamearea.style.scale * gridsize) / 2);
     }
-    gamearea.style.height = (game.height * gridsize) + "px";
-    gamearea.style.width = (game.width * gridsize) + "px";
+    gamearea.style.height = formatCssPx(game.height * gridsize);
+    gamearea.style.width = formatCssPx(game.width * gridsize);
 
     console.log("gs");
 }
@@ -279,31 +286,30 @@ function addWind() {
 
 }
 function addPlayer() {
-    var i = game.players.length;
-    if (i > colors.length - 2) {
+    var gamearea = document.getElementById("boats");
+
+    var newColor = game.findFreeColor();
+    if (newColor == null) {
         alert("too many boats")
         return;
     }
-    var gamearea = document.getElementById("boats");
 
-    game.players[i] = new Boat(6, starty, false, game.players.length);
+    var newPlayer = new Boat(6, starty, false, newColor);
+
+    game.players.push(newPlayer);
 
     var newboatcont = document.createElement("div");
     newboatcont.className = "game-elem pn-boat";
+    newboatcont.style.color = newPlayer.color;
 
-    var newboat = document.createElementNS('http://www.w3.org/2000/svg', "svg");
-    newboat.setAttribute("stroke", colors[i]);
-    newboat.setAttribute("viewBox", "0 0 16 32");
-
-    newboatcont.appendChild(newboat);
-    game.players[i].html = newboatcont;
+    newPlayer.html = newboatcont;
     gamearea.appendChild(newboatcont);
 
     applySettings();
-    addControll(i);
-    game.players[i].tackBtn.checked = true;
+    addControll(newPlayer);
+    newPlayer.tackBtn.checked = true;
 
-    game.players[i].startPositionChange();
+    newPlayer.startPositionChange();
     game.placeBoatsOnStart();
 
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -321,10 +327,10 @@ function init() {
     windDataScroller = document.getElementById("wind-data.scroller");
     windscenariocontrol = document.getElementById("select-wind");
     var gamearea = document.getElementById("game-area");
-    upmarllines = document.createElement("img");
-    upmarllines.src = "img/marklaneline.svg";
-    upmarllines.className = "pn-lines game-elem";
-    gamearea.insertBefore(upmarllines, document.getElementById("wind"));
+    upMarkLanelines = document.createElement("img");
+    upMarkLanelines.src = "img/marklaneline.svg";
+    upMarkLanelines.className = "pn-lines game-elem";
+    gamearea.insertBefore(upMarkLanelines, document.getElementById("wind"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
         location.reload();
     });

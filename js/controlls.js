@@ -19,10 +19,12 @@ function apply() {
     var tooltips = ["Forward", "Tack", "To mark"];
 
     for (var i = 0; i < game.players.length; i++) {
-        var checkcontroll = document.getElementById("input-player-name" + i);
+        var checkcontroll = game.players[i].nameInput;
         if (checkcontroll.value == "") {
             checkcontroll.value = "Player " + (i + 1);
         }
+
+        game.players[i].deleteBtn.remove();
 
         game.players[i].apply();
         for (var j = 0; j < game.players[i].btnLabels.length; j++) {
@@ -52,13 +54,13 @@ function apply() {
     document.getElementById("btn-add-player").remove();
 
     for (var i = 0; i < game.players.length; i++) {
-        document.getElementById("input-player-name" + i).readOnly = true;
+        game.players[i].nameInput.readOnly = true;
     }
 
     renderGridSize();
 }
 
-function addControll(i) {
+function addControll(player) {
     var controlls = document.getElementById("controlls");
     var labels = ["L", "M", "R"];
     var tooltips = ["Start left", "Start middle", "Start right"];
@@ -72,27 +74,28 @@ function addControll(i) {
 
     var newcolordiv = document.createElement("div");
     newcolordiv.className = "pn-control-color";
-    newcolordiv.style.backgroundColor = colors[i];
+    newcolordiv.style.backgroundColor = player.color;
     newcolor.appendChild(newcolordiv);
 
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
     nnameinput.placeholder = "Name";
     nnameinput.className = "form-control";
-    nnameinput.id = "input-player-name" + i;
     nc.appendChild(nnameinput);
+    player.nameInput = nnameinput;
 
-    game.players[i].btnLabels = [];
+    player.btnLabels = [];
+    var groupName = getRandomId();
     for (var j = 0; j < 3; j++) {
         var nel = document.createElement("label");
         var nei = document.createElement("input");
 
         nei.setAttribute("type", "radio")
-        nei.id = "btn-contoll" + i.toString() + j.toString();
-        nei.name = "input-contoll" + i;
+        nei.id = getRandomId();
+        nei.name = groupName;
         nei.className = "btn-check";
         nei.addEventListener("change", function () {
-            game.players[i].startPositionChange();
+            player.startPositionChange();
             drawAll();
         });
         if (j == 0) {
@@ -100,7 +103,7 @@ function addControll(i) {
         }
 
         nel.className = "btn btn-outline-primary label-control";
-        nel.setAttribute("for", "btn-contoll" + i.toString() + j.toString());
+        nel.setAttribute("for", nei.id);
         nel.innerHTML = labels[j];
         nel.setAttribute("data-bs-toggle", "tooltip");
         nel.setAttribute("data-bs-placement", "top");
@@ -109,29 +112,49 @@ function addControll(i) {
         nc.appendChild(nei);
         nc.appendChild(nel);
 
-        game.players[i].btnLabels[j] = nel;
+        player.btnLabels[j] = nel;
 
         switch (j) {
             case 0:
-                game.players[i].forwardBtn = nei;
+                player.forwardBtn = nei;
                 break;
             case 1:
-                game.players[i].tackBtn = nei;
+                player.tackBtn = nei;
                 break;
             case 2:
-                game.players[i].toMarkBtn = nei;
+                player.toMarkBtn = nei;
                 break;
         }
     }
 
+    var newDeleteBtn = document.createElement("button");
+    newDeleteBtn.className = "btn btn-outline-danger";
+    newDeleteBtn.innerHTML = "-";
+    newDeleteBtn.addEventListener("click", function () {
+        player.html.remove();
+        nc.remove();
+        game.players.splice(game.players.findIndex(function (obj) { return obj == player }), 1);
+
+        game.placeBoatsOnStart();
+        drawAll();
+    });
+    player.deleteBtn = newDeleteBtn;
+    nc.appendChild(newDeleteBtn);
+
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-    np.setAttribute("stroke", colors[i]);
+    np.setAttribute("stroke", player.color);
     np.setAttribute("fill", "none");
-    np.setAttribute("points", game.players[i].x + "," + game.players[i].y);
+    np.setAttribute("points", player.x + "," + player.y);
     np.setAttribute("stroke-width", 0.05);
-    game.players[i].track = np;
+    player.track = np;
     t.appendChild(np);
 
     controlls.insertBefore(nc, document.getElementById("last-controll"));
+}
+
+var uniqueHtmlIdIdx = 0;
+function getRandomId() {
+    uniqueHtmlIdIdx++;
+    return "uniqueId_" + uniqueHtmlIdIdx;
 }
