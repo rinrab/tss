@@ -189,14 +189,6 @@
       transition: all 0.5s ease-in-out;
     }
 
-    #game-area[data-show-boats="dot"] .boat-full-svg {
-      display: none;
-    }
-
-    #game-area[data-show-boats="full"] .boat-hidden-svg {
-      display: none;
-    }
-
     .start .race-control-header,
     .start .race-controls,
     .start #game-alert,
@@ -205,7 +197,9 @@
     .race .start-controls,
     .race .start-control-header,
     .race #create,
-    .race .start-controls {
+    .race .start-controls,
+    #game-area[data-show-boats="dot"] .boat-full-svg,
+    #game-area[data-show-boats="full"] .boat-hidden-svg {
       display: none;
     }
   </style>
