@@ -137,7 +137,6 @@ function windDataInit() {
     winddata.innerHTML = "";
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
-    console.log("bfbhdsb")
 
     if (showfuturewind) {
         document.getElementById("wind-scroll-cont").hidden = false;
