@@ -172,17 +172,24 @@
     }
 
     .wind-data-scroller {
-      height: 100vh;
+      height: 100vh;  
       overflow: auto;
     }
 
-    #lines-container {
+    #lines-container {  
       height: 200%;
       width: 200%;
       transform-origin: center;
       margin-top: -50%;
       margin-left: -50%;
       transition: all 0.5s ease-in-out;
+    }
+
+    #game-area[data-show-boats="dot"] .boat-full-svg {
+      display: none;
+    }
+    #game-area[data-show-boats="full"] .boat-hidden-svg {
+      display: none;
     }
   </style>
 </head>

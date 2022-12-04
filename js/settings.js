@@ -77,6 +77,8 @@ function settingsChanged() {
 }
 
 function applySettings() {
+    var gameArea = document.getElementById("game-area");
+
     setShowTracksCheck.checked = settings.showtracks;
     if (settings.showtracks) {
         document.getElementById("track-cont").style.opacity = "100%";
@@ -90,15 +92,16 @@ function applySettings() {
         upMarkLanelines.hidden = true;
     }
     setShowBoatsCheck.checked = settings.showboats;
+
     if (settings.showboats) {
-        for (var i = 0; i < game.players.length; i++) {
-            game.players[i].html.children[0].innerHTML = boatsvg;
-        }
+        gameArea.setAttribute("data-show-boats", "full");
     } else {
-        for (var i = 0; i < game.players.length; i++) {
-            game.players[i].html.children[0].innerHTML = boathidesvg;
-        }
+        gameArea.setAttribute("data-show-boats", "dot");
     }
+    for (var i = 0; i < game.players.length; i++) {
+        game.players[i].html.innerHTML = boathidesvg + boatsvg;
+    }
+
     setShowEqualLines.checked = settings.showequallines;
     if (settings.showequallines) {
         document.getElementById("lines-container").hidden = false;

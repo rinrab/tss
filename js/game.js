@@ -14,14 +14,20 @@ var windtype = 0;
 const startLineSize = 15;
 
 var boatsvg =
-    `<g>
-        <polygon points="8,0 0,32 16,32"  fill="white"/>
-        <line y1="10" x1="8" y2="28" x2="8" fill="none" stroke="black"></line>
-    </g>`;
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 32" class="boat-full-svg">
+        <g>
+            <polygon points="8,0 0,32 16,32" fill="white" stroke="currentColor"/>
+            <line y1="10" x1="8" y2="28" x2="8" fill="none" stroke="black"></line>
+        </g>
+    </svg>
+    `;
 var boathidesvg = `
-    <g>
-        <ellipse rx="2" ry="2" cx="8" cy="16" stroke-width="3"></ellipse>
-    </g>`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 32" class="boat-hidden-svg">
+        <g>
+            <ellipse rx="2" ry="2" cx="8" cy="16" stroke-width="3" fill="currentColor"
+                stroke="currentColor"></ellipse>
+        </g>
+    </svg>`
 var marksvg =
     `<g>
         <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
@@ -291,12 +297,8 @@ function addPlayer() {
 
     var newboatcont = document.createElement("div");
     newboatcont.className = "game-elem pn-boat";
+    newboatcont.style.color = colors[i];
 
-    var newboat = document.createElementNS('http://www.w3.org/2000/svg', "svg");
-    newboat.setAttribute("stroke", colors[i]);
-    newboat.setAttribute("viewBox", "0 0 16 32");
-
-    newboatcont.appendChild(newboat);
     game.players[i].html = newboatcont;
     gamearea.appendChild(newboatcont);
 
