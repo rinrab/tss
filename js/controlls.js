@@ -72,7 +72,7 @@ function addControll(i) {
 
     var newcolordiv = document.createElement("div");
     newcolordiv.className = "pn-control-color";
-    newcolordiv.style.backgroundColor = colors[i];
+    newcolordiv.style.backgroundColor = game.players[i].color;
     newcolor.appendChild(newcolordiv);
 
     var nnameinput = document.createElement("input");
@@ -126,7 +126,7 @@ function addControll(i) {
 
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-    np.setAttribute("stroke", colors[i]);
+    np.setAttribute("stroke", game.players[i].color);
     np.setAttribute("fill", "none");
     np.setAttribute("points", game.players[i].x + "," + game.players[i].y);
     np.setAttribute("stroke-width", 0.05);
