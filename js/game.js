@@ -15,18 +15,18 @@ const startLineSize = 15;
 
 var boatsvg =
     `<g>
-<title>Layer 1</title>
-<polygon points="8,0 0,32 16,32"  fill="white"/>
-<line y1="10" x1="8" y2="28" x2="8" fill="none" stroke="black"></line>
-</g>`;
+        <polygon points="8,0 0,32 16,32"  fill="white"/>
+        <line y1="10" x1="8" y2="28" x2="8" fill="none" stroke="black"></line>
+    </g>`;
 var boathidesvg = `
-<g>
-<ellipse rx="2" ry="2" cx="8" cy="16" stroke-width="3"></ellipse>
-</g>`
-var marksvg = `<g>
-  <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
-  <ellipse cx="8" cy="8" rx="2" ry="2" fill="#6d2121"/>
-</g>`;
+    <g>
+        <ellipse rx="2" ry="2" cx="8" cy="16" stroke-width="3"></ellipse>
+    </g>`
+var marksvg =
+    `<g>
+        <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
+        <ellipse cx="8" cy="8" rx="2" ry="2" fill="#6d2121"/>
+    </g>`;
 
 var startx = 6;
 var starty = 28;
@@ -63,7 +63,7 @@ function redrawTracks() {
 
 function redrawTrack(player) {
     var points = "";
- 
+
     for (var i = 0; i < turncount + 1; i++) {
         for (var j = 0; j < player.turns[i].points.length; j++) {
             var pt = player.turns[i].points[j];
@@ -71,7 +71,7 @@ function redrawTrack(player) {
             points += " " + pt.x.toFixed(3) + "," + pt.y.toFixed(3);
         }
     }
-    player.track.setAttribute("points", points); 
+    player.track.setAttribute("points", points);
 }
 
 function backTurn() {
