@@ -143,6 +143,7 @@ function windDataInit() {
         document.getElementById("wind-scroll-cont").hidden = false;
     } else {
         document.getElementById("wind-scroll-cont").hidden = true;
+        renderGridSize();
         return;
     }
     renderGridSize();
@@ -228,16 +229,15 @@ function drawMarks() {
         startlinecontainer.appendChild(newelem);
     }
 }
-
+var w;
 function renderGridSize() {
     var gamecont = document.getElementById("game-cont");
     var gamearea = document.getElementById("game-area");
     document.getElementById("track").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
     document.getElementById("background").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
     gamecont.style.height = formatCssPx(window.innerHeight);
-    var w = window.innerWidth - windDataScroller.clientWidth -
-        document.getElementById("controll-container").clientWidth;
-    var h = window.innerHeight;
+    w = gamecont.clientWidth;
+    var h = gamecont.clientHeight;
     if (h / game.height < w / game.width) {
         gamearea.style.scale = h / (game.height * gridsize);
         gamearea.style.top = formatCssPx(0);
@@ -247,8 +247,6 @@ function renderGridSize() {
     }
     gamearea.style.height = formatCssPx(game.height * gridsize);
     gamearea.style.width = formatCssPx(game.width * gridsize);
-
-    console.log("gs");
 }
 
 function windChange() {
@@ -264,7 +262,6 @@ function windChange() {
     for (var i = 0; i < game.players.length; i++) {
         game.players[i].y = game.height - 2;
     }
-    renderGridSize();
     windDataInit();
     drawAll()
 }
