@@ -1,8 +1,8 @@
 var localStorageNames = {
-    settingsshowboats: "settings-show-boats",
-    settingsshowtracks: "settings-show-tarcks",
-    settingsshowlanelines: "settings-show-lanelines",
-    settingsshowequallines: "equal-lines",
+    settingsShowBoats: "settings-show-boats",
+    settingsShowTracks: "settings-show-tarcks",
+    settingsShowLanelines: "settings-show-lanelines",
+    settingsShowEqualLines: "equal-lines",
     wind: "wind-data#",
     windlist: "wind-list",
     selectedWind: "selected-wind",
@@ -42,27 +42,27 @@ function settingsInit() {
 }
 
 function saveSettings() {
-    localStorage.setItem(localStorageNames.settingsshowboats, settings.showboats)
-    localStorage.setItem(localStorageNames.settingsshowtracks, settings.showtracks)
-    localStorage.setItem(localStorageNames.settingsshowlanelines, settings.showlaneline);
-    localStorage.setItem(localStorageNames.settingsshowequallines, settings.showequallines);
+    localStorage.setItem(localStorageNames.settingsShowBoats, settings.showboats)
+    localStorage.setItem(localStorageNames.settingsShowTracks, settings.showtracks)
+    localStorage.setItem(localStorageNames.settingsShowLanelines, settings.showlaneline);
+    localStorage.setItem(localStorageNames.settingsShowEqualLines, settings.showequallines);
 }
 
 function loadSettings() {
     settings.showboats = readBoolSettings(
-        localStorageNames.settingsshowboats,
+        localStorageNames.settingsShowBoats,
         defaultSetting.showboats);
 
     settings.showtracks = readBoolSettings(
-        localStorageNames.settingsshowtracks,
+        localStorageNames.settingsShowTracks,
         defaultSetting.showtracks);
 
     settings.showlaneline = readBoolSettings(
-        localStorageNames.settingsshowlanelines,
+        localStorageNames.settingsShowLanelines,
         defaultSetting.showlaneline);
-        
+
     settings.showequallines = readBoolSettings(
-        localStorageNames.settingsshowequallines,
+        localStorageNames.settingsShowEqualLines,
         defaultSetting.showequallines);
 }
 
