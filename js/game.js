@@ -332,7 +332,22 @@ function init() {
     upMarkLanelines.className = "pn-lines game-elem";
     gamearea.insertBefore(upMarkLanelines, document.getElementById("wind"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
-        location.reload();
+        for (var i = 0; i < game.players.length; i++) {
+            var player = game.players[i];
+            player.tack = false;
+            player.rotation = -45;
+            player.turns = [];
+            player.isStart = true;
+            player.finished = false;
+            player.startPos = 1;
+            player.startPriority = game.currentStartPriority++;
+            player.saveTurn(turnTupes.forward, [{ x: player.x, y: player.y }]);
+            player.track.setAttribute("points", "");
+        }
+        document.body.className = "start";
+        turncount = 0;
+        game.placeBoatsOnStart();
+        drawAll();
     });
     windInit();
     document.getElementById("btn-ap").addEventListener("click", function () {

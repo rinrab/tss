@@ -327,6 +327,7 @@ class Game {
         const startdist = 0.5;
         for (var i = 0; i < boatsStartLeft.length; i++) {
             boatsStartLeft[i].x = this.marks[0].x + 1 + (i * startdist);
+            boatsStartLeft[i].y = this.height - 2;
         }
 
         for (var i = 0; i < boatsStartMiddle.length; i++) {
@@ -348,10 +349,12 @@ class Game {
             } else {
                 boatsStartMiddle[i].x = (i * startdist * k) + (this.width / 2);
             }
+            boatsStartMiddle[i].y = this.height - 2;
         }
 
         for (var i = 0; i < boatsStartRight.length; i++) {
             boatsStartRight[i].x = this.marks[1].x - 1 - (i * startdist);
+            boatsStartRight[i].y = this.height - 2;
         }
     }
 

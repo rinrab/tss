@@ -33,8 +33,6 @@ function apply() {
         }
     }
 
-    document.getElementById("start-alert").hidden = true;
-    document.getElementById("game-alert").hidden = false;
     document.getElementById("wind-scenario-name-inrace-alert").innerText =
         wind[windscenario].name.toLowerCase();
 

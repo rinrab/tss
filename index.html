@@ -209,6 +209,14 @@
     .start .race-control-header {
       display: none;
     }
+
+    .start #game-alert {
+      display: none;
+    }
+
+    .race #start-alert {
+      display: none;
+    }
   </style>
 </head>
 
@@ -248,7 +256,7 @@
           <label style="width: 10px;"></label>
           <input type="image" class="btn btn-outline-primary btn-sm" id="btn-ap" src="img/ap.png">
         </div>
-        <div id="game-alert" hidden class="alert alert-info text-center">Race:
+        <div id="game-alert" class="alert alert-info text-center">Race:
           <span id="wind-scenario-name-inrace-alert"></span>
           <label style="width: 10px;"></label>
           <input type="image" class="btn btn-outline-primary btn-sm" id="btn-nowember" src="img/november.svg">
@@ -268,7 +276,7 @@
         <button class="btn btn-outline-primary" id="btn-apply">Start!</button>
       </div>
       <div class="w-100 mb-2 input-group race-control-header">
-        <button class="btn btn-outline-primary" hidden id="back-btn">Back</button>
+        <button class="btn btn-outline-primary" id="back-btn">Back</button>
         <button class="btn btn-outline-primary" id="btn-done">Start!</button>
       </div>
       <div class="control-scroll">
