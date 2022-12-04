@@ -174,6 +174,7 @@ function windDataInit() {
         newlabel.innerText = windtext.toString();;
         newlabel.style.position = "absolute";
         newlabel.style.right = "50px";
+        newlabel.style.fontFamily = "monospace";
         newelem.appendChild(newlabel);
 
         var img = document.createElement("img");
