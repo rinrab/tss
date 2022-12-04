@@ -177,8 +177,6 @@ function windDataInit() {
 
 
 function drawBoat(player) {
-    //player.html.children[0].style.height = gridsize + "px";
-
     player.html.style.left = (player.x * gridsize) + "px";
     player.html.style.top = (player.y * gridsize).toString() + "px";
     player.html.style.rotate = player.rotation + "deg";
