@@ -33,6 +33,14 @@ var starty = 28;
 
 var upmarllines;
 
+function formatCssPx(val) {
+    return val.toFixed(3) + "px";
+}
+
+function formatCssDeg(val) {
+    return val.toFixed(3) + "deg";
+}
+
 function turn() {
     turncount++;
 
@@ -92,7 +100,7 @@ function drawAll() {
 function drawLines() {
     var linesSvg = document.getElementById("lines-svg");
     linesSvg.setAttribute("viewBox", `0 0 ${game.width} ${game.height}`);
-    document.getElementById("lines-container").style.rotate = game.getwind(turncount + 1) + "deg";
+    document.getElementById("lines-container").style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
     var linesDrawing = document.getElementById("lines-drawing");
     linesDrawing.innerHTML = "";
@@ -110,7 +118,7 @@ function drawLines() {
 function drawWindArrow() {
     var windDerection = game.getwind(turncount + 1);
     var e = document.getElementById("wind");
-    e.style.rotate = windDerection * 2 + "deg";
+    e.style.rotate = formatCssDeg(windDerection * 2);
     if (windDerection > 0) {
         windDerection = "+" + windDerection;
     }
@@ -164,7 +172,7 @@ function windDataInit() {
         if (isshow) {
             img.src = "img/wind.svg";
             img.className = "wind-data-arrow wind";
-            img.style.rotate = game.getwind(i) * 2 + "deg";
+            img.style.rotate = formatCssDeg(game.getwind(i) * 2);
         } else {
             img.src = "img/wind-hide.svg";
             img.className = "pn-wind-hide";
@@ -177,9 +185,9 @@ function windDataInit() {
 
 
 function drawBoat(player) {
-    player.html.style.left = (player.x * gridsize).toFixed(3) + "px";
-    player.html.style.top = (player.y * gridsize).toFixed(3) + "px";
-    player.html.style.rotate = player.rotation.toFixed(3) + "deg";
+    player.html.style.left = formatCssPx(player.x * gridsize);
+    player.html.style.top = formatCssPx(player.y * gridsize);
+    player.html.style.rotate = formatCssDeg(player.rotation);
 }
 
 function drawMarks() {
@@ -190,16 +198,16 @@ function drawMarks() {
         var newmarkcont = document.createElement("div");
         newmark.innerHTML = marksvg;
         newmark.setAttribute("viewBox", "0 0 16 16");
-        newmarkcont.style.left = game.marks[i].x * gridsize + "px";
-        newmarkcont.style.top = game.marks[i].y * gridsize + "px";
+        newmarkcont.style.left = formatCssPx(game.marks[i].x * gridsize);
+        newmarkcont.style.top = formatCssPx(game.marks[i].y * gridsize);
         newmarkcont.className = "game-elem pn-mark";
         newmarkcont.appendChild(newmark);
         marksHtmlelem.appendChild(newmarkcont);
     }
 
-    upmarllines.style.left = game.marks[2].x * gridsize + "px";
-    upmarllines.style.top = game.marks[2].y * gridsize + "px";
-    upmarllines.style.rotate = game.getwind(turncount + 1) + "deg";
+    upmarllines.style.left = formatCssPx(game.marks[2].x * gridsize);
+    upmarllines.style.top = formatCssPx(game.marks[2].y * gridsize);
+    upmarllines.style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
     var startlinecontainer = document.getElementById("start-line");
     startlinecontainer.innerHTML = "";
@@ -207,8 +215,8 @@ function drawMarks() {
         var newelem = document.createElement("img");
         newelem.src = "img/startline.svg";
         newelem.className = "pn-start-line";
-        newelem.style.left = (i * gridsize) + "px";
-        newelem.style.top = (game.marks[0].y * gridsize) + "px";
+        newelem.style.left = formatCssPx(i * gridsize);
+        newelem.style.top = formatCssPx(game.marks[0].y * gridsize);
         startlinecontainer.appendChild(newelem);
     }
 }
@@ -218,19 +226,19 @@ function renderGridSize() {
     var gamearea = document.getElementById("game-area");
     document.getElementById("track").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
     document.getElementById("background").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
-    gamecont.style.height = window.innerHeight + "px";
+    gamecont.style.height = formatCssPx(window.innerHeight);
     var w = window.innerWidth - windDataScroller.clientWidth -
         document.getElementById("controll-container").clientWidth;
     var h = window.innerHeight;
     if (h / game.height < w / game.width) {
         gamearea.style.scale = h / (game.height * gridsize);
-        gamearea.style.top = "0px";
+        gamearea.style.top = formatCssPx(0);
     } else {
         gamearea.style.scale = w / (game.width * gridsize);
-        gamearea.style.top = ((h - game.height * gamearea.style.scale * gridsize) / 2) + "px";
+        gamearea.style.top = formatCssPx((h - game.height * gamearea.style.scale * gridsize) / 2);
     }
-    gamearea.style.height = (game.height * gridsize) + "px";
-    gamearea.style.width = (game.width * gridsize) + "px";
+    gamearea.style.height = formatCssPx(game.height * gridsize);
+    gamearea.style.width = formatCssPx(game.width * gridsize);
 
     console.log("gs");
 }
