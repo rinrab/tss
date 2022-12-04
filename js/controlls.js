@@ -62,7 +62,6 @@ function addControll(i) {
     var controlls = document.getElementById("controlls");
     var labels = ["L", "M", "R"];
     var tooltips = ["Start left", "Start middle", "Start right"];
-    var startTranslations = [0, 4, 8];
 
     var nc = document.createElement("div");
     nc.className = "input-group mb-1";
