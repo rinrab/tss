@@ -58,7 +58,7 @@ function apply() {
     renderGridSize();
 }
 
-function addControll(i) {
+function addControll(player) {
     var controlls = document.getElementById("controlls");
     var labels = ["L", "M", "R"];
     var tooltips = ["Start left", "Start middle", "Start right"];
@@ -72,7 +72,7 @@ function addControll(i) {
 
     var newcolordiv = document.createElement("div");
     newcolordiv.className = "pn-control-color";
-    newcolordiv.style.backgroundColor = game.players[i].color;
+    newcolordiv.style.backgroundColor = player.color;
     newcolor.appendChild(newcolordiv);
 
     var nnameinput = document.createElement("input");
@@ -80,19 +80,20 @@ function addControll(i) {
     nnameinput.placeholder = "Name";
     nnameinput.className = "form-control";
     nc.appendChild(nnameinput);
-    game.players[i].nameInput = nnameinput;
+    player.nameInput = nnameinput;
 
-    game.players[i].btnLabels = [];
+    player.btnLabels = [];
+    var groupName = getRandomId();
     for (var j = 0; j < 3; j++) {
         var nel = document.createElement("label");
         var nei = document.createElement("input");
 
         nei.setAttribute("type", "radio")
         nei.id = getRandomId();
-        nei.name = "input-contoll" + i;
+        nei.name = groupName;
         nei.className = "btn-check";
         nei.addEventListener("change", function () {
-            game.players[i].startPositionChange();
+            player.startPositionChange();
             drawAll();
         });
         if (j == 0) {
@@ -109,28 +110,28 @@ function addControll(i) {
         nc.appendChild(nei);
         nc.appendChild(nel);
 
-        game.players[i].btnLabels[j] = nel;
+        player.btnLabels[j] = nel;
 
         switch (j) {
             case 0:
-                game.players[i].forwardBtn = nei;
+                player.forwardBtn = nei;
                 break;
             case 1:
-                game.players[i].tackBtn = nei;
+                player.tackBtn = nei;
                 break;
             case 2:
-                game.players[i].toMarkBtn = nei;
+                player.toMarkBtn = nei;
                 break;
         }
     }
 
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-    np.setAttribute("stroke", game.players[i].color);
+    np.setAttribute("stroke", player.color);
     np.setAttribute("fill", "none");
-    np.setAttribute("points", game.players[i].x + "," + game.players[i].y);
+    np.setAttribute("points", player.x + "," + player.y);
     np.setAttribute("stroke-width", 0.05);
-    game.players[i].track = np;
+    player.track = np;
     t.appendChild(np);
 
     controlls.insertBefore(nc, document.getElementById("last-controll"));

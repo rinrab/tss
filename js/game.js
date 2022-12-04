@@ -308,7 +308,7 @@ function addPlayer() {
     gamearea.appendChild(newboatcont);
 
     applySettings();
-    addControll(i);
+    addControll(newPlayer);
     newPlayer.tackBtn.checked = true;
 
     newPlayer.startPositionChange();
