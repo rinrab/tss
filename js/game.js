@@ -49,12 +49,11 @@ function turn() {
 
 function redrawTracks() {
     for (var i = 0; i < game.players.length; i++) {
-        redrawTrack(i)
+        redrawTrack(game.players[i]);
     }
 }
 
-function redrawTrack(playerIndex) {
-    var player = game.players[playerIndex];
+function redrawTrack(player) {
     var points = "";
  
     for (var i = 0; i < turncount + 1; i++) {
