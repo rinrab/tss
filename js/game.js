@@ -180,7 +180,6 @@ function drawBoat(player) {
     player.html.style.left = (player.x * gridsize) + "px";
     player.html.style.top = (player.y * gridsize).toString() + "px";
     player.html.style.rotate = player.rotation + "deg";
-    player.html.style.transformOrigin = "center"
 }
 
 function drawMarks() {
