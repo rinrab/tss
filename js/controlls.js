@@ -16,9 +16,6 @@ function createContolls() {
 }
 
 function apply() {
-    var labels = ["&#8593;", "&#8630;", "&#8857;&#8592;"];
-    var tooltips = ["Forward", "Tack", "To mark"];
-
     for (var i = 0; i < game.players.length; i++) {
         if (game.players[i].nameInput.value == "") {
             game.players[i].nameText.value = "Player " + (i + 1);
@@ -26,26 +23,11 @@ function apply() {
             game.players[i].nameText.value = game.players[i].nameInput.value;
         }
 
-        // game.players[i].deleteBtn.remove();
-
         game.players[i].apply();
-        for (var j = 0; j < game.players[i].btnLabels.length; j++) {
-        }
     }
 
     document.getElementById("wind-scenario-name-inrace-alert").innerText =
         wind[windscenario].name.toLowerCase();
-
-    document.getElementById("back-btn").hidden = false;
-
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
-        new bootstrap.Tooltip(tooltipTriggerEl))
-
-    var done = document.getElementById("btn-done");
-    done.innerText = "Next";
-    done.removeEventListener("click", apply);
-    done.addEventListener("click", turn);
 
     document.body.className = "race";
 
@@ -94,8 +76,6 @@ function addControll(player) {
 
         player.btnLabels = [];
         var groupName = getRandomId();
-
-
 
         for (var j = 0; j < 3; j++) {
             var nel = document.createElement("label");
