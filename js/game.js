@@ -89,6 +89,8 @@ function backTurn() {
         }
         setTimeout(redrawTracks, 200);
         drawAll();
+    } else {
+        document.body.className = "start";
     }
 }
 
