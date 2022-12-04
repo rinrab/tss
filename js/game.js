@@ -53,13 +53,13 @@ function redrawTracks() {
     }
 }
 
-function redrawTrack(i) {
-    var player = game.players[i];
+function redrawTrack(playerIndex) {
+    var player = game.players[playerIndex];
     var points = "";
  
-    for (var j = 0; j < turncount + 1; j++) {
-        for (var k = 0; k < player.turns[j].points.length; k++) {
-            var pt = player.turns[j].points[k];
+    for (var i = 0; i < turncount + 1; i++) {
+        for (var j = 0; j < player.turns[i].points.length; j++) {
+            var pt = player.turns[i].points[j];
 
             points += " " + pt.x.toFixed(3) + "," + pt.y.toFixed(3);
         }
