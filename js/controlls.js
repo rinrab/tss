@@ -88,7 +88,7 @@ function addControll(i) {
         var nei = document.createElement("input");
 
         nei.setAttribute("type", "radio")
-        nei.id = "btn-contoll" + i.toString() + j.toString();
+        nei.id = getRandomId();
         nei.name = "input-contoll" + i;
         nei.className = "btn-check";
         nei.addEventListener("change", function () {
@@ -100,7 +100,7 @@ function addControll(i) {
         }
 
         nel.className = "btn btn-outline-primary label-control";
-        nel.setAttribute("for", "btn-contoll" + i.toString() + j.toString());
+        nel.setAttribute("for", nei.id);
         nel.innerHTML = labels[j];
         nel.setAttribute("data-bs-toggle", "tooltip");
         nel.setAttribute("data-bs-placement", "top");
@@ -134,4 +134,10 @@ function addControll(i) {
     t.appendChild(np);
 
     controlls.insertBefore(nc, document.getElementById("last-controll"));
+}
+
+var uniqueHtmlIdIdx = 0;
+function getRandomId() {
+    uniqueHtmlIdIdx++;
+    return "uniqueId_" + uniqueHtmlIdIdx;
 }
