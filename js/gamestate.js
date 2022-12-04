@@ -30,8 +30,6 @@ class Boat {
     oldStartPos;
     myOldStartPosIndex;
 
-    indexInGame;
-
     turn() {
         var turntype;
         var points = [];
@@ -181,7 +179,6 @@ class Boat {
         this.isStart = true;
         this.startPos = 1;
         this.startPriority = game.currentStartPriority++;
-        this.indexInGame = index;
     }
 
     startPositionChange() {
