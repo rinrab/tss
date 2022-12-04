@@ -161,7 +161,7 @@ function windDataInit() {
             }
             windtext += "º";
         } else {
-            windtext = "??º";
+            windtext = "??";
         }
         newlabel.innerText = windtext.toString();;
         newlabel.style.position = "absolute";
