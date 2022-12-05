@@ -214,6 +214,11 @@
       display: none;
     }
 
+    .icon-sm {
+      width: 16px;
+      height: 16px;
+    }
+
     .copyright {
       width: calc(100% - .05rem);
       margin-left: .05rem;
@@ -224,6 +229,70 @@
 </head>
 
 <body class="start">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" display="block" height="0">
+    <defs>
+      <symbol id="icon-starboard-forward" viewBox="0 0 16 16">
+        <polyline points="14,14 2,2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-width="1.7" />
+
+        <polyline points="3,8 2,2 8,3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-linecap="round"
+                  stroke-width="1.7" />
+
+        <ellipse rx="1.8" ry="1.8" cx="14" cy="14" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-port-forward" viewBox="0 0 16 16">
+        <polyline points="2,14 14,2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-width="1.7" />
+
+        <polyline points="13,8 14,2 8,3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-linecap="round"
+                  stroke-width="1.7" />
+
+        <ellipse rx="1.8" ry="1.8" cx="2" cy="14" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-starboard-tack" viewBox="0 0 16 16">
+        <polyline points="8,14 2,8 8,2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-width="1.7" />
+
+        <polyline points="8,7 9,1 3,2"
+                  fill="none" stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-linecap="round"
+                  stroke-width="1.7" />
+        <ellipse rx="1.8" ry="1.8" cx="8" cy="14" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-port-tack" viewBox="0 0 16 16">
+        <polyline points="8,14 14,8 8,2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-width="1.7" />
+
+        <polyline points="8,7 7,1 13,2"
+                  fill="none" stroke="currentColor"
+                  stroke-linejoin="miter"
+                  stroke-linecap="round"
+                  stroke-width="1.7" />
+        <ellipse rx="1.8" ry="1.8" cx="8" cy="14" fill="currentColor" />
+      </symbol>
+    </defs>
+  </svg>
   <div class="row">
     <div id="wind-scroll-cont" style="width: 150px;" class="pad0">
       <div class="wind-data-scroller" id="wind-data.scroller">
