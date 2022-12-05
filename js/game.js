@@ -354,9 +354,6 @@ function init() {
         drawAll();
     });
     windInit();
-    document.getElementById("btn-ap").addEventListener("click", function () {
-        location.reload();
-    });
     windInit();
     settingsInit();
     createGame(2);
