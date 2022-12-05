@@ -341,11 +341,13 @@ function init() {
             player.turns = [];
             player.isStart = true;
             player.finished = false;
+            player.startInputs[1].checked = true;
             player.startPos = 1;
             player.startPriority = game.currentStartPriority++;
             player.saveTurn(turnTupes.forward, [{ x: player.x, y: player.y }]);
             player.track.setAttribute("points", "");
         }
+        windChange();
         document.body.className = "start";
         turncount = 0;
         game.placeBoatsOnStart();
