@@ -46,74 +46,111 @@ function addControll(player) {
         Glyphs.portTack + Glyphs.starboardTack,
         "&#8857;&#8592;"];
 
-    for (var i = 0; i < 2; i++) {
-        var nc = document.createElement("div");
-        nc.className = "input-group mb-1";
+    var nc = document.createElement("div");
+    nc.className = "input-group mb-1";
+    nc.classList.add("start-controls");
+
+    var newcolor = document.createElement("span");
+    newcolor.className = "input-group-text";
+    nc.appendChild(newcolor);
+
+    var newcolordiv = document.createElement("div");
+    newcolordiv.className = "pn-control-color";
+    newcolordiv.style.backgroundColor = player.color;
+    newcolor.appendChild(newcolordiv);
+
+    var nnameinput = document.createElement("input");
+    nnameinput.type = "text";
+    nnameinput.placeholder = "Name";
+    nnameinput.className = "form-control";
+    nc.appendChild(nnameinput);
+    player.nameInput = nnameinput;
+
+    var inputStart = createRadioGroup(labelsStart, nc);
+    player.startInputs = inputStart;
+    inputStart[1].checked = true;
+    for (var k = 0; k < inputStart.length; k++) {
+        inputStart[k].addEventListener("change", function () {
+            player.startPositionChange();
+            drawAll();
+        })
+    }
+    var newDeleteBtn = document.createElement("button");
+    newDeleteBtn.className = "btn btn-outline-danger delete-btn";
+    newDeleteBtn.innerHTML = "-";
+    newDeleteBtn.addEventListener("click", function () {
+        player.html.remove();
+        newControlGroup1.remove();
+        game.players.splice(game.players.findIndex(function (obj) { return obj == player }), 1);
+
+        game.placeBoatsOnStart();
+        drawAll();
+    });
+    player.deleteBtn = newDeleteBtn;
+    nc.appendChild(newDeleteBtn);
+    newControlGroup1.appendChild(nc);
+
+    var nc = document.createElement("div");
+    nc.className = "input-group mb-1";
+    nc.classList.add("race-controls");
+
+    var newcolor = document.createElement("span");
+    newcolor.className = "input-group-text";
+    nc.appendChild(newcolor);
+
+    var newcolordiv = document.createElement("div");
+    newcolordiv.className = "pn-control-color";
+    newcolordiv.style.backgroundColor = player.color;
+    newcolor.appendChild(newcolordiv);
+
+    var nnameinput = document.createElement("input");
+    nnameinput.type = "text";
+    nnameinput.className = "form-control";
+    nc.appendChild(nnameinput);
+    player.nameInput = nnameinput;
+    nnameinput.readOnly = true;
+    player.nameText = nnameinput;
+
+    var inputsRace = createRadioGroup(labelsRace, nc);
+    player.forwardBtn = inputsRace[0];
+    player.tackBtn = inputsRace[1];
+    player.toMarkBtn = inputsRace[2];
+    player.raceControls = nc;
+    newControlGroup1.appendChild(nc);
+
+
+
+
+
+
+
+
+
+
+
+
+    for (var i = 0; i < 1; i++) {
         if (i == 0) {
-            nc.classList.add("start-controls");
         } else {
             nc.classList.add("race-controls");
         }
 
-        var newcolor = document.createElement("span");
-        newcolor.className = "input-group-text";
-        nc.appendChild(newcolor);
-
-        var newcolordiv = document.createElement("div");
-        newcolordiv.className = "pn-control-color";
-        newcolordiv.style.backgroundColor = player.color;
-        newcolor.appendChild(newcolordiv);
-
-        var nnameinput = document.createElement("input");
-        nnameinput.type = "text";
-        nnameinput.placeholder = "Name";
-        nnameinput.className = "form-control";
-        nc.appendChild(nnameinput);
         if (i == 0) {
-            player.nameInput = nnameinput;
         } else {
-            nnameinput.readOnly = true;
-            player.nameText = nnameinput;
+
         }
 
         player.btnLabels = [];
 
         if (i == 0) {
-            var inputStart = createRadioGroup(labelsStart, nc);
-            player.startInputs = inputStart;
-            inputStart[1].checked = true;
-            for (var k = 0; k < inputStart.length; k++) {
-                inputStart[k].addEventListener("change", function () {
-                    player.startPositionChange();
-                    drawAll();
-                })
-            }
         } else if (i == 1) {
-            var inputsRace = createRadioGroup(labelsRace, nc);
-            player.forwardBtn = inputsRace[0];
-            player.tackBtn = inputsRace[1];
-            player.toMarkBtn = inputsRace[2];
-            player.raceControls = nc;
+
         }
 
         if (i == 0) {
-            var newDeleteBtn = document.createElement("button");
-            newDeleteBtn.className = "btn btn-outline-danger delete-btn";
-            newDeleteBtn.innerHTML = "-";
-            newDeleteBtn.addEventListener("click", function () {
-                player.html.remove();
-                newControlGroup1.remove();
-                game.players.splice(game.players.findIndex(function (obj) { return obj == player }), 1);
-
-                game.placeBoatsOnStart();
-                drawAll();
-            });
-            player.deleteBtn = newDeleteBtn;
-            nc.appendChild(newDeleteBtn);
         }
-        newControlGroup1.appendChild(nc);
     }
-    
+
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
     np.setAttribute("stroke", player.color);
@@ -122,7 +159,7 @@ function addControll(player) {
     np.setAttribute("stroke-width", 0.05);
     player.track = np;
     t.appendChild(np);
-    
+
     updatePlayerControls(player);
 }
 
