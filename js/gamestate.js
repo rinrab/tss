@@ -15,6 +15,7 @@ class Boat {
     turns;
     rotation;
     html;
+    raceControls;
     forwardBtn;
     tackBtn;
     toMarkBtn;

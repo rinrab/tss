@@ -1,0 +1,16 @@
+<svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+    <g color="black">
+      <polyline points="12,14 6,8 12,2" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-linejoin="miter"
+                stroke-width="1.7"/>
+
+      <polyline points="12,7 13,1 7,2" 
+                fill="none" stroke="red" 
+                stroke-linejoin="miter"
+                stroke-linecap="round"
+                stroke-width="1.7"/>
+      <ellipse rx="1.8" ry="1.8" cx="12" cy="14" fill="currentColor" />
+    </g>
+</svg>

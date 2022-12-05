@@ -203,9 +203,21 @@
       display: none;
     }
 
+    [data-current-tack="port"] .starboard-forward-btn,
+    [data-current-tack="port"] .starboard-tack-btn {
+      display: none;
+    }
+
+    [data-current-tack="starboard"] .port-forward-btn,
+    [data-current-tack="starboard"] .port-tack-btn {
+      display: none;
+    }
+
     .copyright {
       width: calc(100% - .05rem);
-        margin-left: .05rem;margin-bottom: -5px; --bs-bg-opacity: 0.2;
+      margin-left: .05rem;
+      margin-bottom: -5px;
+      --bs-bg-opacity: 0.2;
     }
   </style>
 </head>

@@ -103,6 +103,7 @@ function drawAll() {
     console.log("draw");
     setTimeout(drawWindArrow, 250);
     drawLines()
+    updateControls();
 }
 
 function drawLines() {

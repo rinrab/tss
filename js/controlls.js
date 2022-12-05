@@ -41,7 +41,83 @@ function addControll(player) {
     controlls.insertBefore(newControlGroup1, document.getElementById("last-controll"));
 
     var labelsStart = ["L", "M", "R"];
-    var labelsRace = ["&#8593;", "&#8630;", "&#8857;&#8592;"];
+    var labelsRace = [`
+<svg xmlns="http://www.w3.org/2000/svg"
+     class="port-forward-btn"
+     viewBox="0 0 16 16" width="16" height="16" >
+        < g >
+      <polyline points="2,14 14,2"
+                fill="none" 
+                stroke="currentColor"
+                stroke-linejoin="miter"
+                stroke-width="1.7"/>
+
+      <polyline points="13,8 14,2 8,3" 
+                fill="none"
+                stroke="currentColor" 
+                stroke-linejoin="miter"
+                stroke-linecap="round"
+                stroke-width="1.7"/>
+
+      <ellipse rx="1.8" ry="1.8" cx="2" cy="14" fill="currentColor" />
+    </g >
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg"
+     class="starboard-forward-btn"
+     viewBox="0 0 16 16" width="16" height="16" >
+        < g >
+      <polyline points="14,14 2,2"
+                fill="none" 
+                stroke="currentColor"
+                stroke-linejoin="miter"
+                stroke-width="1.7"/>
+
+      <polyline points="3,8 2,2 8,3" 
+                fill="none"
+                stroke="currentColor" 
+                stroke-linejoin="miter"
+                stroke-linecap="round"
+                stroke-width="1.7"/>
+
+      <ellipse rx="1.8" ry="1.8" cx="14" cy="14" fill="currentColor" />
+    </g >
+</svg>
+`,
+        `<svg class="port-tack-btn"
+     viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <polyline points="4,14 10,8 4,2" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-linejoin="miter"
+                stroke-width="1.7"/>
+
+      <polyline points="4,7 3,1 9,2" 
+                fill="none" stroke="currentColor" 
+                stroke-linejoin="miter"
+                stroke-linecap="round"
+                stroke-width="1.7"/>
+      <ellipse rx="1.8" ry="1.8" cx="4" cy="14" fill="currentColor" />
+    </g>
+</svg>
+<svg class="starboard-tack-btn" viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <polyline points="12,14 6,8 12,2" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-linejoin="miter"
+                stroke-width="1.7"/>
+
+      <polyline points="12,7 13,1 7,2" 
+                fill="none" stroke="currentColor" 
+                stroke-linejoin="miter"
+                stroke-linecap="round"
+                stroke-width="1.7"/>
+      <ellipse rx="1.8" ry="1.8" cx="12" cy="14" fill="currentColor" />
+    </g>
+</svg>
+
+`, "&#8857;&#8592;"];
     var tooltips = ["Start left", "Start middle", "Start right"];
 
     for (var i = 0; i < 2; i++) {
@@ -113,7 +189,9 @@ function addControll(player) {
             nc.appendChild(nei);
             nc.appendChild(nel);
 
-
+            if (i == 1) {
+                player.raceControls = nc;
+            }
             switch (j) {
                 case 0:
                     player.forwardBtn = nei;
@@ -153,8 +231,20 @@ function addControll(player) {
     np.setAttribute("stroke-width", 0.05);
     player.track = np;
     t.appendChild(np);
+
+    updatePlayerControls(player);
 }
 
+function updatePlayerControls(player) {
+    var val = player.tack ? "port" : "starboard";
+    player.raceControls.setAttribute("data-current-tack", val);
+}
+
+function updateControls() {
+    for (var i = 0; i < game.players.length; i++) {
+        updatePlayerControls(game.players[i]);
+    }
+}
 var uniqueHtmlIdIdx = 0;
 function getRandomId() {
     uniqueHtmlIdIdx++;
