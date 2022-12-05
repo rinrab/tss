@@ -46,8 +46,6 @@ function addControll(player) {
         Glyphs.portTack + Glyphs.starboardTack,
         "&#8857;&#8592;"];
 
-    var tooltips = ["Start left", "Start middle", "Start right"];
-
     for (var i = 0; i < 2; i++) {
         var nc = document.createElement("div");
         nc.className = "input-group mb-1";
@@ -110,10 +108,6 @@ function addControll(player) {
                 nel.innerHTML = labelsRace[j];
                 player.btnLabels[j] = nel;
             }
-            nel.setAttribute("data-bs-toggle", "tooltip");
-            nel.setAttribute("data-bs-placement", "top");
-            nel.setAttribute("data-bs-title", tooltips[j]);
-
             nc.appendChild(nei);
             nc.appendChild(nel);
 
