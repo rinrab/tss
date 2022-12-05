@@ -77,54 +77,23 @@ function addControll(player) {
         }
 
         player.btnLabels = [];
-        var groupName = getRandomId();
 
-        for (var j = 0; j < 3; j++) {
-            var nel = document.createElement("label");
-            var nei = document.createElement("input");
-
-            nei.setAttribute("type", "radio")
-            nei.id = getRandomId();
-            nei.name = groupName;
-            nei.className = "btn-check";
-
-            if (i == 0) {
-                nei.addEventListener("change", function () {
+        if (i == 0) {
+            var inputStart = createRadioGroup(labelsStart, nc);
+            player.startInputs = inputStart;
+            inputStart[1].checked = true;
+            for (var k = 0; k < inputStart.length; k++) {
+                inputStart[k].addEventListener("change", function () {
                     player.startPositionChange();
                     drawAll();
-                });
+                })
             }
-
-            if (j == 1) {
-                nei.checked = true;
-            }
-
-            nel.className = "btn btn-outline-primary label-control";
-            nel.setAttribute("for", nei.id);
-            if (i == 0) {
-                nel.innerHTML = labelsStart[j];
-                player.startInputs[j] = nei;
-            } else {
-                nel.innerHTML = labelsRace[j];
-                player.btnLabels[j] = nel;
-            }
-            nc.appendChild(nei);
-            nc.appendChild(nel);
-
-            if (i == 1) {
-                player.raceControls = nc;
-            }
-            switch (j) {
-                case 0:
-                    player.forwardBtn = nei;
-                    break;
-                case 1:
-                    player.tackBtn = nei;
-                    break;
-                case 2:
-                    player.toMarkBtn = nei;
-                    break;
-            }
+        } else if (i == 1) {
+            var inputsRace = createRadioGroup(labelsRace, nc);
+            player.forwardBtn = inputsRace[0];
+            player.tackBtn = inputsRace[1];
+            player.toMarkBtn = inputsRace[2];
+            player.raceControls = nc;
         }
 
         if (i == 0) {
@@ -144,7 +113,7 @@ function addControll(player) {
         }
         newControlGroup1.appendChild(nc);
     }
-
+    
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
     np.setAttribute("stroke", player.color);
@@ -153,8 +122,33 @@ function addControll(player) {
     np.setAttribute("stroke-width", 0.05);
     player.track = np;
     t.appendChild(np);
-
+    
     updatePlayerControls(player);
+}
+
+function createRadioGroup(labels, parent) {
+    var inputs = [];
+    var groupName = getRandomId();
+
+    for (var i = 0; i < labels.length; i++) {
+        var newLabel = document.createElement("label");
+        var newInput = document.createElement("input");
+
+        newInput.setAttribute("type", "radio")
+        newInput.id = getRandomId();
+        newInput.name = groupName;
+        newInput.className = "btn-check";
+        inputs.push(newInput);
+
+        newLabel.className = "btn btn-outline-primary label-control";
+        newLabel.setAttribute("for", newInput.id);
+        newLabel.innerHTML = labels[i]
+
+        parent.appendChild(newInput);
+        parent.appendChild(newLabel);
+    }
+
+    return inputs;
 }
 
 function updatePlayerControls(player) {
