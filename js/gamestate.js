@@ -23,6 +23,7 @@ class Boat {
     finished;
     btnLabels;
     nameText
+    posLabel;
     // tack == false: startport
     // tack == true: port
     tack;
@@ -189,6 +190,7 @@ class Boat {
         this.startPriority = game.currentStartPriority++;
         this.startInputs = [];
         this.color = color;
+        this.finishTime = undefined;
     }
 
     startPositionChange() {
@@ -200,7 +202,7 @@ class Boat {
                 newStartPos = i;
             }
         }
-        
+
         if (newStartPos != this.startPos) {
             this.startPos = newStartPos;
             this.startPriority = game.currentStartPriority++;

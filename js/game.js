@@ -92,6 +92,8 @@ function backTurn() {
     } else {
         document.body.className = "start";
     }
+
+    updateControls();
 }
 
 function drawAll() {

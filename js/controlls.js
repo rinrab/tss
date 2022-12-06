@@ -102,6 +102,7 @@ function addControll(player) {
     newcolordiv.className = "pn-control-color";
     newcolordiv.style.backgroundColor = player.color;
     newcolor.appendChild(newcolordiv);
+    player.posLabel = newcolordiv;
 
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
@@ -194,8 +195,23 @@ function updatePlayerControls(player) {
 }
 
 function updateControls() {
+    var newStartPos = [];
+    for (var i = 0; i < game.players.length; i++) {
+        if (game.players[i].finished != false) {
+            newStartPos.push(game.players[i]);
+        } else {
+            game.players[i].posLabel.innerText = "";
+        }
+    }
+    newStartPos.sort(function (a, b) {
+        return a.finished - b.finished;
+    })
     for (var i = 0; i < game.players.length; i++) {
         updatePlayerControls(game.players[i]);
+    }
+    console.log(newStartPos);
+    for (var i = 0; i < newStartPos.length; i++) {
+        newStartPos[i].posLabel.innerText = i + 1;
     }
 }
 var uniqueHtmlIdIdx = 0;
