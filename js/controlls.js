@@ -19,8 +19,10 @@ function apply() {
     for (var i = 0; i < game.players.length; i++) {
         if (game.players[i].nameInput.value == "") {
             game.players[i].nameText.value = "Player " + (i + 1);
+            game.players[i].nameTextFinish.value = "Player " + (i + 1);
         } else {
             game.players[i].nameText.value = game.players[i].nameInput.value;
+            game.players[i].nameTextFinish.value = game.players[i].nameInput.value;
         }
 
         game.players[i].apply();
@@ -120,7 +122,7 @@ function addControll(player) {
     newControlGroup1.appendChild(nc);
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 finish-controls";
+    nc.className = "input-group mb-1 race-controls";
     nc.classList.add("race-controls");
 
     var newcolor = document.createElement("span");
@@ -131,7 +133,6 @@ function addControll(player) {
     newcolordiv.className = "pn-control-color";
     newcolordiv.style.backgroundColor = player.color;
     newcolor.appendChild(newcolordiv);
-    player.posLabel = newcolordiv;
 
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
@@ -139,7 +140,29 @@ function addControll(player) {
     nc.appendChild(nnameinput);
     player.nameInput = nnameinput;
     nnameinput.readOnly = true;
-    player.nameText = nnameinput;
+    player.nameTextFinish = nnameinput;
+
+    var nc = document.createElement("div");
+    nc.className = "input-group mb-1 finish-controls";
+
+    var newcolor = document.createElement("span");
+    newcolor.className = "input-group-text";
+    nc.appendChild(newcolor);
+
+    var newcolordiv = document.createElement("div");
+    newcolordiv.className = "pn-control-color";
+    newcolordiv.style.backgroundColor = player.color;
+    newcolor.appendChild(newcolordiv);
+    player.posLabel = newcolordiv;
+    newControlGroup1.appendChild(nc);
+
+    var nnameinput = document.createElement("input");
+    nnameinput.type = "text";
+    nnameinput.className = "form-control";
+    nc.appendChild(nnameinput);
+    player.nameInput = nnameinput;
+    nnameinput.readOnly = true;
+    player.nameTextFinish = nnameinput;
 
 
     var t = document.getElementById("track");
@@ -187,8 +210,10 @@ function updatePlayerControls(player) {
 function updateControls() {
     var newStartPos = [];
     for (var i = 0; i < game.players.length; i++) {
+        game.players[i].controlGroup.classList.remove("finished");
         if (game.players[i].finished != false) {
             newStartPos.push(game.players[i]);
+            game.players[i].controlGroup.classList.add("finished");
         } else {
             game.players[i].posLabel.innerText = "";
         }
