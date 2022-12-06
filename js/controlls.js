@@ -164,6 +164,15 @@ function addControll(player) {
     nnameinput.readOnly = true;
     player.nameTextFinish = nnameinput;
 
+    var newcolor = document.createElement("span");
+    newcolor.className = "input-group-text";
+    nc.appendChild(newcolor);
+
+    var newcolordiv = document.createElement("div");
+    newcolordiv.className = "pn-control-finish-time";
+    newcolor.appendChild(newcolordiv);
+    player.timeLabel = newcolordiv;
+    newControlGroup1.appendChild(nc);
 
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
@@ -227,6 +236,9 @@ function updateControls() {
     console.log(newStartPos);
     for (var i = 0; i < newStartPos.length; i++) {
         newStartPos[i].posLabel.innerText = i + 1;
+        newStartPos[i].timeLabel.innerText =
+            Math.round(newStartPos[i].finished / 60) + ":" +
+            Math.round(newStartPos[i].finished % 60);
     }
 }
 var uniqueHtmlIdIdx = 0;
