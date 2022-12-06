@@ -29,6 +29,7 @@ class Boat {
     tack;
     startPosInputs;
     isStart;
+    controlGroup;
 
     color;
 

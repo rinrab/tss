@@ -38,6 +38,7 @@ function addControll(player) {
     var controlls = document.getElementById("controlls");
 
     var newControlGroup1 = document.createElement("div");
+    player.controlGroup = newControlGroup1;
     controlls.insertBefore(newControlGroup1, document.getElementById("last-controll"));
 
     var labelsStart = ["L", "M", "R"];
@@ -117,7 +118,30 @@ function addControll(player) {
     player.toMarkBtn = inputsRace[2];
     player.raceControls = nc;
     newControlGroup1.appendChild(nc);
-    
+
+    var nc = document.createElement("div");
+    nc.className = "input-group mb-1 finish-controls";
+    nc.classList.add("race-controls");
+
+    var newcolor = document.createElement("span");
+    newcolor.className = "input-group-text";
+    nc.appendChild(newcolor);
+
+    var newcolordiv = document.createElement("div");
+    newcolordiv.className = "pn-control-color";
+    newcolordiv.style.backgroundColor = player.color;
+    newcolor.appendChild(newcolordiv);
+    player.posLabel = newcolordiv;
+
+    var nnameinput = document.createElement("input");
+    nnameinput.type = "text";
+    nnameinput.className = "form-control";
+    nc.appendChild(nnameinput);
+    player.nameInput = nnameinput;
+    nnameinput.readOnly = true;
+    player.nameText = nnameinput;
+
+
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
     np.setAttribute("stroke", player.color);
