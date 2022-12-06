@@ -47,8 +47,7 @@ function addControll(player) {
         "&#8857;&#8592;"];
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1";
-    nc.classList.add("start-controls");
+    nc.className = "input-group mb-1 start-controls";
 
     var newcolor = document.createElement("span");
     newcolor.className = "input-group-text";
@@ -91,7 +90,7 @@ function addControll(player) {
     newControlGroup1.appendChild(nc);
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1";
+    nc.className = "input-group mb-1 race-controls";
     nc.classList.add("race-controls");
 
     var newcolor = document.createElement("span");
@@ -118,29 +117,7 @@ function addControll(player) {
     player.toMarkBtn = inputsRace[2];
     player.raceControls = nc;
     newControlGroup1.appendChild(nc);
-
-    for (var i = 0; i < 1; i++) {
-        if (i == 0) {
-        } else {
-            nc.classList.add("race-controls");
-        }
-
-        if (i == 0) {
-        } else {
-
-        }
-
-        player.btnLabels = [];
-
-        if (i == 0) {
-        } else if (i == 1) {
-
-        }
-
-        if (i == 0) {
-        }
-    }
-
+    
     var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
     np.setAttribute("stroke", player.color);
