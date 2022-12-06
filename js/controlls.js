@@ -237,7 +237,7 @@ function updateControls() {
     for (var i = 0; i < newStartPos.length; i++) {
         newStartPos[i].posLabel.innerText = i + 1;
         newStartPos[i].timeLabel.innerText =
-            Math.round(newStartPos[i].finished / 60) + ":" +
+            Math.floor(newStartPos[i].finished / 60) + ":" +
             Math.round(newStartPos[i].finished % 60);
     }
 }
