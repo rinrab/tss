@@ -119,17 +119,6 @@ function addControll(player) {
     player.raceControls = nc;
     newControlGroup1.appendChild(nc);
 
-
-
-
-
-
-
-
-
-
-
-
     for (var i = 0; i < 1; i++) {
         if (i == 0) {
         } else {
