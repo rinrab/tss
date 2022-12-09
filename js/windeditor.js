@@ -111,6 +111,7 @@ function editorSaveClick() {
     newwind.startsize = formatNumber(parseInt(startLineSizeInput.value), 15);
     newwind.stepscount = newwind.wind.length;
     newwind.allowedit = true;
+    newwind = formatWind(newwind);
     if (editIndex == -1) {
         wind.splice(wind.length, 0, newwind);
         windscenario = wind.length - 1;
@@ -156,11 +157,23 @@ function loadWind() {
     for (var i = 0; i < windlist.names.length; i++) {
         var newwind = JSON.parse(localStorage.getItem(localStorageNames.wind + i.toString()))
         wind[i + startI] = newwind;
-        if (newwind.startsize == undefined) {
-            newwind.startsize = 15;
-        }
     }
 }
+
+function formatWind(wind) {
+    if (wind.startsize == undefined) {
+        wind.startsize = 15;
+    }
+    if (wind.startsize < 3) {
+        wind.startsize = 3;
+    }
+    if (wind.startsize > wind.width) {
+        wind = wind.width;
+    }
+
+    return wind;
+}
+
 function editorSetReadonlyState(rs) {
     saveWindBtn.disabled = rs;
     deleteWindBtn.disabled = rs;
