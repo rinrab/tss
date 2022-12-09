@@ -164,13 +164,7 @@ function formatWind(wind) {
     if (wind.startsize == undefined) {
         wind.startsize = 15;
     }
-    if (wind.startsize < 3) {
-        wind.startsize = 3;
-    }
-    if (wind.startsize > wind.width) {
-        wind = wind.width;
-    }
-
+    
     return wind;
 }
 
