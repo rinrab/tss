@@ -157,6 +157,9 @@ function loadWind() {
     for (var i = 0; i < windlist.names.length; i++) {
         var newwind = JSON.parse(localStorage.getItem(localStorageNames.wind + i.toString()))
         wind[i + startI] = newwind;
+        if (newwind.startsize == undefined) {
+            newwind.startsize = 15;
+        }
     }
 }
 
