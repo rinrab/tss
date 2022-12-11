@@ -22,6 +22,7 @@ var windPresets =
             height: 30,
             maxwindsetting: 20,
             type: windTypes.presets,
+            startsize: 15,
         },
         {
             name: "High Random",
@@ -33,6 +34,7 @@ var windPresets =
             height: 30,
             maxwindsetting: 35,
             type: windTypes.presets,
+            startsize: 15,
         },
         {
             name: "Random Moscow",
@@ -44,6 +46,7 @@ var windPresets =
             width: 40,
             height: 30,
             type: windTypes.presets,
+            startsize: 15,
         },
         {
             name: "default",
@@ -51,7 +54,8 @@ var windPresets =
             height: 30,
             type: windTypes.presets,
             wind: [0, 5, 0, 5, 5, 10, 5, 0, -5, 0, 5, 10, 15, 15, 15, 10, 5, 0, 5, -5, -10, -20, -10, -5, -5, 0, 5, 10, 10, 5, 10, 5, 0, 10],
-            stepscount: 50
+            stepscount: 50,
+            startsize: 15,
         },
         {
             name: "by fokey",
@@ -59,7 +63,8 @@ var windPresets =
             height: 30,
             type: windTypes.presets,
             wind: [0, 5, 5, 5, 10, 10, 5, 0, 0, 0, 5, 5, 10, 10, 10, 10, 15, 20, 20, 20, 20, 15, 10, 5, 0, 0, -5, -10, -15, -20, -20, -20, -15, -15, -10, -5, 0, 0, 0, 0, 0, -5, -5, -5, -10, -15, -10, -5, 0],
-            stepscount: 50
+            stepscount: 50,
+            startsize: 15,
         },
         {
             name: "andy",
@@ -67,7 +72,8 @@ var windPresets =
             height: 30,
             width: 40,
             stepscount: 48,
-            wind: [0, 5, 0, -5, -10, -15, -15, -10, -15, -20, -15, -10, -5, 0, 5, 10, 15, 20, 15, 20, 15, 10, 5, 0, -5, -10, -15, -10, -5, 0, 5, 10, 10, 15, 20, 15, 10, 5, 0, -5, 0, 5, -5, -10, -5, 0, 5, 10]
+            wind: [0, 5, 0, -5, -10, -15, -15, -10, -15, -20, -15, -10, -5, 0, 5, 10, 15, 20, 15, 20, 15, 10, 5, 0, -5, -10, -15, -10, -5, 0, 5, 10, 10, 15, 20, 15, 10, 5, 0, -5, 0, 5, -5, -10, -5, 0, 5, 10],
+            startsize: 15,
         },
         {
             name: "timoxa",
@@ -75,7 +81,8 @@ var windPresets =
             height: 30,
             width: 40,
             stepscount: 48,
-            wind: [0, 5, 10, 15, 15, 10, 20, 15, 10, 20, 20, 15, 15, 10, 5, 10, 5, 0, -5, -10, -15, -5, 0, -10, -5, 0, 5, 10, 15, 10, 5, 10, 15, 20, 25, 25, 20, 15, 10, 10, 10, 5, 5, 0, 0, -10, 0, 10]
+            wind: [0, 5, 10, 15, 15, 10, 20, 15, 10, 20, 20, 15, 15, 10, 5, 10, 5, 0, -5, -10, -15, -5, 0, -10, -5, 0, 5, 10, 15, 10, 5, 10, 15, 20, 25, 25, 20, 15, 10, 10, 10, 5, 5, 0, 0, -10, 0, 10],
+            startsize: 15,
         },
         {
             name: "static 0",
@@ -83,7 +90,8 @@ var windPresets =
             height: 30,
             width: 40,
             stepscount: 50,
-            wind: [0]
+            wind: [0],
+            startsize: 15,
         },
         {
             name: "static +5",
@@ -91,7 +99,8 @@ var windPresets =
             height: 30,
             width: 40,
             stepscount: 50,
-            wind: [5]
+            wind: [5],
+            startsize: 15,
         },
         {
             name: "static -5",
@@ -99,7 +108,8 @@ var windPresets =
             height: 30,
             width: 40,
             stepscount: 50,
-            wind: [-5]
+            wind: [-5],
+            startsize: 15,
         },
         {
             "name": "Pendulum 1",
@@ -108,6 +118,7 @@ var windPresets =
             "width": 40,
             "height": 30,
             "stepscount": 50,
+            startsize: 15,
         }
     ];
 

@@ -18,6 +18,7 @@ var errorTypes = {
 
 var mapWidth;
 var mapHeight;
+var startLineSizeInput;
 
 var shareBtn;
 
@@ -29,6 +30,7 @@ function windInit() {
     }
     mapWidth = document.getElementById("map-width");
     mapHeight = document.getElementById("map-height");
+    startLineSizeInput = document.getElementById("start-line-size");
 
     loadWindFromURL();
     nameinput = document.getElementById("editor-wind-name");
@@ -106,8 +108,10 @@ function editorSaveClick() {
     }
     newwind.width = formatNumber(parseInt(mapWidth.value), 40);
     newwind.height = formatNumber(parseInt(mapHeight.value), 30);
+    newwind.startsize = formatNumber(parseInt(startLineSizeInput.value), 15);
     newwind.stepscount = newwind.wind.length;
     newwind.allowedit = true;
+    newwind = formatWind(newwind);
     if (editIndex == -1) {
         wind.splice(wind.length, 0, newwind);
         windscenario = wind.length - 1;
@@ -153,8 +157,20 @@ function loadWind() {
     for (var i = 0; i < windlist.names.length; i++) {
         var newwind = JSON.parse(localStorage.getItem(localStorageNames.wind + i.toString()))
         wind[i + startI] = newwind;
+        if (newwind.startsize == undefined) {
+            newwind.startsize = 15;
+        }
     }
 }
+
+function formatWind(wind) {
+    if (wind.startsize == undefined) {
+        wind.startsize = 15;
+    }
+    
+    return wind;
+}
+
 function editorSetReadonlyState(rs) {
     saveWindBtn.disabled = rs;
     deleteWindBtn.disabled = rs;
@@ -191,6 +207,11 @@ function windEditorStart(iscreate) {
     } else {
         mapWidth.value = wind[windscenario].width;
         mapHeight.value = wind[windscenario].height;
+        if (wind[windscenario].startsize == undefined) {
+            startLineSizeInput.value = 15;
+        } else {
+            startLineSizeInput.value = wind[windscenario].startsize;
+        }
 
         nameinput.value = wind[windscenario].name;
 

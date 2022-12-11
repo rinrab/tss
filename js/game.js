@@ -334,7 +334,7 @@ function init() {
     upMarkLanelines = document.createElement("img");
     upMarkLanelines.src = "img/marklaneline.svg";
     upMarkLanelines.className = "pn-lines game-elem";
-    gamearea.insertBefore(upMarkLanelines, document.getElementById("wind"));
+    gamearea.appendChild(upMarkLanelines);
     document.getElementById("btn-nowember").addEventListener("click", function () {
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
