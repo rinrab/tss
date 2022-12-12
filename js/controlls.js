@@ -22,8 +22,8 @@ function apply() {
             player.nameText.value = "Player " + (i + 1);
             player.nameTextFinish.value = "Player " + (i + 1);
         } else {
-            player.nameText.value = game.players[i].nameInput.value;
-            player.nameTextFinish.value = game.players[i].nameInput.value;
+            player.nameText.value = player.nameInput.value;
+            player.nameTextFinish.value = player.nameInput.value;
         }
 
         player.apply();
