@@ -223,16 +223,14 @@ function drawMarks() {
     upMarkLanelines.style.top = formatCssPx(game.marks[2].y * gridsize);
     upMarkLanelines.style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
-    var startlinecontainer = document.getElementById("start-line");
-    startlinecontainer.innerHTML = "";
-    for (var i = game.marks[0].x; i < game.marks[1].x; i++) {
-        var newelem = document.createElement("img");
-        newelem.src = "img/startline.svg";
-        newelem.className = "pn-start-line";
-        newelem.style.left = formatCssPx(i * gridsize);
-        newelem.style.top = formatCssPx(game.marks[0].y * gridsize);
-        startlinecontainer.appendChild(newelem);
-    }
+    var startlinecontainer = document.getElementById("start-line-svg");
+    startlinecontainer.setAttribute("viewBox", "0 0 " + game.width * gridsize + " " + game.height * gridsize);
+
+    var startline = document.getElementById("start-line");
+    startline.setAttribute("x1", game.marks[0].x * gridsize);
+    startline.setAttribute("y1", game.marks[0].y * gridsize);
+    startline.setAttribute("x2", game.marks[1].x * gridsize);
+    startline.setAttribute("y2", game.marks[1].y * gridsize);
 }
 
 function renderGridSize() {
