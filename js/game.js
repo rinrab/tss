@@ -234,14 +234,14 @@ function drawMarks() {
         startlinecontainer.appendChild(newelem);
     }
 }
-var w;
+
 function renderGridSize() {
     var gamecont = document.getElementById("game-cont");
     var gamearea = document.getElementById("game-area");
     document.getElementById("track").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
     document.getElementById("background").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
-    gamecont.style.height = formatCssPx(window.innerHeight);
-    w = gamecont.clientWidth;
+
+    var w = gamecont.clientWidth;
     var h = gamecont.clientHeight;
     if (h / game.height < w / game.width) {
         gamearea.style.scale = h / (game.height * gridsize);
