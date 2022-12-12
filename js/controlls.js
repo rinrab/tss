@@ -17,15 +17,16 @@ function createContolls() {
 
 function apply() {
     for (var i = 0; i < game.players.length; i++) {
-        if (game.players[i].nameInput.value == "") {
-            game.players[i].nameText.value = "Player " + (i + 1);
-            game.players[i].nameTextFinish.value = "Player " + (i + 1);
+        var player = game.players[i];
+        if (player.nameInput.value == "") {
+            player.nameText.value = "Player " + (i + 1);
+            player.nameTextFinish.value = "Player " + (i + 1);
         } else {
-            game.players[i].nameText.value = game.players[i].nameInput.value;
-            game.players[i].nameTextFinish.value = game.players[i].nameInput.value;
+            player.nameText.value = game.players[i].nameInput.value;
+            player.nameTextFinish.value = game.players[i].nameInput.value;
         }
 
-        game.players[i].apply();
+        player.apply();
     }
 
     document.getElementById("wind-scenario-name-inrace-alert").innerText =
