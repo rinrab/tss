@@ -46,9 +46,11 @@ function addControll(player) {
 
     var labelsStart = ["L", "M", "R"];
     var labelsRace = [
-        Glyphs.portForward + Glyphs.starboardForward,
-        Glyphs.portTack + Glyphs.starboardTack,
-        "&#8857;&#8592;"];
+        '<svg xmlns="http://www.w3.org/2000/svg" class="port-forward-btn icon-sm"><use href="#icon-port-forward"></use></svg>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-forward-btn icon-sm"><use href="#icon-starboard-forward"></use></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg" class="port-tack-btn icon-sm"><use href="#icon-port-tack"></use></svg>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-tack-btn icon-sm"><use href="#icon-starboard-tack"></use></svg>',
+        '&#8857;&#8592;'];
 
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 start-controls";
