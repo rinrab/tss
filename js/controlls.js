@@ -110,7 +110,6 @@ function addControll(player) {
     nnameinput.type = "text";
     nnameinput.className = "form-control";
     nc.appendChild(nnameinput);
-    player.nameInput = nnameinput;
     nnameinput.readOnly = true;
     player.nameText = nnameinput;
 
@@ -138,7 +137,6 @@ function addControll(player) {
     nnameinput.type = "text";
     nnameinput.className = "form-control";
     nc.appendChild(nnameinput);
-    player.nameInput = nnameinput;
     nnameinput.readOnly = true;
     player.nameTextFinish = nnameinput;
 
@@ -160,7 +158,6 @@ function addControll(player) {
     nnameinput.type = "text";
     nnameinput.className = "form-control";
     nc.appendChild(nnameinput);
-    player.nameInput = nnameinput;
     nnameinput.readOnly = true;
     player.nameTextFinish = nnameinput;
 
