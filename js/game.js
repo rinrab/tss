@@ -267,6 +267,7 @@ function windChange() {
     for (var i = 0; i < game.players.length; i++) {
         game.players[i].y = game.height - 2;
     }
+    game.placeBoatsOnStart()
     windDataInit();
     drawAll()
 }
