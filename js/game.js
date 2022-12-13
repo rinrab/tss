@@ -3,8 +3,6 @@ var gridsize = 20;
 var turncount = 0;
 const colors = ["red", "blue", "black", "green", "cyan", "magenta", "purple", "gray", "yellow",
     "darkred", "darkblue"]
-var winddata
-var windDataScroller;
 var boatSize = 32;
 
 var windscenario;
@@ -135,68 +133,95 @@ function drawWindArrow() {
     }
     document.getElementById("wind-label").innerText = `${windDerection}º`
 }
-
+function addPathCommand(str, commandName, x1, y1) {
+    return str + `${commandName}${x1.toString()} ${y1.toString()} `;
+}
+function getSvgLine(x1, y1, x2, y2) {
+    return (
+        addPathCommand("", "M", x1, y1) +
+        addPathCommand("", "L", x2, y2))
+}
 function windDataInit() {
-    winddata.innerHTML = "";
+    const scaleX = game.wind.length / 5;
+    const lineWidth = scaleX * 20;
+    var windDataSvg = document.getElementById("wind-data-svg");
+    var windDataContainer = document.getElementById("wind-data-container");
+    windDataSvg.innerHTML = "";
+    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 25} -20 ${40 * scaleX + 35} ${(game.wind.length - 1) * gridsize + 2}`);
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
     if (showfuturewind) {
-        document.getElementById("wind-scroll-cont").hidden = false;
+        windDataContainer.hidden = false;
     } else {
-        document.getElementById("wind-scroll-cont").hidden = true;
+        windDataContainer.hidden = true;
         renderGridSize();
         return;
     }
     renderGridSize();
+    var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    windDataSvg.appendChild(group);
 
 
-    for (var i = game.wind.length - 1; i >= 1; i--) {
-        var isshow;
-        isshow = showfuturewind || i < turncount + 2;
-        var newelem = document.createElement("li");
-        newelem.className = "list-group-item";
-        if (i == turncount + 1) {
-            newelem.classList.add("active");
+    var pathWind = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    var pathGrid = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    var y = 2;
+
+    var dStrWind = addPathCommand("", "M", 0, y);
+    var dStrGrid = "";
+    dStrGrid += getSvgLine(-lineWidth, y, lineWidth, y);
+    for (var i = game.wind.length - 1; i > 1; i--) {
+        dStrWind = addPathCommand(dStrWind, "L", game.wind[i] * scaleX, y);
+        dStrWind = addPathCommand(dStrWind, "L", game.wind[i - 1] * scaleX, y);
+
+        dStrGrid = addPathCommand(dStrGrid, "M", -lineWidth, y + gridsize);
+        dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y + gridsize);
+        if (i - 2 == turncount) {
+            dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y);
+            dStrGrid = addPathCommand(dStrGrid, "L", -lineWidth, y);
         }
-
-        var newlabel = document.createElement("label");
-        newlabel.innerText = i.toString() + ":";
-        newelem.appendChild(newlabel);
-
-        var newlabel = document.createElement("label");
-        var windtext = game.getwind(i);
-        if (isshow) {
-            if (windtext > 0) {
-                windtext = "+" + windtext;
-            }
-            windtext += "º";
-        } else {
-            windtext = "??";
-        }
-        newlabel.innerText = windtext.toString();;
-        newlabel.style.position = "absolute";
-        newlabel.style.right = "50px";
-        newlabel.style.width = "50px";
-        newlabel.style.textAlign = "right";
-        newlabel.className = "font-monospace";
-        newelem.appendChild(newlabel);
-
-        var img = document.createElement("img");
-        if (isshow) {
-            img.src = "img/wind.svg";
-            img.className = "wind-data-arrow wind";
-            img.style.rotate = formatCssDeg(game.getwind(i) * 2);
-        } else {
-            img.src = "img/wind-hide.svg";
-            img.className = "pn-wind-hide";
-        }
-        newelem.appendChild(img);
-        winddata.appendChild(newelem);
+        y += gridsize;
     }
-    windDataScroller.scrollTop = (30 * (game.wind.length - turncount)) - window.innerHeight * 0.5;
-}
+    dStrGrid = addPathCommand(dStrGrid, "M", -lineWidth, 0.5);
+    dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, 0.5);
+    for (var i = 0; i < 9; i++) {
+        dStrGrid += getSvgLine((i - 4) * 5 * scaleX, 0, (i - 4) * 5 * scaleX, y);
+    }
 
+
+    pathGrid.setAttribute("d", dStrGrid);
+    pathGrid.setAttribute("stroke-width", "0.3");
+    pathGrid.setAttribute("vector-effect", "non-scaling-stroke");
+    pathGrid.setAttribute("stroke", "gray");
+    pathGrid.setAttribute("fill-opacity", "0.4");
+    pathGrid.setAttribute("fill", "gray");
+    group.appendChild(pathGrid);
+
+    dStrWind = addPathCommand(dStrWind, "L", game.wind[1] * scaleX, y + gridsize)
+    dStrWind = addPathCommand(dStrWind, "L", 0, y + gridsize)
+    pathWind.setAttribute("d", dStrWind);
+    pathWind.setAttribute("stroke", "gray");
+    pathWind.setAttribute("vector-effect", "non-scaling-stroke");
+    pathWind.setAttribute("fill", "gray");
+    pathWind.setAttribute("fill-opacity", "0.1");
+    group.appendChild(pathWind);
+
+    for (var i = 0; i < 9; i++) {
+        var newText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        var x = (i - 4) * 5;
+        
+        newText.setAttribute("x", x * scaleX);
+        newText.setAttribute("y", 10);
+
+        var label = (i - 4) * 5;
+        if (i - 4 > 0) {
+            label = "+" + label;
+        }
+        newText.appendChild(document.createTextNode(label));
+        group.appendChild(newText);
+    }
+}
 
 function drawBoat(player) {
     player.html.style.left = formatCssPx(player.x * gridsize);
@@ -326,14 +351,12 @@ addEventListener("load", init);
 
 function init() {
     windscenario = readIntSetting(localStorageNames.selectedWind, 0);
-    winddata = document.getElementById("wind-data");
-    windDataScroller = document.getElementById("wind-data.scroller");
     windscenariocontrol = document.getElementById("select-wind");
     var gamearea = document.getElementById("game-area");
     upMarkLanelines = document.createElement("img");
     upMarkLanelines.src = "img/marklaneline.svg";
     upMarkLanelines.className = "pn-lines game-elem";
-    gamearea.appendChild(upMarkLanelines);
+    gamearea.insertBefore(upMarkLanelines, document.getElementById("wind-data-container"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
@@ -379,6 +402,8 @@ function init() {
 
     var track = document.getElementById("track");
     track.setAttribute("viewBox", "0 0 " + game.width + " " + game.height);
+
+    windDataInit();
 
     applySettings();
 }
