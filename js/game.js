@@ -142,12 +142,14 @@ function getSvgLine(x1, y1, x2, y2) {
         addPathCommand("", "L", x2, y2))
 }
 function windDataInit() {
-    const scaleX = game.wind.length / 6;
+    const scaleX = game.windscenario.height / 6;
     const lineWidth = scaleX * 20;
+    var size = Math.round((game.windscenario.height - 4) / Math.sin(Math.PI / 4));
+    console.log(size)
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 25} -40 ${40 * scaleX + 50} ${(game.wind.length - 0) * gridsize + 2}`);
+    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 25} -40 ${40 * scaleX + 50} ${size * gridsize + 2}`);
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -162,7 +164,6 @@ function windDataInit() {
     var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     windDataSvg.appendChild(group);
 
-
     var pathWind = document.createElementNS("http://www.w3.org/2000/svg", "path");
     var pathGrid = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
@@ -171,9 +172,9 @@ function windDataInit() {
     var dStrWind = addPathCommand("", "M", 0, y);
     var dStrGrid = "";
     dStrGrid += getSvgLine(-lineWidth, y, lineWidth, y);
-    for (var i = game.wind.length - 1; i > 1; i--) {
-        dStrWind = addPathCommand(dStrWind, "L", game.wind[i] * scaleX, y);
-        dStrWind = addPathCommand(dStrWind, "L", game.wind[i - 1] * scaleX, y);
+    for (var i = size - 1; i > 1; i--) {
+        dStrWind = addPathCommand(dStrWind, "L", game.getwind(i) * scaleX, y);
+        dStrWind = addPathCommand(dStrWind, "L", game.getwind(i - 1) * scaleX, y);
 
         dStrGrid = addPathCommand(dStrGrid, "M", -lineWidth, y + gridsize);
         dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y + gridsize);
