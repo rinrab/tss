@@ -246,6 +246,7 @@ function loadWindFromURL() {
             document.getElementById("add-wind-name").value = newwind.name;
             addWindModal.show();
             wind[wind.length] = newwind;
+            saveWind();
         } catch (err) {
             console.log(err);
         }
