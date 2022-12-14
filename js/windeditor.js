@@ -238,7 +238,7 @@ function loadWindFromURL() {
             var text = "";
             for (var i = 0; i < newwind.wind.length; i++) {
                 text += newwind.wind[i];
-                if (i != newwind.length - 1) {
+                if (i != newwind.wind.length - 1) {
                     text += ", ";
                 }
             }
