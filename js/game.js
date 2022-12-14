@@ -150,7 +150,8 @@ function windDataInit() {
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 30} -50 ${40 * scaleX + 60} ${(size - 2) * gridsize + 50}`);
+    windDataSvg.setAttribute("viewBox",
+        `${-20 * scaleX - 30} ${-game.height / size * gridsize * 4} ${40 * scaleX + 60} ${(size - 2) * gridsize + 50}`);
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
