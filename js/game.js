@@ -150,7 +150,7 @@ function windDataInit() {
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
     windDataSvg.setAttribute("viewBox",
-        `${-20 * scaleX - 30} ${-game.height / size * gridsize * 4} ${40 * scaleX + 60} ${(size - 2) * gridsize + 50}`);
+        `${-20 * scaleX - 30} ${-game.height / size * gridsize * 4} ${40 * scaleX + 60} ${(size - 2) * gridsize + 60}`);
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -186,9 +186,6 @@ function windDataInit() {
     }
     dStrGrid += getSvgPathCommand("M", -lineWidth, 0.5);
     dStrGrid += getSvgPathCommand("L", lineWidth, 0.5);
-    for (var i = 0; i < 9; i++) {
-        dStrGrid += getSvgLine((i - 4) * 5 * scaleX, -15, (i - 4) * 5 * scaleX, y);
-    }
 
     var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", -lineWidth - fontSize)
@@ -196,6 +193,7 @@ function windDataInit() {
     rect.setAttribute("width", lineWidth * 2 + fontSize * 2)
     rect.setAttribute("height", y + 20 + fontSize);
     rect.setAttribute("fill", "white");
+    rect.setAttribute("fill-opacity", "0.6");
     group.appendChild(rect);
 
     pathGrid.setAttribute("d", dStrGrid);
@@ -210,10 +208,10 @@ function windDataInit() {
     dStrWind += getSvgPathCommand("L", 0, y + gridsize)
     pathWind.setAttribute("d", dStrWind);
     pathWind.setAttribute("stroke", "black");
-    pathWind.setAttribute("stroke-width", "1.3");
+    pathWind.setAttribute("stroke-width", "3");
     pathWind.setAttribute("vector-effect", "non-scaling-stroke");
     pathWind.setAttribute("fill", "blue");
-    pathWind.setAttribute("fill-opacity", "0.3");
+    pathWind.setAttribute("fill-opacity", "0.2");
     group.appendChild(pathWind);
 
     for (var i = 0; i < 9; i++) {
@@ -232,7 +230,26 @@ function windDataInit() {
         }
         newText.appendChild(document.createTextNode(label));
         group.appendChild(newText);
+
+        var newLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        newLine.setAttribute("x1", (i - 4) * 5 * scaleX);
+        newLine.setAttribute("y1", -15)
+        newLine.setAttribute("x2", (i - 4) * 5 * scaleX);
+        newLine.setAttribute("y2", y);
+        
+        if (i == 4) {
+            newLine.setAttribute("stroke", "red");
+            newLine.setAttribute("stroke-width", 4);
+        } else if (i % 2 == 0) {
+            newLine.setAttribute("stroke", "black");
+            newLine.setAttribute("stroke-width", 1);
+        } else {
+            newLine.setAttribute("stroke", "gray");
+            newLine.setAttribute("stroke-width", 0.5);
+        }
+        group.appendChild(newLine);
     }
+
 }
 
 function drawBoat(player) {
