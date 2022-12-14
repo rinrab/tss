@@ -95,6 +95,7 @@ class Boat {
                             this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
                             points.push({ x: this.x, y: this.y });
                             moveDist = 0.0;
+                            this.tack = this.rotation > 0;
                         } else {
                             var moveAngle;
                             var lanelineAngle;
