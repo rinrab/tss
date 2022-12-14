@@ -145,11 +145,12 @@ function windDataInit() {
     const scaleX = game.windscenario.height / 6;
     const lineWidth = scaleX * 20;
     var size = Math.round((game.windscenario.height - 4) / Math.sin(Math.PI / 4));
+    var fontSize = game.height * 0.45;
     console.log(size)
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 25} -40 ${40 * scaleX + 50} ${size * gridsize + 2}`);
+    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 30} -50 ${40 * scaleX + 60} ${(size - 2) * gridsize + 50}`);
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -171,7 +172,6 @@ function windDataInit() {
 
     var dStrWind = addPathCommand("", "M", 0, y);
     var dStrGrid = "";
-    dStrGrid += getSvgLine(-lineWidth, y, lineWidth, y);
     for (var i = size - 1; i > 1; i--) {
         dStrWind = addPathCommand(dStrWind, "L", game.getwind(i) * scaleX, y);
         dStrWind = addPathCommand(dStrWind, "L", game.getwind(i - 1) * scaleX, y);
@@ -190,6 +190,13 @@ function windDataInit() {
         dStrGrid += getSvgLine((i - 4) * 5 * scaleX, -15, (i - 4) * 5 * scaleX, y);
     }
 
+    var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", -lineWidth - fontSize)
+    rect.setAttribute("y", -20 - fontSize);
+    rect.setAttribute("width", lineWidth * 2 + fontSize * 2)
+    rect.setAttribute("height", y + 20 + fontSize);
+    rect.setAttribute("fill", "white");
+    group.appendChild(rect);
 
     pathGrid.setAttribute("d", dStrGrid);
     pathGrid.setAttribute("stroke-width", "0.3");
@@ -217,7 +224,7 @@ function windDataInit() {
         newText.setAttribute("y", -20);
         newText.setAttribute("text-anchor", "middle");
         newText.setAttribute("dominant-baseline", "auto");
-        newText.style.fontSize = "20px";
+        newText.style.fontSize = fontSize + "px";
 
         var label = (i - 4) * 5;
         if (i - 4 > 0) {
