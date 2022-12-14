@@ -146,7 +146,6 @@ function windDataInit() {
     const lineWidth = scaleX * 20;
     var size = Math.round((game.windscenario.height - 4) / Math.sin(Math.PI / 4));
     var fontSize = game.height * 0.45;
-    console.log(size)
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
