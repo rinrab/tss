@@ -142,12 +142,12 @@ function getSvgLine(x1, y1, x2, y2) {
         addPathCommand("", "L", x2, y2))
 }
 function windDataInit() {
-    const scaleX = game.wind.length / 5;
+    const scaleX = game.wind.length / 6;
     const lineWidth = scaleX * 20;
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 25} -20 ${40 * scaleX + 35} ${(game.wind.length - 1) * gridsize + 2}`);
+    windDataSvg.setAttribute("viewBox", `${-20 * scaleX - 25} -40 ${40 * scaleX + 50} ${(game.wind.length - 0) * gridsize + 2}`);
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -178,15 +178,15 @@ function windDataInit() {
         dStrGrid = addPathCommand(dStrGrid, "M", -lineWidth, y + gridsize);
         dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y + gridsize);
         if (i - 2 == turncount) {
-            dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y);
-            dStrGrid = addPathCommand(dStrGrid, "L", -lineWidth, y);
+            // dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y);
+            // dStrGrid = addPathCommand(dStrGrid, "L", -lineWidth, y);
         }
         y += gridsize;
     }
     dStrGrid = addPathCommand(dStrGrid, "M", -lineWidth, 0.5);
     dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, 0.5);
     for (var i = 0; i < 9; i++) {
-        dStrGrid += getSvgLine((i - 4) * 5 * scaleX, 0, (i - 4) * 5 * scaleX, y);
+        dStrGrid += getSvgLine((i - 4) * 5 * scaleX, -15, (i - 4) * 5 * scaleX, y);
     }
 
 
@@ -194,25 +194,29 @@ function windDataInit() {
     pathGrid.setAttribute("stroke-width", "0.3");
     pathGrid.setAttribute("vector-effect", "non-scaling-stroke");
     pathGrid.setAttribute("stroke", "gray");
-    pathGrid.setAttribute("fill-opacity", "0.4");
-    pathGrid.setAttribute("fill", "gray");
+    // pathGrid.setAttribute("fill-opacity", "0.6");
+    // pathGrid.setAttribute("fill", "gray");
     group.appendChild(pathGrid);
 
     dStrWind = addPathCommand(dStrWind, "L", game.wind[1] * scaleX, y + gridsize)
     dStrWind = addPathCommand(dStrWind, "L", 0, y + gridsize)
     pathWind.setAttribute("d", dStrWind);
-    pathWind.setAttribute("stroke", "gray");
+    pathWind.setAttribute("stroke", "black");
+    pathWind.setAttribute("stroke-width", "1.3");
     pathWind.setAttribute("vector-effect", "non-scaling-stroke");
-    pathWind.setAttribute("fill", "gray");
-    pathWind.setAttribute("fill-opacity", "0.1");
+    pathWind.setAttribute("fill", "blue");
+    pathWind.setAttribute("fill-opacity", "0.3");
     group.appendChild(pathWind);
 
     for (var i = 0; i < 9; i++) {
         var newText = document.createElementNS("http://www.w3.org/2000/svg", "text");
         var x = (i - 4) * 5;
-        
+
         newText.setAttribute("x", x * scaleX);
-        newText.setAttribute("y", 10);
+        newText.setAttribute("y", -20);
+        newText.setAttribute("text-anchor", "middle");
+        newText.setAttribute("dominant-baseline", "auto");
+        newText.style.fontSize = "20px";
 
         var label = (i - 4) * 5;
         if (i - 4 > 0) {
