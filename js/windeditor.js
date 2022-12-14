@@ -22,6 +22,16 @@ var startLineSizeInput;
 
 var shareBtn;
 
+addEventListener("load", function() {
+    document.getElementById("load-wind-save").addEventListener("click", function () {
+        console.log(newwind)
+        wind[wind.length] = newwind;
+        saveWind();
+        windChange();
+        addWind();
+    });
+});
+
 function windInit() {
     if (localStorage.getItem(localStorageNames.windlist) == null) {
         saveWind();
@@ -80,6 +90,8 @@ function windInit() {
     saveWindBtn.addEventListener("click", editorSaveClick);
     deleteWindBtn.addEventListener("click", deleteClick);
     shareBtn.addEventListener("click", shareBtnClick);
+
+    
 
     windReadOnlyText = document.getElementById("wind-readonly-text");
 }
@@ -167,7 +179,7 @@ function formatWind(wind) {
     if (wind.startsize == undefined) {
         wind.startsize = 15;
     }
-    
+
     return wind;
 }
 
@@ -224,7 +236,7 @@ function windEditorStart(iscreate) {
         }
     }
 }
-
+var newwind;
 function loadWindFromURL() {
     var hash = location.hash;
     hash = hash.replace("#", "");
@@ -233,7 +245,7 @@ function loadWindFromURL() {
         hash = decodeURI(hash);
         console.log(hash);
         try {
-            var newwind = JSON.parse(hash);
+            newwind = JSON.parse(hash);
             var addWindModal = new bootstrap.Modal("#add-wind-url-window");
             var text = "";
             for (var i = 0; i < newwind.wind.length; i++) {
@@ -245,8 +257,6 @@ function loadWindFromURL() {
             document.getElementById("add-wind-text").value = text;
             document.getElementById("add-wind-name").value = newwind.name;
             addWindModal.show();
-            wind[wind.length] = newwind;
-            saveWind();
         } catch (err) {
             console.log(err);
         }
