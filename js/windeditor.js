@@ -91,8 +91,6 @@ function windInit() {
     deleteWindBtn.addEventListener("click", deleteClick);
     shareBtn.addEventListener("click", shareBtnClick);
 
-    
-
     windReadOnlyText = document.getElementById("wind-readonly-text");
 }
 
@@ -105,7 +103,6 @@ function deleteClick() {
         windChange();
         addWind();
     }
-
 }
 
 function editorSaveClick() {
