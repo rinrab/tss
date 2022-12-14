@@ -61,15 +61,16 @@ class Boat {
                     points.push({ x: this.x, y: this.y });
                     moveDist -= dist;
 
+                    this.finished = turncount * 60 + (60 - moveDist * 60);
+                    console.log("Boat " + this.nameText.value + " finish time:", this.finished);
+
                     drawAll();
 
                     this.rotation = -100;
                     this.x += Math.sin(this.rotation * Math.PI / 180) * (moveDist - dist);
                     this.y -= Math.cos(this.rotation * Math.PI / 180) * (moveDist - dist);
                     moveDist -= moveDist - dist;
-                    this.finished = turncount * 60 + (60 - moveDist * 60);
 
-                    console.log("Boat " + this.indexInGame + " finish time:", this.finished);
                 } else {
                     if (this.x < 0.5) {
                         this.tack = true;
