@@ -133,13 +133,13 @@ function drawWindArrow() {
     }
     document.getElementById("wind-label").innerText = `${windDerection}º`
 }
-function addPathCommand(str, commandName, x1, y1) {
-    return str + `${commandName}${x1.toString()} ${y1.toString()} `;
+function getSvgPathCommand(commandName, x1, y1) {
+    return `${commandName}${x1.toString()} ${y1.toString()} `;
 }
 function getSvgLine(x1, y1, x2, y2) {
     return (
-        addPathCommand("", "M", x1, y1) +
-        addPathCommand("", "L", x2, y2))
+        getSvgPathCommand("M", x1, y1) +
+        getSvgPathCommand("L", x2, y2))
 }
 function windDataInit() {
     const scaleX = game.windscenario.height / 6;
@@ -170,22 +170,22 @@ function windDataInit() {
 
     var y = 2;
 
-    var dStrWind = addPathCommand("", "M", 0, y);
+    var dStrWind = getSvgPathCommand("M", 0, y);
     var dStrGrid = "";
     for (var i = size - 1; i > 1; i--) {
-        dStrWind = addPathCommand(dStrWind, "L", game.getwind(i) * scaleX, y);
-        dStrWind = addPathCommand(dStrWind, "L", game.getwind(i - 1) * scaleX, y);
+        dStrWind += getSvgPathCommand("L", game.getwind(i) * scaleX, y);
+        dStrWind += getSvgPathCommand("L", game.getwind(i - 1) * scaleX, y);
 
-        dStrGrid = addPathCommand(dStrGrid, "M", -lineWidth, y + gridsize);
-        dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y + gridsize);
+        dStrGrid += getSvgPathCommand("M", -lineWidth, y + gridsize);
+        dStrGrid += getSvgPathCommand("L", lineWidth, y + gridsize);
         if (i - 2 == turncount) {
             // dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y);
             // dStrGrid = addPathCommand(dStrGrid, "L", -lineWidth, y);
         }
         y += gridsize;
     }
-    dStrGrid = addPathCommand(dStrGrid, "M", -lineWidth, 0.5);
-    dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, 0.5);
+    dStrGrid += getSvgPathCommand("M", -lineWidth, 0.5);
+    dStrGrid += getSvgPathCommand("L", lineWidth, 0.5);
     for (var i = 0; i < 9; i++) {
         dStrGrid += getSvgLine((i - 4) * 5 * scaleX, -15, (i - 4) * 5 * scaleX, y);
     }
@@ -206,8 +206,8 @@ function windDataInit() {
     // pathGrid.setAttribute("fill", "gray");
     group.appendChild(pathGrid);
 
-    dStrWind = addPathCommand(dStrWind, "L", game.wind[1] * scaleX, y + gridsize)
-    dStrWind = addPathCommand(dStrWind, "L", 0, y + gridsize)
+    dStrWind += getSvgPathCommand("L", game.wind[1] * scaleX, y + gridsize)
+    dStrWind += getSvgPathCommand("L", 0, y + gridsize)
     pathWind.setAttribute("d", dStrWind);
     pathWind.setAttribute("stroke", "black");
     pathWind.setAttribute("stroke-width", "1.3");
