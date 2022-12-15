@@ -225,10 +225,9 @@
     }
 
     .copyright {
-      width: calc(100% - .05rem);
-      margin-left: .05rem;
-      margin-bottom: -5px;
-      --bs-bg-opacity: 0.2;
+      width: 100%;
+      bottom: 0px;
+      font-size: x-small;
     }
 
     .finished .race-controls,
@@ -292,9 +291,14 @@
       <div id="game-cont" class="position-absolute">
         <div id="game-area" style="position: relative;  height: 100%; width: 100%;">
           <svg viewBox="0 0 1 1" id="background" style="height: 100%;  background-color: #ebeaff;"></svg>
+          <div class="copyright">
+            <div class="text-center text-muted">
+              PENTIUM &copy; Rautu &amp; Rinrab
+            </div>
+          </div>
           <div id="lines-container">
             <svg id="lines-svg" stroke="gray" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg"
-              stroke-width="0.005">
+                 stroke-width="0.005">
               <g id="lines-drawing"></g>
             </svg>
           </div>
@@ -369,13 +373,6 @@
           <div class="form-check form-switch">
             <input type="checkbox" class="form-check-input" id="show-future-wind" />
             <label class="form-check-label show-future-wind" for="show-future-wind">Show future wind</label>
-          </div>
-        </div>
-        <div class="row copyright text-bg-info p-2 rounded">
-          <div class="col">
-            <label style="width: 100%;">
-              PENTIUM (c) Rautu & Rinrab
-            </label>
           </div>
         </div>
       </div>
