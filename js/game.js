@@ -145,7 +145,7 @@ function windDataInit() {
     const scaleX = game.windscenario.height / 6;
     const lineWidth = scaleX * 20;
     var size = Math.round((game.windscenario.height - 4) / Math.sin(Math.PI / 4));
-    var fontSize = game.height * 0.45;
+    var fontSize = game.height * 0.6;
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
@@ -215,28 +215,29 @@ function windDataInit() {
     group.appendChild(pathWind);
 
     for (var i = 0; i < 9; i++) {
-        var newText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        var x = (i - 4) * 5;
+        if (i % 2 == 0) {
+            var newText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            var x = (i - 4) * 4.5;
 
-        newText.setAttribute("x", x * scaleX);
-        newText.setAttribute("y", -20);
-        newText.setAttribute("text-anchor", "middle");
-        newText.setAttribute("dominant-baseline", "auto");
-        newText.style.fontSize = fontSize + "px";
+            newText.setAttribute("x", x * scaleX);
+            newText.setAttribute("y", -20);
+            newText.setAttribute("text-anchor", "middle");
+            newText.setAttribute("dominant-baseline", "auto");
+            newText.style.fontSize = fontSize + "px";
 
-        var label = (i - 4) * 5;
-        if (i - 4 > 0) {
-            label = "+" + label;
+            var label = (i - 4) * 5;
+            if (i - 4 > 0) {
+                label = "+" + label;
+            }
+            newText.appendChild(document.createTextNode(label));
+            group.appendChild(newText);
         }
-        newText.appendChild(document.createTextNode(label));
-        group.appendChild(newText);
-
         var newLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
         newLine.setAttribute("x1", (i - 4) * 5 * scaleX);
         newLine.setAttribute("y1", -15)
         newLine.setAttribute("x2", (i - 4) * 5 * scaleX);
         newLine.setAttribute("y2", y + gridsize);
-        
+
         if (i == 4) {
             newLine.setAttribute("stroke", "red");
             newLine.setAttribute("stroke-width", 4);
