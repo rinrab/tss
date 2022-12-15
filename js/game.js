@@ -153,19 +153,20 @@ function getSvgLine(x1, y1, x2, y2) {
 }
 
 function windDataInit() {
-    const scaleX = game.windscenario.height / 6;
+    const viewBoxHeight = 500;
+    const scaleX = 5;
     const lineWidth = scaleX * 20;
-    const moveLeft = 30;
+    const moveLeft = 20;
+    var fontSize = 10;
 
     // TODO: add typical overage race lenght to wind scenario
-    var size = Math.round((game.windscenario.height - 4) / Math.sin(Math.PI / 4));
-    var step = (game.height - 2) / size * gridsize;
+    var size = Math.round((game.height) / Math.sin(Math.PI / 4));
+    var step = (viewBoxHeight - fontSize  * 2) / size;
 
-    var fontSize = game.height * 0.4;
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width * gridsize, game.height * gridsize));
+    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width * gridsize, viewBoxHeight));
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -182,7 +183,7 @@ function windDataInit() {
     var pathWind = document.createElementNS("http://www.w3.org/2000/svg", "path");
     var pathGrid = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-    var y = fontSize * 1.2;
+    var y = fontSize * 2;
 
     var dStrWind = getSvgPathCommand("M", 20 * scaleX + moveLeft, y);
     var dStrGrid = "";
@@ -208,7 +209,7 @@ function windDataInit() {
     rect.setAttribute("x", -fontSize + moveLeft)
     rect.setAttribute("y", 0);
     rect.setAttribute("width", lineWidth * 2 + fontSize * 2)
-    rect.setAttribute("height", y + 10);
+    rect.setAttribute("height", y + fontSize / 2);
     rect.setAttribute("fill", "white");
     rect.setAttribute("fill-opacity", "0.6");
     group.appendChild(rect);
@@ -251,9 +252,9 @@ function windDataInit() {
         }
         var newLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
         newLine.setAttribute("x1", i * 5 * scaleX + moveLeft);
-        newLine.setAttribute("y1", 30)
+        newLine.setAttribute("y1", fontSize * 1.5)
         newLine.setAttribute("x2", i * 5 * scaleX + moveLeft);
-        newLine.setAttribute("y2", y + 10);
+        newLine.setAttribute("y2", y + fontSize / 2);
 
         if (i == 4) {
             newLine.setAttribute("stroke", "red");
