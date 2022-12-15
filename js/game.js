@@ -182,10 +182,12 @@ function windDataInit() {
     var pathWind = document.createElementNS("http://www.w3.org/2000/svg", "path");
     var pathGrid = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-    var y = 2 * gridsize;
+    var y = fontSize * 1.2;
 
     var dStrWind = getSvgPathCommand("M", 20 * scaleX + moveLeft, y);
     var dStrGrid = "";
+    dStrGrid += getSvgPathCommand("M", moveLeft, y);
+    dStrGrid += getSvgPathCommand("L", 2 * lineWidth + moveLeft, y);
     for (var i = size - 1; i > 1; i--) {
         if (i != size - 1) {
             dStrWind += getSvgPathCommand("L", (game.getwind(i) + 20) * scaleX + moveLeft, y);
@@ -202,14 +204,11 @@ function windDataInit() {
         y += step;
     }
 
-    dStrGrid += getSvgPathCommand("M", moveLeft, 0.5);
-    dStrGrid += getSvgPathCommand("L", 2 * lineWidth + moveLeft, 0.5);
-
     var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", -fontSize + moveLeft)
-    rect.setAttribute("y", 20 - fontSize);
+    rect.setAttribute("y", 0);
     rect.setAttribute("width", lineWidth * 2 + fontSize * 2)
-    rect.setAttribute("height", y + fontSize);
+    rect.setAttribute("height", y + 10);
     rect.setAttribute("fill", "white");
     rect.setAttribute("fill-opacity", "0.6");
     group.appendChild(rect);
@@ -238,7 +237,7 @@ function windDataInit() {
             var x = i * 5;
 
             newText.setAttribute("x", x * scaleX + moveLeft);
-            newText.setAttribute("y", 20);
+            newText.setAttribute("y", fontSize);
             newText.setAttribute("text-anchor", "middle");
             newText.setAttribute("dominant-baseline", "auto");
             newText.style.fontSize = fontSize + "px";
