@@ -22,6 +22,16 @@ var startLineSizeInput;
 
 var shareBtn;
 
+addEventListener("load", function() {
+    document.getElementById("load-wind-save").addEventListener("click", function () {
+        console.log(newwind)
+        wind[wind.length] = newwind;
+        saveWind();
+        windChange();
+        addWind();
+    });
+});
+
 function windInit() {
     if (localStorage.getItem(localStorageNames.windlist) == null) {
         saveWind();
@@ -93,7 +103,6 @@ function deleteClick() {
         windChange();
         addWind();
     }
-
 }
 
 function editorSaveClick() {
@@ -167,7 +176,7 @@ function formatWind(wind) {
     if (wind.startsize == undefined) {
         wind.startsize = 15;
     }
-    
+
     return wind;
 }
 
@@ -224,7 +233,7 @@ function windEditorStart(iscreate) {
         }
     }
 }
-
+var newwind;
 function loadWindFromURL() {
     var hash = location.hash;
     hash = hash.replace("#", "");
@@ -233,19 +242,18 @@ function loadWindFromURL() {
         hash = decodeURI(hash);
         console.log(hash);
         try {
-            var newwind = JSON.parse(hash);
+            newwind = JSON.parse(hash);
             var addWindModal = new bootstrap.Modal("#add-wind-url-window");
             var text = "";
             for (var i = 0; i < newwind.wind.length; i++) {
                 text += newwind.wind[i];
-                if (i != newwind.length - 1) {
+                if (i != newwind.wind.length - 1) {
                     text += ", ";
                 }
             }
             document.getElementById("add-wind-text").value = text;
             document.getElementById("add-wind-name").value = newwind.name;
             addWindModal.show();
-            wind[wind.length] = newwind;
         } catch (err) {
             console.log(err);
         }
