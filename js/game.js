@@ -161,7 +161,7 @@ function windDataInit() {
 
     // TODO: add typical overage race lenght to wind scenario
     var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
-    var step = (viewBoxHeight - fontSize * 2) / size;
+    var step = (viewBoxHeight - fontSize * 2) / (size - 1.6);
 
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
@@ -235,7 +235,7 @@ function windDataInit() {
         newLine.setAttribute("x1", i * 5 * scaleX + moveLeft);
         newLine.setAttribute("y1", fontSize * 1.5)
         newLine.setAttribute("x2", i * 5 * scaleX + moveLeft);
-        newLine.setAttribute("y2", y + fontSize / 2);
+        newLine.setAttribute("y2", y + fontSize + 10);
 
         if (i == 4) {
             newLine.setAttribute("stroke", "red");
