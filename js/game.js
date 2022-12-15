@@ -150,7 +150,7 @@ function windDataInit() {
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
     windDataSvg.setAttribute("viewBox",
-        `${-20 * scaleX - 30} ${-game.height / size * gridsize * 4} ${40 * scaleX + 60} ${(size - 2) * gridsize + 60}`);
+        `${-20 * scaleX - 30} ${-game.height / size * gridsize * 4} ${40 * scaleX + 60} ${(size - 2) * gridsize + 80}`);
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -178,9 +178,9 @@ function windDataInit() {
 
         dStrGrid += getSvgPathCommand("M", -lineWidth, y + gridsize);
         dStrGrid += getSvgPathCommand("L", lineWidth, y + gridsize);
-        if (i - 2 == turncount) {
-            // dStrGrid = addPathCommand(dStrGrid, "L", lineWidth, y);
-            // dStrGrid = addPathCommand(dStrGrid, "L", -lineWidth, y);
+        if (i % 5 == 2) {
+            dStrGrid += getSvgPathCommand("L", lineWidth, y);
+            dStrGrid += getSvgPathCommand("L", -lineWidth, y);
         }
         y += gridsize;
     }
@@ -200,8 +200,8 @@ function windDataInit() {
     pathGrid.setAttribute("stroke-width", "0.3");
     pathGrid.setAttribute("vector-effect", "non-scaling-stroke");
     pathGrid.setAttribute("stroke", "gray");
-    // pathGrid.setAttribute("fill-opacity", "0.6");
-    // pathGrid.setAttribute("fill", "gray");
+    pathGrid.setAttribute("fill-opacity", "0.2");
+    pathGrid.setAttribute("fill", "gray");
     group.appendChild(pathGrid);
 
     dStrWind += getSvgPathCommand("L", game.wind[1] * scaleX, y + gridsize)
@@ -235,7 +235,7 @@ function windDataInit() {
         newLine.setAttribute("x1", (i - 4) * 5 * scaleX);
         newLine.setAttribute("y1", -15)
         newLine.setAttribute("x2", (i - 4) * 5 * scaleX);
-        newLine.setAttribute("y2", y);
+        newLine.setAttribute("y2", y + gridsize);
         
         if (i == 4) {
             newLine.setAttribute("stroke", "red");
