@@ -186,6 +186,7 @@ function windDataInit() {
     var y = fontSize * 2;
 
     var dStrWind = getSvgPathCommand("M", 20 * scaleX + moveLeft, fontSize * 1.5);
+    var dStrWind = getSvgPathCommand("M", 20 * scaleX + moveLeft, y);
     var dStrGrid = "";
     dStrGrid += getSvgPathCommand("M", moveLeft, y);
     dStrGrid += getSvgPathCommand("L", 2 * lineWidth + moveLeft, y);
