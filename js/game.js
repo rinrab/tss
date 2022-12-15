@@ -161,7 +161,7 @@ function windDataInit() {
 
     // TODO: add typical overage race lenght to wind scenario
     var size = Math.round((game.height) / Math.sin(Math.PI / 4));
-    var step = (viewBoxHeight - fontSize  * 2) / size;
+    var step = (viewBoxHeight - fontSize * 2) / size;
 
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
@@ -222,16 +222,6 @@ function windDataInit() {
     pathGrid.setAttribute("fill", "gray");
     group.appendChild(pathGrid);
 
-    dStrWind += getSvgPathCommand("L", (game.wind[1] + 20) * scaleX + moveLeft, y)
-    dStrWind += getSvgPathCommand("L", 20 * scaleX + moveLeft, y)
-    pathWind.setAttribute("d", dStrWind);
-    pathWind.setAttribute("stroke", "black");
-    pathWind.setAttribute("stroke-width", "2");
-    pathWind.setAttribute("vector-effect", "non-scaling-stroke");
-    pathWind.setAttribute("fill", "blue");
-    pathWind.setAttribute("fill-opacity", "0.2");
-    group.appendChild(pathWind);
-
     for (var i = 0; i < 9; i++) {
         if (i % 2 == 0) {
             var newText = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -269,6 +259,15 @@ function windDataInit() {
         group.appendChild(newLine);
     }
 
+    dStrWind += getSvgPathCommand("L", (game.wind[1] + 20) * scaleX + moveLeft, y)
+    dStrWind += getSvgPathCommand("L", 20 * scaleX + moveLeft, y)
+    pathWind.setAttribute("d", dStrWind);
+    pathWind.setAttribute("stroke", "black");
+    pathWind.setAttribute("stroke-width", "2");
+    pathWind.setAttribute("vector-effect", "non-scaling-stroke");
+    pathWind.setAttribute("fill", "#c6c5ff");
+    pathWind.setAttribute("fill-opacity", "0.8");
+    group.appendChild(pathWind);
 }
 
 function drawBoat(player) {
