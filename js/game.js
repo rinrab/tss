@@ -154,19 +154,19 @@ function getSvgLine(x1, y1, x2, y2) {
 
 function windDataInit() {
     const viewBoxHeight = 500;
-    const scaleX = 5;
-    const lineWidth = scaleX * 20;
     const moveLeft = 20;
+    const scaleX = (200 - moveLeft - 10) / 40;
+    const lineWidth = scaleX * 20;
     var fontSize = 10;
 
     // TODO: add typical overage race lenght to wind scenario
-    var size = Math.round((game.height) / Math.sin(Math.PI / 4));
+    var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
     var step = (viewBoxHeight - fontSize * 2) / size;
 
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width * gridsize, viewBoxHeight));
+    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, 200, viewBoxHeight));
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -204,15 +204,6 @@ function windDataInit() {
 
         y += step;
     }
-
-    var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    rect.setAttribute("x", -fontSize + moveLeft)
-    rect.setAttribute("y", 0);
-    rect.setAttribute("width", lineWidth * 2 + fontSize * 2)
-    rect.setAttribute("height", y + fontSize / 2);
-    rect.setAttribute("fill", "white");
-    rect.setAttribute("fill-opacity", "0.6");
-    group.appendChild(rect);
 
     pathGrid.setAttribute("d", dStrGrid);
     pathGrid.setAttribute("stroke-width", "0.3");
@@ -403,7 +394,7 @@ function init() {
     upMarkLanelines = document.createElement("img");
     upMarkLanelines.src = "img/marklaneline.svg";
     upMarkLanelines.className = "pn-lines game-elem";
-    gamearea.insertBefore(upMarkLanelines, document.getElementById("wind-data-container"));
+    gamearea.insertBefore(upMarkLanelines, document.getElementById("marks"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
