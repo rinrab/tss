@@ -45,6 +45,14 @@ function formatCssDeg(val) {
     return val.toFixed(3) + "deg";
 }
 
+function formatSvgViewBox(left, top, width, height) {
+    return (
+        left.toFixed(3) + " " +
+        top.toFixed(3) + " " +
+        width.toFixed(3) + " " +
+        height.toFixed(3));
+}
+
 function turn() {
     turncount++;
 
@@ -133,24 +141,31 @@ function drawWindArrow() {
     }
     document.getElementById("wind-label").innerText = `${windDerection}º`
 }
+
 function getSvgPathCommand(commandName, x1, y1) {
     return `${commandName}${x1.toString()} ${y1.toString()} `;
 }
+
 function getSvgLine(x1, y1, x2, y2) {
     return (
         getSvgPathCommand("M", x1, y1) +
         getSvgPathCommand("L", x2, y2))
 }
+
 function windDataInit() {
     const scaleX = game.windscenario.height / 6;
     const lineWidth = scaleX * 20;
+    const moveLeft = 30;
+
+    // TODO: add typical overage race lenght to wind scenario
     var size = Math.round((game.windscenario.height - 4) / Math.sin(Math.PI / 4));
-    var fontSize = game.height * 0.6;
+    var step = (game.height - 2) / size * gridsize;
+
+    var fontSize = game.height * 0.4;
     var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
     windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox",
-        `${-20 * scaleX - 30} ${-game.height / size * gridsize * 4} ${40 * scaleX + 60} ${(size - 2) * gridsize + 80}`);
+    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width * gridsize, game.height * gridsize));
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -158,40 +173,43 @@ function windDataInit() {
         windDataContainer.hidden = false;
     } else {
         windDataContainer.hidden = true;
-        renderGridSize();
-        return;
     }
     renderGridSize();
+
     var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     windDataSvg.appendChild(group);
 
     var pathWind = document.createElementNS("http://www.w3.org/2000/svg", "path");
     var pathGrid = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-    var y = 2;
+    var y = 2 * gridsize;
 
-    var dStrWind = getSvgPathCommand("M", 0, y);
+    var dStrWind = getSvgPathCommand("M", 20 * scaleX + moveLeft, y);
     var dStrGrid = "";
     for (var i = size - 1; i > 1; i--) {
-        dStrWind += getSvgPathCommand("L", game.getwind(i) * scaleX, y);
-        dStrWind += getSvgPathCommand("L", game.getwind(i - 1) * scaleX, y);
-
-        dStrGrid += getSvgPathCommand("M", -lineWidth, y + gridsize);
-        dStrGrid += getSvgPathCommand("L", lineWidth, y + gridsize);
-        if (i % 5 == 2) {
-            dStrGrid += getSvgPathCommand("L", lineWidth, y);
-            dStrGrid += getSvgPathCommand("L", -lineWidth, y);
+        if (i != size - 1) {
+            dStrWind += getSvgPathCommand("L", (game.getwind(i) + 20) * scaleX + moveLeft, y);
         }
-        y += gridsize;
+        dStrWind += getSvgPathCommand("L", (game.getwind(i - 1) + 20) * scaleX + moveLeft, y);
+
+        dStrGrid += getSvgPathCommand("M", moveLeft, y + step);
+        dStrGrid += getSvgPathCommand("L", 2 * lineWidth + moveLeft, y + step);
+        if (i % 5 == 2) {
+            dStrGrid += getSvgPathCommand("L", lineWidth * 2 + moveLeft, y);
+            dStrGrid += getSvgPathCommand("L", moveLeft, y);
+        }
+
+        y += step;
     }
-    dStrGrid += getSvgPathCommand("M", -lineWidth, 0.5);
-    dStrGrid += getSvgPathCommand("L", lineWidth, 0.5);
+
+    dStrGrid += getSvgPathCommand("M", moveLeft, 0.5);
+    dStrGrid += getSvgPathCommand("L", 2 * lineWidth + moveLeft, 0.5);
 
     var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    rect.setAttribute("x", -lineWidth - fontSize)
-    rect.setAttribute("y", -20 - fontSize);
+    rect.setAttribute("x", -fontSize + moveLeft)
+    rect.setAttribute("y", 20 - fontSize);
     rect.setAttribute("width", lineWidth * 2 + fontSize * 2)
-    rect.setAttribute("height", y + 20 + fontSize);
+    rect.setAttribute("height", y + fontSize);
     rect.setAttribute("fill", "white");
     rect.setAttribute("fill-opacity", "0.6");
     group.appendChild(rect);
@@ -204,11 +222,11 @@ function windDataInit() {
     pathGrid.setAttribute("fill", "gray");
     group.appendChild(pathGrid);
 
-    dStrWind += getSvgPathCommand("L", game.wind[1] * scaleX, y + gridsize)
-    dStrWind += getSvgPathCommand("L", 0, y + gridsize)
+    dStrWind += getSvgPathCommand("L", (game.wind[1] + 20) * scaleX + moveLeft, y)
+    dStrWind += getSvgPathCommand("L", 20 * scaleX + moveLeft, y)
     pathWind.setAttribute("d", dStrWind);
     pathWind.setAttribute("stroke", "black");
-    pathWind.setAttribute("stroke-width", "3");
+    pathWind.setAttribute("stroke-width", "2");
     pathWind.setAttribute("vector-effect", "non-scaling-stroke");
     pathWind.setAttribute("fill", "blue");
     pathWind.setAttribute("fill-opacity", "0.2");
@@ -217,10 +235,10 @@ function windDataInit() {
     for (var i = 0; i < 9; i++) {
         if (i % 2 == 0) {
             var newText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            var x = (i - 4) * 4.5;
+            var x = i * 5;
 
-            newText.setAttribute("x", x * scaleX);
-            newText.setAttribute("y", -20);
+            newText.setAttribute("x", x * scaleX + moveLeft);
+            newText.setAttribute("y", 20);
             newText.setAttribute("text-anchor", "middle");
             newText.setAttribute("dominant-baseline", "auto");
             newText.style.fontSize = fontSize + "px";
@@ -233,20 +251,20 @@ function windDataInit() {
             group.appendChild(newText);
         }
         var newLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        newLine.setAttribute("x1", (i - 4) * 5 * scaleX);
-        newLine.setAttribute("y1", -15)
-        newLine.setAttribute("x2", (i - 4) * 5 * scaleX);
-        newLine.setAttribute("y2", y + gridsize);
+        newLine.setAttribute("x1", i * 5 * scaleX + moveLeft);
+        newLine.setAttribute("y1", 30)
+        newLine.setAttribute("x2", i * 5 * scaleX + moveLeft);
+        newLine.setAttribute("y2", y + 10);
 
         if (i == 4) {
             newLine.setAttribute("stroke", "red");
-            newLine.setAttribute("stroke-width", 4);
+            newLine.setAttribute("stroke-width", 2);
         } else if (i % 2 == 0) {
             newLine.setAttribute("stroke", "black");
-            newLine.setAttribute("stroke-width", 1);
+            newLine.setAttribute("stroke-width", 0.5);
         } else {
             newLine.setAttribute("stroke", "gray");
-            newLine.setAttribute("stroke-width", 0.5);
+            newLine.setAttribute("stroke-width", 0.25);
         }
         group.appendChild(newLine);
     }
