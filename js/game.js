@@ -12,17 +12,16 @@ var windtype = 0;
 const startLineSize = 15;
 
 var boatsvg =
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 32" class="boat-full-svg">
-        <g>
-            <polygon points="8,0 0,32 16,32" fill="white" stroke="currentColor"/>
-            <line y1="10" x1="8" y2="28" x2="8" fill="none" stroke="black"></line>
-        </g>
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -10 14 20" class="boat-full-svg">
+        <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="gray" stroke-width=".5" fill="currentColor" />
+        <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="white" fill="none" stroke-width="1" />
+        <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" />
     </svg>
     `;
 var boathidesvg = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 32" class="boat-hidden-svg">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -10 14 20" class="boat-hidden-svg">
         <g>
-            <ellipse rx="2" ry="2" cx="8" cy="16" stroke-width="3" fill="currentColor"
+            <ellipse rx="2" ry="2" cx="0" cy="0" stroke-width="3" fill="currentColor"
                 stroke="currentColor"></ellipse>
         </g>
     </svg>`
@@ -285,6 +284,13 @@ function drawBoat(player) {
     player.html.style.left = formatCssPx(player.x * gridsize);
     player.html.style.top = formatCssPx(player.y * gridsize);
     player.html.style.rotate = formatCssDeg(player.rotation);
+    var sx = 1;
+    if (player.tack) {
+        sx = 1;
+    } else {
+        sx = -1;
+    }
+    player.html.style.transform = `scaleX(${sx})`;
 }
 
 function drawMarks() {
