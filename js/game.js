@@ -161,6 +161,9 @@ function windDataInit() {
 
     // TODO: add typical overage race lenght to wind scenario
     var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
+    if (size < turncount + 10) {
+        size = turncount + 10;
+    }
     var step = (viewBoxHeight - fontSize * 2) / (size - 1.6);
 
     var windDataSvg = document.getElementById("wind-data-svg");
