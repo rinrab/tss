@@ -176,7 +176,7 @@ function windDataInit() {
         windDataContainer.hidden = true;
     }
     renderGridSize();
-
+    
     var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     windDataSvg.appendChild(group);
 
@@ -203,8 +203,13 @@ function windDataInit() {
             dStrGrid += getSvgPathCommand("L", moveLeft, y);
         }
 
+        if (turncount % size + 2 == i) {
+        }
+        
         y += step;
     }
+
+
 
     pathGrid.setAttribute("d", dStrGrid);
     pathGrid.setAttribute("stroke-width", "0.3");
@@ -260,6 +265,19 @@ function windDataInit() {
     pathWind.setAttribute("fill", "#c6c5ff");
     pathWind.setAttribute("fill-opacity", "0.8");
     group.appendChild(pathWind);
+
+    var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    newRect.setAttribute("x", moveLeft - 5)
+    newRect.setAttribute("y", ((size * step) + (fontSize * 2)) - (turncount + 3) * step);
+    newRect.setAttribute("height", step);
+    newRect.setAttribute("width", 200 - moveLeft - 10 + 10);
+    newRect.setAttribute("fill", "#fd7e14");
+    newRect.setAttribute("fill-opacity", "0.45");
+    newRect.setAttribute("ry", "3");
+    newRect.setAttribute("rx", "3");
+    newRect.setAttribute("stroke", "#495057");
+    newRect.setAttribute("stroke-width", "0.3");
+    group.appendChild(newRect);
 }
 
 function drawBoat(player) {
