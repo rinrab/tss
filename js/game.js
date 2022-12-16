@@ -209,8 +209,6 @@ function windDataInit() {
         y += step;
     }
 
-
-
     pathGrid.setAttribute("d", dStrGrid);
     pathGrid.setAttribute("stroke-width", "0.3");
     pathGrid.setAttribute("vector-effect", "non-scaling-stroke");
