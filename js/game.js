@@ -2,7 +2,7 @@ var gridsize = 20;
 
 var turncount = 0;
 const colors = ["red", "blue", "black", "green", "cyan", "magenta", "purple", "gray", "yellow",
-    "darkred", "darkblue"]
+    "darkred", "darkblue", "goldenrod"]
 var boatSize = 32;
 
 var windscenario;
