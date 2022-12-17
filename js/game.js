@@ -472,11 +472,13 @@ function init() {
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     addEventListener("keydown", function (e) {
         if (e.code == "Backspace") {
-            e.preventDefault();
-            backTurn();
-        } else if (e.code == "Space") {
-            e.preventDefault();
             if (!game.isStart) {
+                e.preventDefault();
+                backTurn();
+            }
+        } else if (e.code == "Space") {
+            if (!game.isStart) {
+                e.preventDefault();
                 turn();
             }
         } else if (e.code == "Slash") {
@@ -484,15 +486,17 @@ function init() {
             helpModal.hide();
             helpModal.show();
         } else {
-            var index = keys.findIndex(function (a) { return a == e.key });
-            var player = game.players[index];
+            if (!game.isStart) {
+                var index = keys.findIndex(function (a) { return a == e.key });
+                var player = game.players[index];
 
-            if (player != undefined) {
-                e.preventDefault();
-                if (player.tackBtn.checked) {
-                    player.forwardBtn.checked = true;
-                } else {
-                    player.tackBtn.checked = true;
+                if (player != undefined) {
+                    e.preventDefault();
+                    if (player.tackBtn.checked) {
+                        player.forwardBtn.checked = true;
+                    } else {
+                        player.tackBtn.checked = true;
+                    }
                 }
             }
         }
