@@ -500,9 +500,7 @@ function init() {
 
     var fullscreenToggle = document.getElementById("full-screen");
     fullscreenToggle.addEventListener("click", function () {
-        var elem = document.documentElement;
-
-        function openFullscreen() {
+        function openFullscreen(elem) {
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
             } else if (elem.webkitRequestFullscreen) {
@@ -512,7 +510,7 @@ function init() {
             }
         }
 
-        function closeFullscreen() {
+        function closeFullscreen(elem) {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
             } else if (document.webkitExitFullscreen) {
@@ -523,9 +521,9 @@ function init() {
         }
 
         if (fullscreenToggle.checked) {
-            openFullscreen();
+            openFullscreen(document.documentElement);
         } else {
-            closeFullscreen();
+            closeFullscreen(document.documentElement);
         }
     });
 
