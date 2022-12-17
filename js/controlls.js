@@ -123,6 +123,7 @@ function addControll(player) {
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
     nnameinput.className = "form-control";
+    nnameinput.setAttribute("tabIndex",  "-1");
     nc.appendChild(nnameinput);
     nnameinput.readOnly = true;
     player.nameText = nnameinput;
@@ -150,6 +151,7 @@ function addControll(player) {
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
     nnameinput.className = "form-control";
+    nnameinput.setAttribute("tabIndex",  "-1");
     nc.appendChild(nnameinput);
     nnameinput.readOnly = true;
     player.nameTextFinish = nnameinput;
