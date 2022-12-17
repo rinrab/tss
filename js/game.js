@@ -178,7 +178,7 @@ function windDataInit() {
         windDataContainer.hidden = true;
     }
     renderGridSize();
-    
+
     var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     windDataSvg.appendChild(group);
 
@@ -207,7 +207,7 @@ function windDataInit() {
 
         if (turncount % size + 2 == i) {
         }
-        
+
         y += step;
     }
 
@@ -466,6 +466,29 @@ function init() {
 
     var track = document.getElementById("track");
     track.setAttribute("viewBox", "0 0 " + game.width + " " + game.height);
+
+    const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    addEventListener("keydown", function (e) {
+        var index = keys.findIndex(function (a) { return a == e.key });
+        var player = game.players[index];
+        if (e.code == "Backspace") {
+            backTurn();
+        }
+
+        if (e.code == "Space") {
+            if (!game.isStart) {
+                turn();
+            }
+        }
+
+        if (player != undefined) {
+            if (player.tackBtn.checked) {
+                player.forwardBtn.checked = true;
+            } else {
+                player.tackBtn.checked = true;
+            }
+        }
+    });
 
     windDataInit();
 

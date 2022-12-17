@@ -31,6 +31,8 @@ class Boat {
     isStart;
     controlGroup;
 
+    isStart;
+
     color;
 
     oldStartPos;
@@ -366,6 +368,7 @@ class Game {
 
     constructor() {
         this.currentStartPriority = 0;
+        this.isStart = true;
     }
 }
 

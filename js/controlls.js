@@ -29,6 +29,8 @@ function apply() {
         player.apply();
     }
 
+    game.isStart = false;
+
     document.getElementById("wind-scenario-name-inrace-alert").innerText =
         wind[windscenario].name.toLowerCase();
 
