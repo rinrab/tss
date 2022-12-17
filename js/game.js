@@ -474,10 +474,12 @@ function init() {
         var index = keys.findIndex(function (a) { return a == e.key });
         var player = game.players[index];
         if (e.code == "Backspace") {
+            e.preventDefault();
             backTurn();
         }
 
         if (e.code == "Space") {
+            e.preventDefault();
             if (!game.isStart) {
                 turn();
             }
@@ -490,6 +492,7 @@ function init() {
         }
 
         if (player != undefined) {
+            e.preventDefault();
             if (player.tackBtn.checked) {
                 player.forwardBtn.checked = true;
             } else {
