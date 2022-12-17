@@ -471,32 +471,29 @@ function init() {
 
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     addEventListener("keydown", function (e) {
-        var index = keys.findIndex(function (a) { return a == e.key });
-        var player = game.players[index];
         if (e.code == "Backspace") {
             e.preventDefault();
             backTurn();
-        }
-
-        if (e.code == "Space") {
+        } else if (e.code == "Space") {
             e.preventDefault();
             if (!game.isStart) {
                 turn();
             }
-        }
-
-        if (e.code == "Slash") {
+        } else if (e.code == "Slash") {
             e.preventDefault();
             helpModal.hide();
             helpModal.show();
-        }
+        } else {
+            var index = keys.findIndex(function (a) { return a == e.key });
+            var player = game.players[index];
 
-        if (player != undefined) {
-            e.preventDefault();
-            if (player.tackBtn.checked) {
-                player.forwardBtn.checked = true;
-            } else {
-                player.tackBtn.checked = true;
+            if (player != undefined) {
+                e.preventDefault();
+                if (player.tackBtn.checked) {
+                    player.forwardBtn.checked = true;
+                } else {
+                    player.tackBtn.checked = true;
+                }
             }
         }
     });
