@@ -467,6 +467,8 @@ function init() {
     var track = document.getElementById("track");
     track.setAttribute("viewBox", "0 0 " + game.width + " " + game.height);
 
+    var helpModal = new bootstrap.Modal(document.getElementById('help-modal'));
+
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     addEventListener("keydown", function (e) {
         var index = keys.findIndex(function (a) { return a == e.key });
@@ -479,6 +481,12 @@ function init() {
             if (!game.isStart) {
                 turn();
             }
+        }
+
+        if (e.code == "Slash") {
+            e.preventDefault();
+            helpModal.hide();
+            helpModal.show();
         }
 
         if (player != undefined) {
