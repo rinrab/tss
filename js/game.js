@@ -498,6 +498,46 @@ function init() {
         }
     });
 
+    var fullscreenToggle = document.getElementById("full-screen");
+    fullscreenToggle.addEventListener("click", function () {
+        var elem = document.documentElement;
+
+        /* View in fullscreen */
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        /* Close fullscreen */
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+
+        if (fullscreenToggle.checked) {
+            openFullscreen();
+        } else {
+            closeFullscreen();
+        }
+    });
+
+    fullscreenToggle.disabled = !document.fullscreenEnabled;
+
+    document.addEventListener("fullscreenchange", function () {
+        console.log("fullscreenchange", document.fullscreenElement);
+        fullscreenToggle.checked = document.fullscreenElement !== null;
+    });
+
     windDataInit();
 
     applySettings();
