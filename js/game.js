@@ -96,6 +96,7 @@ function backTurn() {
         drawAll();
     } else {
         document.body.className = "start";
+        game.isStart = true;
     }
 
     updateControls();
@@ -437,6 +438,7 @@ function init() {
         }
         windChange();
         document.body.className = "start";
+        game.isStart = true;
         turncount = 0;
         game.placeBoatsOnStart();
         drawAll();
