@@ -535,7 +535,6 @@ function init() {
     fullscreenToggle.checked = document.fullscreenElement !== null;
 
     document.addEventListener("fullscreenchange", function () {
-        console.log("fullscreenchange", document.fullscreenElement);
         fullscreenToggle.checked = document.fullscreenElement !== null;
     });
 
