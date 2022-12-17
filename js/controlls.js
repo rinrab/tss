@@ -54,6 +54,7 @@ function addControll(player) {
 
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 start-controls";
+    newControlGroup1.appendChild(nc)
 
     var newcolor = document.createElement("span");
     newcolor.className = "input-group-text";
@@ -80,9 +81,20 @@ function addControll(player) {
             drawAll();
         })
     }
-    var newDeleteBtn = document.createElement("button");
-    newDeleteBtn.className = "btn btn-outline-danger delete-btn";
-    newDeleteBtn.innerHTML = "-";
+    var newDropDownID = getRandomId();
+    var newDropDown = document.createElement("ul");
+    newDropDown.className = "dropdown-menu";
+    nc.appendChild(newDropDown);
+
+    var newDropDownTriger = document.createElement("button");
+    nc.appendChild(newDropDownTriger);
+    newDropDownTriger.outerHTML = `<button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+        data-bs-toggle="dropdown" aria-expanded="false"></button>`
+
+    var newDeleteBtn = document.createElement("a");
+    newDeleteBtn.className = "dropdown-item delete-btn";
+    newDeleteBtn.href = "#";
+    newDeleteBtn.innerHTML = "Delete";
     newDeleteBtn.addEventListener("click", function () {
         player.html.remove();
         newControlGroup1.remove();
@@ -92,8 +104,7 @@ function addControll(player) {
         drawAll();
     });
     player.deleteBtn = newDeleteBtn;
-    nc.appendChild(newDeleteBtn);
-    newControlGroup1.appendChild(nc);
+    newDropDown.appendChild(newDeleteBtn)
 
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 race-controls";
