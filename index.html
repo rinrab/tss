@@ -134,20 +134,6 @@
       height: 100%;
     }
 
-    #controll-container {
-      position: relative;
-      right: 10px;
-      scale: var(--control-scale);
-      height: calc(100vh / var(--control-scale));
-      transform-origin: top right;
-    }
-
-    .november-container {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
-
     #btn-nowember {
       width: 3em;
       height: 2em;
@@ -158,16 +144,6 @@
       height: 20px;
       position: absolute;
       margin-top: -10px;
-    }
-
-    .start .control-scroll {
-      height: calc(100vh - 300px);
-      overflow: scroll;
-    }
-
-    .race .control-scroll {
-      max-height: calc(100vh - 250px);
-      overflow: auto;
     }
 
     .wind-data-scroller {
@@ -311,63 +287,63 @@
       <img src="img/wind.svg" id="wind" class="game-elem" />
       <h3 class="game-elem" id="wind-label">+10º</h3>
     </div>
-    <div style="width: 300px; --control-scale: 1" id="controll-container">
-      <div>
-        <div id="start-alert" class="alert alert-warning text-center">
-          Start procedure
-          <label style="width: 10px;"></label>
+    <div style="width: 300px;" id="controll-container" class="h-100">
+      <div class="d-flex flex-column align-items-stretch h-100 p-1">
+        <div>
+          <div id="start-alert" class="alert alert-warning text-center">
+            Start procedure
+            <label style="width: 10px;"></label>
+          </div>
+          <div id="game-alert" class="alert alert-info text-center">Race:
+            <span id="wind-scenario-name-inrace-alert"></span>
+            <label style="width: 10px;"></label>
+            <input type="image" class="btn btn-outline-primary btn-sm" id="btn-nowember" src="img/november.svg">
+          </div>
         </div>
-        <div id="game-alert" class="alert alert-info text-center">Race:
-          <span id="wind-scenario-name-inrace-alert"></span>
-          <label style="width: 10px;"></label>
-          <input type="image" class="btn btn-outline-primary btn-sm" id="btn-nowember" src="img/november.svg">
+        <div id="create">
+          <div class="input-group mb-3">
+            <select id="select-wind" class="form-select"></select>
+            <button id="edit-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
+              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Edit wind">&#9998;</button>
+            <button id="add-wind-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
+              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">+</button>
+          </div>
         </div>
-      </div>
-      <div id="create">
-        <div class="input-group mb-3">
-          <select id="select-wind" class="form-select"></select>
-          <button id="edit-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-            data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Edit wind">&#9998;</button>
-          <button id="add-wind-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-            data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">+</button>
+        <div class="w-100 mb-2 input-group start-control-header">
+          <button class="btn btn-outline-danger" id="btn-add-player">+</button>
+          <button class="btn btn-outline-primary" id="btn-apply">Start!</button>
         </div>
-      </div>
-      <div class="w-100 mb-2 input-group start-control-header">
-        <button class="btn btn-outline-danger" id="btn-add-player">+</button>
-        <button class="btn btn-outline-primary" id="btn-apply">Start!</button>
-      </div>
-      <div class="w-100 mb-2 input-group race-control-header">
-        <button class="btn btn-outline-primary" id="back-btn">Back</button>
-        <button class="btn btn-outline-primary" id="btn-done">Next</button>
-      </div>
-      <div class="control-scroll">
-        <div style="width: 100%;">
+        <div class="w-100 mb-2 input-group race-control-header">
+          <button class="btn btn-outline-primary" id="back-btn">Back</button>
+          <button class="btn btn-outline-primary" id="btn-done">Next</button>
+        </div>
+        <div class="flex-grow-1 flex-shrink-1 overflow-scroll">
           <div id="controlls" style="width: 100%;">
             <div id="last-controll" class="mb-2"></div>
           </div>
         </div>
-      </div>
-      <div class="col november-container">
-        <div class="w-100 m-0">
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="set-show-tracks" />
-            <label class="form-check-label" for="set-show-tracks">Show tracks</label>
-          </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="set-show-boats" />
-            <label class="form-check-label" for="set-show-boats">Show boats</label>
-          </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="set-show-lanelines" />
-            <label class="form-check-label" for="set-show-lanelines">Show lanelines</label>
-          </div>
-          <div class="form-check form-switch">
-            <input type="checkbox" class="form-check-input" id="set-show-equal-lines" />
-            <label class="form-check-label show-future-wind" for="set-show-equal-lines">Show equal lines</label>
-          </div>
-          <div class="form-check form-switch">
-            <input type="checkbox" class="form-check-input" id="show-future-wind" />
-            <label class="form-check-label show-future-wind" for="show-future-wind">Show future wind</label>
+        <div class="settings-container">
+          <div class="w-100 m-0">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="set-show-tracks" />
+              <label class="form-check-label" for="set-show-tracks">Show tracks</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="set-show-boats" />
+              <label class="form-check-label" for="set-show-boats">Show boats</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="set-show-lanelines" />
+              <label class="form-check-label" for="set-show-lanelines">Show lanelines</label>
+            </div>
+            <div class="form-check form-switch">
+              <input type="checkbox" class="form-check-input" id="set-show-equal-lines" />
+              <label class="form-check-label show-future-wind" for="set-show-equal-lines">Show equal lines</label>
+            </div>
+            <div class="form-check form-switch">
+              <input type="checkbox" class="form-check-input" id="show-future-wind" />
+              <label class="form-check-label show-future-wind" for="show-future-wind">Show future wind</label>
+            </div>
           </div>
         </div>
       </div>
