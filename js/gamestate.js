@@ -68,6 +68,7 @@ class Boat {
 
                     drawAll();
 
+                    this.tack = false;
                     this.rotation = -100;
                     this.x += Math.sin(this.rotation * Math.PI / 180) * (moveDist - dist);
                     this.y -= Math.cos(this.rotation * Math.PI / 180) * (moveDist - dist);
