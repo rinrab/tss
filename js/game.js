@@ -96,6 +96,7 @@ function backTurn() {
         drawAll();
     } else {
         document.body.className = "start";
+        game.isStart = true;
     }
 
     updateControls();
@@ -449,6 +450,7 @@ function init() {
         }
         windChange();
         document.body.className = "start";
+        game.isStart = true;
         turncount = 0;
         game.placeBoatsOnStart();
         drawAll();
@@ -483,29 +485,33 @@ function init() {
 
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     addEventListener("keydown", function (e) {
-        var index = keys.findIndex(function (a) { return a == e.key });
-        var player = game.players[index];
         if (e.code == "Backspace") {
-            backTurn();
-        }
-
-        if (e.code == "Space") {
             if (!game.isStart) {
+                e.preventDefault();
+                backTurn();
+            }
+        } else if (e.code == "Space") {
+            if (!game.isStart) {
+                e.preventDefault();
                 turn();
             }
-        }
-
-        if (e.code == "Slash") {
+        } else if (e.code == "Slash") {
             e.preventDefault();
             helpModal.hide();
             helpModal.show();
-        }
+        } else {
+            if (!game.isStart) {
+                var index = keys.findIndex(function (a) { return a == e.key });
+                var player = game.players[index];
 
-        if (player != undefined) {
-            if (player.tackBtn.checked) {
-                player.forwardBtn.checked = true;
-            } else {
-                player.tackBtn.checked = true;
+                if (player != undefined) {
+                    e.preventDefault();
+                    if (player.tackBtn.checked) {
+                        player.forwardBtn.checked = true;
+                    } else {
+                        player.tackBtn.checked = true;
+                    }
+                }
             }
         }
     });
