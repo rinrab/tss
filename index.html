@@ -24,6 +24,12 @@
         position: unset;
       }
 
+    .bi {
+      display: inline-block;
+      vertical-align: -.125em;
+      fill: currentcolor;
+    }
+
     .game-elem {
       position: absolute;
     }
@@ -328,31 +334,72 @@
           </div>
         </div>
         <div class="settings-container">
-          <div class="w-100 m-0">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-tracks" />
-              <label class="form-check-label" for="set-show-tracks">Show tracks</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-boats" />
-              <label class="form-check-label" for="set-show-boats">Show boats</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-lanelines" />
-              <label class="form-check-label" for="set-show-lanelines">Show lanelines</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="set-show-equal-lines" />
-              <label class="form-check-label" for="set-show-equal-lines">Show equal lines</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="show-future-wind" />
-              <label class="form-check-label" for="show-future-wind">Show future wind</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="full-screen" />
-              <label class="form-check-label" for="full-screen">Fullscreen</label>
-            </div>
+          <div class="btn-group w-100" role="group" aria-label="Settings">
+            <input class="btn-check" type="checkbox" id="set-show-tracks" />
+            <label class="btn btn-outline-secondary" for="set-show-tracks"
+                   title="Show tracks">
+               <svg xmlns="http://www.w3.org/2000/svg" style="scale: 1.5;" width="16" height="16" viewBox="0 0 16 16" class="bi">
+                <path d="m6.3 15-.5-.4-.5-.4-.5-.4.5-.4.5-.3.6-.3.6-.3.6-.3.6-.3.6-.3.7-.2-.3-.4-.4-.4-.4-.4-.4-.4-.4-.4-.5-.4-.4-.4-.5-.4-.5-.3-.5-.4.5-.4.5-.4.5-.4.6-.3.5-.4.5-.4.4-.4"
+                      fill="none" stroke="currentColor" stroke-width="0.5"></path>
+                <ellipse rx="0.7" cx="2" cy="15"></ellipse>
+                <ellipse rx="0.7" cx="14" cy="15"></ellipse>
+                <ellipse rx="0.7" cx="8" cy="2"></ellipse>
+              </svg>
+            </label>
+
+            <input class="btn-check" type="checkbox" id="set-show-boats" />
+            <label class="btn btn-outline-secondary" for="set-show-boats"
+                   title="Show boats">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-5.6247 -10 11.2494 18.5" style="scale: 1.5; rotate: 45deg" class="bi bi-arrows-fullscreen">
+                <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor" stroke-width="1" fill="none" />
+                <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="currentColor" fill="none" stroke-width="1" />
+                <ellipse rx="1" ry="1" cx="0" cy="-6" />
+              </svg>
+            </label>
+
+            <input class="btn-check" type="checkbox" id="set-show-lanelines" />
+            <label class="btn btn-outline-secondary" for="set-show-lanelines"
+                   title="Show lanelines">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="scale: 1.5" viewBox="-8 0 16 16" class="bi">
+                <path d="M -8 12 L 0 4 L 8 12" stroke="currentColor" stroke-width=".5" fill="none"></path>
+                <ellipse rx="1.5" ry="1.5" cx="0" cy="4" fill="currentColor"></ellipse>
+              </svg>      
+            </label>
+
+            <input type="checkbox" class="btn-check" id="set-show-equal-lines" />
+            <label class="btn btn-outline-secondary show-future-wind"
+                   for="set-show-equal-lines"
+                   title="Show equal lines">
+              <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style="scale: 1.5" class="bi">
+                <defs>
+                  <path transform="scale(0.3) translate(9, 10) rotate(-15)" id="boat"
+                    d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor"
+                    stroke-width="3" fill="none" />
+                </defs>
+                <path d="M 0 15 L 16 11 M 0 11 L 16 7 M 0 7 L 16 3 M 0 3 L 16 -1 M 16 15 L 0 19" fill="none" stroke="currentColor"
+                  stroke-width="0.5" />
+                <use href="#boat" transform="translate(-1, 7) rotate(-45)"></use>
+                <use href="#boat" transform="translate(7, 7) rotate(-45)" />
+              </svg>      
+            </label>
+
+            <input type="checkbox" class="btn-check" id="show-future-wind" />
+            <label class="btn btn-outline-secondary show-future-wind"
+                   for="show-future-wind"
+                   title="Show future wind">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="scale: 1.5" width="16" height="16" class="bi">
+                <path id="arrow" d="M 3 2 L 3 10 M 7 2 L 7 10 M 1 11 L 5 15 L 9 11" 
+                      transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
+                <use href="#arrow" transform="scale(0.5) translate(23, 0) rotate(20)"></use>
+              </svg>
+            </label>
+            <input type="checkbox" class="btn-check" id="full-screen" />
+            <label class="btn btn-outline-secondary" for="full-screen"
+                   title="Fullscreen mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
+              </svg>
+            </label>
           </div>
         </div>
       </div>
