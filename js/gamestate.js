@@ -81,9 +81,6 @@ class Boat {
 
                     this.tack = false;
                     this.rotation = -100;
-                    this.x += Math.sin(this.rotation * Math.PI / 180) * (moveDist - dist);
-                    this.y -= Math.cos(this.rotation * Math.PI / 180) * (moveDist - dist);
-                    moveDist -= moveDist - dist;
 
                 }
                 else if (this.forwardBtn.checked &&
@@ -172,6 +169,7 @@ class Boat {
                 this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
                 points.push({ x: this.x, y: this.y });
                 moveDist = 0.0;
+                drawAll();
             }
         }
 
