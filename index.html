@@ -24,6 +24,12 @@
         position: unset;
       }
 
+    .bi {
+      display: inline-block;
+      vertical-align: -.125em;
+      fill: currentcolor;
+    }
+
     .game-elem {
       position: absolute;
     }
@@ -328,31 +334,36 @@
           </div>
         </div>
         <div class="settings-container">
-          <div class="w-100 m-0">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-tracks" />
-              <label class="form-check-label" for="set-show-tracks">Show tracks</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-boats" />
-              <label class="form-check-label" for="set-show-boats">Show boats</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-lanelines" />
-              <label class="form-check-label" for="set-show-lanelines">Show lanelines</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="set-show-equal-lines" />
-              <label class="form-check-label" for="set-show-equal-lines">Show equal lines</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="show-future-wind" />
-              <label class="form-check-label" for="show-future-wind">Show future wind</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="full-screen" />
-              <label class="form-check-label" for="full-screen">Fullscreen</label>
-            </div>
+          <div class="btn-group w-100" role="group" aria-label="Settings">
+            <input class="btn-check" type="checkbox" id="set-show-tracks" />
+            <label class="btn btn-outline-secondary" for="set-show-tracks"
+                   title="Show tracks">ST</label>
+
+            <input class="btn-check" type="checkbox" id="set-show-boats" />
+            <label class="btn btn-outline-secondary" for="set-show-boats"
+                   title="Show boats">SB</label>
+
+            <input class="btn-check" type="checkbox" id="set-show-lanelines" />
+            <label class="btn btn-outline-secondary" for="set-show-lanelines"
+                   title="Show lanelines">LL</label>
+
+            <input type="checkbox" class="btn-check" id="set-show-equal-lines" />
+            <label class="btn btn-outline-secondary show-future-wind"
+                   for="set-show-equal-lines"
+                   title="Show equal lines">EL</label>
+
+            <input type="checkbox" class="btn-check" id="show-future-wind" />
+            <label class="btn btn-outline-secondary show-future-wind"
+                   for="show-future-wind"
+                   title="Show future wind">FW</label>
+
+            <input type="checkbox" class="btn-check" id="full-screen" />
+            <label class="btn btn-outline-secondary" for="full-screen"
+                   title="Fullscreen mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
+              </svg>
+            </label>
           </div>
         </div>
       </div>
