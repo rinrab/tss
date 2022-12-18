@@ -94,7 +94,7 @@ class Boat {
 
                     if (this.toMarkBtn.checked) {
                         if (game.isOutLaneline(this.x, this.y)) {
-                            this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);
+                            this.rotation = getRotateAngle(this.x, this.y, game.marks[2].x, game.marks[2].y);
                             this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
                             this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
                             points.push({ x: this.x, y: this.y });
@@ -123,7 +123,7 @@ class Boat {
                                 this.y -= Math.cos(this.rotation * Math.PI / 180) * lanelineDistance;
                                 points.push({ x: this.x, y: this.y });
                                 moveDist -= lanelineDistance;
-                                this.rotation = getRotateAngel(this.x, this.y, game.marks[2].x, game.marks[2].y);
+                                this.rotation = getRotateAngle(this.x, this.y, game.marks[2].x, game.marks[2].y);
                             } else {
                                 this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
                                 this.y -= Math.cos(this.rotation * Math.PI / 180) * moveDist;
@@ -250,7 +250,7 @@ class Game {
     }
 
     isOutLaneline(x, y) {
-        var a = getRotateAngel(x, y, this.marks[2].x, this.marks[2].y);
+        var a = getRotateAngle(x, y, this.marks[2].x, this.marks[2].y);
         return (a - this.getwind(turncount) >= 44.99 || a - this.getwind(turncount) <= -44.99);
     }
 
@@ -409,7 +409,7 @@ class PlayerStory {
     }
 }
 
-function getRotateAngel(x1, y1, x2, y2) {
+function getRotateAngle(x1, y1, x2, y2) {
     return (Math.atan2(x2 - x1, -(y2 - y1)) * 180 / Math.PI);
 }
 
