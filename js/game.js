@@ -152,23 +152,7 @@ function getSvgLine(x1, y1, x2, y2) {
 }
 
 function windDataInit() {
-    const viewBoxHeight = 500;
-    const moveLeft = 20;
-    const scaleX = (200 - moveLeft - 10) / 40;
-    const lineWidth = scaleX * 20;
-    var fontSize = 10;
-
-    // TODO: add typical overage race lenght to wind scenario
-    var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
-    if (size < turncount + 10) {
-        size = turncount + 10;
-    }
-    var step = (viewBoxHeight - fontSize * 2) / (size - 1.6);
-
-    var windDataSvg = document.getElementById("wind-data-svg");
     var windDataContainer = document.getElementById("wind-data-container");
-    windDataSvg.innerHTML = "";
-    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, 200, viewBoxHeight));
 
     var showfuturewind = document.getElementById("show-future-wind").checked;
 
@@ -178,6 +162,32 @@ function windDataInit() {
         windDataContainer.hidden = true;
     }
     renderGridSize();
+
+    // TODO: add typical overage race lenght to wind scenario
+    var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
+    if (size < turncount + 10) {
+        size = turncount + 10;
+    }
+    var drawedWind = [];
+    for (var i = 0; i < size; i++) {
+        drawedWind.push(game.getwind(i));
+    }
+    windDataContainer.innerHTML = "";
+    windDataContainer.appendChild(getWindSvg(drawedWind, turncount));
+}
+
+function getWindSvg(wind, turncount) {
+    const viewBoxHeight = 500;
+    const moveLeft = 20;
+    const scaleX = (200 - moveLeft - 10) / 40;
+    const lineWidth = scaleX * 20;
+    var fontSize = 10;
+
+    var size = wind.length;
+    var step = (viewBoxHeight - fontSize * 2) / (size - 1.6);
+
+    var windDataSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, 200, viewBoxHeight));
 
     var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     windDataSvg.appendChild(group);
@@ -192,11 +202,11 @@ function windDataInit() {
     var dStrGrid = "";
     dStrGrid += getSvgPathCommand("M", moveLeft, y);
     dStrGrid += getSvgPathCommand("L", 2 * lineWidth + moveLeft, y);
-    for (var i = size - 1; i > 1; i--) {
-        if (i != size - 1) {
-            dStrWind += getSvgPathCommand("L", (game.getwind(i) + 20) * scaleX + moveLeft, y);
+    for (var i = wind.length - 1; i > 1; i--) {
+        if (i != wind.length - 1) {
+            dStrWind += getSvgPathCommand("L", (wind[i] + 20) * scaleX + moveLeft, y);
         }
-        dStrWind += getSvgPathCommand("L", (game.getwind(i - 1) + 20) * scaleX + moveLeft, y);
+        dStrWind += getSvgPathCommand("L", (wind[i - 1] + 20) * scaleX + moveLeft, y);
 
         dStrGrid += getSvgPathCommand("M", moveLeft, y + step);
         dStrGrid += getSvgPathCommand("L", 2 * lineWidth + moveLeft, y + step);
@@ -204,8 +214,8 @@ function windDataInit() {
             dStrGrid += getSvgPathCommand("L", lineWidth * 2 + moveLeft, y);
             dStrGrid += getSvgPathCommand("L", moveLeft, y);
         }
+        if (turncount % wind.length + 2 == i) {
 
-        if (turncount % size + 2 == i) {
         }
 
         y += step;
@@ -256,7 +266,7 @@ function windDataInit() {
         group.appendChild(newLine);
     }
 
-    dStrWind += getSvgPathCommand("L", (game.wind[1] + 20) * scaleX + moveLeft, y)
+    dStrWind += getSvgPathCommand("L", (wind[1] + 20) * scaleX + moveLeft, y)
     dStrWind += getSvgPathCommand("L", 20 * scaleX + moveLeft, y)
     pathWind.setAttribute("d", dStrWind);
     pathWind.setAttribute("stroke", "black");
@@ -268,7 +278,7 @@ function windDataInit() {
 
     var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     newRect.setAttribute("x", moveLeft - 5)
-    newRect.setAttribute("y", ((size * step) + (fontSize * 2)) - (turncount + 3) * step);
+    newRect.setAttribute("y", ((wind.length * step) + (fontSize * 2)) - (turncount + 3) * step);
     newRect.setAttribute("height", step);
     newRect.setAttribute("width", 200 - moveLeft - 10 + 10);
     newRect.setAttribute("fill", "#fd7e14");
@@ -278,6 +288,8 @@ function windDataInit() {
     newRect.setAttribute("stroke", "#495057");
     newRect.setAttribute("stroke-width", "0.3");
     group.appendChild(newRect);
+
+    return windDataSvg;
 }
 
 function drawBoat(player) {
