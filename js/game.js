@@ -116,7 +116,7 @@ function drawAll() {
 
 function drawLines() {
     var linesSvg = document.getElementById("lines-svg");
-    linesSvg.setAttribute("viewBox", `0 0 ${game.width} ${game.height}`);
+    linesSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
     document.getElementById("lines-container").style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
     var linesDrawing = document.getElementById("lines-drawing");
@@ -313,7 +313,7 @@ function drawMarks() {
         var newmark = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         var newmarkcont = document.createElement("div");
         newmark.innerHTML = marksvg;
-        newmark.setAttribute("viewBox", "0 0 16 16");
+        newmark.setAttribute("viewBox", formatSvgViewBox(0, 0, 16, 16));
         newmarkcont.style.left = formatCssPx(game.marks[i].x * gridsize);
         newmarkcont.style.top = formatCssPx(game.marks[i].y * gridsize);
         newmarkcont.className = "game-elem pn-mark";
@@ -326,7 +326,7 @@ function drawMarks() {
     upMarkLanelines.style.rotate = formatCssDeg(game.getwind(turncount + 1));
 
     var startlinecontainer = document.getElementById("start-line-svg");
-    startlinecontainer.setAttribute("viewBox", "0 0 " + game.width * gridsize + " " + game.height * gridsize);
+    startlinecontainer.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width * gridsize, game.height * gridsize));
 
     var startline = document.getElementById("start-line");
     startline.setAttribute("x1", game.marks[0].x * gridsize);
@@ -338,8 +338,8 @@ function drawMarks() {
 function renderGridSize() {
     var gamecont = document.getElementById("game-cont");
     var gamearea = document.getElementById("game-area");
-    document.getElementById("track").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
-    document.getElementById("background").setAttribute("viewBox", `0 0 ${game.width} ${game.height}`)
+    document.getElementById("track").setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
+    document.getElementById("background").setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
 
     var w = gamecont.clientWidth;
     var h = gamecont.clientHeight;
@@ -479,7 +479,7 @@ function init() {
     });
 
     var track = document.getElementById("track");
-    track.setAttribute("viewBox", "0 0 " + game.width + " " + game.height);
+    track.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
 
     var helpModal = new bootstrap.Modal(document.getElementById('help-modal'));
 
