@@ -22,7 +22,7 @@ var startLineSizeInput;
 
 var shareBtn;
 
-addEventListener("load", function() {
+addEventListener("load", function () {
     document.getElementById("load-wind-save").addEventListener("click", function () {
         console.log(newwind)
         wind[wind.length] = newwind;
@@ -31,6 +31,8 @@ addEventListener("load", function() {
         addWind();
     });
 });
+
+var validtext;
 
 function windInit() {
     if (localStorage.getItem(localStorageNames.windlist) == null) {
@@ -45,42 +47,10 @@ function windInit() {
     loadWindFromURL();
     nameinput = document.getElementById("editor-wind-name");
     windtext = document.getElementById("editor-wind");
-    var validtext = document.getElementById("wind-valid");
+    validtext = document.getElementById("wind-valid");
     windtext.addEventListener("input", function () {
-        var windtmp = splitWind(windtext.value);
-        var errors = [];
-        var c = 0;
-        for (var i = 0; i < windtmp.length; i++) {
-            if (isNaN(parseInt(windtmp[i]))) {
-                errors[errors.length] = {
-                    type: errorTypes.notnumber, text: '"' + windtmp[i] +
-                        '" ' + errortexts.notnumber, char: c
-                }
-            }
-            c += windtmp[i].length + 1;
-        }
-
-        if (errors.length > 0) {
-            var notnambercount = 0;
-            var numberspaces = 0;
-            for (var i = 0; i < errors.length; i++) {
-                if (errors[i].type == errorTypes.numberisspace) {
-                    numberspaces++;
-                }
-                notnambercount++;
-            }
-            validtext.innerText =
-                `You have ${errors.length} error${(errors.length > 1) ? "s" : ""} in wind.\n`;
-            for (var i = 0; i < errors.length; i++) {
-                if (errors[i].type == errorTypes.notnumber) {
-                    validtext.innerText += errors[i].text + "\n";
-                }
-            }
-            validtext.className = "invalid-feedback d-block";
-        } else {
-            validtext.innerText = "Wind is correct";
-            validtext.className = "valid-feedback d-block";
-        }
+        checkErrors();
+        updatePreview();
     });
 
     saveWindBtn = document.getElementById("editor-save");
@@ -92,6 +62,60 @@ function windInit() {
     shareBtn.addEventListener("click", shareBtnClick);
 
     windReadOnlyText = document.getElementById("wind-readonly-text");
+}
+
+function checkErrors() {
+    var windtmp = splitWind(windtext.value);
+    var errors = [];
+    var c = 0;
+    for (var i = 0; i < windtmp.length; i++) {
+        if (isNaN(parseInt(windtmp[i]))) {
+            errors[errors.length] = {
+                type: errorTypes.notnumber, text: '"' + windtmp[i] +
+                    '" ' + errortexts.notnumber, char: c
+            }
+        }
+        c += windtmp[i].length + 1;
+    }
+
+    if (errors.length > 0) {
+        var notnambercount = 0;
+        var numberspaces = 0;
+        for (var i = 0; i < errors.length; i++) {
+            if (errors[i].type == errorTypes.numberisspace) {
+                numberspaces++;
+            }
+            notnambercount++;
+        }
+        validtext.innerText =
+            `You have ${errors.length} error${(errors.length > 1) ? "s" : ""} in wind.\n`;
+        for (var i = 0; i < errors.length; i++) {
+            if (errors[i].type == errorTypes.notnumber) {
+                validtext.innerText += errors[i].text + "\n";
+            }
+        }
+        validtext.className = "invalid-feedback d-block";
+    } else {
+        validtext.innerText = "Wind is correct";
+        validtext.className = "valid-feedback d-block";
+    }
+}
+
+function updatePreview() {
+    var parsedWind = [];
+    var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
+    var windtmp = splitWind(windtext.value);
+
+    for (var i = 0; i < size; i++) {
+        var parsedValue = parseInt(windtmp[i % windtmp.length]);
+        if (!isNaN(parsedValue)) {
+            parsedWind.push(parsedValue);
+        }
+    }
+
+    var editorPreview = document.getElementById("editor-preview");
+    editorPreview.innerHTML = "";
+    editorPreview.appendChild(getWindSvg(parsedWind, -4));
 }
 
 function deleteClick() {
@@ -232,6 +256,8 @@ function windEditorStart(iscreate) {
             }
         }
     }
+
+    updatePreview();
 }
 var newwind;
 function loadWindFromURL() {

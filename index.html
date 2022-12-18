@@ -343,7 +343,7 @@
             <div class="form-check form-switch">
               <input type="checkbox" class="form-check-input" id="show-future-wind" />
               <label class="form-check-label show-future-wind" for="show-future-wind">Show future wind</label>
-            </div>           
+            </div>
             <div class="form-check form-switch">
               <input type="checkbox" class="form-check-input" id="full-screen" />
               <label class="form-check-label" for="full-screen">Fullscreen</label>
@@ -363,39 +363,42 @@
               data-bs-title="Link copied to clipboard!">Share</button>
           </div>
         </div>
-        <div class="modal-body">
-          <div class="alert alert-warning" id="wind-readonly-text">
-            This is predifined wind preset. It cannot be changed. Use 'Create Wind' button to
-            create custom wind scenario.
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Scenario name</label>
-            <input type="text" class="form-control" id="editor-wind-name" placeholder="i.e. &#34;pendulum 1&#34" />
-          </div>
-          <div class="mb-0">
-            <label class="form-label">Wind change</label>
-            <textarea class="form-control" id="editor-wind" rows="7" placeholder="i.e. 5, 10, 15, 20, 15...">
+        <div class="modal-body row">
+          <div class="col">
+            <div class="alert alert-warning" id="wind-readonly-text">
+              This is predifined wind preset. It cannot be changed. Use 'Create Wind' button to
+              create custom wind scenario.
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Scenario name</label>
+              <input type="text" class="form-control" id="editor-wind-name" placeholder="i.e. &#34;pendulum 1&#34" />
+            </div>
+            <div class="mb-0">
+              <label class="form-label">Wind change</label>
+              <textarea class="form-control" id="editor-wind" rows="7" placeholder="i.e. 5, 10, 15, 20, 15...">
             </textarea>
-          </div>
-          <div class="mb-3">
-            <div class="invalid-feedback" id="wind-valid"></div>
-          </div>
-          <div class="mb-3">
-            <div class="row">
-              <div class="col">
-                <label class="form-label">Map width</label>
-                <input type="number" value="40" min="5" max="200" class="form-control" id="map-width" />
-              </div>
-              <div class="col">
-                <label class="form-label">Map height</label>
-                <input type="number" value="30" min="5" max="200" class="form-control" id="map-height" />
-              </div>
-              <div class="col">
-                <label class="form-label">Start line size</label>
-                <input type="number" value="15" min="5" max="200" class="form-control" id="start-line-size" />
+            </div>
+            <div class="mb-3">
+              <div class="invalid-feedback" id="wind-valid"></div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <div class="col">
+                  <label class="form-label">Map width</label>
+                  <input type="number" value="40" min="5" max="200" class="form-control" id="map-width" />
+                </div>
+                <div class="col">
+                  <label class="form-label">Map height</label>
+                  <input type="number" value="30" min="5" max="200" class="form-control" id="map-height" />
+                </div>
+                <div class="col">
+                  <label class="form-label">Start line size</label>
+                  <input type="number" value="15" min="5" max="200" class="form-control" id="start-line-size" />
+                </div>
               </div>
             </div>
           </div>
+          <div class="col-4" id="editor-preview" style="height: 100%;"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="editor-save" data-bs-dismiss="modal">Save
