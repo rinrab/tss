@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg">
-    
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" id="arrow" d="M 3 2 L 3 11 M 7 2 L 7 11 M 1 11 L 5 15 L 9 11" transform="rotate(-10) translate(-2, 0)"
+    stroke="currentColor" fill="none" />
+  <use href="#arrow" transform="scale(0.5) translate(23, 0) rotate(20)" />
 </svg>

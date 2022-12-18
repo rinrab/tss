@@ -374,8 +374,13 @@
             <input type="checkbox" class="btn-check" id="show-future-wind" />
             <label class="btn btn-outline-secondary show-future-wind"
                    for="show-future-wind"
-                   title="Show future wind">FW</label>
-
+                   title="Show future wind">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="scale: 1.5" width="16" height="16" class="bi">
+                <path id="arrow" d="M 3 2 L 3 10 M 7 2 L 7 10 M 1 11 L 5 15 L 9 11" 
+                      transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
+                <use href="#arrow" transform="scale(0.5) translate(23, 0) rotate(20)"></use>
+              </svg>
+            </label>
             <input type="checkbox" class="btn-check" id="full-screen" />
             <label class="btn btn-outline-secondary" for="full-screen"
                    title="Fullscreen mode">
