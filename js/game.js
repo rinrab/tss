@@ -559,7 +559,7 @@ function closeFullscreen(elem) {
 
 function isFullscreenMode() {
     return (document.fullscreenElement != null) ||
-        (document.webkitFullscreenEnabled != null);
+        (document.webkitFullscreenElement  != null);
 }
 
 function isFullscreenSupported() {
