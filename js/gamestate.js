@@ -81,6 +81,11 @@ class Boat {
                     if (this.x > game.width - 0.5) {
                         this.tack = false;
                     }
+
+                    if (this.y < game.marks[2].y) {
+                        this.toMarkBtn.checked = true;
+                    }
+
                     if (this.tackBtn.checked) {
                         this.tack = !this.tack;
 
