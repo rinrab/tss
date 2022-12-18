@@ -525,11 +525,11 @@ function init() {
         }
     });
 
-    fullscreenToggle.disabled = !document.fullscreenEnabled;
-    fullscreenToggle.checked = document.fullscreenElement !== null;
+    fullscreenToggle.disabled = !isFullscreenSupported();
+    fullscreenToggle.checked = isFullscreenMode();
 
     document.addEventListener("fullscreenchange", function () {
-        fullscreenToggle.checked = document.fullscreenElement !== null;
+        fullscreenToggle.checked = isFullscreenMode();
     });
 
     windDataInit();
@@ -555,6 +555,14 @@ function closeFullscreen(elem) {
     } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
     }
+}
+
+function isFullscreenMode() {
+    return (document.fullscreenElement !== null);
+}
+
+function isFullscreenSupported() {
+    return document.fullscreenEnabled;
 }
 
 function random(max) {
