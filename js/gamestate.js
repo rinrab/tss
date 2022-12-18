@@ -53,6 +53,17 @@ class Boat {
             turntype = turnTupes.forward;
         }
 
+        if (this.tackBtn.checked) {
+            this.tack = !this.tack;
+
+            if (this.tack) {
+                this.rotation = 45 + game.getwind(turncount);
+            } else {
+                this.rotation = -45 + game.getwind(turncount);
+            }
+            this.forwardBtn.checked = true;
+        }
+
         while (moveDist > 0) {
             if (!this.finished) {
                 var dist = distance(this.x, this.y, game.marks[2].x, game.marks[2].y);
@@ -74,27 +85,31 @@ class Boat {
                     this.y -= Math.cos(this.rotation * Math.PI / 180) * (moveDist - dist);
                     moveDist -= moveDist - dist;
 
-                } else {
+                }
+                else if (this.forwardBtn.checked &&
+                    this.y - Math.cos(this.rotation * Math.PI / 180) * moveDist <= game.marks[2].y) {
+                    if (this.y > game.marks[2].y) {
+                        var markDistance = distanceToLine(
+                            this.x, this.y, game.marks[2].x, game.marks[2].y,
+                            0);
+
+                        this.x += Math.sin(this.rotation * Math.PI / 180) * markDistance;
+                        this.y -= Math.cos(this.rotation * Math.PI / 180) * markDistance
+
+                        points.push({ x: this.x, y: this.y });
+                        moveDist -= markDistance;
+
+                        drawAll();
+                    }
+
+                    this.toMarkBtn.checked = true;
+                }
+                else {
                     if (this.x < 0.5) {
                         this.tack = true;
                     }
                     if (this.x > game.width - 0.5) {
                         this.tack = false;
-                    }
-
-                    if (this.y < game.marks[2].y) {
-                        this.toMarkBtn.checked = true;
-                    }
-
-                    if (this.tackBtn.checked) {
-                        this.tack = !this.tack;
-
-                        if (this.tack) {
-                            this.rotation = 45 + game.getwind(turncount);
-                        } else {
-                            this.rotation = -45 + game.getwind(turncount);
-                        }
-                        this.forwardBtn.checked = true;
                     }
 
                     if (this.toMarkBtn.checked) {
