@@ -558,7 +558,7 @@ function closeFullscreen(elem) {
 }
 
 function isFullscreenMode() {
-    return (document.fullscreenElement !== null);
+    return (document.fullscreenElement != null);
 }
 
 function isFullscreenSupported() {
