@@ -20,9 +20,9 @@
       touch-action: none;
     }
 
-      body > * {
-        position: unset;
-      }
+    body>* {
+      position: unset;
+    }
 
     .game-elem {
       position: absolute;
@@ -38,14 +38,15 @@
     #wind {
       transition: all 0.5s ease-in-out;
       width: 50px;
-      left: 10px;
+      left: 20px;
+      transform-origin: center 40%;
     }
 
-    #boats > .game-elem {
+    #boats>.game-elem {
       transition: top 0.5s ease-in-out, left 0.5s ease-in-out, rotate 0.2s ease-in-out;
     }
 
-    #game-area > * {
+    #game-area>* {
       position: absolute;
     }
 
@@ -125,9 +126,9 @@
       overflow: hidden;
     }
 
-      #game-area svg {
-        display: block;
-      }
+    #game-area svg {
+      display: block;
+    }
 
     #game-cont {
       width: 100%;
@@ -161,7 +162,7 @@
     }
 
     #wind-label {
-      left: 40px;
+      left: 50px;
       top: 30px;
       font-family: monospace;
       text-align: right;
@@ -226,7 +227,7 @@
         <polyline points="14,14 2,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="3,8 2,2 8,3" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="round"
-                  stroke-width="1.7" />
+          stroke-width="1.7" />
 
         <ellipse rx="1.8" ry="1.8" cx="14" cy="14" fill="currentColor" />
       </symbol>
@@ -234,7 +235,7 @@
         <polyline points="2,14 14,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="13,8 14,2 8,3" fill="none" stroke="currentColor" stroke-linejoin="miter"
-                  stroke-linecap="round" stroke-width="1.7" />
+          stroke-linecap="round" stroke-width="1.7" />
 
         <ellipse rx="1.8" ry="1.8" cx="2" cy="14" fill="currentColor" />
       </symbol>
@@ -242,14 +243,14 @@
         <polyline points="8,14 2,8 8,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="8,7 9,1 3,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="round"
-                  stroke-width="1.7" />
+          stroke-width="1.7" />
         <ellipse rx="1.8" ry="1.8" cx="8" cy="14" fill="currentColor" />
       </symbol>
       <symbol id="icon-port-tack" viewBox="0 0 16 16">
         <polyline points="8,14 14,8 8,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="8,7 7,1 13,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="round"
-                  stroke-width="1.7" />
+          stroke-width="1.7" />
         <ellipse rx="1.8" ry="1.8" cx="8" cy="14" fill="currentColor" />
       </symbol>
     </defs>
@@ -269,7 +270,7 @@
           </div>
           <div id="lines-container">
             <svg id="lines-svg" stroke="gray" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg"
-                 stroke-width="0.005">
+              stroke-width="0.005">
               <g id="lines-drawing"></g>
             </svg>
           </div>
@@ -305,11 +306,11 @@
           <div class="input-group mb-3">
             <select id="select-wind" class="form-select"></select>
             <button id="edit-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Edit wind">
+              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Edit wind">
               &#9998;
             </button>
             <button id="add-wind-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">
+              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">
               +
             </button>
           </div>
@@ -365,7 +366,7 @@
           <h1 class="modal-title fs-5">Wind Editor</h1>
           <div class="mr-0">
             <button class="btn btn-outline-primary" id="share-btn" data-bs-toggle="tooltip" data-bs-trigger="none"
-                    data-bs-title="Link copied to clipboard!">
+              data-bs-title="Link copied to clipboard!">
               Share
             </button>
           </div>
@@ -410,7 +411,7 @@
           </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-danger" style="position: absolute; left: 10px;" id="delete-btn"
-                  data-bs-dismiss="modal">
+            data-bs-dismiss="modal">
             Delete
           </button>
         </div>
@@ -475,6 +476,19 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+  <div class="toast-container position-fixed top-0 start-0 p-3">
+    <div id="too-many-boats-alert" class="toast" data-bs-autohide="true" data-bs-delay="4000">
+      <div class="toast-header">
+        <strong class="me-auto">Too many boats</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        You can't add more players.
       </div>
     </div>
   </div>
