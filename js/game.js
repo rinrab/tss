@@ -395,7 +395,8 @@ function addPlayer() {
 
     var newColor = game.findFreeColor();
     if (newColor == null) {
-        alert("too many boats")
+        var tooManyBoatsAlert = new bootstrap.Toast(document.getElementById("too-many-boats-alert"));
+        tooManyBoatsAlert.show()
         return;
     }
 
