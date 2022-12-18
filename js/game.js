@@ -558,11 +558,12 @@ function closeFullscreen(elem) {
 }
 
 function isFullscreenMode() {
-    return (document.fullscreenElement != null);
+    return (document.fullscreenElement != null) ||
+        (document.webkitFullscreenEnabled != null);
 }
 
 function isFullscreenSupported() {
-    return document.fullscreenEnabled;
+    return (document.fullscreenEnabled || document.webkitFullscreenEnabled);
 }
 
 function random(max) {
