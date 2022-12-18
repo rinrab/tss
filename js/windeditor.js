@@ -22,16 +22,6 @@ var startLineSizeInput;
 
 var shareBtn;
 
-addEventListener("load", function () {
-    document.getElementById("load-wind-save").addEventListener("click", function () {
-        console.log(newwind)
-        wind[wind.length] = newwind;
-        saveWind();
-        windChange();
-        addWind();
-    });
-});
-
 var validtext;
 
 function windInit() {
@@ -64,6 +54,14 @@ function windInit() {
     windReadOnlyText = document.getElementById("wind-readonly-text");
 
     mapHeight.addEventListener("change", updatePreview);
+
+    document.getElementById("load-wind-save").addEventListener("click", function () {
+        console.log(newwind)
+        wind[wind.length] = newwind;
+        saveWind();
+        windChange();
+        addWind();
+    });
 }
 
 function checkErrors() {

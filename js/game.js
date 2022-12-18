@@ -456,7 +456,6 @@ function init() {
         drawAll();
     });
     windInit();
-    windInit();
     settingsInit();
     createGame(2);
     addWind();
