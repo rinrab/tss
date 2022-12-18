@@ -62,6 +62,8 @@ function windInit() {
     shareBtn.addEventListener("click", shareBtnClick);
 
     windReadOnlyText = document.getElementById("wind-readonly-text");
+
+    mapHeight.addEventListener("change", updatePreview);
 }
 
 function checkErrors() {
@@ -103,7 +105,7 @@ function checkErrors() {
 
 function updatePreview() {
     var parsedWind = [];
-    var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
+    var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
     var windtmp = splitWind(windtext.value);
 
     for (var i = 0; i < size; i++) {
