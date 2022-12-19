@@ -120,7 +120,7 @@ function updatePreview() {
 
     var editorPreview = document.getElementById("editor-preview");
     editorPreview.innerHTML = "";
-    editorPreview.appendChild(getWindSvg(parsedWind, -4, window.innerWidth / 4 - 20, window.innerHeight - 166, 2));
+    editorPreview.appendChild(getWindSvg(parsedWind, -4, window.innerWidth / 4 - 20, window.innerHeight - 166, 1.5));
     console.log("bchbhscb")
 }
 
