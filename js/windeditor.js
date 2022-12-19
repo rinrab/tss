@@ -62,6 +62,11 @@ function windInit() {
         windChange();
         addWind();
     });
+
+    var editModal = document.getElementById("wind-editor-window");
+    editModal.addEventListener("hidden.bs.modal", function () {
+        removeEventListener("resize", updatePreview);
+    })
 }
 
 function checkErrors() {
@@ -115,7 +120,8 @@ function updatePreview() {
 
     var editorPreview = document.getElementById("editor-preview");
     editorPreview.innerHTML = "";
-    editorPreview.appendChild(getWindSvg(parsedWind, -4));
+    editorPreview.appendChild(getWindSvg(parsedWind, -4, window.innerWidth / 4 - 20, window.innerHeight - 166, 2));
+    console.log("bchbhscb")
 }
 
 function deleteClick() {
@@ -214,6 +220,9 @@ function editorSetReadonlyState(rs) {
 }
 
 function windEditorStart(iscreate) {
+    addEventListener("resize", updatePreview);
+    updatePreview();
+
     shareBtn.hidden = true;
     if (iscreate) {
         editIndex = -1
@@ -256,8 +265,6 @@ function windEditorStart(iscreate) {
             }
         }
     }
-
-    updatePreview();
 }
 var newwind;
 function loadWindFromURL() {

@@ -177,18 +177,18 @@ function windDataInit() {
     windDataContainer.appendChild(getWindSvg(drawedWind, turncount));
 }
 
-function getWindSvg(wind, turncount) {
-    const viewBoxHeight = 500;
+function getWindSvg(wind, turncount, width = 200, height = 500, uiScale = 1) {
+    // width -= 30;
     const moveLeft = 20;
-    const scaleX = (200 - moveLeft - 10) / 40;
+    const scaleX = (width - moveLeft - 10 * uiScale) / 40;
     const lineWidth = scaleX * 20;
-    var fontSize = 10;
+    var fontSize = 10 * uiScale;
 
     var size = wind.length;
-    var step = (viewBoxHeight - fontSize * 2) / (size - 1.6);
+    var step = (height - fontSize * 2) / (size - 1.6);
 
     var windDataSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, 200, viewBoxHeight));
+    windDataSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, width, height));
 
     var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     windDataSvg.appendChild(group);
@@ -281,7 +281,7 @@ function getWindSvg(wind, turncount) {
     newRect.setAttribute("x", moveLeft - 5)
     newRect.setAttribute("y", ((wind.length * step) + (fontSize * 2)) - (turncount + 3) * step);
     newRect.setAttribute("height", step);
-    newRect.setAttribute("width", 200 - moveLeft - 10 + 10);
+    newRect.setAttribute("width", width - moveLeft - 10 + 10);
     newRect.setAttribute("fill", "#fd7e14");
     newRect.setAttribute("fill-opacity", "0.45");
     newRect.setAttribute("ry", "3");

@@ -223,6 +223,10 @@
     .finished .finish-controls {
       display: flex;
     }
+
+    #editor-preview > svg {
+      height: 100%;
+    }
   </style>
 </head>
 
@@ -407,7 +411,7 @@
     </div>
   </div>
   <div class="modal fade  modal-lg" id="wind-editor-window" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5">Wind Editor</h1>
@@ -418,8 +422,8 @@
             </button>
           </div>
         </div>
-        <div class="modal-body row">
-          <div class="col">
+        <div class="modal-body row overflow-hidden">
+          <div class="col" style="height: 100%; overflow: auto;">
             <div class="alert alert-warning" id="wind-readonly-text">
               This is predifined wind preset. It cannot be changed. Use 'Create Wind' button to
               create custom wind scenario.
@@ -453,7 +457,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4" id="editor-preview" style="height: 100%;"></div>
+          <div class="col-3 h-100" id="editor-preview" style="height: 100%;"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="editor-save" data-bs-dismiss="modal">
