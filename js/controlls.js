@@ -251,11 +251,17 @@ function updateControls() {
     console.log(newStartPos);
     for (var i = 0; i < newStartPos.length; i++) {
         newStartPos[i].posLabel.innerText = i + 1;
-        newStartPos[i].timeLabel.innerText =
-            Math.floor(newStartPos[i].finished / 60) + ":" +
-            Math.round(newStartPos[i].finished % 60);
+        newStartPos[i].timeLabel.innerText = formatFinishTime(newStartPos[i].finished);
     }
 }
+
+function formatFinishTime(time) {
+    var min = Math.floor(time / 60);
+    var sec = Math.floor(time % 60);
+
+    return min + ":" + Math.floor(sec / 10) + Math.floor(sec % 10);
+}
+
 var uniqueHtmlIdIdx = 0;
 function getRandomId() {
     uniqueHtmlIdIdx++;

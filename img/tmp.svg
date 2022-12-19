@@ -1,0 +1,11 @@
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path transform="scale(0.3) translate(9, 10) rotate(-15)" id="boat"
+      d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor"
+      stroke-width="1" fill="none" fill-opacity=".5" />
+  </defs>
+  <path d="M 0 15 L 16 11 M 0 11 L 16 7 M 0 7 L 16 3 M 0 3 L 16 -1 M 16 15 L 0 19" fill="none" stroke="currentColor"
+    stroke-width="0.1" />
+  <use href="#boat" transform="translate(-1, 7) rotate(-45)"></use>
+  <use href="#boat" transform="translate(7, 7) rotate(-45)" />
+</svg>

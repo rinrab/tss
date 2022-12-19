@@ -24,6 +24,12 @@
       position: unset;
     }
 
+    .bi {
+      display: inline-block;
+      vertical-align: -.125em;
+      fill: currentcolor;
+    }
+
     .game-elem {
       position: absolute;
     }
@@ -38,7 +44,8 @@
     #wind {
       transition: all 0.5s ease-in-out;
       width: 50px;
-      left: 10px;
+      left: 20px;
+      transform-origin: center 40%;
     }
 
     #boats>.game-elem {
@@ -161,7 +168,7 @@
     }
 
     #wind-label {
-      left: 40px;
+      left: 50px;
       top: 30px;
       font-family: monospace;
       text-align: right;
@@ -254,7 +261,7 @@
       </symbol>
     </defs>
   </svg>
-  <div class="row h-100">
+  <div class="row h-100 g-0">
     <div style="width: calc(100vh * 200 / 500); padding: 0;" id="wind-data-container">
       <svg xmlns="http://www.w3.org/2000/svg" id="wind-data-svg" class="h-100"></svg>
     </div>
@@ -294,7 +301,8 @@
             Start procedure
             <label style="width: 10px;"></label>
           </div>
-          <div id="game-alert" class="alert alert-info text-center">Race:
+          <div id="game-alert" class="alert alert-info text-center">
+            Race:
             <span id="wind-scenario-name-inrace-alert"></span>
             <label style="width: 10px;"></label>
             <input type="image" class="btn btn-outline-primary btn-sm" id="btn-nowember" src="img/november.svg">
@@ -304,9 +312,13 @@
           <div class="input-group mb-3">
             <select id="select-wind" class="form-select"></select>
             <button id="edit-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Edit wind">&#9998;</button>
+              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Edit wind">
+              &#9998;
+            </button>
             <button id="add-wind-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">+</button>
+              data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">
+              +
+            </button>
           </div>
         </div>
         <div class="w-100 mb-2 input-group start-control-header">
@@ -317,37 +329,78 @@
           <button class="btn btn-outline-primary" id="back-btn">Back</button>
           <button class="btn btn-outline-primary" id="btn-done">Next</button>
         </div>
-        <div class="flex-grow-1 flex-shrink-1 overflow-auto">
+        <div class="flex-grow-1 flex-shrink-1 mb-2 overflow-auto">
           <div id="controlls" style="width: 100%;">
             <div id="last-controll" class="mb-2"></div>
           </div>
         </div>
         <div class="settings-container">
-          <div class="w-100 m-0">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-tracks" />
-              <label class="form-check-label" for="set-show-tracks">Show tracks</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-boats" />
-              <label class="form-check-label" for="set-show-boats">Show boats</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="set-show-lanelines" />
-              <label class="form-check-label" for="set-show-lanelines">Show lanelines</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="set-show-equal-lines" />
-              <label class="form-check-label show-future-wind" for="set-show-equal-lines">Show equal lines</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="show-future-wind" />
-              <label class="form-check-label show-future-wind" for="show-future-wind">Show future wind</label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" id="full-screen" />
-              <label class="form-check-label" for="full-screen">Fullscreen</label>
-            </div>
+          <div class="btn-group w-100" role="group" aria-label="Settings">
+            <input class="btn-check" type="checkbox" id="set-show-tracks" />
+            <label class="btn btn-outline-secondary" for="set-show-tracks"
+                   title="Show tracks">
+               <svg xmlns="http://www.w3.org/2000/svg" style="scale: 1.5;" width="16" height="16" viewBox="0 0 16 16" class="bi">
+                <path d="m6.3 15-.5-.4-.5-.4-.5-.4.5-.4.5-.3.6-.3.6-.3.6-.3.6-.3.6-.3.7-.2-.3-.4-.4-.4-.4-.4-.4-.4-.4-.4-.5-.4-.4-.4-.5-.4-.5-.3-.5-.4.5-.4.5-.4.5-.4.6-.3.5-.4.5-.4.4-.4"
+                      fill="none" stroke="currentColor" stroke-width="0.5"></path>
+                <ellipse rx="0.7" cx="2" cy="15"></ellipse>
+                <ellipse rx="0.7" cx="14" cy="15"></ellipse>
+                <ellipse rx="0.7" cx="8" cy="2"></ellipse>
+              </svg>
+            </label>
+
+            <input class="btn-check" type="checkbox" id="set-show-boats" />
+            <label class="btn btn-outline-secondary" for="set-show-boats"
+                   title="Show boats">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-5.6247 -10 11.2494 18.5" style="scale: 1.5; rotate: 45deg" class="bi bi-arrows-fullscreen">
+                <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor" stroke-width="1" fill="none" />
+                <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="currentColor" fill="none" stroke-width="1" />
+                <ellipse rx="1" ry="1" cx="0" cy="-6" />
+              </svg>
+            </label>
+
+            <input class="btn-check" type="checkbox" id="set-show-lanelines" />
+            <label class="btn btn-outline-secondary" for="set-show-lanelines"
+                   title="Show lanelines">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="scale: 1.5" viewBox="-8 0 16 16" class="bi">
+                <path d="M -8 12 L 0 4 L 8 12" stroke="currentColor" stroke-width=".5" fill="none"></path>
+                <ellipse rx="1.5" ry="1.5" cx="0" cy="4" fill="currentColor"></ellipse>
+              </svg>      
+            </label>
+
+            <input type="checkbox" class="btn-check" id="set-show-equal-lines" />
+            <label class="btn btn-outline-secondary show-future-wind"
+                   for="set-show-equal-lines"
+                   title="Show equal lines">
+              <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style="scale: 1.5" class="bi">
+                <defs>
+                  <path transform="scale(0.3) translate(9, 10) rotate(-15)" id="boat"
+                    d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor"
+                    stroke-width="3" fill="none" />
+                </defs>
+                <path d="M 0 15 L 16 11 M 0 11 L 16 7 M 0 7 L 16 3 M 0 3 L 16 -1 M 16 15 L 0 19" fill="none" stroke="currentColor"
+                  stroke-width="0.5" />
+                <use href="#boat" transform="translate(-1, 7) rotate(-45)"></use>
+                <use href="#boat" transform="translate(7, 7) rotate(-45)" />
+              </svg>      
+            </label>
+
+            <input type="checkbox" class="btn-check" id="show-future-wind" />
+            <label class="btn btn-outline-secondary show-future-wind"
+                   for="show-future-wind"
+                   title="Show future wind">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="scale: 1.5" width="16" height="16" class="bi">
+                <path id="arrow" d="M 3 2 L 3 10 M 7 2 L 7 10 M 1 11 L 5 15 L 9 11" 
+                      transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
+                <use href="#arrow" transform="scale(0.5) translate(23, 0) rotate(20)"></use>
+              </svg>
+            </label>
+            <input type="checkbox" class="btn-check" id="full-screen" />
+            <label class="btn btn-outline-secondary" for="full-screen"
+                   title="Fullscreen mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
+              </svg>
+            </label>
           </div>
         </div>
       </div>
@@ -360,7 +413,9 @@
           <h1 class="modal-title fs-5">Wind Editor</h1>
           <div class="mr-0">
             <button class="btn btn-outline-primary" id="share-btn" data-bs-toggle="tooltip" data-bs-trigger="none"
-              data-bs-title="Link copied to clipboard!">Share</button>
+              data-bs-title="Link copied to clipboard!">
+              Share
+            </button>
           </div>
         </div>
         <div class="modal-body row">
@@ -401,11 +456,14 @@
           <div class="col-4" id="editor-preview" style="height: 100%;"></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="editor-save" data-bs-dismiss="modal">Save
-            changes</button>
+          <button type="button" class="btn btn-primary" id="editor-save" data-bs-dismiss="modal">
+            Save changes
+          </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-danger" style="position: absolute; left: 10px;" id="delete-btn"
-            data-bs-dismiss="modal">Delete</button>
+            data-bs-dismiss="modal">
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -468,6 +526,19 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+  <div class="toast-container position-fixed top-0 start-0 p-3">
+    <div id="too-many-boats-alert" class="toast" data-bs-autohide="true" data-bs-delay="4000">
+      <div class="toast-header">
+        <strong class="me-auto">Too many boats</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        You can't add more players.
       </div>
     </div>
   </div>
