@@ -265,6 +265,8 @@ function windEditorStart(iscreate) {
             }
         }
     }
+
+    checkErrors();
 }
 var newwind;
 function loadWindFromURL() {
