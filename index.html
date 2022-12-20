@@ -46,6 +46,7 @@
       width: 50px;
       left: 20px;
       transform-origin: center 40%;
+      position: fixed;
     }
 
     #boats>.game-elem {
@@ -173,6 +174,7 @@
       font-family: monospace;
       text-align: right;
       width: 100px;
+      position: fixed;
     }
 
     .start .race-control-header,
@@ -265,7 +267,7 @@
     <div style="width: calc(100vh * 200 / 500); padding: 0;" id="wind-data-container">
       <svg xmlns="http://www.w3.org/2000/svg" id="wind-data-svg" class="h-100"></svg>
     </div>
-    <div class="col p-0 position-relative">
+    <div class="col p-0 position-relative overflow-auto">
       <div id="game-cont" class="position-absolute">
         <div id="game-area" style="position: relative;  height: 100%; width: 100%;">
           <svg viewBox="0 0 1 1" id="background" style="height: 100%;  background-color: #ebeaff;"></svg>
@@ -335,6 +337,9 @@
           </div>
         </div>
         <div class="settings-container">
+          <div class="w-100">
+            <input type="range" class="form-range" id="scale-range" min="1" max="3" step="0.01">
+          </div>
           <div class="btn-group w-100" role="group" aria-label="Settings">
             <input class="btn-check" type="checkbox" id="set-show-tracks" />
             <label class="btn btn-outline-secondary" for="set-show-tracks"

@@ -344,11 +344,13 @@ function renderGridSize() {
     var w = gamecont.clientWidth;
     var h = gamecont.clientHeight;
     if (h / game.height < w / game.width) {
-        gamearea.style.scale = h / (game.height * gridsize);
+        gamearea.style.scale = h / (game.height * gridsize) * scale;
         gamearea.style.top = formatCssPx(0);
     } else {
-        gamearea.style.scale = w / (game.width * gridsize);
-        gamearea.style.top = formatCssPx((h - game.height * gamearea.style.scale * gridsize) / 2);
+        gamearea.style.scale = w / (game.width * gridsize) * scale;
+        var top = (h - game.height * gamearea.style.scale * gridsize) / 2
+        console.log(top, top - top * Math.max(scale - 1, 0))
+        gamearea.style.top = formatCssPx(top - top * (scale - 2));
     }
     gamearea.style.height = formatCssPx(game.height * gridsize);
     gamearea.style.width = formatCssPx(game.width * gridsize);
@@ -536,7 +538,15 @@ function init() {
     windDataInit();
 
     applySettings();
+
+    var scaleInput = document.getElementById("scale-range");
+    scaleInput.addEventListener("input", function() {
+        scale = parseFloat(scaleInput.value);
+        renderGridSize();
+    });
 }
+
+var scale = 1;
 
 function openFullscreen(elem) {
     if (elem.requestFullscreen) {
