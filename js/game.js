@@ -349,7 +349,6 @@ function renderGridSize() {
     } else {
         gamearea.style.scale = w / (game.width * gridsize) * scale;
         var top = (h - game.height * gamearea.style.scale * gridsize) / 2
-        console.log(top, top - top * Math.max(scale - 1, 0))
         gamearea.style.top = formatCssPx(top - top * (scale - 2));
     }
     gamearea.style.height = formatCssPx(game.height * gridsize);
