@@ -539,12 +539,6 @@ function init() {
 
     applySettings();
 
-    var scaleInput = document.getElementById("scale-range");
-    scaleInput.addEventListener("input", function () {
-        scale = parseFloat(scaleInput.value);
-        renderGridSize();
-    });
-
     document.getElementById("game-cont").parentElement.addEventListener("wheel", resize)
     document.getElementById("game-cont").parentElement.addEventListener("mousemove", move)
 }
