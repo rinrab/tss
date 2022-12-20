@@ -238,11 +238,15 @@ function windEditorStart(iscreate) {
     }
 
     if (editIndex == -1) {
-        nameinput.value = "User Defined " + (windlist.names.length + 1);
-        // TODO: | разпознование количетва User defined чтобы не было 
-        // TODO: | * User defined 1
-        // TODO: | * Named wind
-        // TODO: | * User defined 3
+        var userDefinedIndex = 1;
+        for (var i = 0; i < windlist.names.length; i++) {
+            if (windlist.names[i].includes("User Defined")) {
+                var index = parseInt(windlist.names[i].substring("User Defined ".length))
+                userDefinedIndex = index + 1;
+            }
+            console.log(i)
+        }
+        nameinput.value = "User Defined " + userDefinedIndex;
 
         windtext.value = "0, 0, 0";
 
