@@ -121,7 +121,6 @@ function updatePreview() {
     var editorPreview = document.getElementById("editor-preview");
     editorPreview.innerHTML = "";
     editorPreview.appendChild(getWindSvg(parsedWind, -4, window.innerWidth / 4 - 20, window.innerHeight - 166, 1.5));
-    console.log("bchbhscb")
 }
 
 function deleteClick() {
@@ -244,7 +243,6 @@ function windEditorStart(iscreate) {
                 var index = parseInt(windlist.names[i].substring("User Defined ".length))
                 userDefinedIndex = index + 1;
             }
-            console.log(i)
         }
         nameinput.value = "User Defined " + userDefinedIndex;
 
@@ -279,7 +277,6 @@ function loadWindFromURL() {
     if (hash[0] == "w") {
         hash = hash.replace("w", "");
         hash = decodeURI(hash);
-        console.log(hash);
         try {
             newwind = JSON.parse(hash);
             var addWindModal = new bootstrap.Modal("#add-wind-url-window");
