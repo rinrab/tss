@@ -540,10 +540,29 @@ function init() {
     applySettings();
 
     var scaleInput = document.getElementById("scale-range");
-    scaleInput.addEventListener("input", function() {
+    scaleInput.addEventListener("input", function () {
         scale = parseFloat(scaleInput.value);
         renderGridSize();
     });
+
+    document.getElementById("game-cont").parentElement.addEventListener("wheel", resize)
+    document.getElementById("game-cont").parentElement.addEventListener("mousemove", move)
+}
+
+// scroll = { x: 0, y: 0 }
+
+function resize(e) {
+    e.preventDefault();
+    var deltaScale = Math.min(Math.max(scale - e.deltaY / 300, 1), 3)
+    scale = deltaScale;
+    renderGridSize()
+}
+
+function move(e) {
+    if (e.buttons == 1) {
+        document.getElementById("game-cont").parentElement.scrollLeft -= e.movementX;
+        document.getElementById("game-cont").parentElement.scrollTop -= e.movementY;
+    }
 }
 
 var scale = 1;

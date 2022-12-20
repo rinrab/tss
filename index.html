@@ -131,6 +131,11 @@
     #game-area {
       transform-origin: left top;
       overflow: hidden;
+      cursor: grab;
+    }
+
+    #game-area:active {
+      cursor: grabbing;
     }
 
     #game-area svg {
@@ -267,7 +272,7 @@
     <div style="width: calc(100vh * 200 / 500); padding: 0;" id="wind-data-container">
       <svg xmlns="http://www.w3.org/2000/svg" id="wind-data-svg" class="h-100"></svg>
     </div>
-    <div class="col p-0 position-relative overflow-auto">
+    <div class="col p-0 position-relative overflow-hidden">
       <div id="game-cont" class="position-absolute">
         <div id="game-area" style="position: relative;  height: 100%; width: 100%;">
           <svg viewBox="0 0 1 1" id="background" style="height: 100%;  background-color: #ebeaff;"></svg>
