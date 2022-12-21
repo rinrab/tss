@@ -231,7 +231,6 @@ function editorSetReadonlyState(rs) {
 
 function windEditorStart(iscreate) {
     addEventListener("resize", updatePreview);
-    updatePreview();
 
     shareBtn.hidden = true;
     if (iscreate) {
@@ -280,6 +279,7 @@ function windEditorStart(iscreate) {
     }
 
     checkErrors();
+    updatePreview();
 }
 var newwind;
 function loadWindFromURL() {
