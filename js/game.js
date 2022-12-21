@@ -538,24 +538,27 @@ function init() {
 
     applySettings();
 
-    document.getElementById("game-cont").parentElement.addEventListener("wheel", resize)
-    document.getElementById("game-cont").parentElement.addEventListener("mousemove", move)
+    zoomArea = document.getElementById("game-cont").parentElement;
+    zoomArea.addEventListener("wheel", resize)
+    zoomArea.addEventListener("mousemove", move)
 }
+
+var zoomArea;
 
 // scroll = { x: 0, y: 0 }
 
 function resize(e) {
     e.preventDefault();
     var deltaScale = Math.min(Math.max(scale - e.deltaY / 300, 1), 3);
-    document.getElementById("game-cont").parentElement.scrollLeft = 20 * gridsize * scale;
+    zoomArea.scrollLeft = 20 * gridsize * scale;
     scale = deltaScale;
     renderGridSize()
 }
 
 function move(e) {
     if (e.buttons == 1) {
-        document.getElementById("game-cont").parentElement.scrollLeft -= e.movementX;
-        document.getElementById("game-cont").parentElement.scrollTop -= e.movementY;
+        zoomArea.scrollLeft -= e.movementX;
+        zoomArea.scrollTop -= e.movementY;
     }
 }
 
