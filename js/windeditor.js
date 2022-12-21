@@ -75,9 +75,11 @@ function checkErrors() {
     var c = 0;
     for (var i = 0; i < windtmp.length; i++) {
         if (isNaN(parseInt(windtmp[i]))) {
-            errors[errors.length] = {
-                type: errorTypes.notnumber, text: '"' + windtmp[i] +
-                    '" ' + errortexts.notnumber, char: c
+            if (windtmp[i] != "") {
+                errors[errors.length] = {
+                    type: errorTypes.notnumber, text: '"' + windtmp[i] +
+                        '" ' + errortexts.notnumber, char: c
+                }
             }
         }
         c += windtmp[i].length + 1;
