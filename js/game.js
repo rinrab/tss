@@ -64,6 +64,7 @@ function turn() {
     }, 200);
 
     drawAll();
+    updateSaveGame();
 }
 
 function redrawTracks() {
@@ -536,6 +537,14 @@ function init() {
     windDataInit();
 
     applySettings();
+}
+
+function updateSaveGame() {
+    var saveGameBtn = document.getElementById("save-game-btn");
+
+    var file = new Blob([JSON.stringify(game)], { type: "text/json" });
+    saveGameBtn.href = URL.createObjectURL(file);
+    saveGameBtn.download = "name";
 }
 
 function openFullscreen(elem) {

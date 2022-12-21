@@ -37,6 +37,7 @@ function apply() {
     document.body.className = "race";
 
     renderGridSize();
+    updateSaveGame();
 }
 
 function addControll(player) {
