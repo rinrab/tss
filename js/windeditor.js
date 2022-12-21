@@ -99,11 +99,13 @@ function checkErrors() {
                 validtext.innerText += errors[i].text + "\n";
             }
         }
-        validtext.className = "invalid-feedback d-block";
+        validtext.classList.replace("valid-feedback", "invalid-feedback");
     } else {
+        validtext.classList.replace("invalid-feedback", "valid-feedback");
         validtext.innerText = "Wind is correct";
-        validtext.className = "valid-feedback d-block";
     }
+
+    document.getElementById("wind-count").innerText = windtmp.length;
 }
 
 function updatePreview() {
