@@ -106,10 +106,6 @@ function checkErrors() {
         validtext.classList.replace("invalid-feedback", "valid-feedback");
         validtext.innerText = "Wind is correct";
     }
-
-    var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
-
-    document.getElementById("wind-count").innerText = `${windtmp.length} / ${size}`;
 }
 
 function updatePreview() {
@@ -125,6 +121,10 @@ function updatePreview() {
             parsedWind.push(0);
         }
     }
+
+    var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
+
+    document.getElementById("wind-count").innerText = `${windtmp.length} / ${size}`;
 
     var editorPreview = document.getElementById("editor-preview");
     editorPreview.innerHTML = "";
