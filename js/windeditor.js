@@ -119,6 +119,8 @@ function updatePreview() {
         var parsedValue = parseInt(windtmp[i % windtmp.length]);
         if (!isNaN(parsedValue)) {
             parsedWind.push(parsedValue);
+        } else {
+            parsedWind.push(0);
         }
     }
 
@@ -146,7 +148,12 @@ function editorSaveClick() {
     newwind.type = windTypes.userdefined;
     newwind.wind = splitWind(windtext.value);
     for (var i = 0; i < newwind.wind.length; i++) {
-        newwind.wind[i] = parseInt(newwind.wind[i])
+        var parsedValue = parseInt(newwind.wind[i]);
+        if (isNaN(parsedValue)) {
+            newwind.wind[i] = 0;
+        } else {
+            newwind.wind[i] = parsedValue;
+        }
     }
     newwind.width = formatNumber(parseInt(mapWidth.value), 40);
     newwind.height = formatNumber(parseInt(mapHeight.value), 30);
