@@ -546,7 +546,8 @@ function init() {
 
 function resize(e) {
     e.preventDefault();
-    var deltaScale = Math.min(Math.max(scale - e.deltaY / 300, 1), 3)
+    var deltaScale = Math.min(Math.max(scale - e.deltaY / 300, 1), 3);
+    document.getElementById("game-cont").parentElement.scrollLeft = 20 * gridsize * scale;
     scale = deltaScale;
     renderGridSize()
 }
