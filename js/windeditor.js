@@ -107,7 +107,9 @@ function checkErrors() {
         validtext.innerText = "Wind is correct";
     }
 
-    document.getElementById("wind-count").innerText = windtmp.length;
+    var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
+
+    document.getElementById("wind-count").innerText = `${windtmp.length} / ${size}`;
 }
 
 function updatePreview() {
