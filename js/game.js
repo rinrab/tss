@@ -584,11 +584,8 @@ function init() {
 }
 
 function updateSaveGame() {
-    var saveGameBtn = document.getElementById("save-game-btn");
-
-    var file = new Blob([JSON.stringify(game)], { type: "text/json" });
-    saveGameBtn.href = URL.createObjectURL(file);
-    saveGameBtn.download = "name";
+    var file = new Blob([JSON.stringify(game)], { type: "application/json" });
+    setSaveGameBlob(file, `${game.windscenario.name}.json`);
 }
 
 function openFullscreen(elem) {

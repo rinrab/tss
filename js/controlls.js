@@ -1,3 +1,17 @@
+function setSaveGameBlob(blob, name) {
+    var saveGameBtn = document.getElementById("save-game-btn");
+    var url = URL.createObjectURL(blob);
+    
+    saveGameBtn.href = url;
+
+    if (downloadUrl) {
+        URL.revokeObjectURL(downloadUrl);
+    }
+    downloadUrl = url;
+    saveGameBtn.download = name;
+}
+
+var downloadUrl;
 
 function createContolls() {
     document.getElementById("select-wind").addEventListener("change", function () {
