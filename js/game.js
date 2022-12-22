@@ -551,10 +551,18 @@ function init() {
             var parsedData = JSON.parse(fileReader.result);
             console.log(parsedData);
             var newGame = new Game();
+
             newGame.marks = parsedData.marks;
+            newGame.width = parsedData.width;
+            newGame.height = parsedData.height;
+            newGame.wind = parsedData.wind;
+            newGame.turncount = parsedData.turncount;
+
             newGame.players = [];
+
             document.getElementById("controlls").innerHTML = "";
             document.getElementById("boats").innerHTML = "";
+
             for (var i in parsedData.players) {
                 var parsedPlayer = parsedData.players[i];
                 var player = new Boat();
@@ -563,22 +571,24 @@ function init() {
                 player.rotation = parsedPlayer.rotation;
                 player.tack = parsedPlayer.tack;
                 player.color = parsedPlayer.color;
-                player.turns = parsedPlayer.turns;
+                player.turns = [];
+                for (var j in parsedPlayer.turns) {
+                    player.turns.push(structuredClone(parsedPlayer.turns[j]));
+                }
+                player.finished = parsedPlayer.finished;
                 player.html = getNewBoat(player);
                 document.getElementById("boats").appendChild(player.html);
                 newGame.players[i] = player;
                 addControll(player);
             }
-            newGame.width = parsedData.width;
-            newGame.height = parsedData.height;
-            newGame.wind = parsedData.wind;
-            newGame.turncount = parsedData.turncount;
             console.log(newGame);
             game = newGame;
+            document.body.className = "race";
             renderGridSize();
             redrawTracks();
             drawAll();
             applySettings();
+            updateControls();
         }, false);
     })
 }
