@@ -22,15 +22,7 @@ var startLineSizeInput;
 
 var shareBtn;
 
-addEventListener("load", function() {
-    document.getElementById("load-wind-save").addEventListener("click", function () {
-        console.log(newwind)
-        wind[wind.length] = newwind;
-        saveWind();
-        windChange();
-        addWind();
-    });
-});
+var validtext;
 
 function windInit() {
     if (localStorage.getItem(localStorageNames.windlist) == null) {
@@ -45,42 +37,10 @@ function windInit() {
     loadWindFromURL();
     nameinput = document.getElementById("editor-wind-name");
     windtext = document.getElementById("editor-wind");
-    var validtext = document.getElementById("wind-valid");
+    validtext = document.getElementById("wind-valid");
     windtext.addEventListener("input", function () {
-        var windtmp = splitWind(windtext.value);
-        var errors = [];
-        var c = 0;
-        for (var i = 0; i < windtmp.length; i++) {
-            if (isNaN(parseInt(windtmp[i]))) {
-                errors[errors.length] = {
-                    type: errorTypes.notnumber, text: '"' + windtmp[i] +
-                        '" ' + errortexts.notnumber, char: c
-                }
-            }
-            c += windtmp[i].length + 1;
-        }
-
-        if (errors.length > 0) {
-            var notnambercount = 0;
-            var numberspaces = 0;
-            for (var i = 0; i < errors.length; i++) {
-                if (errors[i].type == errorTypes.numberisspace) {
-                    numberspaces++;
-                }
-                notnambercount++;
-            }
-            validtext.innerText =
-                `You have ${errors.length} error${(errors.length > 1) ? "s" : ""} in wind.\n`;
-            for (var i = 0; i < errors.length; i++) {
-                if (errors[i].type == errorTypes.notnumber) {
-                    validtext.innerText += errors[i].text + "\n";
-                }
-            }
-            validtext.className = "invalid-feedback d-block";
-        } else {
-            validtext.innerText = "Wind is correct";
-            validtext.className = "valid-feedback d-block";
-        }
+        checkErrors();
+        updatePreview();
     });
 
     saveWindBtn = document.getElementById("editor-save");
@@ -92,6 +52,83 @@ function windInit() {
     shareBtn.addEventListener("click", shareBtnClick);
 
     windReadOnlyText = document.getElementById("wind-readonly-text");
+
+    mapHeight.addEventListener("change", updatePreview);
+
+    document.getElementById("load-wind-save").addEventListener("click", function () {
+        console.log(newwind)
+        wind[wind.length] = newwind;
+        saveWind();
+        windChange();
+        addWind();
+    });
+
+    var editModal = document.getElementById("wind-editor-window");
+    editModal.addEventListener("hidden.bs.modal", function () {
+        removeEventListener("resize", updatePreview);
+    })
+}
+
+function checkErrors() {
+    var windtmp = splitWind(windtext.value);
+    var errors = [];
+    var c = 0;
+    for (var i = 0; i < windtmp.length; i++) {
+        if (isNaN(parseInt(windtmp[i]))) {
+            if (windtmp[i] != "") {
+                errors[errors.length] = {
+                    type: errorTypes.notnumber, text: '"' + windtmp[i] +
+                        '" ' + errortexts.notnumber, char: c
+                }
+            }
+        }
+        c += windtmp[i].length + 1;
+    }
+
+    if (errors.length > 0) {
+        var notnambercount = 0;
+        var numberspaces = 0;
+        for (var i = 0; i < errors.length; i++) {
+            if (errors[i].type == errorTypes.numberisspace) {
+                numberspaces++;
+            }
+            notnambercount++;
+        }
+        validtext.innerText =
+            `You have ${errors.length} error${(errors.length > 1) ? "s" : ""} in wind.\n`;
+        for (var i = 0; i < errors.length; i++) {
+            if (errors[i].type == errorTypes.notnumber) {
+                validtext.innerText += errors[i].text + "\n";
+            }
+        }
+        validtext.classList.replace("valid-feedback", "invalid-feedback");
+    } else {
+        validtext.classList.replace("invalid-feedback", "valid-feedback");
+        validtext.innerText = "Wind is correct";
+    }
+}
+
+function updatePreview() {
+    var parsedWind = [];
+    var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
+    var windtmp = splitWind(windtext.value);
+
+    for (var i = 0; i < size; i++) {
+        var parsedValue = parseInt(windtmp[i % windtmp.length]);
+        if (!isNaN(parsedValue)) {
+            parsedWind.push(parsedValue);
+        } else {
+            parsedWind.push(0);
+        }
+    }
+
+    var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
+
+    document.getElementById("wind-count").innerText = `${windtmp.length} / ${size}`;
+
+    var editorPreview = document.getElementById("editor-preview");
+    editorPreview.innerHTML = "";
+    editorPreview.appendChild(getWindSvg(parsedWind, -4, window.innerWidth / 4 - 20, window.innerHeight - 166, 1.5));
 }
 
 function deleteClick() {
@@ -113,7 +150,12 @@ function editorSaveClick() {
     newwind.type = windTypes.userdefined;
     newwind.wind = splitWind(windtext.value);
     for (var i = 0; i < newwind.wind.length; i++) {
-        newwind.wind[i] = parseInt(newwind.wind[i])
+        var parsedValue = parseInt(newwind.wind[i]);
+        if (isNaN(parsedValue)) {
+            newwind.wind[i] = 0;
+        } else {
+            newwind.wind[i] = parsedValue;
+        }
     }
     newwind.width = formatNumber(parseInt(mapWidth.value), 40);
     newwind.height = formatNumber(parseInt(mapHeight.value), 30);
@@ -190,6 +232,8 @@ function editorSetReadonlyState(rs) {
 }
 
 function windEditorStart(iscreate) {
+    addEventListener("resize", updatePreview);
+
     shareBtn.hidden = true;
     if (iscreate) {
         editIndex = -1
@@ -205,11 +249,14 @@ function windEditorStart(iscreate) {
     }
 
     if (editIndex == -1) {
-        nameinput.value = "User Defined " + (windlist.names.length + 1);
-        // TODO: | разпознование количетва User defined чтобы не было 
-        // TODO: | * User defined 1
-        // TODO: | * Named wind
-        // TODO: | * User defined 3
+        var userDefinedIndex = 1;
+        for (var i = 0; i < windlist.names.length; i++) {
+            if (windlist.names[i].includes("User Defined")) {
+                var index = parseInt(windlist.names[i].substring("User Defined ".length))
+                userDefinedIndex = index + 1;
+            }
+        }
+        nameinput.value = "User Defined " + userDefinedIndex;
 
         windtext.value = "0, 0, 0";
 
@@ -232,6 +279,9 @@ function windEditorStart(iscreate) {
             }
         }
     }
+
+    checkErrors();
+    updatePreview();
 }
 var newwind;
 function loadWindFromURL() {
@@ -240,7 +290,6 @@ function loadWindFromURL() {
     if (hash[0] == "w") {
         hash = hash.replace("w", "");
         hash = decodeURI(hash);
-        console.log(hash);
         try {
             newwind = JSON.parse(hash);
             var addWindModal = new bootstrap.Modal("#add-wind-url-window");

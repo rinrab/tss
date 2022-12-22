@@ -223,6 +223,10 @@
     .finished .finish-controls {
       display: flex;
     }
+
+    #editor-preview > svg {
+      height: 100%;
+    }
   </style>
 </head>
 
@@ -432,7 +436,7 @@
     </div>
   </div>
   <div class="modal fade  modal-lg" id="wind-editor-window" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5">Wind Editor</h1>
@@ -443,39 +447,49 @@
             </button>
           </div>
         </div>
-        <div class="modal-body">
-          <div class="alert alert-warning" id="wind-readonly-text">
-            This is predifined wind preset. It cannot be changed. Use 'Create Wind' button to
-            create custom wind scenario.
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Scenario name</label>
-            <input type="text" class="form-control" id="editor-wind-name" placeholder="i.e. &#34;pendulum 1&#34" />
-          </div>
-          <div class="mb-0">
-            <label class="form-label">Wind change</label>
-            <textarea class="form-control" id="editor-wind" rows="7" placeholder="i.e. 5, 10, 15, 20, 15...">
-            </textarea>
-          </div>
-          <div class="mb-3">
-            <div class="invalid-feedback" id="wind-valid"></div>
-          </div>
-          <div class="mb-3">
-            <div class="row">
-              <div class="col">
-                <label class="form-label">Map width</label>
-                <input type="number" value="40" min="5" max="200" class="form-control" id="map-width" />
-              </div>
-              <div class="col">
-                <label class="form-label">Map height</label>
-                <input type="number" value="30" min="5" max="200" class="form-control" id="map-height" />
-              </div>
-              <div class="col">
-                <label class="form-label">Start line size</label>
-                <input type="number" value="15" min="5" max="200" class="form-control" id="start-line-size" />
+        <div class="modal-body row overflow-hidden">
+          <div class="col" style="height: 100%; overflow: auto;">
+            <div class="alert alert-warning" id="wind-readonly-text">
+              This is predifined wind preset. It cannot be changed. Use 'Create Wind' button to
+              create custom wind scenario.
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Scenario name</label>
+              <input type="text" class="form-control" id="editor-wind-name" placeholder="i.e. &#34;pendulum 1&#34" />
+            </div>
+            <div class="mb-0">
+              <label class="form-label">Wind change</label>
+              <a data-bs-toggle="tooltip" data-bs-title="Enter wind change. Use space, comma or enter as delimeter." data-bs-placement="right" style="color: var(--bs-primary); margin-left: 0.5rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="bi" width="16" height="16" viewBox="0 0 16 16">
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                </svg>
+              </a>
+              <textarea class="form-control" id="editor-wind" rows="7"
+                placeholder="i.e. 5, 10, 15, 20, 15...">0, 0, 0</textarea>
+            </div>
+            <div class="mb-3 row">
+              <div class="col d-block invalid-feedback" id="wind-valid"></div>
+              <div class="col"></div>
+              <div class="col text-end"><span>Wind length: </span><span id="wind-count"></span></div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <div class="col">
+                  <label class="form-label">Map width</label>
+                  <input type="number" value="40" min="5" max="200" class="form-control" id="map-width" />
+                </div>
+                <div class="col">
+                  <label class="form-label">Map height</label>
+                  <input type="number" value="30" min="5" max="200" class="form-control" id="map-height" />
+                </div>
+                <div class="col">
+                  <label class="form-label">Start line size</label>
+                  <input type="number" value="15" min="5" max="200" class="form-control" id="start-line-size" />
+                </div>
               </div>
             </div>
           </div>
+          <div class="col-3 h-100" id="editor-preview" style="height: 100%;"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="editor-save" data-bs-dismiss="modal">
