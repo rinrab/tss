@@ -35,9 +35,11 @@ function apply() {
         if (player.nameInput.value == "") {
             player.nameText.value = "Player " + (i + 1);
             player.nameTextFinish.value = "Player " + (i + 1);
+            player.name = "Player " + (i + 1);
         } else {
             player.nameText.value = player.nameInput.value;
             player.nameTextFinish.value = player.nameInput.value;
+            player.name = player.nameInput.value;
         }
 
         player.apply();

@@ -22,7 +22,8 @@ class Boat {
     track;
     finished;
     btnLabels;
-    nameText
+    nameText;
+    nameTextFinish;
     posLabel;
     // tack == false: startport
     // tack == true: port
@@ -30,6 +31,8 @@ class Boat {
     startPosInputs;
     isStart;
     controlGroup;
+
+    name;
 
     isStart;
 

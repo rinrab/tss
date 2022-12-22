@@ -580,6 +580,9 @@ function init() {
                 document.getElementById("boats").appendChild(player.html);
                 newGame.players[i] = player;
                 addControll(player);
+                player.name = parsedPlayer.name;
+                player.nameText.value = player.name;
+                player.nameTextFinish.value = player.name;
             }
             console.log(newGame);
             game = newGame;
