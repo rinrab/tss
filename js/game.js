@@ -597,8 +597,13 @@ function init() {
 }
 
 function updateSaveGame() {
-    var file = new Blob([JSON.stringify(game)], { type: "application/json" });
-    setSaveGameBlob(file, `${game.windscenario.name}.json`);
+    if (game.isStart) {
+        document.getElementById("save-game-btn").classList.add("disabled");
+    } else {
+        var file = new Blob([JSON.stringify(game)], { type: "application/json" });
+        setSaveGameBlob(file, `${game.windscenario.name}.json`);
+        document.getElementById("save-game-btn").classList.remove("disabled");
+    }
 }
 
 function openFullscreen(elem) {
