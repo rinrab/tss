@@ -389,6 +389,10 @@ class Game {
         }
     }
 
+    getSaveString() {
+        return JSON.stringify(this);
+    }
+
     constructor() {
         this.currentStartPriority = 0;
         this.isStart = true;
