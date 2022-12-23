@@ -556,6 +556,7 @@ function init() {
             newGame.height = parsedData.height;
             newGame.wind = parsedData.wind;
             newGame.turncount = parsedData.turncount;
+            newGame.isStart = parsedData.isStart;
 
             newGame.players = [];
 
@@ -591,6 +592,7 @@ function init() {
             drawAll();
             applySettings();
             updateControls();
+            updateSaveGame();
         }, false);
     })
 }
