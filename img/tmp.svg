@@ -1,11 +1,26 @@
-<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 -1 16 17" xmlns="http://www.w3.org/2000/svg"
+  style="--s: 1; --c1: #c61a09; --c2: #003988; --bg: #667dff;">
   <defs>
-    <path transform="scale(0.3) translate(9, 10) rotate(-15)" id="boat"
-      d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor"
-      stroke-width="1" fill="none" fill-opacity=".5" />
+    <g id="boat" style="transform: scale(calc(0.25 * var(--s)))">
+      <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="#333"
+        stroke-width=".5" />
+      <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="white" fill="none" style="transform: scaleX(var(--scalex))"
+        stroke-width="1" />
+      <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" />
+    </g>
   </defs>
-  <path d="M 0 15 L 16 11 M 0 11 L 16 7 M 0 7 L 16 3 M 0 3 L 16 -1 M 16 15 L 0 19" fill="none" stroke="currentColor"
-    stroke-width="0.1" />
-  <use href="#boat" transform="translate(-1, 7) rotate(-45)"></use>
-  <use href="#boat" transform="translate(7, 7) rotate(-45)" />
+  <g>
+    <rect width="16" height="17" y="-1" rx="4" fill="var(--bg)" />
+  </g>
+  <g style="stroke: var(--c1)">
+    <path d="M 8 15 L 4 11 L 11 4 L 8 1" fill="none" stroke-linecap="round" stroke-linejoin="round"
+      style="stroke-width: calc(var(--s) * 0.5)" />
+  </g>
+  <g style="stroke: var(--c2)">
+    <path d="M 9 15 L 11 13 Q 6 8 4 6 L 6 4" fill="none" stroke-linecap="round" stroke-linejoin="round"
+      style="stroke-width: calc(var(--s) * 0.5)" />
+  </g>
+  <ellipse rx="1" ry="1" cx="8" cy="1" fill="#333333" stroke="black" stroke-width=".12" />
+  <use href="#boat" style="--scalex: -1; fill: var(--c1)" transform="translate(10, 3) rotate(-45)" fill="#7a1811" />
+  <use href="#boat" style="--scalex: 1; fill: var(--c2)" transform="translate(6, 4) rotate(45)" />
 </svg>
