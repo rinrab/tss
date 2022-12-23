@@ -602,7 +602,7 @@ function updateSaveGame() {
         document.getElementById("save-game-btn").classList.add("disabled");
     } else {
         var file = new Blob([JSON.stringify(game)], { type: "application/json" });
-        setSaveGameBlob(file, `${game.windscenario.name}.json`);
+        setSaveGameBlob(file, `${game.windscenario.name}.tss`);
         document.getElementById("save-game-btn").classList.remove("disabled");
     }
 }
