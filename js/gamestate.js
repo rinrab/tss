@@ -390,6 +390,30 @@ class Game {
     }
 
     getSaveString() {
+        var newGame = {};
+
+        newGame.marks = this.marks;
+        newGame.width = this.width;
+        newGame.height = this.height;
+        newGame.wind = this.wind;
+        newGame.turncount = this.turncount;
+        newGame.isStart = this.isStart;
+
+        newGame.players = [];
+        for (var i in this.players) {
+            var newPlayer = {};
+            var p = this.players[i];
+            newPlayer.x = p.x;
+            newPlayer.y = p.y;
+            newPlayer.rotation = p.rotation;
+            newPlayer.tack = p.tack;
+            newPlayer.color = p.color;
+            newPlayer.name = p.nameText.value;
+            newPlayer.turns = p.turns;
+            newPlayer.finished = p.finished;
+            newPlayer.tack = p.tack;
+        }
+
         return JSON.stringify(this);
     }
 
