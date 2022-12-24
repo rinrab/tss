@@ -412,9 +412,10 @@ class Game {
             newPlayer.turns = p.turns;
             newPlayer.finished = p.finished;
             newPlayer.tack = p.tack;
+            newGame.players.push(newPlayer);
         }
 
-        return JSON.stringify(this);
+        return JSON.stringify(newGame);
     }
 
     constructor() {
