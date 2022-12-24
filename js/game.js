@@ -570,72 +570,35 @@ function loadGameFromFile(fileInput, error) {
     fileReader.readAsText(fileInput.files[0])
     fileReader.result;
     fileReader.addEventListener("load", () => {
-        var parsedData;
-        try {
-            parsedData = JSON.parse(fileReader.result);
-        }
-        catch {
-            error("Parse Error");
-            return;
-        }
-        if (parsedData["magic"] != saveGameMagicString) {
-            error("This file is not support")
-            return;
-        }
-        if (parsedData.version > 1 || parsedData.version == undefined) {
-            error("This version is not support");
-        }
-        console.log(parsedData);
-        var newGame = new Game();
+        newGame = Game.load(fileReader.result, error);
+        if (newGame) {
+            console.log(newGame);
+            game = newGame;
 
-        document.getElementById("wind-scenario-name-inrace-alert").innerText = parsedData.name;
-        newGame.marks = tryGetVal(parsedData.marks, error);
-        newGame.width = parsedData.width;
-        newGame.height = parsedData.height;
-        newGame.wind = parsedData.wind;
-        newGame.turncount = parsedData.turncount;
-        newGame.isStart = parsedData.isStart;
+            document.getElementById("wind-scenario-name-inrace-alert").innerText = game.name;
 
-        newGame.players = [];
+            document.getElementById("controlls").innerHTML = "";
+            document.getElementById("boats").innerHTML = "";
+            document.getElementById("track").innerHTML = "";
+            for (var i in game.players) {
+                var player = game.players[i];
 
-        document.getElementById("controlls").innerHTML = "";
-        document.getElementById("boats").innerHTML = "";
-        document.getElementById("track").innerHTML = "";
-
-        for (var i in parsedData.players) {
-            var parsedPlayer = parsedData.players[i];
-            var player = new Boat();
-            player.x = parsedPlayer.x;
-            player.y = parsedPlayer.y;
-            player.rotation = parsedPlayer.rotation;
-            player.tack = parsedPlayer.tack;
-            player.color = parsedPlayer.color;
-            player.turns = [];
-            for (var j in parsedPlayer.turns) {
-                player.turns.push(structuredClone(parsedPlayer.turns[j]));
+                player.html = getNewBoat(player);
+                addControll(player);
+                document.getElementById("boats").appendChild(player.html);
+                player.nameText.value = player.name;
+                player.nameTextFinish.value = player.name;
             }
-            player.finished = parsedPlayer.finished;
-            player.html = getNewBoat(player);
-            document.getElementById("boats").appendChild(player.html);
-            newGame.players[i] = player;
-            addControll(player);
-            player.name = parsedPlayer.name;
-            player.nameText.value = player.name;
-            player.nameTextFinish.value = player.name;
+            document.body.className = "race";
+            renderGridSize();
+            redrawTracks();
+            drawAll();
+            applySettings();
+            updateControls();
+            updateSaveGame();
         }
-        if (loadError) {
-            error("Parse Error");
-            return;
-        }
-        console.log(newGame);
-        game = newGame;
-        document.body.className = "race";
-        renderGridSize();
-        redrawTracks();
-        drawAll();
-        applySettings();
-        updateControls();
-        updateSaveGame();
+        //addControll(player);
+
         return null;
     }, false);
 }

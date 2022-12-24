@@ -422,6 +422,59 @@ class Game {
         return JSON.stringify(gameJson);
     }
 
+    static load(jsonString, error) {
+        var parsedData;
+        try {
+            parsedData = JSON.parse(jsonString);
+        }
+        catch {
+            error("Parse Error");
+            return;
+        }
+        if (parsedData["magic"] != saveGameMagicString) {
+            error("This file is not support")
+            return;
+        }
+        if (parsedData.version > 1 || parsedData.version == undefined) {
+            error("This version is not support");
+            return;
+        }
+        var newGame = new Game();
+
+        newGame.marks = tryGetVal(parsedData.marks, error);
+        newGame.width = parsedData.width;
+        newGame.height = parsedData.height;
+        newGame.wind = parsedData.wind;
+        newGame.turncount = parsedData.turncount;
+        newGame.isStart = parsedData.isStart;
+
+        newGame.players = [];
+        for (var i in parsedData.players) {
+            var parsedPlayer = parsedData.players[i];
+            var player = new Boat();
+            player.x = parsedPlayer.x;
+            player.y = parsedPlayer.y;
+            player.rotation = parsedPlayer.rotation;
+            player.tack = parsedPlayer.tack;
+            player.color = parsedPlayer.color;
+            player.turns = [];
+            for (var j in parsedPlayer.turns) {
+                player.turns.push(structuredClone(parsedPlayer.turns[j]));
+            }
+            player.finished = parsedPlayer.finished;
+            player.name = parsedPlayer.name;
+
+            newGame.players.push(player);
+        }
+
+        if (loadError) {
+            error("Parse Error");
+            return;
+        }
+
+        return newGame;
+    }
+
     constructor() {
         this.currentStartPriority = 0;
         this.isStart = true;
