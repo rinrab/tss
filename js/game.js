@@ -362,8 +362,6 @@ function windChange() {
         game.setWindFromScenario();
     }
 
-    saveNameInput.value = game.windscenario.name;
-
     localStorage.setItem(localStorageNames.selectedWind, windscenario);
 
     for (var i = 0; i < game.players.length; i++) {
@@ -441,7 +439,6 @@ function init() {
     upMarkLanelines = document.createElement("img");
     upMarkLanelines.src = "img/marklaneline.svg";
     upMarkLanelines.className = "pn-lines game-elem";
-    saveNameInput = document.getElementById("save-name");
     saveBtn = document.getElementById("save-game-btn");
     gamearea.insertBefore(upMarkLanelines, document.getElementById("marks"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
@@ -558,8 +555,6 @@ function init() {
             }
         });
     })
-
-    saveNameInput.addEventListener("input", updateSaveGame);
 }
 
 function tryGetVal(val) {
@@ -601,7 +596,6 @@ function loadGameFromFile(result) {
     }
 }
 
-var saveNameInput;
 var saveBtn;
 
 function updateSaveGame() {
@@ -609,7 +603,7 @@ function updateSaveGame() {
         saveBtn.classList.add("disabled");
     } else {
         var file = new Blob([game.save()], { type: "application/json" });
-        setSaveGameBlob(file, `${saveNameInput.value}.tss`);
+        setSaveGameBlob(file, `${game.windscenario.name}.tss`);
         saveBtn.classList.remove("disabled");
     }
 }
