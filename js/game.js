@@ -547,62 +547,66 @@ function init() {
 
     var fileInput = document.getElementById("load-race-file");
     fileInput.addEventListener("change", function () {
-        var fileReader = new FileReader()
-        fileReader.readAsText(fileInput.files[0])
-        fileReader.result;
-        fileReader.addEventListener("load", () => {
-            var parsedData = JSON.parse(fileReader.result);
-            console.log(parsedData);
-            var newGame = new Game();
-
-            document.getElementById("wind-scenario-name-inrace-alert").innerText = parsedData.name;
-            newGame.marks = parsedData.marks;
-            newGame.width = parsedData.width;
-            newGame.height = parsedData.height;
-            newGame.wind = parsedData.wind;
-            newGame.turncount = parsedData.turncount;
-            newGame.isStart = parsedData.isStart;
-
-            newGame.players = [];
-
-            document.getElementById("controlls").innerHTML = "";
-            document.getElementById("boats").innerHTML = "";
-            document.getElementById("track").innerHTML = "";
-
-            for (var i in parsedData.players) {
-                var parsedPlayer = parsedData.players[i];
-                var player = new Boat();
-                player.x = parsedPlayer.x;
-                player.y = parsedPlayer.y;
-                player.rotation = parsedPlayer.rotation;
-                player.tack = parsedPlayer.tack;
-                player.color = parsedPlayer.color;
-                player.turns = [];
-                for (var j in parsedPlayer.turns) {
-                    player.turns.push(structuredClone(parsedPlayer.turns[j]));
-                }
-                player.finished = parsedPlayer.finished;
-                player.html = getNewBoat(player);
-                document.getElementById("boats").appendChild(player.html);
-                newGame.players[i] = player;
-                addControll(player);
-                player.name = parsedPlayer.name;
-                player.nameText.value = player.name;
-                player.nameTextFinish.value = player.name;
-            }
-            console.log(newGame);
-            game = newGame;
-            document.body.className = "race";
-            renderGridSize();
-            redrawTracks();
-            drawAll();
-            applySettings();
-            updateControls();
-            updateSaveGame();
-        }, false);
+        loadGameFromFile(fileInput);
     })
 
     saveNameInput.addEventListener("input", updateSaveGame);
+}
+
+function loadGameFromFile(fileInput) {
+    var fileReader = new FileReader()
+    fileReader.readAsText(fileInput.files[0])
+    fileReader.result;
+    fileReader.addEventListener("load", () => {
+        var parsedData = JSON.parse(fileReader.result);
+        console.log(parsedData);
+        var newGame = new Game();
+
+        document.getElementById("wind-scenario-name-inrace-alert").innerText = parsedData.name;
+        newGame.marks = parsedData.marks;
+        newGame.width = parsedData.width;
+        newGame.height = parsedData.height;
+        newGame.wind = parsedData.wind;
+        newGame.turncount = parsedData.turncount;
+        newGame.isStart = parsedData.isStart;
+
+        newGame.players = [];
+
+        document.getElementById("controlls").innerHTML = "";
+        document.getElementById("boats").innerHTML = "";
+        document.getElementById("track").innerHTML = "";
+
+        for (var i in parsedData.players) {
+            var parsedPlayer = parsedData.players[i];
+            var player = new Boat();
+            player.x = parsedPlayer.x;
+            player.y = parsedPlayer.y;
+            player.rotation = parsedPlayer.rotation;
+            player.tack = parsedPlayer.tack;
+            player.color = parsedPlayer.color;
+            player.turns = [];
+            for (var j in parsedPlayer.turns) {
+                player.turns.push(structuredClone(parsedPlayer.turns[j]));
+            }
+            player.finished = parsedPlayer.finished;
+            player.html = getNewBoat(player);
+            document.getElementById("boats").appendChild(player.html);
+            newGame.players[i] = player;
+            addControll(player);
+            player.name = parsedPlayer.name;
+            player.nameText.value = player.name;
+            player.nameTextFinish.value = player.name;
+        }
+        console.log(newGame);
+        game = newGame;
+        document.body.className = "race";
+        renderGridSize();
+        redrawTracks();
+        drawAll();
+        applySettings();
+        updateControls();
+        updateSaveGame();
+    }, false);
 }
 
 var saveNameInput;
