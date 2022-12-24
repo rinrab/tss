@@ -422,26 +422,23 @@ class Game {
         return JSON.stringify(gameJson);
     }
 
-    static load(jsonString, error) {
+    static load(jsonString) {
         var parsedData;
         try {
             parsedData = JSON.parse(jsonString);
         }
         catch {
-            error("Parse Error");
-            return;
+            throw "Parse Error";
         }
         if (parsedData["magic"] != saveGameMagicString) {
-            error("This file is not support")
-            return;
+            throw "This file is not support";
         }
         if (parsedData.version > 1 || parsedData.version == undefined) {
-            error("This version is not support");
-            return;
+            throw "This version is not support";
         }
         var newGame = new Game();
 
-        newGame.marks = tryGetVal(parsedData.marks, error);
+        newGame.marks = tryGetVal(parsedData.marks);
         newGame.width = parsedData.width;
         newGame.height = parsedData.height;
         newGame.wind = parsedData.wind;
@@ -465,11 +462,6 @@ class Game {
             player.name = parsedPlayer.name;
 
             newGame.players.push(player);
-        }
-
-        if (loadError) {
-            error("Parse Error");
-            return;
         }
 
         return newGame;

@@ -547,8 +547,14 @@ function init() {
 
     var fileInput = document.getElementById("load-race-file");
     fileInput.addEventListener("change", function () {
-        var rv = loadGameFromFile(fileInput, function (err) {
-            alert(err);
+        var fileReader = new FileReader()
+        fileReader.readAsText(fileInput.files[0])
+        fileReader.addEventListener("load", () => {
+            try {
+                loadGameFromFile(fileReader.result);
+            } catch (e) {
+                alert(e)
+            }
         });
     })
 
@@ -559,48 +565,39 @@ function tryGetVal(val) {
     if (val) {
         return val;
     } else {
-        loadError = true;
+        throw "Invalid value";
     }
 }
-var loadError = false;
 
-function loadGameFromFile(fileInput, error) {
-    loadError = false;
-    var fileReader = new FileReader()
-    fileReader.readAsText(fileInput.files[0])
-    fileReader.result;
-    fileReader.addEventListener("load", () => {
-        newGame = Game.load(fileReader.result, error);
-        if (newGame) {
-            console.log(newGame);
-            game = newGame;
+function loadGameFromFile(result) {
+    newGame = Game.load(result);
 
-            document.getElementById("wind-scenario-name-inrace-alert").innerText = game.name;
+    if (newGame) {
+        console.log(newGame);
+        game = newGame;
 
-            document.getElementById("controlls").innerHTML = "";
-            document.getElementById("boats").innerHTML = "";
-            document.getElementById("track").innerHTML = "";
-            for (var i in game.players) {
-                var player = game.players[i];
+        document.getElementById("wind-scenario-name-inrace-alert").innerText = game.name;
 
-                player.html = getNewBoat(player);
-                addControll(player);
-                document.getElementById("boats").appendChild(player.html);
-                player.nameText.value = player.name;
-                player.nameTextFinish.value = player.name;
-            }
-            document.body.className = "race";
-            renderGridSize();
-            redrawTracks();
-            drawAll();
-            applySettings();
-            updateControls();
-            updateSaveGame();
+        document.getElementById("controlls").innerHTML = "";
+        document.getElementById("boats").innerHTML = "";
+        document.getElementById("track").innerHTML = "";
+        for (var i in game.players) {
+            var player = game.players[i];
+
+            player.html = getNewBoat(player);
+            addControll(player);
+            document.getElementById("boats").appendChild(player.html);
+            player.nameText.value = player.name;
+            player.nameTextFinish.value = player.name;
         }
-        //addControll(player);
-
-        return null;
-    }, false);
+        document.body.className = "race";
+        renderGridSize();
+        redrawTracks();
+        drawAll();
+        applySettings();
+        updateControls();
+        updateSaveGame();
+    }
 }
 
 var saveNameInput;
