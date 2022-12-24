@@ -463,6 +463,7 @@ function init() {
         game.isStart = true;
         game.turncount = 0;
         game.placeBoatsOnStart();
+        updateSaveGame();
         drawAll();
     });
     windInit();
