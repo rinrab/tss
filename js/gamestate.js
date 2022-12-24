@@ -444,6 +444,7 @@ class Game {
         newGame.wind = parsedData.wind;
         newGame.turncount = parsedData.turncount;
         newGame.isStart = parsedData.isStart;
+        newGame.name = parsedData.name;
 
         newGame.players = [];
         for (var i in parsedData.players) {
