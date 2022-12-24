@@ -1,4 +1,10 @@
 var game;
+var saveGamePrototype = {
+    "DO NOT": "change this file",
+    "programm-name": "Tactical Sailing Simulator by Rinrab",
+    "type": "save-game",
+    "version": 1,
+};
 
 function createGame(playercount) {
     game = new Game();
@@ -390,7 +396,7 @@ class Game {
     }
 
     getSaveString() {
-        var newGame = {};
+        var newGame = structuredClone(saveGamePrototype);
 
         newGame.marks = this.marks;
         newGame.width = this.width;
