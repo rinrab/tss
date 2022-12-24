@@ -1,17 +1,3 @@
-function setSaveGameBlob(blob, name) {
-    var saveGameBtn = document.getElementById("save-game-btn");
-    var url = URL.createObjectURL(blob);
-    
-    saveGameBtn.href = url;
-
-    if (downloadUrl) {
-        URL.revokeObjectURL(downloadUrl);
-    }
-    downloadUrl = url;
-    saveGameBtn.download = name;
-}
-
-var downloadUrl;
 
 function createContolls() {
     document.getElementById("select-wind").addEventListener("change", function () {
@@ -53,7 +39,6 @@ function apply() {
     document.body.className = "race";
 
     renderGridSize();
-    updateSaveGame();
 }
 
 function addControll(player) {
@@ -88,9 +73,6 @@ function addControll(player) {
     nnameinput.type = "text";
     nnameinput.placeholder = "Name";
     nnameinput.className = "form-control";
-    nnameinput.addEventListener("input", function() {
-        updateSaveGame();
-    })
     nc.appendChild(nnameinput);
     player.nameInput = nnameinput;
 
@@ -115,7 +97,6 @@ function addControll(player) {
         game.players.splice(game.players.findIndex(function (obj) { return obj == player }), 1);
 
         game.placeBoatsOnStart();
-        updateSaveGame();
         drawAll();
     });
     player.deleteBtn = newDeleteBtn;
