@@ -131,6 +131,8 @@ function addControll(player) {
     player.raceControls = nc;
     newControlGroup1.appendChild(nc);
 
+    player.forwardBtn.checked = true;
+    
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 race-controls";
     nc.classList.add("race-controls");
