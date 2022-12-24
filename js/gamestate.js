@@ -401,20 +401,29 @@ class Game {
             turncount: this.turncount,
             isStart: this.isStart,
             name: this.windscenario.name,
-            players: []
+            players: [],
+            currentStartPriority: this.currentStartPriority
         }
         for (var i in this.players) {
             var p = this.players[i];
+            var newName;
+            if (this.isStart) {
+                newName = p.nameInput.value;
+            } else {
+                newName = p.name;
+            }
             var playerJson = {
                 x: p.x,
                 y: p.y,
                 rotation: p.rotation,
                 tack: p.tack,
                 color: p.color,
-                name: p.nameText.value,
+                name: newName,
                 turns: p.turns,
                 finished: p.finished,
                 tack: p.tack,
+                startPos: p.startPos,
+                startPriority: p.startPriority
             };
             gameJson.players.push(playerJson);
         }
@@ -457,7 +466,7 @@ class Game {
             player.color = parsedPlayer.color;
             player.turns = [];
             for (var j in parsedPlayer.turns) {
-                player.turns.push(structuredClone(parsedPlayer.turns[j]));
+                player.turns.push(parsedPlayer.turns[j]);
             }
             player.finished = parsedPlayer.finished;
             player.name = parsedPlayer.name;

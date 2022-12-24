@@ -75,7 +75,7 @@ function redrawTracks() {
 function redrawTrack(player) {
     var points = "";
 
-    for (var i = 0; i < game.turncount + 1; i++) {
+    for (var i = 0; i < player.turns.length && i < game.turncount + 1; i++) {
         for (var j = 0; j < player.turns[i].points.length; j++) {
             var pt = player.turns[i].points[j];
 
@@ -368,6 +368,7 @@ function windChange() {
         game.players[i].y = game.height - 2;
     }
     game.placeBoatsOnStart()
+    updateSaveGame();
     windDataInit();
     drawAll()
 }
@@ -414,6 +415,7 @@ function addPlayer() {
 
     newPlayer.startPositionChange();
     game.placeBoatsOnStart();
+    updateSaveGame();
 
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
@@ -554,7 +556,9 @@ function init() {
                 alert(e)
             }
         });
-    })
+    });
+
+    updateSaveGame();
 }
 
 function tryGetVal(val) {
@@ -583,10 +587,12 @@ function loadGameFromFile(result) {
             player.html = getNewBoat(player);
             addControll(player);
             document.getElementById("boats").appendChild(player.html);
-            player.nameText.value = player.name;
-            player.nameTextFinish.value = player.name;
         }
-        document.body.className = "race";
+        if (game.isStart) {
+            document.body.className = "start";
+        } else {
+            document.body.className = "race";
+        }
         renderGridSize();
         redrawTracks();
         drawAll();
@@ -599,13 +605,8 @@ function loadGameFromFile(result) {
 var saveBtn;
 
 function updateSaveGame() {
-    if (game.isStart) {
-        saveBtn.classList.add("disabled");
-    } else {
-        var file = new Blob([game.save()], { type: "application/json" });
-        setSaveGameBlob(file, `${game.windscenario.name}.tss`);
-        saveBtn.classList.remove("disabled");
-    }
+    var file = new Blob([game.save()], { type: "application/json" });
+    setSaveGameBlob(file, `${game.windscenario.name}.tss`);
 }
 
 function openFullscreen(elem) {
