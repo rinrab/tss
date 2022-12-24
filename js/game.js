@@ -440,6 +440,7 @@ function init() {
     upMarkLanelines.className = "pn-lines game-elem";
     gamearea.insertBefore(upMarkLanelines, document.getElementById("marks"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
+        game.turncount = 0;    
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
             player.tack = false;
@@ -456,7 +457,6 @@ function init() {
         windChange();
         document.body.className = "start";
         game.isStart = true;
-        game.turncount = 0;
         game.placeBoatsOnStart();
         drawAll();
     });
@@ -545,11 +545,8 @@ function init() {
         var fileReader = new FileReader()
         fileReader.readAsText(fileInput.files[0])
         fileReader.addEventListener("load", () => {
-            try {
-                loadGameFromFile(fileReader.result);
-            } catch (e) {
-                alert(e)
-            }
+            loadGameFromFile(fileReader.result);
+
         });
     });
 
@@ -563,8 +560,7 @@ function init() {
             linkElem.download = name;
             linkElem.click();
         }
-        finally
-        {
+        finally {
             URL.revokeObjectURL(url);
         }
     });
@@ -579,7 +575,12 @@ function tryGetVal(val) {
 }
 
 function loadGameFromFile(result) {
-    newGame = Game.load(result);
+    try {
+        newGame = Game.load(result);
+    } catch (e) {
+        alert(e);
+        return;
+    }
 
     if (newGame) {
         console.log(newGame);
