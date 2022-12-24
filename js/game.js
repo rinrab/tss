@@ -555,7 +555,17 @@ function init() {
     saveNameInput.addEventListener("input", updateSaveGame);
 }
 
+function tryGetVal(val) {
+    if (val) {
+        return val;
+    } else {
+        loadError = true;
+    }
+}
+var loadError = false;
+
 function loadGameFromFile(fileInput, error) {
+    loadError = false;
     var fileReader = new FileReader()
     fileReader.readAsText(fileInput.files[0])
     fileReader.result;
@@ -572,7 +582,7 @@ function loadGameFromFile(fileInput, error) {
         var newGame = new Game();
 
         document.getElementById("wind-scenario-name-inrace-alert").innerText = parsedData.name;
-        newGame.marks = parsedData.marks;
+        newGame.marks = tryGetVal(parsedData.marks, error);
         newGame.width = parsedData.width;
         newGame.height = parsedData.height;
         newGame.wind = parsedData.wind;
@@ -605,6 +615,10 @@ function loadGameFromFile(fileInput, error) {
             player.name = parsedPlayer.name;
             player.nameText.value = player.name;
             player.nameTextFinish.value = player.name;
+        }
+        if (loadError) {
+            error("Parse Error");
+            return;
         }
         console.log(newGame);
         game = newGame;
