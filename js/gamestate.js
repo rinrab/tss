@@ -395,7 +395,7 @@ class Game {
         }
     }
 
-    getSaveString() {
+    save() {
         var newGame = structuredClone(saveGamePrototype);
 
         newGame.marks = this.marks;

@@ -655,7 +655,7 @@ function updateSaveGame() {
     if (game.isStart) {
         saveBtn.classList.add("disabled");
     } else {
-        var file = new Blob([game.getSaveString()], { type: "application/json" });
+        var file = new Blob([game.save()], { type: "application/json" });
         setSaveGameBlob(file, `${saveNameInput.value}.tss`);
         saveBtn.classList.remove("disabled");
     }
