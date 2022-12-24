@@ -555,6 +555,7 @@ function init() {
             console.log(parsedData);
             var newGame = new Game();
 
+            document.getElementById("wind-scenario-name-inrace-alert").innerText = parsedData.name;
             newGame.marks = parsedData.marks;
             newGame.width = parsedData.width;
             newGame.height = parsedData.height;

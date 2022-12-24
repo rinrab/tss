@@ -398,6 +398,7 @@ class Game {
         newGame.wind = this.wind;
         newGame.turncount = this.turncount;
         newGame.isStart = this.isStart;
+        newGame.name = this.windscenario.name;
 
         newGame.players = [];
         for (var i in this.players) {
