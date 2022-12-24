@@ -566,6 +566,7 @@ function init() {
 
             document.getElementById("controlls").innerHTML = "";
             document.getElementById("boats").innerHTML = "";
+            document.getElementById("track").innerHTML = "";
 
             for (var i in parsedData.players) {
                 var parsedPlayer = parsedData.players[i];
