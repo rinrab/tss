@@ -547,18 +547,27 @@ function init() {
 
     var fileInput = document.getElementById("load-race-file");
     fileInput.addEventListener("change", function () {
-        loadGameFromFile(fileInput);
+        var rv = loadGameFromFile(fileInput, function(err) {
+            alert(err);
+        });
     })
 
     saveNameInput.addEventListener("input", updateSaveGame);
 }
 
-function loadGameFromFile(fileInput) {
+function loadGameFromFile(fileInput, error) {
     var fileReader = new FileReader()
     fileReader.readAsText(fileInput.files[0])
     fileReader.result;
     fileReader.addEventListener("load", () => {
-        var parsedData = JSON.parse(fileReader.result);
+        var parsedData;
+        try {
+            parsedData = JSON.parse(fileReader.result);
+        }
+        catch {
+            error("Parse Error");
+            return;
+        }
         console.log(parsedData);
         var newGame = new Game();
 
@@ -606,6 +615,7 @@ function loadGameFromFile(fileInput) {
         applySettings();
         updateControls();
         updateSaveGame();
+        return null;
     }, false);
 }
 
