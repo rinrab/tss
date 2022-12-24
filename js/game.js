@@ -578,20 +578,12 @@ function loadGameFromFile(fileInput, error) {
             error("Parse Error");
             return;
         }
-        if (parsedData["programm-name"] != saveGamePrototype["programm-name"]) {
+        if (parsedData["magic"] != saveGameMagicString) {
             error("This file is not support")
             return;
         }
-        if (parsedData.type != saveGamePrototype.type) {
-            if (parsedData.type == undefined) {
-                error("This file is not support")
-            } else {
-                error(`Type is: "${parsedData.type}"`);
-            }
-            return;
-        }
-        if (parsedData.version > saveGamePrototype.version || parsedData.version == undefined) {
-            error("This version isn't support");
+        if (parsedData.version > 1 || parsedData.version == undefined) {
+            error("This version is not support");
         }
         console.log(parsedData);
         var newGame = new Game();

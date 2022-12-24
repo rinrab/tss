@@ -1,10 +1,5 @@
 var game;
-var saveGamePrototype = {
-    "DO NOT": "change this file",
-    "programm-name": "Tactical Sailing Simulator by Rinrab",
-    "type": "save-game",
-    "version": 1,
-};
+const saveGameMagicString = "Tactical Sailing Simulator by Rinrab";
 
 function createGame(playercount) {
     game = new Game();
@@ -396,33 +391,35 @@ class Game {
     }
 
     save() {
-        var newGame = structuredClone(saveGamePrototype);
-
-        newGame.marks = this.marks;
-        newGame.width = this.width;
-        newGame.height = this.height;
-        newGame.wind = this.wind;
-        newGame.turncount = this.turncount;
-        newGame.isStart = this.isStart;
-        newGame.name = this.windscenario.name;
-
-        newGame.players = [];
+        var gameJson = {
+            "magic": saveGameMagicString,
+            "version": 1,
+            marks: this.marks,
+            width: this.width,
+            height: this.height,
+            wind: this.wind,
+            turncount: this.turncount,
+            isStart: this.isStart,
+            name: this.windscenario.name,
+            players: []
+        }
         for (var i in this.players) {
-            var newPlayer = {};
             var p = this.players[i];
-            newPlayer.x = p.x;
-            newPlayer.y = p.y;
-            newPlayer.rotation = p.rotation;
-            newPlayer.tack = p.tack;
-            newPlayer.color = p.color;
-            newPlayer.name = p.nameText.value;
-            newPlayer.turns = p.turns;
-            newPlayer.finished = p.finished;
-            newPlayer.tack = p.tack;
-            newGame.players.push(newPlayer);
+            var playerJson = {
+                x: p.x,
+                y: p.y,
+                rotation: p.rotation,
+                tack: p.tack,
+                color: p.color,
+                name: p.nameText.value,
+                turns: p.turns,
+                finished: p.finished,
+                tack: p.tack,
+            };
+            gameJson.players.push(playerJson);
         }
 
-        return JSON.stringify(newGame);
+        return JSON.stringify(gameJson);
     }
 
     constructor() {
