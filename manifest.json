@@ -10,9 +10,25 @@
     "offline_enabled": true,
     "icons": [
         {
-            "src": "img/icon.png",
+            "src": "icons/512.png",
+            "sizes": "16"
+        },
+        {
+            "src": "icons/512.png",
+            "sizes": "64"
+        },
+        {
+            "src": "icons/512.png",
+            "sizes": "256"
+        },
+        {
+            "src": "icons/512.png",
+            "sizes": "512"
+        },
+        {
+            "src": "icons/512.png",
             "sizes": "any"
-        }
+        },
     ],
     "categories": [
         "games",
