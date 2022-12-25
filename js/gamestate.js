@@ -1,5 +1,4 @@
 var game;
-var test = false;
 const saveGameMagicString = "Tactical Sailing Simulator by Rinrab";
 
 function createGame(playercount) {

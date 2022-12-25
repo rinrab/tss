@@ -32,7 +32,7 @@
     ],
     "content_scripts": {
         "js": [
-            "js/test.js"
+            "js/game.js"
         ]
     },
     "categories": [
