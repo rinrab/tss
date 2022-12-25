@@ -8,6 +8,7 @@
     "description": "TSS description",
     "orientation": "landscape",
     "offline_enabled": true,
+    "lang": "en",
     "icons": [
         {
             "src": "icons/16.png",
