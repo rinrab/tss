@@ -225,7 +225,7 @@
       display: flex;
     }
 
-    #editor-preview > svg {
+    #editor-preview>svg {
       height: 100%;
     }
 
@@ -308,7 +308,7 @@
         <div>
           <div id="start-alert" class="alert alert-warning text-center">
             <div class="row align-items-center p-0 m-0">
-              
+
               <!-- <input type="file" id="load-race-file" /> -->
               <label class="col">Start procedure</label>
             </div>
@@ -319,7 +319,8 @@
                 Race:
                 <span id="wind-scenario-name-inrace-alert"></span>
               </div>
-              <input type="image" class="btn btn-outline-primary btn-sm col-auto" id="btn-nowember" src="img/november.svg">
+              <input type="image" class="btn btn-outline-primary btn-sm col-auto" id="btn-nowember"
+                src="img/november.svg">
             </div>
           </div>
         </div>
@@ -328,23 +329,30 @@
             <select id="select-wind" class="form-select"></select>
             <button id="edit-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
               data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Edit wind">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
               </svg>
             </button>
             <button id="add-wind-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
               data-bs-target="#wind-editor-window" data-bs-placement="top" data-bs-title="Add custom wind">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="scale: 1.3;" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="scale: 1.3;"
+                class="bi bi-plus" viewBox="0 0 16 16">
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
               </svg>
             </button>
           </div>
         </div>
         <div class="w-100 mb-2 input-group start-control-header">
           <button class="btn btn-outline-danger" id="btn-add-player">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="scale: 1.3;" class="bi bi-plus" viewBox="0 0 16 16">
-              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="scale: 1.3;"
+              class="bi bi-plus" viewBox="0 0 16 16">
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg>
           </button>
           <button class="btn btn-outline-primary" id="btn-apply">Start!</button>
@@ -361,30 +369,37 @@
         <div class="settings-container">
           <div class="w-100 btn-group mb-1">
             <a class="btn btn-outline-primary" id="save-game-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download"
+                viewBox="0 0 16 16">
+                <path
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                <path
+                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
               </svg>
               Save
             </a>
             <label class="btn btn-outline-primary col" for="load-race-file">
               <span class="glyphicon glyphicon-folder-open" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                  <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                  <path
+                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
                 </svg>
               </span>
               Load
               <input type="file" id="load-race-file" accept=".tss" style="display:none">
             </label>
-            </div>
+          </div>
           <div class="btn-group w-100" role="group" aria-label="Settings">
             <input class="btn-check" type="checkbox" id="set-show-tracks" />
-            <label class="btn btn-outline-secondary" for="set-show-tracks"
-                   title="Show tracks">
-               <svg xmlns="http://www.w3.org/2000/svg" style="scale: 1.5;" width="16" height="16" viewBox="0 0 16 16" class="bi">
-                <path d="m6.3 15-.5-.4-.5-.4-.5-.4.5-.4.5-.3.6-.3.6-.3.6-.3.6-.3.6-.3.7-.2-.3-.4-.4-.4-.4-.4-.4-.4-.4-.4-.5-.4-.4-.4-.5-.4-.5-.3-.5-.4.5-.4.5-.4.5-.4.6-.3.5-.4.5-.4.4-.4"
-                      fill="none" stroke="currentColor" stroke-width="0.5"></path>
+            <label class="btn btn-outline-secondary" for="set-show-tracks" title="Show tracks">
+              <svg xmlns="http://www.w3.org/2000/svg" style="scale: 1.5;" width="16" height="16" viewBox="0 0 16 16"
+                class="bi">
+                <path
+                  d="m6.3 15-.5-.4-.5-.4-.5-.4.5-.4.5-.3.6-.3.6-.3.6-.3.6-.3.6-.3.7-.2-.3-.4-.4-.4-.4-.4-.4-.4-.4-.4-.5-.4-.4-.4-.5-.4-.5-.3-.5-.4.5-.4.5-.4.5-.4.6-.3.5-.4.5-.4.4-.4"
+                  fill="none" stroke="currentColor" stroke-width="0.5"></path>
                 <ellipse rx="0.7" cx="2" cy="15"></ellipse>
                 <ellipse rx="0.7" cx="14" cy="15"></ellipse>
                 <ellipse rx="0.7" cx="8" cy="2"></ellipse>
@@ -392,56 +407,57 @@
             </label>
 
             <input class="btn-check" type="checkbox" id="set-show-boats" />
-            <label class="btn btn-outline-secondary" for="set-show-boats"
-                   title="Show boats">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-5.6247 -10 11.2494 18.5" style="scale: 1.5; rotate: 45deg" class="bi bi-arrows-fullscreen">
-                <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor" stroke-width="1" fill="none" />
+            <label class="btn btn-outline-secondary" for="set-show-boats" title="Show boats">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-5.6247 -10 11.2494 18.5"
+                style="scale: 1.5; rotate: 45deg" class="bi bi-arrows-fullscreen">
+                <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z"
+                  stroke="currentColor" stroke-width="1" fill="none" />
                 <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="currentColor" fill="none" stroke-width="1" />
                 <ellipse rx="1" ry="1" cx="0" cy="-6" />
               </svg>
             </label>
 
             <input class="btn-check" type="checkbox" id="set-show-lanelines" />
-            <label class="btn btn-outline-secondary" for="set-show-lanelines"
-                   title="Show lanelines">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="scale: 1.5" viewBox="-8 0 16 16" class="bi">
+            <label class="btn btn-outline-secondary" for="set-show-lanelines" title="Show lanelines">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="scale: 1.5" viewBox="-8 0 16 16"
+                class="bi">
                 <path d="M -8 12 L 0 4 L 8 12" stroke="currentColor" stroke-width=".5" fill="none"></path>
                 <ellipse rx="1.5" ry="1.5" cx="0" cy="4" fill="currentColor"></ellipse>
-              </svg>      
+              </svg>
             </label>
 
             <input type="checkbox" class="btn-check" id="set-show-equal-lines" />
-            <label class="btn btn-outline-secondary show-future-wind"
-                   for="set-show-equal-lines"
-                   title="Show equal lines">
-              <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style="scale: 1.5" class="bi">
+            <label class="btn btn-outline-secondary show-future-wind" for="set-show-equal-lines"
+              title="Show equal lines">
+              <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style="scale: 1.5"
+                class="bi">
                 <defs>
                   <path transform="scale(0.3) translate(9, 10) rotate(-15)" id="boat"
                     d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor"
                     stroke-width="3" fill="none" />
                 </defs>
-                <path d="M 0 15 L 16 11 M 0 11 L 16 7 M 0 7 L 16 3 M 0 3 L 16 -1 M 16 15 L 0 19" fill="none" stroke="currentColor"
-                  stroke-width="0.5" />
+                <path d="M 0 15 L 16 11 M 0 11 L 16 7 M 0 7 L 16 3 M 0 3 L 16 -1 M 16 15 L 0 19" fill="none"
+                  stroke="currentColor" stroke-width="0.5" />
                 <use href="#boat" transform="translate(-1, 7) rotate(-45)"></use>
                 <use href="#boat" transform="translate(7, 7) rotate(-45)" />
-              </svg>      
+              </svg>
             </label>
 
             <input type="checkbox" class="btn-check" id="show-future-wind" />
-            <label class="btn btn-outline-secondary show-future-wind"
-                   for="show-future-wind"
-                   title="Show future wind">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="scale: 1.5" width="16" height="16" class="bi">
-                <path id="arrow" d="M 3 2 L 3 10 M 7 2 L 7 10 M 1 11 L 5 15 L 9 11" 
-                      transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
+            <label class="btn btn-outline-secondary show-future-wind" for="show-future-wind" title="Show future wind">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="scale: 1.5" width="16" height="16"
+                class="bi">
+                <path id="arrow" d="M 3 2 L 3 10 M 7 2 L 7 10 M 1 11 L 5 15 L 9 11"
+                  transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
                 <use href="#arrow" transform="scale(0.5) translate(23, 0) rotate(20)"></use>
               </svg>
             </label>
             <input type="checkbox" class="btn-check" id="full-screen" />
-            <label class="btn btn-outline-secondary" for="full-screen"
-                   title="Fullscreen mode">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
+            <label class="btn btn-outline-secondary" for="full-screen" title="Fullscreen mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
               </svg>
             </label>
           </div>
@@ -473,9 +489,11 @@
             </div>
             <div class="mb-0">
               <label class="form-label">Wind change</label>
-              <a data-bs-toggle="tooltip" data-bs-title="Enter wind change. Use space, comma or enter as delimeter." data-bs-placement="right" style="color: var(--bs-primary); margin-left: 0.5rem;">
+              <a data-bs-toggle="tooltip" data-bs-title="Enter wind change. Use space, comma or enter as delimeter."
+                data-bs-placement="right" style="color: var(--bs-primary); margin-left: 0.5rem;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="bi" width="16" height="16" viewBox="0 0 16 16">
-                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                  <path
+                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
                 </svg>
               </a>
               <textarea class="form-control" id="editor-wind" rows="7"
