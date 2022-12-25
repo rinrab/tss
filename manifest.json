@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "TSS short_name",
+    "short_name": "TSS long name",
+    "start_url": ".",
+    "display": "fullscreen",
+    "background_color": "#fff",
+    "description": "TSS description",
+    "orientation": "landscape",
+    "icons": [
+        {
+            "src": "img/icon.svg",
+            "sizes": "any"
+        }
+    ],
+    "categories": [
+        "games",
+        "education",
+        "sports"
+    ],
+    "related_applications": [
+        {
+            "platform": "play",
+            "url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"
+        }
+    ]
+}
