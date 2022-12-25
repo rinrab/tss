@@ -11,7 +11,7 @@ var defaultSetting = {
     showBoats: true,
     showTracks: true,
     showLanelines: true,
-    showEqualLines: false,
+    showEqualLines: true,
 };
 class Settings {
     showBoats;
