@@ -11,12 +11,16 @@
     "lang": "en",
     "icons": [
         {
-            "src": "icons/16.png",
-            "sizes": "16"
+            "src": "icons/32.png",
+            "sizes": "32"
         },
         {
             "src": "icons/64.png",
             "sizes": "64"
+        },
+        {
+            "src": "icons/96.png",
+            "sizes": "96"
         },
         {
             "src": "icons/256.png",
