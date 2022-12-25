@@ -482,6 +482,11 @@ function init() {
         drawAll()
     });
 
+    addEventListener("orientationchange", function() {
+        renderGridSize();
+        drawAll();
+    })
+
     var track = document.getElementById("track");
     track.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
 
