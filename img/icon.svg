@@ -1,26 +1,33 @@
-<svg viewBox="0 -1 16 17" xmlns="http://www.w3.org/2000/svg"
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
   style="--s: 1; --c1: #c61a09; --c2: #003988; --bg: #667dff;">
-  <defs>
-    <g id="boat" style="transform: scale(calc(0.25 * var(--s)))">
-      <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="#333"
-        stroke-width=".5" />
-      <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="white" fill="none" style="transform: scaleX(var(--scalex))"
-        stroke-width="1" />
-      <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" />
-    </g>
-  </defs>
   <g>
-    <rect width="16" height="17" y="-1" rx="4" fill="var(--bg)" />
+    <rect width="16" height="16" y="0" rx="2" fill="#667dff" />
   </g>
-  <g style="stroke: var(--c1)">
-    <path d="M 8 15 L 4 11 L 11 4 L 8 1" fill="none" stroke-linecap="round" stroke-linejoin="round"
-      style="stroke-width: calc(var(--s) * .5)" />
+  <g transform="translate(0, .5)">
+    <g style="stroke: #c61a09">
+      <path d="M 8 15 L 4 11 L 11 4 L 8 1" fill="none" stroke-linecap="round" stroke-linejoin="round"
+        style="stroke-width: .5" />
+    </g>
+    <g style="stroke: #003988">
+      <path d="M 9 15 L 11 13 Q 6 8 4 6 L 6 4" fill="none" stroke-linecap="round" stroke-linejoin="round"
+        style="stroke-width: .5" />
+    </g>
+    <ellipse rx="1" ry="1" cx="8" cy="1" fill="#333333" stroke="black" stroke-width=".12" />
+    <g href="#boat" style="--scalex: -1; fill: #c61a09" transform="translate(10, 3) rotate(-45)" fill="#7a1811">
+      <g id="boat" transform="scale(0.25)">
+        <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="#333"
+          stroke-width=".5" />
+        <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="white" fill="none" transform="scale(-1, 1)" stroke-width="1" />
+        <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" fill="black" />
+      </g>
+    </g>
+    <g href="#boat" style="--scalex: 1; fill: #003988" transform="translate(6, 4) rotate(45)">
+      <g id="boat" transform="scale(0.25)">
+        <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="#333" fill="#2121dd"
+          stroke-width=".5" />
+        <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="white" fill="none" style="transform: scaleX(1)" stroke-width="1" />
+        <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" fill="black" />
+      </g>
+    </g>
   </g>
-  <g style="stroke: var(--c2)">
-    <path d="M 9 15 L 11 13 Q 6 8 4 6 L 6 4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-      style="stroke-width: calc(var(--s) * .5)" />
-  </g>
-  <ellipse rx="1" ry="1" cx="8" cy="1" fill="#333333" stroke="black" stroke-width=".12" />
-  <use href="#boat" style="--scalex: -1; fill: var(--c1)" transform="translate(10, 3) rotate(-45)" fill="#7a1811" />
-  <use href="#boat" style="--scalex: 1; fill: var(--c2)" transform="translate(6, 4) rotate(45)" />
 </svg>

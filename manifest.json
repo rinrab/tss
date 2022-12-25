@@ -7,9 +7,10 @@
     "background_color": "#fff",
     "description": "TSS description",
     "orientation": "landscape",
+    "offline_enabled": true,
     "icons": [
         {
-            "src": "img/icon.svg",
+            "src": "img/icon.png",
             "sizes": "any"
         }
     ],
@@ -17,22 +18,5 @@
         "games",
         "education",
         "sports"
-    ],
-    "related_applications": [
-        {
-            "platform": "play",
-            "url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"
-        }
-    ],
-    "js": [
-        "js/bootstrap.bundle.min.js",
-        "js/winddata.js",
-        "js/gamestate.js",
-        "js/controlls.js",
-        "js/windeditor.js",
-        "js/game.js"
-    ],
-    "css": [
-        "css/bootstrap.min.css"
     ]
 }
