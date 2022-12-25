@@ -447,7 +447,15 @@ class Game {
         }
         var newGame = new Game();
 
-        newGame.marks = tryGetVal(parsedData.marks);
+        newGame.marks = [];
+        for (var i in parsedData.marks) {
+            const parsedMark = parsedData.marks[i];
+            newGame.marks.push({
+                x: parsedMark.x,
+                y: parsedMark.y,
+                type: parsedMark.type
+            });
+        }
         newGame.width = parsedData.width;
         newGame.height = parsedData.height;
         newGame.wind = parsedData.wind;
