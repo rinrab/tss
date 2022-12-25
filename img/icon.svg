@@ -14,11 +14,11 @@
   </g>
   <g style="stroke: var(--c1)">
     <path d="M 8 15 L 4 11 L 11 4 L 8 1" fill="none" stroke-linecap="round" stroke-linejoin="round"
-      style="stroke-width: calc(var(--s) * 0.5)" />
+      style="stroke-width: calc(var(--s) * .5)" />
   </g>
   <g style="stroke: var(--c2)">
     <path d="M 9 15 L 11 13 Q 6 8 4 6 L 6 4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-      style="stroke-width: calc(var(--s) * 0.5)" />
+      style="stroke-width: calc(var(--s) * .5)" />
   </g>
   <ellipse rx="1" ry="1" cx="8" cy="1" fill="#333333" stroke="black" stroke-width=".12" />
   <use href="#boat" style="--scalex: -1; fill: var(--c1)" transform="translate(10, 3) rotate(-45)" fill="#7a1811" />
