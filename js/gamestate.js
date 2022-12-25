@@ -1,4 +1,5 @@
 var game;
+const saveGameMagicString = "Tactical Sailing Simulator by Rinrab";
 
 function createGame(playercount) {
     game = new Game();
@@ -22,7 +23,8 @@ class Boat {
     track;
     finished;
     btnLabels;
-    nameText
+    nameText;
+    nameTextFinish;
     posLabel;
     // tack == false: startport
     // tack == true: port
@@ -30,6 +32,8 @@ class Boat {
     startPosInputs;
     isStart;
     controlGroup;
+
+    name;
 
     isStart;
 
@@ -57,9 +61,9 @@ class Boat {
             this.tack = !this.tack;
 
             if (this.tack) {
-                this.rotation = 45 + game.getwind(turncount);
+                this.rotation = 45 + game.getwind(game.turncount);
             } else {
-                this.rotation = -45 + game.getwind(turncount);
+                this.rotation = -45 + game.getwind(game.turncount);
             }
             this.forwardBtn.checked = true;
         }
@@ -74,7 +78,7 @@ class Boat {
                     points.push({ x: this.x, y: this.y });
                     moveDist -= dist;
 
-                    this.finished = turncount * 60 + (60 - moveDist * 60);
+                    this.finished = game.turncount * 60 + (60 - moveDist * 60);
                     console.log("Boat " + this.nameText.value + " finish time:", this.finished);
 
                     drawAll();
@@ -122,11 +126,11 @@ class Boat {
                             var lanelineAngle;
 
                             if (this.tack) {
-                                lanelineAngle = -45 - game.getwind(turncount);
-                                moveAngle = 45 + game.getwind(turncount);
+                                lanelineAngle = -45 - game.getwind(game.turncount);
+                                moveAngle = 45 + game.getwind(game.turncount);
                             } else {
-                                lanelineAngle = 45 - game.getwind(turncount);
-                                moveAngle = -45 + game.getwind(turncount);
+                                lanelineAngle = 45 - game.getwind(game.turncount);
+                                moveAngle = -45 + game.getwind(game.turncount);
                             }
 
                             this.rotation = moveAngle;
@@ -151,9 +155,9 @@ class Boat {
                     }
                     else {
                         if (this.tack) {
-                            this.rotation = 45 + game.getwind(turncount);
+                            this.rotation = 45 + game.getwind(game.turncount);
                         } else {
-                            this.rotation = -45 + game.getwind(turncount);
+                            this.rotation = -45 + game.getwind(game.turncount);
                         }
 
                         this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
@@ -183,23 +187,23 @@ class Boat {
     }
 
     saveTurn(turntype, points) {
-        this.turns[turncount] = new PlayerStory(turntype, points,
+        this.turns[game.turncount] = new PlayerStory(turntype, points,
             this.rotation, this.tack, this.finished);
     }
 
     back() {
-        this.x = this.turns[turncount].points[this.turns[turncount].points.length - 1].x;
-        this.y = this.turns[turncount].points[this.turns[turncount].points.length - 1].y;
-        this.rotation = this.turns[turncount].rotation;
-        this.tack = this.turns[turncount].tack;
-        if (this.turns[turncount + 1].turnType == turnTupes.forward) {
+        this.x = this.turns[game.turncount].points[this.turns[game.turncount].points.length - 1].x;
+        this.y = this.turns[game.turncount].points[this.turns[game.turncount].points.length - 1].y;
+        this.rotation = this.turns[game.turncount].rotation;
+        this.tack = this.turns[game.turncount].tack;
+        if (this.turns[game.turncount + 1].turnType == turnTupes.forward) {
             this.forwardBtn.checked = true;
-        } else if (this.turns[turncount + 1].turnType == turnTupes.tack) {
+        } else if (this.turns[game.turncount + 1].turnType == turnTupes.tack) {
             this.tackBtn.checked = true;
-        } else if (this.turns[turncount + 1].turnType == turnTupes.toMark) {
+        } else if (this.turns[game.turncount + 1].turnType == turnTupes.toMark) {
             this.toMarkBtn.checked = true;
         }
-        this.finished = this.turns[turncount].finished;
+        this.finished = this.turns[game.turncount].finished;
     }
 
     constructor(x, y, tack, color) {
@@ -255,6 +259,7 @@ class Game {
     wind;
     currentStartPriority;
     deleteBtn;
+    turncount = 0;
 
     getwind(index) {
         return this.wind[index % this.wind.length];
@@ -269,7 +274,7 @@ class Game {
 
     isOutLaneline(x, y) {
         var a = getRotateAngle(x, y, this.marks[2].x, this.marks[2].y);
-        return (a - this.getwind(turncount) >= 44.99 || a - this.getwind(turncount) <= -44.99);
+        return (a - this.getwind(game.turncount) >= 44.99 || a - this.getwind(game.turncount) <= -44.99);
     }
 
     setWindFromScenario() {
@@ -383,6 +388,104 @@ class Game {
             boatsStartRight[i].x = this.marks[1].x - 1 - (i * startdist);
             boatsStartRight[i].y = this.height - 2;
         }
+    }
+
+    save() {
+        var gameJson = {
+            "magic": saveGameMagicString,
+            "version": 1,
+            marks: this.marks,
+            width: this.width,
+            height: this.height,
+            wind: this.wind,
+            turncount: this.turncount,
+            isStart: this.isStart,
+            name: this.windscenario.name,
+            players: [],
+            currentStartPriority: this.currentStartPriority
+        }
+        for (var i in this.players) {
+            var p = this.players[i];
+            var newName;
+            if (this.isStart) {
+                newName = p.nameInput.value;
+            } else {
+                newName = p.name;
+            }
+            var playerJson = {
+                x: p.x,
+                y: p.y,
+                rotation: p.rotation,
+                tack: p.tack,
+                color: p.color,
+                name: newName,
+                turns: p.turns,
+                finished: p.finished,
+                tack: p.tack,
+                startPos: p.startPos,
+                startPriority: p.startPriority
+            };
+            gameJson.players.push(playerJson);
+        }
+
+        return JSON.stringify(gameJson);
+    }
+
+    static load(jsonString) {
+        var parsedData;
+        try {
+            parsedData = JSON.parse(jsonString);
+        }
+        catch {
+            throw "Parse Error";
+        }
+        if (parsedData["magic"] != saveGameMagicString) {
+            throw "This file is not support";
+        }
+        if (parsedData.version > 1 || parsedData.version == undefined) {
+            throw "This version is not support";
+        }
+        var newGame = new Game();
+
+        newGame.marks = [];
+        for (var i in parsedData.marks) {
+            const parsedMark = parsedData.marks[i];
+            newGame.marks.push({
+                x: parsedMark.x,
+                y: parsedMark.y,
+                type: parsedMark.type
+            });
+        }
+        newGame.width = parsedData.width;
+        newGame.height = parsedData.height;
+        newGame.wind = parsedData.wind;
+        newGame.turncount = parsedData.turncount;
+        newGame.isStart = parsedData.isStart;
+        newGame.name = parsedData.name;
+        newGame.currentStartPriority = parsedData.currentStartPriority;
+
+        newGame.players = [];
+        for (var i in parsedData.players) {
+            var parsedPlayer = parsedData.players[i];
+            var player = new Boat();
+            player.x = parsedPlayer.x;
+            player.y = parsedPlayer.y;
+            player.rotation = parsedPlayer.rotation;
+            player.tack = parsedPlayer.tack;
+            player.color = parsedPlayer.color;
+            player.turns = [];
+            player.startPos = parsedPlayer.startPos;
+            player.startPriority = parsedPlayer.startPriority;
+            for (var j in parsedPlayer.turns) {
+                player.turns.push(parsedPlayer.turns[j]);
+            }
+            player.finished = parsedPlayer.finished;
+            player.name = parsedPlayer.name;
+
+            newGame.players.push(player);
+        }
+
+        return newGame;
     }
 
     constructor() {

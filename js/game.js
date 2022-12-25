@@ -1,6 +1,5 @@
 var gridsize = 20;
 
-var turncount = 0;
 const colors = ["red", "blue", "black", "green", "cyan", "magenta", "purple", "gray", "yellow",
     "darkred", "darkblue", "goldenrod"]
 var boatSize = 32;
@@ -53,7 +52,7 @@ function formatSvgViewBox(left, top, width, height) {
 }
 
 function turn() {
-    turncount++;
+    game.turncount++;
 
     for (var i = 0; i < game.players.length; i++) {
         game.players[i].turn();
@@ -75,7 +74,7 @@ function redrawTracks() {
 function redrawTrack(player) {
     var points = "";
 
-    for (var i = 0; i < turncount + 1; i++) {
+    for (var i = 0; i < player.turns.length && i < game.turncount + 1; i++) {
         for (var j = 0; j < player.turns[i].points.length; j++) {
             var pt = player.turns[i].points[j];
 
@@ -86,8 +85,8 @@ function redrawTrack(player) {
 }
 
 function backTurn() {
-    if (turncount > 0) {
-        turncount--;
+    if (game.turncount > 0) {
+        game.turncount--;
 
         for (var i = 0; i < game.players.length; i++) {
             game.players[i].back();
@@ -117,7 +116,7 @@ function drawAll() {
 function drawLines() {
     var linesSvg = document.getElementById("lines-svg");
     linesSvg.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
-    document.getElementById("lines-container").style.rotate = formatCssDeg(game.getwind(turncount + 1));
+    document.getElementById("lines-container").style.rotate = formatCssDeg(game.getwind(game.turncount + 1));
 
     var linesDrawing = document.getElementById("lines-drawing");
     linesDrawing.innerHTML = "";
@@ -133,7 +132,7 @@ function drawLines() {
 }
 
 function drawWindArrow() {
-    var windDerection = game.getwind(turncount + 1);
+    var windDerection = game.getwind(game.turncount + 1);
     var e = document.getElementById("wind");
     e.style.rotate = formatCssDeg(windDerection * 2);
     if (windDerection > 0) {
@@ -166,15 +165,15 @@ function windDataInit() {
 
     // TODO: add typical overage race lenght to wind scenario
     var size = Math.round((game.height - 4) / Math.sin(Math.PI / 4));
-    if (size < turncount + 10) {
-        size = turncount + 10;
+    if (size < game.turncount + 10) {
+        size = game.turncount + 10;
     }
     var drawedWind = [];
     for (var i = 0; i < size; i++) {
         drawedWind.push(game.getwind(i));
     }
     windDataContainer.innerHTML = "";
-    windDataContainer.appendChild(getWindSvg(drawedWind, turncount));
+    windDataContainer.appendChild(getWindSvg(drawedWind, game.turncount));
 }
 
 function getWindSvg(wind, turncount, width = 200, height = 500, uiScale = 1) {
@@ -215,7 +214,7 @@ function getWindSvg(wind, turncount, width = 200, height = 500, uiScale = 1) {
             dStrGrid += getSvgPathCommand("L", lineWidth * 2 + moveLeft, y);
             dStrGrid += getSvgPathCommand("L", moveLeft, y);
         }
-        if (turncount % wind.length + 2 == i) {
+        if (game.turncount % wind.length + 2 == i) {
 
         }
 
@@ -279,7 +278,7 @@ function getWindSvg(wind, turncount, width = 200, height = 500, uiScale = 1) {
 
     var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     newRect.setAttribute("x", moveLeft - 5)
-    newRect.setAttribute("y", ((wind.length * step) + (fontSize * 2)) - (turncount + 3) * step);
+    newRect.setAttribute("y", ((wind.length * step) + (fontSize * 2)) - (game.turncount + 3) * step);
     newRect.setAttribute("height", step);
     newRect.setAttribute("width", width - moveLeft - 10 + 10);
     newRect.setAttribute("fill", "#fd7e14");
@@ -323,7 +322,7 @@ function drawMarks() {
 
     upMarkLanelines.style.left = formatCssPx(game.marks[2].x * gridsize);
     upMarkLanelines.style.top = formatCssPx(game.marks[2].y * gridsize);
-    upMarkLanelines.style.rotate = formatCssDeg(game.getwind(turncount + 1));
+    upMarkLanelines.style.rotate = formatCssDeg(game.getwind(game.turncount + 1));
 
     var startlinecontainer = document.getElementById("start-line-svg");
     startlinecontainer.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width * gridsize, game.height * gridsize));
@@ -404,10 +403,7 @@ function addPlayer() {
 
     game.players.push(newPlayer);
 
-    var newboatcont = document.createElement("div");
-    newboatcont.className = "game-elem pn-boat";
-    newboatcont.style.color = newPlayer.color;
-
+    var newboatcont = getNewBoat(newPlayer);
     newPlayer.html = newboatcont;
     gamearea.appendChild(newboatcont);
 
@@ -425,6 +421,14 @@ function addPlayer() {
     new bootstrap.Tooltip(document.getElementById("add-wind-btn"))
 }
 
+function getNewBoat(player) {
+    var newboatcont = document.createElement("div");
+    newboatcont.className = "game-elem pn-boat";
+    newboatcont.style.color = player.color;
+
+    return newboatcont;
+}
+
 addEventListener("load", init);
 
 function init() {
@@ -436,6 +440,7 @@ function init() {
     upMarkLanelines.className = "pn-lines game-elem";
     gamearea.insertBefore(upMarkLanelines, document.getElementById("marks"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
+        game.turncount = 0;
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
             player.tack = false;
@@ -452,7 +457,6 @@ function init() {
         windChange();
         document.body.className = "start";
         game.isStart = true;
-        turncount = 0;
         game.placeBoatsOnStart();
         drawAll();
     });
@@ -535,6 +539,79 @@ function init() {
     windDataInit();
 
     applySettings();
+
+    var fileInput = document.getElementById("load-race-file");
+    fileInput.addEventListener("change", function () {
+        var fileReader = new FileReader()
+        fileReader.readAsText(fileInput.files[0])
+        fileReader.addEventListener("load", () => {
+            loadGameFromFile(fileReader.result);
+
+        });
+    });
+
+    document.getElementById("save-game-btn").addEventListener("click", function () {
+        var file = new Blob([game.save()], { type: "application/json" });
+        var name = `${game.windscenario.name}.tss`;
+        var url = URL.createObjectURL(file);
+        try {
+            var linkElem = document.createElement("a");
+            linkElem.href = url;
+            linkElem.download = name;
+            linkElem.click();
+        }
+        finally {
+            URL.revokeObjectURL(url);
+        }
+    });
+}
+
+function tryGetVal(val) {
+    if (val) {
+        return val;
+    } else {
+        throw "Invalid value";
+    }
+}
+
+function loadGameFromFile(result) {
+    try {
+        newGame = Game.load(result);
+    } catch (e) {
+        alert(e);
+        return;
+    }
+
+    if (newGame) {
+        console.log(newGame);
+        game = newGame;
+
+        document.getElementById("wind-scenario-name-inrace-alert").innerText = game.name;
+
+        document.getElementById("controlls").innerHTML = "";
+        document.getElementById("boats").innerHTML = "";
+        document.getElementById("track").innerHTML = "";
+        for (var i in game.players) {
+            var player = game.players[i];
+
+            player.html = getNewBoat(player);
+            addControll(player);
+            if (game.isStart) {
+                player.startInputs[player.startPos].checked = true;
+            }
+            document.getElementById("boats").appendChild(player.html);
+        }
+        if (game.isStart) {
+            document.body.className = "start";
+        } else {
+            document.body.className = "race";
+        }
+        renderGridSize();
+        redrawTracks();
+        drawAll();
+        applySettings();
+        updateControls();
+    }
 }
 
 function openFullscreen(elem) {
