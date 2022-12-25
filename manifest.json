@@ -31,6 +31,14 @@
             "sizes": "any"
         }
     ],
+    "screenshots": [
+        {
+            "src": "screenshots/1.png"
+        },
+        {
+            "src": "screenshots/2.png"
+        }
+    ],
     "content_scripts": {
         "js": [
             "js/game.js"
