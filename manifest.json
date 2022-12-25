@@ -25,10 +25,6 @@
         {
             "src": "icons/512.png",
             "sizes": "512"
-        },
-        {
-            "src": "icons/512.png",
-            "sizes": "any"
         }
     ],
     "screenshots": [
