@@ -39,11 +39,6 @@
             "src": "screenshots/2.png"
         }
     ],
-    "web_accessible_resources": {
-        "js": [
-            "js/game.js"
-        ]
-    },
     "categories": [
         "games",
         "education",
