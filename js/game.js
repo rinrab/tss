@@ -440,7 +440,7 @@ function init() {
     upMarkLanelines.className = "pn-lines game-elem";
     gamearea.insertBefore(upMarkLanelines, document.getElementById("marks"));
     document.getElementById("btn-nowember").addEventListener("click", function () {
-        game.turncount = 0;    
+        game.turncount = 0;
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
             player.tack = false;
