@@ -9,6 +9,7 @@
     "orientation": "landscape",
     "offline_enabled": true,
     "lang": "en",
+    "id": "tss.boats",
     "icons": [
         {
             "src": "img/icon.svg",
