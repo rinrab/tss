@@ -23,5 +23,16 @@
             "platform": "play",
             "url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"
         }
+    ],
+    "js": [
+        "js/bootstrap.bundle.min.js",
+        "js/winddata.js",
+        "js/gamestate.js",
+        "js/controlls.js",
+        "js/windeditor.js",
+        "js/game.js"
+    ],
+    "css": [
+        "css/bootstrap.min.css"
     ]
 }
