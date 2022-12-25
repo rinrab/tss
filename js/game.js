@@ -596,6 +596,9 @@ function loadGameFromFile(result) {
 
             player.html = getNewBoat(player);
             addControll(player);
+            if (game.isStart) {
+                player.startInputs[player.startPos].checked = true;
+            }
             document.getElementById("boats").appendChild(player.html);
         }
         if (game.isStart) {

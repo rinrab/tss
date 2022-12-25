@@ -454,6 +454,7 @@ class Game {
         newGame.turncount = parsedData.turncount;
         newGame.isStart = parsedData.isStart;
         newGame.name = parsedData.name;
+        newGame.currentStartPriority = parsedData.currentStartPriority;
 
         newGame.players = [];
         for (var i in parsedData.players) {
@@ -465,6 +466,8 @@ class Game {
             player.tack = parsedPlayer.tack;
             player.color = parsedPlayer.color;
             player.turns = [];
+            player.startPos = parsedPlayer.startPos;
+            player.startPriority = parsedPlayer.startPriority;
             for (var j in parsedPlayer.turns) {
                 player.turns.push(parsedPlayer.turns[j]);
             }
