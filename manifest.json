@@ -10,15 +10,15 @@
     "offline_enabled": true,
     "icons": [
         {
-            "src": "icons/512.png",
+            "src": "icons/16.png",
             "sizes": "16"
         },
         {
-            "src": "icons/512.png",
+            "src": "icons/64.png",
             "sizes": "64"
         },
         {
-            "src": "icons/512.png",
+            "src": "icons/256.png",
             "sizes": "256"
         },
         {
