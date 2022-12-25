@@ -41,7 +41,6 @@ function windInit() {
                 startsize: w.startsize,
             });
         }
-        wind = structuredClone(windPresets);
         saveWind();
     } else {
         loadWind();
