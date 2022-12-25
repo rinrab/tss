@@ -11,20 +11,10 @@
     "lang": "en",
     "icons": [
         {
-            "src": "icons/32.png",
-            "sizes": "32"
-        },
-        {
-            "src": "icons/64.png",
-            "sizes": "64"
-        },
-        {
-            "src": "icons/96.png",
-            "sizes": "96"
-        },
-        {
-            "src": "icons/256.png",
-            "sizes": "256"
+            "src": "img/icon.svg",
+            "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
+            "type": "image/svg+xml",
+            "purpose": "any"
         },
         {
             "src": "icons/512.png",
