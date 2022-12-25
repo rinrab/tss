@@ -30,6 +30,11 @@
             "sizes": "any"
         }
     ],
+    "content_scripts": {
+        "js": [
+            "js/game.js"
+        ]
+    },
     "categories": [
         "games",
         "education",
