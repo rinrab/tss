@@ -551,9 +551,10 @@ function init() {
     });
 
     document.getElementById("save-game-btn").addEventListener("click", function () {
-        var file = new Blob([game.save()], { type: "application/json" });
+        var file = new Blob([game.save()], { type: "data:text/json" });
         var name = `${game.windscenario.name}.tss`;
         var url = URL.createObjectURL(file);
+        console.log(file)
         try {
             var linkElem = document.createElement("a");
             linkElem.href = url;
