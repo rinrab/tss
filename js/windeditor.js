@@ -26,6 +26,22 @@ var validtext;
 
 function windInit() {
     if (localStorage.getItem(localStorageNames.windlist) == null) {
+        for (var i in windPresets) {
+            var w = windPresets[i];
+            wind.push({
+                wind: w.wind,
+                name: w.name,
+                probability: w.probability,
+                israndom: w.israndom,
+                stepscount: w.stepscount,
+                width: w.width,
+                height: w.height,
+                maxwindsetting: w.maxwindsetting,
+                type: w.type,
+                startsize: w.startsize,
+            });
+        }
+        wind = structuredClone(windPresets);
         saveWind();
     } else {
         loadWind();
