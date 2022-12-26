@@ -217,7 +217,7 @@ class Boat {
 
         this.setTurn(this.turntype);
 
-        this.saveTurn(this.this.turntype, points);
+        this.saveTurn(this.turntype, points);
     }
 
     apply() {

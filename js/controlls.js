@@ -79,7 +79,7 @@ function addControll(player) {
     player.nameInput = nnameinput;
 
     if (!player.isBot) {
-        var inputStart = createRadioGroup(labelsStart, nc, tooltips);
+        var inputStart = createRadioGroup(labelsStart, nc, tooltipStart);
         player.startInputs = inputStart;
         inputStart[1].checked = true;
         for (var k = 0; k < inputStart.length; k++) {
