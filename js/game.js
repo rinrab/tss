@@ -386,16 +386,40 @@ function addWind() {
         newoption.innerText = wind[i].name;
         optgroup.appendChild(newoption);
     }
-
-
 }
-function addPlayer() {
+
+function addBot() {
     var gamearea = document.getElementById("boats");
 
     var newColor = game.findFreeColor();
     if (newColor == null) {
         var tooManyBoatsAlert = new bootstrap.Toast(document.getElementById("too-many-boats-alert"));
         tooManyBoatsAlert.show()
+        return;
+    }
+
+    var newPlayer = new Boat(6, starty, false, newColor, true);
+
+    game.players.push(newPlayer);
+
+    var newboatcont = getNewBoat(newPlayer);
+    newPlayer.html = newboatcont;
+    gamearea.appendChild(newboatcont);
+
+    applySettings();
+    addControll(newPlayer);
+
+    newPlayer.startPositionChange();
+    game.placeBoatsOnStart();
+}
+
+function addPlayer() {
+    var gamearea = document.getElementById("boats");
+
+    var newColor = game.findFreeColor();
+    if (newColor == null) {
+        var tooManyBoatsAlert = new bootstrap.Toast(document.getElementById("too-many-boats-alert"));
+        tooManyBoatsAlert.show();
         return;
     }
 
@@ -439,6 +463,10 @@ function init() {
     upMarkLanelines.src = "img/marklaneline.svg";
     upMarkLanelines.className = "pn-lines game-elem";
     gamearea.insertBefore(upMarkLanelines, document.getElementById("marks"));
+    document.getElementById("add-bot-btn").addEventListener("click", function() {
+        addBot();
+        drawAll();
+    });
     document.getElementById("btn-nowember").addEventListener("click", function () {
         game.turncount = 0;
         for (var i = 0; i < game.players.length; i++) {
