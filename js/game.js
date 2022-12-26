@@ -441,8 +441,6 @@ function addPlayer() {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
         new bootstrap.Tooltip(tooltipTriggerEl))
-    new bootstrap.Tooltip(document.getElementById("edit-btn"))
-    new bootstrap.Tooltip(document.getElementById("add-wind-btn"))
 }
 
 function getNewBoat(player) {
@@ -579,7 +577,6 @@ function init() {
         fileReader.readAsText(fileInput.files[0])
         fileReader.addEventListener("load", () => {
             loadGameFromFile(fileReader.result);
-
         });
     });
 
@@ -630,6 +627,7 @@ function loadGameFromFile(result) {
 
             player.html = getNewBoat(player);
             addControll(player);
+            player.setTurn(player.turntype)
             if (game.isStart) {
                 player.startInputs[player.startPos].checked = true;
             }

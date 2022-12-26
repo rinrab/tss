@@ -91,10 +91,11 @@ function checkErrors() {
     for (var i = 0; i < windtmp.length; i++) {
         if (isNaN(parseInt(windtmp[i]))) {
             if (windtmp[i] != "") {
-                errors[errors.length] = {
-                    type: errorTypes.notnumber, text: '"' + windtmp[i] +
-                        '" ' + errortexts.notnumber, char: c
-                }
+                errors.push({
+                    type: errorTypes.notnumber,
+                    text: '"' + windtmp[i] + '" ' + errortexts.notnumber,
+                    char: c
+                });
             }
         }
         c += windtmp[i].length + 1;
@@ -109,17 +110,11 @@ function checkErrors() {
             }
             notnambercount++;
         }
-        validtext.innerText =
-            `You have ${errors.length} error${(errors.length > 1) ? "s" : ""} in wind.\n`;
-        for (var i = 0; i < errors.length; i++) {
-            if (errors[i].type == errorTypes.notnumber) {
-                validtext.innerText += errors[i].text + "\n";
-            }
+        if (errors[0].type == errorTypes.notnumber) {
+            validtext.innerText = errors[0].text + "\n";
         }
-        validtext.classList.replace("valid-feedback", "invalid-feedback");
     } else {
-        validtext.classList.replace("invalid-feedback", "valid-feedback");
-        validtext.innerText = "Wind is correct";
+        validtext.innerText = "";
     }
 }
 

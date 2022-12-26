@@ -118,7 +118,7 @@ class Boat {
                     moveDist -= dist;
 
                     this.finished = game.turncount * 60 + (60 - moveDist * 60);
-                    console.log("Boat " + this.nameText.value + " finish time:", this.finished);
+                    console.log("Boat " + this.nameText.innerText + " finish time:", this.finished);
 
                     drawAll();
 
@@ -217,7 +217,7 @@ class Boat {
 
         this.setTurn(this.turntype);
 
-        this.saveTurn(this.turntype, points);
+        this.saveTurn(this.this.turntype, points);
     }
 
     apply() {
@@ -262,6 +262,7 @@ class Boat {
         this.color = color;
         this.finishTime = undefined;
         this.isBot = isBot;
+        this.turntype = 0;
     }
 
     startPositionChange() {
@@ -466,7 +467,8 @@ class Game {
                 finished: p.finished,
                 tack: p.tack,
                 startPos: p.startPos,
-                startPriority: p.startPriority
+                startPriority: p.startPriority,
+                turntype: p.getTurn()
             };
             gameJson.players.push(playerJson);
         }
@@ -519,6 +521,9 @@ class Game {
             player.turns = [];
             player.startPos = parsedPlayer.startPos;
             player.startPriority = parsedPlayer.startPriority;
+            if (parsedPlayer.turntype) {
+                player.turntype = parsedPlayer.turntype;
+            }
             for (var j in parsedPlayer.turns) {
                 player.turns.push(parsedPlayer.turns[j]);
             }

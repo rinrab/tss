@@ -19,12 +19,12 @@ function apply() {
     for (var i = 0; i < game.players.length; i++) {
         var player = game.players[i];
         if (player.nameInput.value == "") {
-            player.nameText.value = "Player " + (i + 1);
-            player.nameTextFinish.value = "Player " + (i + 1);
+            player.nameText.innerText = "Player " + (i + 1);
+            player.nameTextFinish.innerText = "Player " + (i + 1);
             player.name = "Player " + (i + 1);
         } else {
-            player.nameText.value = player.nameInput.value;
-            player.nameTextFinish.value = player.nameInput.value;
+            player.nameText.innerText = player.nameInput.value;
+            player.nameTextFinish.innerText = player.nameInput.value;
             player.name = player.nameInput.value;
         }
 
@@ -48,16 +48,18 @@ function addControll(player) {
     player.controlGroup = newControlGroup1;
     controlls.insertBefore(newControlGroup1, document.getElementById("last-controll"));
 
-    var labelsStart = ["L", "M", "R"];
-    var labelsRace = [
+    const labelsStart = ["L", "M", "R"];
+    const tooltipStart = ["Start left", "Start middle", "Start right"];
+    const labelsRace = [
         '<svg xmlns="http://www.w3.org/2000/svg" class="port-forward-btn icon-sm"><use href="#icon-port-forward"></use></svg>' +
         '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-forward-btn icon-sm"><use href="#icon-starboard-forward"></use></svg>',
         '<svg xmlns="http://www.w3.org/2000/svg" class="port-tack-btn icon-sm"><use href="#icon-port-tack"></use></svg>' +
         '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-tack-btn icon-sm"><use href="#icon-starboard-tack"></use></svg>',
         '&#8857;&#8592;'];
+    const tooltipRace = ["Forward", "Tack", "To Mark"];
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 start-controls";
+    nc.className = "input-group my-1 start-controls";
     newControlGroup1.appendChild(nc)
 
     var newcolor = document.createElement("span");
@@ -77,7 +79,7 @@ function addControll(player) {
     player.nameInput = nnameinput;
 
     if (!player.isBot) {
-        var inputStart = createRadioGroup(labelsStart, nc);
+        var inputStart = createRadioGroup(labelsStart, nc, tooltips);
         player.startInputs = inputStart;
         inputStart[1].checked = true;
         for (var k = 0; k < inputStart.length; k++) {
@@ -106,7 +108,7 @@ function addControll(player) {
     nc.appendChild(newDeleteBtn)
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 race-controls";
+    nc.className = "input-group my-1 race-controls";
     nc.classList.add("race-controls");
 
     var newcolor = document.createElement("span");
@@ -119,16 +121,13 @@ function addControll(player) {
     newcolor.appendChild(newcolordiv);
     player.posLabel = newcolordiv;
 
-    var nnameinput = document.createElement("input");
-    nnameinput.type = "text";
-    nnameinput.className = "form-control";
-    nnameinput.setAttribute("tabIndex", "-1");
+    var nnameinput = document.createElement("label");
+    nnameinput.className = "col-form-label border col name-input";
     nc.appendChild(nnameinput);
-    nnameinput.readOnly = true;
     player.nameText = nnameinput;
 
     if (!player.isBot) {
-        var inputsRace = createRadioGroup(labelsRace, nc);
+        var inputsRace = createRadioGroup(labelsRace, nc, tooltipRace);
         player.forwardBtn = inputsRace[0];
         player.tackBtn = inputsRace[1];
         player.toMarkBtn = inputsRace[2];
@@ -140,8 +139,7 @@ function addControll(player) {
     player.raceControls = nc;
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 race-controls";
-    nc.classList.add("race-controls");
+    nc.className = "input-group my-1 race-controls";
 
     var newcolor = document.createElement("span");
     newcolor.className = "input-group-text";
@@ -152,16 +150,8 @@ function addControll(player) {
     newcolordiv.style.backgroundColor = player.color;
     newcolor.appendChild(newcolordiv);
 
-    var nnameinput = document.createElement("input");
-    nnameinput.type = "text";
-    nnameinput.className = "form-control";
-    nnameinput.setAttribute("tabIndex", "-1");
-    nc.appendChild(nnameinput);
-    nnameinput.readOnly = true;
-    player.nameTextFinish = nnameinput;
-
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 finish-controls";
+    nc.className = "input-group my-1 finish-controls";
 
     var newcolor = document.createElement("span");
     newcolor.className = "input-group-text";
@@ -174,11 +164,9 @@ function addControll(player) {
     player.posLabel = newcolordiv;
     newControlGroup1.appendChild(nc);
 
-    var nnameinput = document.createElement("input");
-    nnameinput.type = "text";
-    nnameinput.className = "form-control";
+    var nnameinput = document.createElement("label");
+    nnameinput.className = "col-form-label border col name-input";
     nc.appendChild(nnameinput);
-    nnameinput.readOnly = true;
     player.nameTextFinish = nnameinput;
 
     var newcolor = document.createElement("span");
@@ -203,14 +191,14 @@ function addControll(player) {
     if (player.name != undefined) {
         console.log(player.name);
         player.nameInput.value = player.name;
-        player.nameText.value = player.name;
-        player.nameTextFinish.value = player.name;
+        player.nameText.innerText = player.name;
+        player.nameTextFinish.innerText = player.name;
     }
 
     updatePlayerControls(player);
 }
 
-function createRadioGroup(labels, parent) {
+function createRadioGroup(labels, parent, tooltips) {
     var inputs = [];
     var groupName = getRandomId();
 
@@ -226,6 +214,9 @@ function createRadioGroup(labels, parent) {
 
         newLabel.className = "btn btn-outline-primary label-control";
         newLabel.setAttribute("for", newInput.id);
+        if (tooltips && tooltips[i]) {
+            newLabel.title = tooltips[i];
+        }
         newLabel.innerHTML = labels[i]
 
         parent.appendChild(newInput);
