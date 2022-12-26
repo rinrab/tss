@@ -239,6 +239,7 @@ class Boat {
         this.startInputs = [];
         this.color = color;
         this.finishTime = undefined;
+        this.turntype = 0;
     }
 
     startPositionChange() {
@@ -443,7 +444,8 @@ class Game {
                 finished: p.finished,
                 tack: p.tack,
                 startPos: p.startPos,
-                startPriority: p.startPriority
+                startPriority: p.startPriority,
+                turntype: p.getTurn()
             };
             gameJson.players.push(playerJson);
         }
@@ -496,6 +498,9 @@ class Game {
             player.turns = [];
             player.startPos = parsedPlayer.startPos;
             player.startPriority = parsedPlayer.startPriority;
+            if (parsedPlayer.turntype) {
+                player.turntype = parsedPlayer.turntype;
+            }
             for (var j in parsedPlayer.turns) {
                 player.turns.push(parsedPlayer.turns[j]);
             }

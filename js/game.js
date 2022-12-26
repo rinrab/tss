@@ -549,7 +549,6 @@ function init() {
         fileReader.readAsText(fileInput.files[0])
         fileReader.addEventListener("load", () => {
             loadGameFromFile(fileReader.result);
-
         });
     });
 
@@ -600,6 +599,7 @@ function loadGameFromFile(result) {
 
             player.html = getNewBoat(player);
             addControll(player);
+            player.setTurn(player.turntype)
             if (game.isStart) {
                 player.startInputs[player.startPos].checked = true;
             }
