@@ -137,7 +137,6 @@ function addControll(player) {
 
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 race-controls";
-    nc.classList.add("race-controls");
 
     var newcolor = document.createElement("span");
     newcolor.className = "input-group-text";
