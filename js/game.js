@@ -417,8 +417,6 @@ function addPlayer() {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
         new bootstrap.Tooltip(tooltipTriggerEl))
-    new bootstrap.Tooltip(document.getElementById("edit-btn"))
-    new bootstrap.Tooltip(document.getElementById("add-wind-btn"))
 }
 
 function getNewBoat(player) {
