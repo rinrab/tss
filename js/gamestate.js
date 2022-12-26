@@ -44,20 +44,39 @@ class Boat {
 
     startInputs;
 
+    turntype;
+
+    getTurn() {
+        if (this.tackBtn.checked) {
+            return turnTupes.tack;
+        } else if (this.toMarkBtn.checked) {
+            return turnTupes.toMark;
+        } else {
+            return turnTupes.forward;
+        }
+    }
+
+    setTurn(turntype) {
+        if (this.isBot) {
+            return;
+        } else {
+            if (turntype == turnTupes.forward) {
+                this.forwardBtn.checked = true;
+            } else if (turntype == turnTupes.tack) {
+                this.tackBtn.checked = true;
+            } else {
+                this.toMarkBtn.checked = true;
+            }
+        }
+    }
+
     turn() {
-        var turntype;
+        this.turntype = this.getTurn();
+
         var points = [];
         var moveDist = 1;
 
-        if (this.tackBtn.checked) {
-            turntype = turnTupes.tack;
-        } else if (this.toMarkBtn.checked) {
-            turntype = turnTupes.toMark;
-        } else {
-            turntype = turnTupes.forward;
-        }
-
-        if (this.tackBtn.checked) {
+        if (this.turntype == turnTupes.tack) {
             this.tack = !this.tack;
 
             if (this.tack) {
@@ -65,7 +84,8 @@ class Boat {
             } else {
                 this.rotation = -45 + game.getwind(game.turncount);
             }
-            this.forwardBtn.checked = true;
+
+            this.turntype = turnTupes.forward;
         }
 
         while (moveDist > 0) {
@@ -85,9 +105,8 @@ class Boat {
 
                     this.tack = false;
                     this.rotation = -100;
-
                 }
-                else if (this.forwardBtn.checked &&
+                else if (this.turntype == turnTupes.forward &&
                     this.y - Math.cos(this.rotation * Math.PI / 180) * moveDist <= game.marks[2].y) {
                     if (this.y > game.marks[2].y) {
                         var markDistance = distanceToLine(
@@ -103,7 +122,7 @@ class Boat {
                         drawAll();
                     }
 
-                    this.toMarkBtn.checked = true;
+                    this.turntype = turnTupes.toMark;
                 }
                 else {
                     if (this.x < 0.5) {
@@ -113,7 +132,7 @@ class Boat {
                         this.tack = false;
                     }
 
-                    if (this.toMarkBtn.checked) {
+                    if (this.turntype == turnTupes.toMark) {
                         if (game.isOutLaneline(this.x, this.y)) {
                             this.rotation = getRotateAngle(this.x, this.y, game.marks[2].x, game.marks[2].y);
                             this.x += Math.sin(this.rotation * Math.PI / 180) * moveDist;
@@ -177,7 +196,8 @@ class Boat {
             }
         }
 
-        this.saveTurn(turntype, points);
+        this.setTurn(this.turntype);
+        this.saveTurn(this.turntype, points);
     }
 
     apply() {
