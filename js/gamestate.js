@@ -99,7 +99,7 @@ class Boat {
                     moveDist -= dist;
 
                     this.finished = game.turncount * 60 + (60 - moveDist * 60);
-                    console.log("Boat " + this.nameText.value + " finish time:", this.finished);
+                    console.log("Boat " + this.nameText.innerText + " finish time:", this.finished);
 
                     drawAll();
 

@@ -19,12 +19,12 @@ function apply() {
     for (var i = 0; i < game.players.length; i++) {
         var player = game.players[i];
         if (player.nameInput.value == "") {
-            player.nameText.value = "Player " + (i + 1);
-            player.nameTextFinish.value = "Player " + (i + 1);
+            player.nameText.innerText = "Player " + (i + 1);
+            player.nameTextFinish.innerText = "Player " + (i + 1);
             player.name = "Player " + (i + 1);
         } else {
-            player.nameText.value = player.nameInput.value;
-            player.nameTextFinish.value = player.nameInput.value;
+            player.nameText.innerText = player.nameInput.value;
+            player.nameTextFinish.innerText = player.nameInput.value;
             player.name = player.nameInput.value;
         }
 
@@ -118,12 +118,9 @@ function addControll(player) {
     newcolor.appendChild(newcolordiv);
     player.posLabel = newcolordiv;
 
-    var nnameinput = document.createElement("input");
-    nnameinput.type = "text";
-    nnameinput.className = "form-control";
-    nnameinput.setAttribute("tabIndex", "-1");
+    var nnameinput = document.createElement("label");
+    nnameinput.className = "col-form-label border col name-input";
     nc.appendChild(nnameinput);
-    nnameinput.readOnly = true;
     player.nameText = nnameinput;
 
     var inputsRace = createRadioGroup(labelsRace, nc, tooltipRace);
@@ -147,14 +144,6 @@ function addControll(player) {
     newcolordiv.style.backgroundColor = player.color;
     newcolor.appendChild(newcolordiv);
 
-    var nnameinput = document.createElement("input");
-    nnameinput.type = "text";
-    nnameinput.className = "form-control";
-    nnameinput.setAttribute("tabIndex", "-1");
-    nc.appendChild(nnameinput);
-    nnameinput.readOnly = true;
-    player.nameTextFinish = nnameinput;
-
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 finish-controls";
 
@@ -169,11 +158,9 @@ function addControll(player) {
     player.posLabel = newcolordiv;
     newControlGroup1.appendChild(nc);
 
-    var nnameinput = document.createElement("input");
-    nnameinput.type = "text";
-    nnameinput.className = "form-control";
+    var nnameinput = document.createElement("label");
+    nnameinput.className = "col-form-label border col name-input";
     nc.appendChild(nnameinput);
-    nnameinput.readOnly = true;
     player.nameTextFinish = nnameinput;
 
     var newcolor = document.createElement("span");
@@ -198,8 +185,8 @@ function addControll(player) {
     if (player.name != undefined) {
         console.log(player.name);
         player.nameInput.value = player.name;
-        player.nameText.value = player.name;
-        player.nameTextFinish.value = player.name;
+        player.nameText.innerText = player.name;
+        player.nameTextFinish.innerText = player.name;
     }
 
     updatePlayerControls(player);
