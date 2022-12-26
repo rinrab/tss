@@ -45,6 +45,23 @@ function windInit() {
     } else {
         loadWind();
     }
+    document.getElementById("copy-btn").addEventListener("click", function () {
+        const w = game.windscenario;
+        wind.push({
+            wind: w.wind,
+            name: w.name + " copy",
+            stepscount: w.wind.length,
+            width: w.width,
+            height: w.height,
+            type: windTypes.userdefined,
+            startsize: w.startsize,
+        });
+
+        windscenario = wind.length - 1;
+        saveWind();
+        addWind();
+        windscenariocontrol.selectedIndex = windscenario;
+    });
     mapWidth = document.getElementById("map-width");
     mapHeight = document.getElementById("map-height");
     startLineSizeInput = document.getElementById("start-line-size");
@@ -244,17 +261,25 @@ function editorSetReadonlyState(rs) {
 function windEditorStart(iscreate) {
     addEventListener("resize", updatePreview);
 
+    var copyBtn = document.getElementById("copy-btn");
+
     shareBtn.hidden = true;
     if (iscreate) {
         editIndex = -1
         editorSetReadonlyState(false);
+        copyBtn.hidden = true;
     } else {
         editIndex = windscenario;
         if (wind[windscenariocontrol.selectedIndex].type == windTypes.userdefined) {
             editorSetReadonlyState(false);
             shareBtn.hidden = false;
+            copyBtn.hidden = false;
         } else {
             editorSetReadonlyState(true);
+            copyBtn.hidden = false;
+        }
+        if (wind[windscenariocontrol.selectedIndex].israndom) {
+            copyBtn.hidden = true;
         }
     }
 
