@@ -48,7 +48,23 @@ class Boat {
 
     getTurn() {
         if (this.isBot) {
-            return turnTupes.toMark;
+            const zeroWind = 0;
+            if (game.isOutLaneline(this.x, this.y)) {
+                return turnTupes.toMark;
+            }
+            if (game.getwind(game.turncount) < zeroWind) {
+                if (this.tack) {
+                    return turnTupes.forward;
+                } else {
+                    return turnTupes.tack;
+                }
+            } else {
+                if (this.tack) {
+                    return turnTupes.tack;
+                } else {
+                    return turnTupes.forward;
+                }
+            }
         } else {
             if (this.tackBtn.checked) {
                 return turnTupes.tack;
