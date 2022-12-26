@@ -59,7 +59,7 @@ function addControll(player) {
     const tooltipRace = ["Forward", "Tack", "To Mark"];
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 start-controls";
+    nc.className = "input-group my-1 start-controls";
     newControlGroup1.appendChild(nc)
 
     var newcolor = document.createElement("span");
@@ -105,7 +105,7 @@ function addControll(player) {
     nc.appendChild(newDeleteBtn)
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 race-controls";
+    nc.className = "input-group my-1 race-controls";
     nc.classList.add("race-controls");
 
     var newcolor = document.createElement("span");
@@ -133,7 +133,7 @@ function addControll(player) {
     player.forwardBtn.checked = true;
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 race-controls";
+    nc.className = "input-group my-1 race-controls";
 
     var newcolor = document.createElement("span");
     newcolor.className = "input-group-text";
@@ -145,7 +145,7 @@ function addControll(player) {
     newcolor.appendChild(newcolordiv);
 
     var nc = document.createElement("div");
-    nc.className = "input-group mb-1 finish-controls";
+    nc.className = "input-group my-1 finish-controls";
 
     var newcolor = document.createElement("span");
     newcolor.className = "input-group-text";
