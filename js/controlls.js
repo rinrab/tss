@@ -48,13 +48,15 @@ function addControll(player) {
     player.controlGroup = newControlGroup1;
     controlls.insertBefore(newControlGroup1, document.getElementById("last-controll"));
 
-    var labelsStart = ["L", "M", "R"];
-    var labelsRace = [
+    const labelsStart = ["L", "M", "R"];
+    const tooltipStart = ["Start left", "Start middle", "Start right"];
+    const labelsRace = [
         '<svg xmlns="http://www.w3.org/2000/svg" class="port-forward-btn icon-sm"><use href="#icon-port-forward"></use></svg>' +
         '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-forward-btn icon-sm"><use href="#icon-starboard-forward"></use></svg>',
         '<svg xmlns="http://www.w3.org/2000/svg" class="port-tack-btn icon-sm"><use href="#icon-port-tack"></use></svg>' +
         '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-tack-btn icon-sm"><use href="#icon-starboard-tack"></use></svg>',
         '&#8857;&#8592;'];
+    const tooltipRace = ["Forward", "Tack", "To Mark"];
 
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 start-controls";
@@ -76,7 +78,7 @@ function addControll(player) {
     nc.appendChild(nnameinput);
     player.nameInput = nnameinput;
 
-    var inputStart = createRadioGroup(labelsStart, nc);
+    var inputStart = createRadioGroup(labelsStart, nc, tooltipStart);
     player.startInputs = inputStart;
     inputStart[1].checked = true;
     for (var k = 0; k < inputStart.length; k++) {
@@ -87,8 +89,8 @@ function addControll(player) {
     }
     var newDeleteBtn = document.createElement("a");
     newDeleteBtn.className = "btn btn-outline-danger delete-btn";
-    newDeleteBtn.innerHTML = 
-    `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+    newDeleteBtn.innerHTML =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
       <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
     </svg>`;
     newDeleteBtn.addEventListener("click", function () {
@@ -119,12 +121,12 @@ function addControll(player) {
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
     nnameinput.className = "form-control";
-    nnameinput.setAttribute("tabIndex",  "-1");
+    nnameinput.setAttribute("tabIndex", "-1");
     nc.appendChild(nnameinput);
     nnameinput.readOnly = true;
     player.nameText = nnameinput;
 
-    var inputsRace = createRadioGroup(labelsRace, nc);
+    var inputsRace = createRadioGroup(labelsRace, nc, tooltipRace);
     player.forwardBtn = inputsRace[0];
     player.tackBtn = inputsRace[1];
     player.toMarkBtn = inputsRace[2];
@@ -132,7 +134,7 @@ function addControll(player) {
     newControlGroup1.appendChild(nc);
 
     player.forwardBtn.checked = true;
-    
+
     var nc = document.createElement("div");
     nc.className = "input-group mb-1 race-controls";
     nc.classList.add("race-controls");
@@ -149,7 +151,7 @@ function addControll(player) {
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
     nnameinput.className = "form-control";
-    nnameinput.setAttribute("tabIndex",  "-1");
+    nnameinput.setAttribute("tabIndex", "-1");
     nc.appendChild(nnameinput);
     nnameinput.readOnly = true;
     player.nameTextFinish = nnameinput;
@@ -204,7 +206,7 @@ function addControll(player) {
     updatePlayerControls(player);
 }
 
-function createRadioGroup(labels, parent) {
+function createRadioGroup(labels, parent, tooltips) {
     var inputs = [];
     var groupName = getRandomId();
 
@@ -220,6 +222,9 @@ function createRadioGroup(labels, parent) {
 
         newLabel.className = "btn btn-outline-primary label-control";
         newLabel.setAttribute("for", newInput.id);
+        if (tooltips && tooltips[i]) {
+            newLabel.title = tooltips[i];
+        }
         newLabel.innerHTML = labels[i]
 
         parent.appendChild(newInput);
