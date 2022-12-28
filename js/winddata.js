@@ -121,6 +121,42 @@ var windPresets =
             startsize: 15,
         },
         {
+            "name": "Pendulum 2",
+            "type": windTypes.presets,
+            "wind": [-5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -15, -10],
+            "width": 40, "height": 30,
+            "startsize": 15,
+            "stepscount": 12,
+            "allowedit": true
+        },
+        {
+            "name": "Pendulum 3",
+            "type": windTypes.presets,
+            "wind": [0, 5, 10, 15, 20, 15, 10, 5, 0, 5, 10, 15, 20, 15, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5, 0, -5, -10, -15, -20, -15, -10, -5, 0],
+            "width": 60, "height": 50,
+            "startsize": 15,
+            "stepscount": 33,
+            "allowedit": false
+        },
+        {
+            "name": "Pendulum 4",
+            "type": windTypes.presets,
+            "wind": [0, 5, 10, 15, 20, 15, 10, 5, 0],
+            "width": 40, "height": 30,
+            "startsize": 15,
+            "stepscount": 9,
+            "allowedit": true
+        },
+        {
+            "name": "Double Pendulum",
+            "type": windTypes.presets,
+            "wind": [0, 5, 0, 10, 5, 15, 10, 20, 15, 20, 10, 15, 5, 10, 0, 5, -5, 0, -10, -5, -15, -10, -20, -15, -20, -10, -15, -5, -10, 0, -5, 0, 0],
+            "width": 40, "height": 30,
+            "startsize": 15,
+            "stepscount": 33,
+            "allowedit": true
+        },
+        {
             "name": "Global Change 1",
             "type": windTypes.presets,
             "wind": [0, 0, 0, 5, 0, 5, 5, 10, 5, 10, 10, 15, 10, 15, 15, 15, 10, 15, 15, 20, 20, 15, 20, 20, 20, 15, 20, 20, 20, 15, 20, 20, 20, 15, 15, 15, 10, 15, 15, 15, 10, 15, 15, 15, 10, 15, 15, 10, 10, 10, 5, 5, 5],
@@ -137,6 +173,15 @@ var windPresets =
             "stepscount": 53,
             "allowedit": false,
             "startsize": 15
+        },
+        {
+            "name": "Global change 3",
+            "type": windTypes.presets,
+            "wind": [0, 5, 5, 10, 5, 10, 15, 20, 15, 20, 15, 10, 15, 20, 15, 10, 15, 10, 5, 0, 0, 0, -5, -10, -5, 0, 5, 0, 5, 0, 0, 0, -5, -15, -20, -15, -10, -5, 0, 5, 10, 5, 0, 0, 0, 5, 0, 0],
+            "width": 40, "height": 30,
+            "startsize": 15,
+            "stepscount": 48,
+            "allowedit": true
         },
         // {
         //     "name": "Bodrum Yalikovak 1",

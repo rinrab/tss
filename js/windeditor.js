@@ -196,10 +196,12 @@ function deleteClick() {
     if (editIndex != -1) {
         wind.splice(windscenario, 1);
 
-        windscenariocontrol.selectedIndex = 0;
+        var scenario = windscenario - 1;
         saveWind();
         windChange();
         addWind();
+        windscenariocontrol.selectedIndex = scenario;
+        windscenario = scenario;
     }
 }
 
