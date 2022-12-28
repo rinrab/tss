@@ -278,7 +278,7 @@ function getWindSvg(wind, turncount, width = 200, height = 500, uiScale = 1) {
 
     var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     newRect.setAttribute("x", moveLeft - 5)
-    newRect.setAttribute("y", ((wind.length * step) + (fontSize * 2)) - (game.turncount + 3) * step);
+    newRect.setAttribute("y", ((wind.length * step) + (fontSize * 2)) - (turncount + 3) * step);
     newRect.setAttribute("height", step);
     newRect.setAttribute("width", width - moveLeft - 10 + 10);
     newRect.setAttribute("fill", "#fd7e14");
