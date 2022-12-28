@@ -530,6 +530,10 @@ function init() {
         }
     });
 
+    addEventListener("beforeunload", function(e) {
+        e.preventDefault();
+    })
+
     var fullscreenToggle = document.getElementById("full-screen");
     fullscreenToggle.addEventListener("click", function () {
         if (fullscreenToggle.checked) {
