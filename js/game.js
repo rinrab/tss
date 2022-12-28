@@ -492,6 +492,9 @@ function init() {
 
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     addEventListener("keydown", function (e) {
+        if (e.target.tagName == "INPUT") {
+            return;
+        }
         if (e.code == "Backspace") {
             if (!game.isStart) {
                 e.preventDefault();
