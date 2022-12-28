@@ -495,6 +495,10 @@ function init() {
         if (e.target.tagName == "INPUT") {
             return;
         }
+        if (e.code == "KeyA") {
+            addPlayer();
+            drawAll();
+        }
         if (e.code == "Backspace") {
             if (!game.isStart) {
                 e.preventDefault();
