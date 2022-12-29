@@ -8,6 +8,10 @@ var windscenario;
 var windscenariocontrol;
 var windtype = 0;
 
+function confirmation(state) {
+    localStorage.setItem(localStorageNames.confirmation, state);
+}
+
 const startLineSize = 15;
 
 var boatsvg =
@@ -480,7 +484,7 @@ function init() {
         drawAll()
     });
 
-    addEventListener("orientationchange", function() {
+    addEventListener("orientationchange", function () {
         renderGridSize();
         drawAll();
     })
@@ -530,8 +534,11 @@ function init() {
         }
     });
 
-    addEventListener("beforeunload", function(e) {
-        e.preventDefault();
+    addEventListener("beforeunload", function (e) {
+        if (localStorage.getItem(localStorageNames.confirmation) == true ||
+            localStorage.getItem(localStorageNames.confirmation) == undefined) {
+            e.preventDefault();
+        }
     })
 
     var fullscreenToggle = document.getElementById("full-screen");

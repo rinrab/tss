@@ -6,6 +6,7 @@ var localStorageNames = {
     wind: "wind-data#",
     windlist: "wind-list",
     selectedWind: "selected-wind",
+    confirmation: "confirmation",
 }
 var defaultSetting = {
     showBoats: true,
