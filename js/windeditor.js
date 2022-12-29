@@ -162,24 +162,21 @@ function updatePreview() {
     var parsedWind = [];
     var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
     var windtmp = splitWind(windtext.value);
+
     var averageWind = 0;
 
     for (var i = 0; i < size; i++) {
         var parsedValue = parseInt(windtmp[i % windtmp.length]);
         if (!isNaN(parsedValue)) {
             parsedWind.push(parsedValue);
+            averageWind += parsedValue;
         } else {
             parsedWind.push(0);
         }
     }
-    for (var i in windtmp) {
-        var parsedValue = parseInt(windtmp[i]);
-        if (!isNaN(parsedValue)) {
-            averageWind += parsedValue;
-        }
-    }
 
-    averageWind = averageWind / windtmp.length;
+    console.log(averageWind)
+    averageWind = averageWind / size;
 
     var size = Math.round((parseInt(mapHeight.value) - 4) / Math.sin(Math.PI / 4));
 
