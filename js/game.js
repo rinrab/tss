@@ -510,8 +510,10 @@ function init() {
             return;
         }
         if (e.code == "KeyA") {
-            addPlayer();
-            drawAll();
+            if (game.isStart) {
+                addPlayer();
+                drawAll();
+            }
         }
         if (e.code == "Backspace") {
             if (!game.isStart) {
