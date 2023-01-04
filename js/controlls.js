@@ -173,7 +173,7 @@ function addControll(player) {
     player.timeLabel = newcolordiv;
     newControlGroup1.appendChild(nc);
 
-    var t = document.getElementById("track-g");
+    var t = document.getElementById("track");
     var np = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
     np.setAttribute("stroke", player.color);
     np.setAttribute("fill", "none");

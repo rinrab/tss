@@ -70,8 +70,6 @@ function turn() {
 }
 
 function redrawTracks() {
-    document.getElementById("track-ellipse-g").innerHTML = "";
-
     for (var i = 0; i < game.players.length; i++) {
         redrawTrack(game.players[i]);
     }
@@ -85,13 +83,6 @@ function redrawTrack(player) {
             var pt = player.turns[i].points[j];
 
             points += " " + pt.x.toFixed(3) + "," + pt.y.toFixed(3);
-            var newEllipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-            newEllipse.setAttribute("rx", "0.06");
-            newEllipse.setAttribute("ry", "0.06");
-            newEllipse.setAttribute("cx", pt.x.toFixed(3));
-            newEllipse.setAttribute("cy", pt.y.toFixed(3));
-            newEllipse.setAttribute("fill", player.color);
-            document.getElementById("track-ellipse-g").appendChild(newEllipse);
         }
     }
     player.track.setAttribute("points", points);
@@ -470,7 +461,6 @@ function init() {
         game.isStart = true;
         game.placeBoatsOnStart();
         drawAll();
-        document.getElementById("track-ellipse-g").innerHTML = "";
     });
     windInit();
     settingsInit();
@@ -623,7 +613,7 @@ function loadGameFromFile(result) {
 
         document.getElementById("controlls").innerHTML = "";
         document.getElementById("boats").innerHTML = "";
-        document.getElementById("track-g").innerHTML = "";
+        document.getElementById("track").innerHTML = "";
         for (var i in game.players) {
             var player = game.players[i];
 
