@@ -360,10 +360,14 @@ function renderGridSize() {
 
     if (zoomType == zoomTypes.upMark) {
         scale *= 3;
-        
+
         left = -game.width * scale * gridsize / 2 + gamecont.clientWidth / 2;
 
         gamearea.style.top = formatCssPx(0);
+
+        gamearea.style.setProperty("--boat-scale", 0.7);
+    } else {
+        gamearea.style.setProperty("--boat-scale", 1.2);
     }
 
     gamearea.style.left = formatCssPx(left);
