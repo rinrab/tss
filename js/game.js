@@ -463,10 +463,9 @@ function init() {
     windscenario = readIntSetting(localStorageNames.selectedWind, 0);
     windscenariocontrol = document.getElementById("select-wind");
     var gamearea = document.getElementById("game-area");
-    upMarkLanelines = document.createElement("img");
-    upMarkLanelines.src = "img/marklaneline.svg";
-    upMarkLanelines.className = "pn-lines game-elem";
-    gamearea.insertBefore(upMarkLanelines, document.getElementById("marks"));
+
+    upMarkLanelines = document.getElementById("upmarklines");
+
     document.getElementById("btn-nowember").addEventListener("click", function () {
         game.turncount = 0;
         for (var i = 0; i < game.players.length; i++) {
