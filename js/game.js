@@ -543,6 +543,29 @@ function init() {
                 drawAll();
             }
         }
+        if (!game.isStart) {
+            if (e.code == "Digit1" && e.ctrlKey) {
+                for (let p of game.players) {
+                    if (!p.finished) {
+                        p.forwardBtn.checked = true;
+                    }
+                }
+            }
+            if (e.code == "Digit2" && e.ctrlKey) {
+                for (let p of game.players) {
+                    if (!p.finished) {
+                        p.tackBtn.checked = true;
+                    }
+                }
+            }
+            if (e.code == "Digit3" && e.ctrlKey) {2
+                for (let p of game.players) {
+                    if (!p.finished) {
+                        p.toMarkBtn.checked = true;
+                    }
+                }
+            }
+        }
         if (e.code == "Backspace") {
             if (!game.isStart) {
                 e.preventDefault();
@@ -558,10 +581,10 @@ function init() {
             helpModal.hide();
             helpModal.show();
         } else {
-            if (!game.isStart) {
+            if (!game.isStart && !e.ctrlKey) {
                 var index = keysDigits.findIndex(function (a) { return a == e.key });
                 var player = game.players[index];
-
+            
                 if (player != undefined) {
                     e.preventDefault();
                     if (player.tackBtn.checked) {
