@@ -500,6 +500,7 @@ function init() {
         drawAll();
         windDataInit();
     });
+
     document.getElementById("edit-btn").addEventListener("click", function () {
         windEditorStart(false);
     });
