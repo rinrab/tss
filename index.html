@@ -360,7 +360,7 @@
             </button>
             <button id="add-wind-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
               data-bs-target="#wind-editor-window" title="Add custom wind scenario">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="scale: 1.3;"
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="transform: scale(1.3);"
                 class="bi bi-plus" viewBox="0 0 16 16">
                 <path
                   d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
@@ -421,20 +421,20 @@
           <div class="btn-group w-100" role="group" aria-label="Settings">
             <input class="btn-check" type="checkbox" id="set-show-tracks" />
             <label class="btn btn-outline-secondary" for="set-show-tracks" title="Show tracks">
-              <svg xmlns="http://www.w3.org/2000/svg" style="scale: 1.5;" width="16" height="16" viewBox="0 0 16 16"
+              <svg xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.5);" width="16" height="16" viewBox="0 0 16 16"
                 class="bi">
                 <path fill="none" stroke="currentColor" stroke-width="0.5"
                   d="m6.3 15-.5-.4-.5-.4-.5-.4.5-.4.5-.3.6-.3.6-.3.6-.3.6-.3.6-.3.7-.2-.3-.4-.4-.4-.4-.4-.4-.4-.4-.4-.5-.4-.4-.4-.5-.4-.5-.3-.5-.4.5-.4.5-.4.5-.4.6-.3.5-.4.5-.4.4-.4"></path>
-                <ellipse rx="0.7" cx="2" cy="15"></ellipse>
-                <ellipse rx="0.7" cx="14" cy="15"></ellipse>
-                <ellipse rx="0.7" cx="8" cy="2"></ellipse>
+                <ellipse ry="0.7" rx="0.7" cx="2" cy="15"></ellipse>
+                <ellipse ry="0.7" rx="0.7" cx="14" cy="15"></ellipse>
+                <ellipse ry="0.7" rx="0.7" cx="8" cy="2"></ellipse>
               </svg>
             </label>
 
             <input class="btn-check" type="checkbox" id="set-show-boats" />
             <label class="btn btn-outline-secondary" for="set-show-boats" title="Show boats">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-5.6247 -10 11.2494 18.5"
-                style="scale: 1.5; rotate: 45deg" class="bi bi-arrows-fullscreen">
+                style="transform: scale(1.5) rotate(45deg);" class="bi bi-arrows-fullscreen">
                 <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z"
                   stroke="currentColor" stroke-width="1" fill="none" />
                 <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="currentColor" fill="none" stroke-width="1" />
@@ -444,7 +444,7 @@
 
             <input class="btn-check" type="checkbox" id="set-show-lanelines" />
             <label class="btn btn-outline-secondary" for="set-show-lanelines" title="Show lanelines">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="scale: 1.5" viewBox="-8 0 16 16"
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="transform: scale(1.5);" viewBox="-8 0 16 16"
                 class="bi">
                 <path d="M -8 12 L 0 4 L 8 12" stroke="currentColor" stroke-width=".5" fill="none"></path>
                 <ellipse rx="1.5" ry="1.5" cx="0" cy="4" fill="currentColor"></ellipse>
@@ -454,7 +454,7 @@
             <input type="checkbox" class="btn-check" id="set-show-equal-lines" />
             <label class="btn btn-outline-secondary show-future-wind" for="set-show-equal-lines"
               title="Show equal lines">
-              <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style="scale: 1.5"
+              <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.5);"
                 class="bi">
                 <defs>
                   <path transform="scale(0.3) translate(9, 10) rotate(-15)" id="boat"
@@ -480,7 +480,7 @@
 
             <input type="checkbox" class="btn-check" id="show-future-wind" />
             <label class="btn btn-outline-secondary show-future-wind" for="show-future-wind" title="Show future wind">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="transform: scale(1.5)" width="16" height="16"
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" style="transform: scale(1.5)"
                 class="bi">
                 <path id="arrow" d="M 3 2 L 3 10 M 7 2 L 7 10 M 1 11 L 5 15 L 9 11"
                   transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
@@ -622,19 +622,19 @@
               <table class="table table-borderless">
                 <tbody>
                   <tr>
-                    <td class="text-end"><kbd>Space</kbd></th>
+                    <td class="text-end"><kbd>Space</kbd></td>
                     <td>Next turn</td>
                   </tr>
                   <tr>
-                    <td class="text-end"><kbd>Backspace</kbd></th>
+                    <td class="text-end"><kbd>Backspace</kbd></td>
                     <td>Previous turn</td>
                   </tr>
                   <tr>
-                    <td class="text-end"><kbd>1</kbd> - <kbd>9</kbd></th>
+                    <td class="text-end"><kbd>1</kbd> - <kbd>9</kbd></td>
                     <td>Change player turn selection</td>
                   </tr>
                   <tr>
-                    <td class="text-end"><kbd>A</kbd></th>
+                    <td class="text-end"><kbd>A</kbd></td>
                     <td>Add player</td>
                   </tr>
                 </tbody>
@@ -644,7 +644,7 @@
               <table class="table table-borderless">
                 <tbody>
                   <tr hidden>
-                    <td class="text-end"><kbd>Key</kbd></th>
+                    <td class="text-end"><kbd>Key</kbd></td>
                     <td>Text</td>
                   </tr>
                 </tbody>
