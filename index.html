@@ -289,6 +289,9 @@
           stroke-width="1.7" />
         <ellipse rx="1.8" ry="1.8" cx="8" cy="14" fill="currentColor" />
       </symbol>
+      <symbol id="wind-arrow" class="svg-round-line">
+        <path d="M 1 14 L 6 22 L 11 14 M 4 2 V 15 M 8 2 V 15" fill="none" stroke="black"></path>
+      </symbol>
     </defs>
   </svg>
   <div class="row h-100 g-0">
@@ -327,7 +330,9 @@
           </svg>
         </div>
       </div>
-      <img src="img/wind.svg" id="wind" class="game-elem" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 32" id="wind" class="game-elem">
+        <use href="#wind-arrow"></use>
+      </svg>
       <h3 class="game-elem" id="wind-label">+10º</h3>
     </div>
     <div style="width: 300px;" id="controll-container" class="h-100">
