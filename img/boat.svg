@@ -1,6 +1,0 @@
-<svg viewBox="-16 -16 16 32" xmlns="http://www.w3.org/2000/svg">
-    <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="red" stroke-width="0.5"
-        fill="currentColor" fill-opacity=".5" />
-    <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="black" fill="none" stroke-width="0.5" />
-    <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" />
-</svg>
