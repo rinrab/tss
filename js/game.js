@@ -495,7 +495,11 @@ function init() {
     createContolls();
     drawAll();
     console.log("load");
-    document.getElementById("show-future-wind").addEventListener("click", windDataInit);
+    document.getElementById("show-future-wind").addEventListener("click", function () {
+        renderGridSize();
+        drawAll();
+        windDataInit();
+    });
     document.getElementById("edit-btn").addEventListener("click", function () {
         windEditorStart(false);
     });
