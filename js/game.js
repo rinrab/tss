@@ -346,13 +346,28 @@ function renderGridSize() {
 
     var w = gamecont.clientWidth;
     var h = gamecont.clientHeight;
+
+    var scale;
+    var left = 0;
+
     if (h / game.height < w / game.width) {
-        gamearea.style.scale = h / (game.height * gridsize);
+        scale = h / (game.height * gridsize);
         gamearea.style.top = formatCssPx(0);
     } else {
-        gamearea.style.scale = w / (game.width * gridsize);
+        scale = w / (game.width * gridsize);
         gamearea.style.top = formatCssPx((h - game.height * gamearea.style.scale * gridsize) / 2);
     }
+
+    if (zoomType == zoomTypes.upMark) {
+        scale *= 3;
+        
+        left = -game.width * scale * gridsize / 2 + gamecont.clientWidth / 2;
+
+        gamearea.style.top = formatCssPx(0);
+    }
+
+    gamearea.style.left = formatCssPx(left);
+    gamearea.style.scale = scale;
     gamearea.style.height = formatCssPx(game.height * gridsize);
     gamearea.style.width = formatCssPx(game.width * gridsize);
 }
@@ -433,6 +448,13 @@ function getNewBoat(player) {
 
 addEventListener("load", init);
 
+const zoomTypes = {
+    race: 0,
+    upMark: 1,
+}
+
+let zoomType = zoomTypes.race;
+
 function init() {
     windscenario = readIntSetting(localStorageNames.selectedWind, 0);
     windscenariocontrol = document.getElementById("select-wind");
@@ -488,6 +510,14 @@ function init() {
         renderGridSize();
         drawAll();
     })
+
+    const zoomCheck = document.getElementById("zoom-check");
+    zoomCheck.checked = false;
+    zoomCheck.addEventListener("change", function () {
+        zoomType = (zoomCheck.checked) ? zoomTypes.upMark : zoomTypes.race;
+        renderGridSize();
+        drawAll();
+    });
 
     var track = document.getElementById("track");
     track.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
