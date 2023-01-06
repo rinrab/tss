@@ -532,7 +532,7 @@ function init() {
 
     var helpModal = new bootstrap.Modal(document.getElementById('help-modal'));
 
-    const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    const keysDigits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     addEventListener("keydown", function (e) {
         if (e.target.tagName == "INPUT" && e.target.type != "radio") {
             return;
@@ -559,7 +559,7 @@ function init() {
             helpModal.show();
         } else {
             if (!game.isStart) {
-                var index = keys.findIndex(function (a) { return a == e.key });
+                var index = keysDigits.findIndex(function (a) { return a == e.key });
                 var player = game.players[index];
 
                 if (player != undefined) {
