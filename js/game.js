@@ -468,6 +468,7 @@ function init() {
 
     document.getElementById("btn-nowember").addEventListener("click", function () {
         game.turncount = 0;
+        addRaceToCup();
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
             player.tack = false;
@@ -779,10 +780,40 @@ let cup = {
 }
 
 function addRaceToCup() {
+    let newRaceArr = [];
     let newRace = {};
 
-    for (let player of game.players) {
-        newRace[player.name] = player.finished;
+    for (let i = 0; i < game.players.length; i++) {
+        const player = game.players[i];
+        let newPlayer = { index: i };
+
+        if (player.finished == false) {
+            // TODO: DNC
+            newPlayer.time = 999999;
+        } else {
+            newPlayer.time = player.finished;
+        }
+
+        let name = player.name;
+
+        while (newRaceArr.includes(name)) {
+            name += "A";
+        }
+
+        newPlayer.name = name;
+
+        newRaceArr.push(newPlayer);
+    }
+
+    newRaceArr.sort(function (a, b) {
+        return a.time - b.time;
+    });
+
+    console.log(newRaceArr);
+    for (let i = 0; i < newRaceArr.length; i++) {
+        const p = newRaceArr[i];
+
+        newRace[p.name] = i + 1;
     }
 
     cup.races.push(newRace);
