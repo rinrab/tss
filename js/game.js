@@ -527,6 +527,8 @@ function init() {
         drawAll();
     });
 
+    cupInit();
+
     var track = document.getElementById("track");
     track.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
 
@@ -735,6 +737,15 @@ function isFullscreenSupported() {
 //     { name: "p3", pos: 3 },
 // ]
 
+function cupInit() {
+    const cupModal = document.getElementById("cup-modal");
+    const cupContainer = document.getElementById("cup-container");
+
+    cupModal.addEventListener("show.bs.modal", function () {
+        cupContainer.appendChild(getCupHtml(sortCup(cup)));
+    });
+}
+
 let cup = {
     races: [
         [
@@ -794,23 +805,33 @@ function sortCup(cup) {
 
 function getCupHtml(cup) {
     let rv = document.createElement("table");
+    let tbody = document.createElement("tbody");
+    rv.appendChild(tbody);
 
     let rows = [];
-    for (let i = 0; i < cup.races[0].length; i++) {
+
+    for (let i = 0; i < cup.races[0].length + 1; i++) {
         let newRow = document.createElement("tr");
 
         rows.push(newRow);
-        rv.appendChild(newRow);
+        tbody.appendChild(newRow);
     }
+    console.log(rows);
 
-    for (let i in cup.races) {
-        for (let j in cup.races[i]) {
+    for (let i = 0; i < cup.races.length; i++) {
+        let newItem = document.createElement("th");
+        newItem.innerText = "Race " + (i + 1);
+        rows[0].appendChild(newItem)
+
+        for (let j = 0; j < cup.races[i].length; j++) {
             let newCol = document.createElement("td");
             newCol.innerText = cup.races[i][j].name;
 
-            rows[j].appendChild(newCol);
+            rows[j + 1].appendChild(newCol);
         }
     }
+
+    rv.className = "table table-hover table-bordered text-center";
 
     return rv;
 }
