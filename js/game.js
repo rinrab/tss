@@ -789,7 +789,7 @@ function addRaceToCup() {
 
         if (player.finished == false) {
             // TODO: DNC
-            newPlayer.time = 999999;
+            newPlayer.time = -1;
         } else {
             newPlayer.time = player.finished;
         }
@@ -813,7 +813,11 @@ function addRaceToCup() {
     for (let i = 0; i < newRaceArr.length; i++) {
         const p = newRaceArr[i];
 
-        newRace[p.name] = i + 1;
+        if (p.time == -1) {
+            newRace[p.name] = -1;
+        } else {
+            newRace[p.name] = i + 1;
+        }
     }
 
     cup.races.push(newRace);
@@ -829,7 +833,9 @@ function sortCup(cup) {
         let newRace = [];
 
         for (let key of players) {
-            if (race[key]) {
+            if (race[key] == -1) {
+                newRace[key] = `DNF (${players.length + 1})`;
+            } else if (race[key]) {
                 newRace[key] = race[key];
             } else {
                 newRace[key] = `DNC (${players.length + 1})`;
@@ -843,7 +849,9 @@ function sortCup(cup) {
         let newSum = 0;
 
         for (let race of cup.races) {
-            if (race[key]) {
+            if (race[key] == -1) {
+                newSum += players.length + 1;
+            } else if (race[key]) {
                 newSum += race[key];
             } else {
                 newSum += players.length + 1
