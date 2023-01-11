@@ -742,15 +742,29 @@ function cupInit() {
     const cupContainer = document.getElementById("cup-container");
 
     cupModal.addEventListener("show.bs.modal", function () {
+        cupContainer.innerHTML = "";
         cupContainer.appendChild(getCupHtml(sortCup(cup)));
     });
+}
+
+function getPlayers(cup) {
+    let rv = [];
+
+    for (let race of cup.races) {
+        for (let key of Object.keys(race)) {
+            if (!rv.includes(key)) {
+                rv.push(key)
+            }
+        }
+    }
+
+    return rv;
 }
 
 let cup = {
     races: [
         {
             "p1": 2,
-            "p2": 3,
             "p3": 1,
         },
         {
@@ -775,7 +789,7 @@ function addRaceToCup() {
 }
 
 function sortCup(cup) {
-    let players = Object.keys(cup.races[0]);
+    let players = getPlayers(cup);
 
     let races = [];
     let sum = [];
@@ -822,7 +836,7 @@ function getCupHtml(cup) {
 
     let rows = [];
 
-    let players = Object.keys(cup.races[0]);
+    let players = getPlayers(cup);
 
     // Rows init
     for (let i = 0; i < players.length + 1; i++) {
