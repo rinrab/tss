@@ -756,7 +756,6 @@ let cup = {
         {
             "p1": 2,
             "p2": 3,
-            "p3": 1,
         },
     ],
     name: "abc",
@@ -776,24 +775,34 @@ function addRaceToCup() {
 }
 
 function sortCup(cup) {
+    let players = Object.keys(cup.races[0]);
+
     let races = [];
     let sum = [];
 
     for (let race of cup.races) {
         let newRace = [];
 
-        for (let key of Object.keys(race)) {
-            newRace[key] = race[key];
+        for (let key of players) {
+            if (race[key]) {
+                newRace[key] = race[key];
+            } else {
+                newRace[key] = `DNC (${players.length + 1})`;
+            }
         }
 
         races.push(newRace);
     }
 
-    for (let key of Object.keys(cup.races[0])) {
+    for (let key of players) {
         let newSum = 0;
 
         for (let race of cup.races) {
-            newSum += race[key];
+            if (race[key]) {
+                newSum += race[key];
+            } else {
+                newSum += players.length + 1
+            }
         }
 
         sum.push(newSum);
