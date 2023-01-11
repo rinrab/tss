@@ -355,7 +355,6 @@
 
               <!-- <input type="file" id="load-race-file" /> -->
               <label class="col">Start procedure</label>
-              <button class="btn btn-sm btn-outline-primary col-auto" data-bs-target="#cup-modal" data-bs-toggle="modal">Cup</button>
             </div>
           </div>
           <div id="game-alert" class="alert alert-info text-center">
@@ -408,7 +407,7 @@
           <div class="col btn-group">
             <a class="btn btn-outline-primary" id="save-game-btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download"
-                viewBox="0 0 16 16">
+                   viewBox="0 0 16 16">
                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                 <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
               </svg>
@@ -417,7 +416,7 @@
             <label class="btn btn-outline-primary col" for="load-race-file">
               <span class="glyphicon glyphicon-folder-open" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
-                  viewBox="0 0 16 16">
+                     viewBox="0 0 16 16">
                   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                   <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
                 </svg>
@@ -427,9 +426,16 @@
             </label>
           </div>
           <div class="col-auto">
+            <button class="btn btn-outline-primary col-auto" data-bs-target="#cup-modal" data-bs-toggle="modal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trophy" viewBox="0 0 16 16" style="transform: scale(1.3)">
+                <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935zM3.504 1c.007.517.026 1.006.056 1.469.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.501.501 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667.03-.463.049-.952.056-1.469H3.504z" />
+              </svg>
+            </button>
+          </div>
+          <div class="col-auto">
             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#help-modal">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-question-square" viewBox="0 0 16 16">
+                   class="bi bi-question-square" viewBox="0 0 16 16">
                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                 <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               </svg>
@@ -439,9 +445,9 @@
             <input class="btn-check" type="checkbox" id="set-show-tracks" />
             <label class="btn btn-outline-secondary" for="set-show-tracks" title="Show tracks">
               <svg xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.5);" width="16" height="16" viewBox="0 0 16 16"
-                class="bi">
+                   class="bi">
                 <path fill="none" stroke="currentColor" stroke-width="0.5"
-                  d="m6.3 15-.5-.4-.5-.4-.5-.4.5-.4.5-.3.6-.3.6-.3.6-.3.6-.3.6-.3.7-.2-.3-.4-.4-.4-.4-.4-.4-.4-.4-.4-.5-.4-.4-.4-.5-.4-.5-.3-.5-.4.5-.4.5-.4.5-.4.6-.3.5-.4.5-.4.4-.4"></path>
+                      d="m6.3 15-.5-.4-.5-.4-.5-.4.5-.4.5-.3.6-.3.6-.3.6-.3.6-.3.6-.3.7-.2-.3-.4-.4-.4-.4-.4-.4-.4-.4-.4-.5-.4-.4-.4-.5-.4-.5-.3-.5-.4.5-.4.5-.4.5-.4.6-.3.5-.4.5-.4.4-.4"></path>
                 <ellipse ry="0.7" rx="0.7" cx="2" cy="15"></ellipse>
                 <ellipse ry="0.7" rx="0.7" cx="14" cy="15"></ellipse>
                 <ellipse ry="0.7" rx="0.7" cx="8" cy="2"></ellipse>
@@ -451,9 +457,9 @@
             <input class="btn-check" type="checkbox" id="set-show-boats" />
             <label class="btn btn-outline-secondary" for="set-show-boats" title="Show boats">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="-5.6247 -10 11.2494 18.5"
-                style="transform: scale(1.5) rotate(45deg);" class="bi bi-arrows-fullscreen">
+                   style="transform: scale(1.5) rotate(45deg);" class="bi bi-arrows-fullscreen">
                 <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z"
-                  stroke="currentColor" stroke-width="1" fill="none" />
+                      stroke="currentColor" stroke-width="1" fill="none" />
                 <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="currentColor" fill="none" stroke-width="1" />
                 <ellipse rx="1" ry="1" cx="0" cy="-6" />
               </svg>
@@ -462,7 +468,7 @@
             <input class="btn-check" type="checkbox" id="set-show-lanelines" />
             <label class="btn btn-outline-secondary" for="set-show-lanelines" title="Show lanelines">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="transform: scale(1.5);" viewBox="-8 0 16 16"
-                class="bi">
+                   class="bi">
                 <path d="M -8 12 L 0 4 L 8 12" stroke="currentColor" stroke-width=".5" fill="none"></path>
                 <ellipse rx="1.5" ry="1.5" cx="0" cy="4" fill="currentColor"></ellipse>
               </svg>
@@ -470,44 +476,44 @@
 
             <input type="checkbox" class="btn-check" id="set-show-equal-lines" />
             <label class="btn btn-outline-secondary show-future-wind" for="set-show-equal-lines"
-              title="Show equal lines">
+                   title="Show equal lines">
               <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.5);"
-                class="bi">
+                   class="bi">
                 <defs>
                   <path transform="scale(0.3) translate(9, 10) rotate(-15)" id="boat"
-                    d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor"
-                    stroke-width="3" fill="none" />
+                        d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="currentColor"
+                        stroke-width="3" fill="none" />
                 </defs>
                 <path d="M 0 15 L 16 11 M 0 11 L 16 7 M 0 7 L 16 3 M 0 3 L 16 -1 M 16 15 L 0 19" fill="none"
-                  stroke="currentColor" stroke-width="0.5" />
+                      stroke="currentColor" stroke-width="0.5" />
                 <use href="#boat" transform="translate(-1, 7) rotate(-45)"></use>
                 <use href="#boat" transform="translate(7, 7) rotate(-45)" />
               </svg>
             </label>
-            
+
             <input type="checkbox" class="btn-check" id="zoom-check" />
             <label class="btn btn-outline-secondary show-future-wind" for="zoom-check"
-              title="Zoom to up mark zone">
+                   title="Zoom to up mark zone">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"/>
-                <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z" />
+                <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z" />
               </svg>
             </label>
 
             <input type="checkbox" class="btn-check" id="show-future-wind" />
             <label class="btn btn-outline-secondary show-future-wind" for="show-future-wind" title="Show future wind">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" style="transform: scale(1.5)"
-                class="bi">
+                   class="bi">
                 <path id="arrow" d="M 3 2 L 3 10 M 7 2 L 7 10 M 1 11 L 5 15 L 9 11"
-                  transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
+                      transform="rotate(-10) translate(-2, 0)" stroke-linecap="round" stroke="currentColor" fill="none" />
                 <use href="#arrow" transform="scale(0.5) translate(23, 0) rotate(20)"></use>
               </svg>
             </label>
             <input type="checkbox" class="btn-check" id="full-screen" />
             <label class="btn btn-outline-secondary" for="full-screen" title="Fullscreen mode">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                   class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
               </svg>
             </label>
