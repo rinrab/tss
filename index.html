@@ -355,6 +355,7 @@
 
               <!-- <input type="file" id="load-race-file" /> -->
               <label class="col">Start procedure</label>
+              <button class="btn btn-sm btn-outline-primary col-auto" data-bs-target="#cup-modal" data-bs-toggle="modal">Cup</button>
             </div>
           </div>
           <div id="game-alert" class="alert alert-info text-center">
@@ -618,6 +619,21 @@
           <button type="button" class="btn btn-primary" id="load-wind-save" data-bs-dismiss="modal">
             Add wind
           </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="cup-modal">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Cup</h1>
+        </div>
+        <div class="modal-body">
+          <div id="cup-container"></div>
+        </div>
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>

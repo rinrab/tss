@@ -728,6 +728,93 @@ function isFullscreenSupported() {
     return (document.fullscreenEnabled || document.webkitFullscreenEnabled);
 }
 
+// Race template:
+// const race = [
+//     { name: "p1", pos: 2 },
+//     { name: "p2", pos: 1 },
+//     { name: "p3", pos: 3 },
+// ]
+
+let cup = {
+    races: [
+        [
+            { name: "p1", pos: 2 },
+            { name: "p2", pos: 1 },
+            { name: "p3", pos: 3 },
+        ],
+        [
+            { name: "p1.1", pos: 2 },
+            { name: "p2.1", pos: 1 },
+            { name: "p3.1", pos: 3 },
+        ]
+    ],
+    name: "abc",
+    get raceCount() {
+        return this.players.length;
+    }
+}
+
+function addRaceToCup() {
+    let newRace = [];
+
+    for (let player of game.players) {
+        newRace.push({
+            name: player.name,
+            pos: player.finished
+        })
+    }
+
+    cup.races.push(newRace);
+}
+
+function sortCup(cup) {
+    let races = [];
+    for (let race of cup.races) {
+        let newRace = [];
+
+        for (let player of race) {
+            newRace.push({
+                name: player.name,
+                pos: player.pos
+            });
+        }
+
+        newRace.sort(function (a, b) {
+            return a.pos - b.pos;
+        });
+
+        races.push(newRace);
+    }
+
+    return rv = {
+        races: races,
+        name: cup.name
+    }
+}
+
+function getCupHtml(cup) {
+    let rv = document.createElement("table");
+
+    let rows = [];
+    for (let i = 0; i < cup.races[0].length; i++) {
+        let newRow = document.createElement("tr");
+
+        rows.push(newRow);
+        rv.appendChild(newRow);
+    }
+
+    for (let i in cup.races) {
+        for (let j in cup.races[i]) {
+            let newCol = document.createElement("td");
+            newCol.innerText = cup.races[i][j].name;
+
+            rows[j].appendChild(newCol);
+        }
+    }
+
+    return rv;
+}
+
 function random(max) {
     return Math.floor(Math.random() * max);
 }
