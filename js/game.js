@@ -764,14 +764,14 @@ function getPlayers(cup) {
 
 let cup = {
     races: [
-        {
-            "p1": 2,
-            "p3": 1,
-        },
-        {
-            "p1": 2,
-            "p2": 3,
-        },
+    //    {
+    //        "p1": 2,
+    //        "p3": 1,
+    //    },
+    //    {
+    //        "p1": 2,
+    //        "p2": 3,
+    //    },
     ],
     name: "abc",
     get raceCount() {
