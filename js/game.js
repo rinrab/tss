@@ -748,16 +748,16 @@ function cupInit() {
 
 let cup = {
     races: [
-        [
-            { name: "p1", pos: 2 },
-            { name: "p2", pos: 1 },
-            { name: "p3", pos: 3 },
-        ],
-        [
-            { name: "p1", pos: 2 },
-            { name: "p2", pos: 1 },
-            { name: "p3", pos: 3 },
-        ]
+        {
+            "p1": 2,
+            "p2": 3,
+            "p3": 1,
+        },
+        {
+            "p1": 2,
+            "p2": 3,
+            "p3": 1,
+        },
     ],
     name: "abc",
     get raceCount() {
@@ -766,13 +766,10 @@ let cup = {
 }
 
 function addRaceToCup() {
-    let newRace = [];
+    let newRace = {};
 
     for (let player of game.players) {
-        newRace.push({
-            name: player.name,
-            pos: player.finished
-        })
+        newRace[player.name] = player.finished;
     }
 
     cup.races.push(newRace);
@@ -785,22 +782,18 @@ function sortCup(cup) {
     for (let race of cup.races) {
         let newRace = [];
 
-        for (let player of race) {
-            newRace.push({
-                name: player.name,
-                pos: player.pos
-            });
-
+        for (let key of Object.keys(race)) {
+            newRace[key] = race[key];
         }
 
         races.push(newRace);
     }
 
-    for (let i = 0; i < cup.races[0].length; i++) {
+    for (let key of Object.keys(cup.races[0])) {
         let newSum = 0;
 
         for (let race of cup.races) {
-            newSum += race[i].pos;
+            newSum += race[key];
         }
 
         sum.push(newSum);
@@ -814,16 +807,16 @@ function sortCup(cup) {
 }
 
 function getCupHtml(cup) {
-    const playersCount = cup.races[0].length;
-
     let rv = document.createElement("table");
     let tbody = document.createElement("tbody");
     rv.appendChild(tbody);
 
     let rows = [];
 
+    let players = Object.keys(cup.races[0]);
+
     // Rows init
-    for (let i = 0; i < playersCount + 1; i++) {
+    for (let i = 0; i < players.length + 1; i++) {
         let newRow = document.createElement("tr");
 
         rows.push(newRow);
@@ -835,9 +828,9 @@ function getCupHtml(cup) {
     let firstItem = document.createElement("th");
     firstItem.innerText = "";
     rows[0].appendChild(firstItem);
-    for (let i = 0; i < playersCount; i++) {
+    for (let i = 0; i < players.length; i++) {
         let newItem = document.createElement("th");
-        newItem.innerText = cup.races[0][i].name;
+        newItem.innerText = players[i];
         rows[i + 1].appendChild(newItem);
     }
 
@@ -847,11 +840,13 @@ function getCupHtml(cup) {
         newItem.innerText = "Race " + (i + 1);
         rows[0].appendChild(newItem);
 
-        for (let j = 0; j < cup.races[i].length; j++) {
+        let index = 1;
+        for (let item of players) {
             let newCol = document.createElement("td");
-            newCol.innerText = cup.races[i][j].pos;
+            newCol.innerText = cup.races[i][item];
 
-            rows[j + 1].appendChild(newCol);
+            rows[index].appendChild(newCol);
+            index++;
         }
     }
 
@@ -860,7 +855,7 @@ function getCupHtml(cup) {
     sumItem.innerText = "Sum";
     rows[0].appendChild(sumItem);
     // Sum
-    for (let i = 0; i < playersCount; i++) {
+    for (let i = 0; i < players.length; i++) {
         let newItem = document.createElement("td");
         newItem.innerText = cup.sum[i];
         rows[i + 1].appendChild(newItem);
