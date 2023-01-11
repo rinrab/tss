@@ -821,7 +821,7 @@ function getCupHtml(cup) {
     for (let i = 0; i < cup.races.length; i++) {
         let newItem = document.createElement("th");
         newItem.innerText = "Race " + (i + 1);
-        rows[0].appendChild(newItem)
+        rows[0].appendChild(newItem);
 
         for (let j = 0; j < cup.races[i].length; j++) {
             let newCol = document.createElement("td");
