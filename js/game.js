@@ -754,9 +754,9 @@ let cup = {
             { name: "p3", pos: 3 },
         ],
         [
-            { name: "p1.1", pos: 2 },
-            { name: "p2.1", pos: 1 },
-            { name: "p3.1", pos: 3 },
+            { name: "p1", pos: 2 },
+            { name: "p2", pos: 1 },
+            { name: "p3", pos: 3 },
         ]
     ],
     name: "abc",
@@ -780,6 +780,8 @@ function addRaceToCup() {
 
 function sortCup(cup) {
     let races = [];
+    let sum = [];
+
     for (let race of cup.races) {
         let newRace = [];
 
@@ -788,18 +790,26 @@ function sortCup(cup) {
                 name: player.name,
                 pos: player.pos
             });
-        }
 
-        newRace.sort(function (a, b) {
-            return a.pos - b.pos;
-        });
+        }
 
         races.push(newRace);
     }
 
+    for (let i = 0; i < cup.races[0].length; i++) {
+        let newSum = 0;
+
+        for (let race of cup.races) {
+            newSum += race[i].pos;
+        }
+
+        sum.push(newSum);
+    }
+
     return rv = {
         races: races,
-        name: cup.name
+        name: cup.name,
+        sum: sum
     }
 }
 
@@ -819,12 +829,12 @@ function getCupHtml(cup) {
         rows.push(newRow);
         tbody.appendChild(newRow);
     }
-    console.log(rows);
+    console.log(cup);
 
     // First col
-    let newItem = document.createElement("th");
-    newItem.innerText = "";
-    rows[0].appendChild(newItem);
+    let firstItem = document.createElement("th");
+    firstItem.innerText = "";
+    rows[0].appendChild(firstItem);
     for (let i = 0; i < playersCount; i++) {
         let newItem = document.createElement("th");
         newItem.innerText = cup.races[0][i].name;
@@ -839,10 +849,21 @@ function getCupHtml(cup) {
 
         for (let j = 0; j < cup.races[i].length; j++) {
             let newCol = document.createElement("td");
-            newCol.innerText = cup.races[i][j].name;
+            newCol.innerText = cup.races[i][j].pos;
 
             rows[j + 1].appendChild(newCol);
         }
+    }
+
+    // Sum row head
+    let sumItem = document.createElement("th");
+    sumItem.innerText = "Sum";
+    rows[0].appendChild(sumItem);
+    // Sum
+    for (let i = 0; i < playersCount; i++) {
+        let newItem = document.createElement("td");
+        newItem.innerText = cup.sum[i];
+        rows[i + 1].appendChild(newItem);
     }
 
     rv.className = "table table-hover table-bordered text-center";
