@@ -804,13 +804,16 @@ function sortCup(cup) {
 }
 
 function getCupHtml(cup) {
+    const playersCount = cup.races[0].length;
+
     let rv = document.createElement("table");
     let tbody = document.createElement("tbody");
     rv.appendChild(tbody);
 
     let rows = [];
 
-    for (let i = 0; i < cup.races[0].length + 1; i++) {
+    // Rows init
+    for (let i = 0; i < playersCount + 1; i++) {
         let newRow = document.createElement("tr");
 
         rows.push(newRow);
@@ -818,6 +821,17 @@ function getCupHtml(cup) {
     }
     console.log(rows);
 
+    // First col
+    let newItem = document.createElement("th");
+    newItem.innerText = "";
+    rows[0].appendChild(newItem);
+    for (let i = 0; i < playersCount; i++) {
+        let newItem = document.createElement("th");
+        newItem.innerText = cup.races[0][i].name;
+        rows[i + 1].appendChild(newItem);
+    }
+
+    // Content
     for (let i = 0; i < cup.races.length; i++) {
         let newItem = document.createElement("th");
         newItem.innerText = "Race " + (i + 1);
