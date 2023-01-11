@@ -792,7 +792,7 @@ function sortCup(cup) {
     let players = getPlayers(cup);
 
     let races = [];
-    let sum = [];
+    let sum = {};
 
     for (let race of cup.races) {
         let newRace = [];
@@ -819,7 +819,7 @@ function sortCup(cup) {
             }
         }
 
-        sum.push(newSum);
+        sum[key] = newSum;
     }
 
     return rv = {
@@ -878,10 +878,13 @@ function getCupHtml(cup) {
     sumItem.innerText = "Sum";
     rows[0].appendChild(sumItem);
     // Sum
-    for (let i = 0; i < players.length; i++) {
+    let index = 1;
+    for (let p of players) {
         let newItem = document.createElement("td");
-        newItem.innerText = cup.sum[i];
-        rows[i + 1].appendChild(newItem);
+        newItem.innerText = cup.sum[p];
+
+        rows[index].appendChild(newItem);
+        index++;
     }
 
     rv.className = "table table-hover table-bordered text-center";
