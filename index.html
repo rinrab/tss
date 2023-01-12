@@ -634,12 +634,17 @@
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5">Cup</h1>
+          <div class="d-print-none">
+            <h1 class="modal-title fs-5">Cup</h1>
+          </div>
+          <div class="d-none d-print-block">
+            <br />
+          </div>
         </div>
         <div class="modal-body">
           <div id="cup-container"></div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer d-print-none">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
