@@ -919,7 +919,7 @@ function getCupHtml(cup) {
 
     // Sum row head
     let sumItem = document.createElement("th");
-    sumItem.innerText = "Sum";
+    sumItem.innerText = "Net points";
     rows[0].appendChild(sumItem);
     // Sum
     let index = 1;
