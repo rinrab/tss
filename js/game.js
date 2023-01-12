@@ -845,11 +845,11 @@ function sortCup(cup) {
 
         for (let key of players) {
             if (race[key] == -1) {
-                newRace[key] = `DNF (${players.length + 1})`;
+                newRace[key] = `DNF ${players.length + 1}`;
             } else if (race[key]) {
                 newRace[key] = race[key];
             } else {
-                newRace[key] = `DNC (${players.length + 1})`;
+                newRace[key] = `DNC ${players.length + 1}`;
             }
         }
 
