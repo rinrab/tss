@@ -891,6 +891,7 @@ function getCupHtml(cup) {
     // Rows init
     for (let i = 0; i < players.length + 1; i++) {
         let newRow = document.createElement("tr");
+        newRow.className = "align-middle";
 
         rows.push(newRow);
         tbody.appendChild(newRow);
@@ -903,6 +904,7 @@ function getCupHtml(cup) {
     rows[0].appendChild(firstItem);
     for (let i = 0; i < players.length; i++) {
         let newItem = document.createElement("th");
+        newItem.className = "text-nowrap";
         newItem.innerText = players[i];
         rows[i + 1].appendChild(newItem);
     }
