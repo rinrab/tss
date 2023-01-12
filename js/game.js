@@ -731,13 +731,6 @@ function isFullscreenSupported() {
     return (document.fullscreenEnabled || document.webkitFullscreenEnabled);
 }
 
-// Race template:
-// const race = [
-//     { name: "p1", pos: 2 },
-//     { name: "p2", pos: 1 },
-//     { name: "p3", pos: 3 },
-// ]
-
 function cupInit() {
     const cupModal = document.getElementById("cup-modal");
     const cupContainer = document.getElementById("cup-container");
