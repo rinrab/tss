@@ -742,6 +742,11 @@ function cupInit() {
     const cupModal = document.getElementById("cup-modal");
     const cupContainer = document.getElementById("cup-container");
 
+    const printBtn = document.getElementById("cup-print");
+    printBtn.addEventListener("click", function () {
+        window.print();
+    })
+
     cupModal.addEventListener("show.bs.modal", function () {
         cupContainer.innerHTML = "";
         cupContainer.appendChild(getCupHtml(sortCup(cup)));
