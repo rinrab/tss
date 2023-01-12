@@ -756,10 +756,16 @@ function cupInit() {
 function getPlayers(cup) {
     let rv = [];
 
-    for (let race of cup.races) {
-        for (let key of Object.keys(race)) {
-            if (!rv.includes(key)) {
-                rv.push(key)
+    if (cup.races.length == 0) {
+        for (let i = 0; i < game.players.length; i++) {
+            rv.push(game.getPlayerName(i));
+        }
+    } else {
+        for (let race of cup.races) {
+            for (let key of Object.keys(race)) {
+                if (!rv.includes(key)) {
+                    rv.push(key)
+                }
             }
         }
     }
