@@ -964,7 +964,6 @@ function sortCup(cup) {
         let exPos = [];
 
         for (let race of cup.races) {
-
             if (race[key] == -1) {
                 newSumNet += players.length + 1;
                 exPos.push(players.length + 1);
