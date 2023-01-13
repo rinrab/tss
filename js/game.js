@@ -744,10 +744,18 @@ function updateRaceCount() {
     }
 }
 
+function getPrototypeCup() {
+    return {
+        races: [],
+        name: "name",
+        excludingCount: 0
+    };
+}
+
 function cupInit() {
-    try {
+    //try {
         cup = loadCup("cup");
-    } catch { }
+    //} catch { }
 
     const cupModal = document.getElementById("cup-modal");
     const resetBtn = document.getElementById("cup-reset-btn");
@@ -762,11 +770,17 @@ function cupInit() {
     });
 
     resetBtn.addEventListener("click", function () {
-        cup = {
-            races: [],
-            name: "New cup"
-        }
+        cup = getPrototypeCup();
         updateCup();
+        saveAllCups();
+    });
+
+    const excludingSelect = document.getElementById("cup-excluding");
+    excludingSelect.selectedIndex = cup.excludingCount;
+    excludingSelect.addEventListener("change", function () {
+        cup.excludingCount = parseInt(excludingSelect.value);
+        updateCup();
+        saveAllCups();
     });
 
     updateRaceCount();
@@ -801,19 +815,7 @@ function getPlayers(cup) {
     return rv;
 }
 
-let cup = {
-    races: [
-    //    {
-    //        "p1": 2,
-    //        "p3": 1,
-    //    },
-    //    {
-    //        "p1": 2,
-    //        "p2": 3,
-    //    },
-    ],
-    name: "New cup",
-}
+let cup = getPrototypeCup();
 
 function loadCup(name) {
     let parsedData;
@@ -825,9 +827,7 @@ function loadCup(name) {
     }
     if (!parsedData) {
         throw "Parse error";
-
     }
-    
 
     let races = [];
 
@@ -845,16 +845,23 @@ function loadCup(name) {
         races.push(newRace);
     }
     let newName;
+    let newExcludingCount; 
 
     if (parsedData.name) {
         newName = parsedData.name;
     } else {
         throw "Parse error";
     }
+    if (parsedData.excount == undefined) {
+        throw "Parse error";
+    } else {
+        newExcludingCount = parsedData.excount;
+    }
 
     return {
         races: races,
         name: newName,
+        excludingCount: newExcludingCount
     };
 }
 
@@ -873,7 +880,8 @@ function saveCup(cup, name) {
 
     localStorage.setItem(name, JSON.stringify({
         races: races,
-        name: name
+        name: name,
+        excount: cup.excludingCount
     }));
 }
 
@@ -951,23 +959,37 @@ function sortCup(cup) {
 
     for (let key of players) {
         let newSumNet = 0;
+        let newSumTotal = 0;
         let newPos = [];
+        let exPos = [];
 
         for (let race of cup.races) {
+
             if (race[key] == -1) {
                 newSumNet += players.length + 1;
+                exPos.push(players.length + 1);
             } else if (race[key]) {
+                exPos.push(race[key]);
                 newSumNet += race[key];
             } else {
                 newSumNet += players.length + 1;
+                exPos.push(players.length + 1);
             }
+        }
+        exPos.sort(function (a, b) {
+            return a - b;
+        });
+        console.log(exPos);
+
+        for (let i = 0; i < exPos.length - cup.excludingCount; i++) {
+            newSumTotal += exPos[i];
         }
 
         for (let race of races) {
             newPos.push(race[key]);
         }
 
-        newPlayers.push({ pos: newPos, netPoints: newSumNet, totalPoints: newSumNet, name: key });
+        newPlayers.push({ pos: newPos, netPoints: newSumNet, totalPoints: newSumTotal, name: key });
 
         sum[key] = newSumNet;
     }

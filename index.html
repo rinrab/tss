@@ -658,10 +658,23 @@
         <div class="modal-body">
           <div id="cup-container"></div>
         </div>
-        <div class="modal-footer d-print-none row">
-          <button class="col-auto btn btn-secondary" id="cup-print">Print</button>
+        <div class="modal-footer d-print-none row g-1">
+          <div class="col-auto">
+            <button class="btn btn-secondary" id="cup-print">Print</button>
+          </div>
+
           <div class="col"></div>
-          <button class="col-auto btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          <div class="col-auto">
+            <select id="cup-excluding" class="form-select col-auto" style="width: 300px">
+              <option value="0">No excluding</option>
+              <option value="1">1 excluding</option>
+              <option value="2">2 excluding</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
