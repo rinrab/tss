@@ -281,7 +281,7 @@
         <polyline points="14,14 2,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="3,8 2,2 8,3" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="round"
-          stroke-width="1.7" />
+                  stroke-width="1.7" />
 
         <ellipse rx="1.8" ry="1.8" cx="14" cy="14" fill="currentColor" />
       </symbol>
@@ -289,7 +289,7 @@
         <polyline points="2,14 14,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="13,8 14,2 8,3" fill="none" stroke="currentColor" stroke-linejoin="miter"
-          stroke-linecap="round" stroke-width="1.7" />
+                  stroke-linecap="round" stroke-width="1.7" />
 
         <ellipse rx="1.8" ry="1.8" cx="2" cy="14" fill="currentColor" />
       </symbol>
@@ -297,14 +297,14 @@
         <polyline points="8,14 2,8 8,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="8,7 9,1 3,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="round"
-          stroke-width="1.7" />
+                  stroke-width="1.7" />
         <ellipse rx="1.8" ry="1.8" cx="8" cy="14" fill="currentColor" />
       </symbol>
       <symbol id="icon-port-tack" viewBox="0 0 16 16">
         <polyline points="8,14 14,8 8,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-width="1.7" />
 
         <polyline points="8,7 7,1 13,2" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-linecap="round"
-          stroke-width="1.7" />
+                  stroke-width="1.7" />
         <ellipse rx="1.8" ry="1.8" cx="8" cy="14" fill="currentColor" />
       </symbol>
       <symbol id="wind-arrow" class="svg-round-line">
@@ -332,7 +332,7 @@
           </div>
           <div id="lines-container">
             <svg id="lines-svg" stroke="gray" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg"
-              stroke-width="0.005">
+                 stroke-width="0.005">
               <g id="lines-drawing"></g>
             </svg>
           </div>
@@ -382,21 +382,19 @@
           <div class="input-group mb-3">
             <select id="select-wind" class="form-select"></select>
             <button id="edit-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-              data-bs-target="#wind-editor-window" title="Edit wind scenario">
+                    data-bs-target="#wind-editor-window" title="Edit wind scenario">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path
-                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                   class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                 <path fill-rule="evenodd"
-                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
               </svg>
             </button>
             <button id="add-wind-btn" class="btn btn-outline-primary" data-bs-toggle="modal"
-              data-bs-target="#wind-editor-window" title="Add custom wind scenario">
+                    data-bs-target="#wind-editor-window" title="Add custom wind scenario">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="transform: scale(1.3);"
-                class="bi bi-plus" viewBox="0 0 16 16">
-                <path
-                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                   class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
               </svg>
             </button>
           </div>
@@ -543,7 +541,7 @@
           <h1 class="modal-title fs-5">Wind Editor</h1>
           <div class="mr-0">
             <button class="btn btn-outline-primary" id="share-btn" data-bs-toggle="tooltip" data-bs-trigger="none"
-              data-bs-title="Link copied to clipboard!">
+                    data-bs-title="Link copied to clipboard!">
               Share
             </button>
           </div>
@@ -561,14 +559,13 @@
             <div class="mb-0">
               <label class="form-label">Wind change</label>
               <a data-bs-toggle="tooltip" data-bs-title="Enter wind change. Use space, comma or enter as delimeter."
-                data-bs-placement="right" style="color: var(--bs-primary); margin-left: 0.5rem;">
+                 data-bs-placement="right" style="color: var(--bs-primary); margin-left: 0.5rem;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="bi" width="16" height="16" viewBox="0 0 16 16">
-                  <path
-                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
                 </svg>
               </a>
               <textarea class="form-control" id="editor-wind" rows="7"
-                placeholder="i.e. 5, 10, 15, 20, 15...">0, 0, 0</textarea>
+                        placeholder="i.e. 5, 10, 15, 20, 15...">0, 0, 0</textarea>
             </div>
             <div class="mb-3 row">
               <div class="col d-block invalid-feedback" id="wind-valid"></div>
@@ -647,11 +644,15 @@
   <div class="modal fade" id="cup-modal">
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
-        <div class="modal-header">
-          <div class="d-print-none">
+        <div class="modal-header d-print-none row g-1">
+          <div class="col-auto">
             <h1 class="modal-title fs-5">Cup</h1>
           </div>
-          <div class="d-none d-print-block">
+
+          <div class="col"></div>
+
+          <div class="col-auto">
+            <button id="cup-reset-btn" class="btn btn-outline-primary">Reset</button>
           </div>
         </div>
         <div class="modal-body">
@@ -750,9 +751,8 @@
               <div class="col">
                 <a href="https://github.com/rinrab/tss" class="text-muted text-decoration-none" target="_blank">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-github" viewBox="0 0 16 16">
-                    <path
-                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                       class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
                   </svg>
                   GitHub
                 </a>

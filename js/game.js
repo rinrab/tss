@@ -488,6 +488,7 @@ function init() {
         game.placeBoatsOnStart();
         drawAll();
         updateRaceCount();
+        saveAllCups();
     });
     windInit();
     settingsInit();
@@ -744,8 +745,12 @@ function updateRaceCount() {
 }
 
 function cupInit() {
+    try {
+        cup = loadCup("cup");
+    } catch { }
+
     const cupModal = document.getElementById("cup-modal");
-    const cupContainer = document.getElementById("cup-container");
+    const resetBtn = document.getElementById("cup-reset-btn");
 
     const printBtn = document.getElementById("cup-print");
     printBtn.addEventListener("click", function () {
@@ -753,9 +758,25 @@ function cupInit() {
     })
 
     cupModal.addEventListener("show.bs.modal", function () {
-        cupContainer.innerHTML = "";
-        cupContainer.appendChild(getCupHtml(sortCup(cup)));
+        updateCup();
     });
+
+    resetBtn.addEventListener("click", function () {
+        cup = {
+            races: [],
+            name: "New cup"
+        }
+        updateCup();
+    });
+
+    updateRaceCount();
+}
+
+function updateCup() {
+    const cupContainer = document.getElementById("cup-container");
+
+    cupContainer.innerHTML = "";
+    cupContainer.appendChild(getCupHtml(sortCup(cup)));
 
     updateRaceCount();
 }
@@ -791,10 +812,73 @@ let cup = {
     //        "p2": 3,
     //    },
     ],
-    name: "abc",
-    get raceCount() {
-        return this.players.length;
+    name: "New cup",
+}
+
+function loadCup(name) {
+    let parsedData;
+
+    try {
+        parsedData = JSON.parse(localStorage.getItem(name));
+    } catch {
+        throw "Parse error";
     }
+    if (!parsedData) {
+        throw "Parse error";
+
+    }
+    
+
+    let races = [];
+
+    for (let race of parsedData.races) {
+        let newRace = {};
+
+        for (let key of Object.keys(race)) {
+            if (race[key]) {
+                newRace[key] = race[key];
+            } else {
+                throw "Parse error";
+            }
+        }
+
+        races.push(newRace);
+    }
+    let newName;
+
+    if (parsedData.name) {
+        newName = parsedData.name;
+    } else {
+        throw "Parse error";
+    }
+
+    return {
+        races: races,
+        name: newName,
+    };
+}
+
+function saveCup(cup, name) {
+    let races = [];
+
+    for (let race of cup.races) {
+        let newRace = {};
+
+        for (let key of Object.keys(race)) {
+            newRace[key] = race[key];
+        }
+
+        races.push(newRace);
+    }
+
+    localStorage.setItem(name, JSON.stringify({
+        races: races,
+        name: name
+    }));
+}
+
+function saveAllCups() {
+    saveCup(cup, "cup");
 }
 
 function addRaceToCup() {
