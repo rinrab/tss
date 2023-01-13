@@ -487,6 +487,7 @@ function init() {
         game.isStart = true;
         game.placeBoatsOnStart();
         drawAll();
+        updateRaceCount();
     });
     windInit();
     settingsInit();
@@ -731,6 +732,17 @@ function isFullscreenSupported() {
     return (document.fullscreenEnabled || document.webkitFullscreenEnabled);
 }
 
+function updateRaceCount() {
+    var raceCount = document.getElementById("cup-race-count");
+
+    if (cup.races.length == 0) {
+        raceCount.hidden = true;
+    } else {
+        raceCount.innerText = cup.races.length;
+        raceCount.hidden = false;
+    }
+}
+
 function cupInit() {
     const cupModal = document.getElementById("cup-modal");
     const cupContainer = document.getElementById("cup-container");
@@ -744,6 +756,8 @@ function cupInit() {
         cupContainer.innerHTML = "";
         cupContainer.appendChild(getCupHtml(sortCup(cup)));
     });
+
+    updateRaceCount();
 }
 
 function getPlayers(cup) {
