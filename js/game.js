@@ -849,26 +849,40 @@ function sortCup(cup) {
         races.push(newRace);
     }
 
+    let newPlayers = [];
+
     for (let key of players) {
-        let newSum = 0;
+        let newSumNet = 0;
+        let newPos = [];
 
         for (let race of cup.races) {
             if (race[key] == -1) {
-                newSum += players.length + 1;
+                newSumNet += players.length + 1;
             } else if (race[key]) {
-                newSum += race[key];
+                newSumNet += race[key];
             } else {
-                newSum += players.length + 1
+                newSumNet += players.length + 1;
             }
         }
 
-        sum[key] = newSum;
+        for (let race of races) {
+            newPos.push(race[key]);
+        }
+
+        newPlayers.push({ pos: newPos, netPoints: newSumNet, totalPoints: newSumNet, name: key });
+
+        sum[key] = newSumNet;
     }
+
+    newPlayers.sort(function (a, b) {
+        return a.totalPoints - b.totalPoints;
+    });
 
     return rv = {
         races: races,
         name: cup.name,
-        sum: sum
+        sum: sum,
+        players: newPlayers
     }
 }
 
@@ -892,49 +906,39 @@ function getCupHtml(cup) {
     console.log(cup);
 
     // First col
-    let firstItem = document.createElement("th");
-    firstItem.innerText = "";
-    rows[0].appendChild(firstItem);
-    for (let i = 0; i < players.length; i++) {
-        let newItem = document.createElement("th");
-        newItem.className = "text-nowrap";
-        newItem.innerText = players[i];
-        rows[i + 1].appendChild(newItem);
-    }
-
-    // Content
+    addColToRow(rows[0], "Name", "th");
+    
     for (let i = 0; i < cup.races.length; i++) {
-        let newItem = document.createElement("th");
-        newItem.innerText = "Race " + (i + 1);
-        rows[0].appendChild(newItem);
-
-        let index = 1;
-        for (let item of players) {
-            let newCol = document.createElement("td");
-            newCol.innerText = cup.races[i][item];
-
-            rows[index].appendChild(newCol);
-            index++;
-        }
+        addColToRow(rows[0], "Race " + (i + 1), "th");
     }
+    addColToRow(rows[0], "Net points", "th");
+    addColToRow(rows[0], "Total points", "th");
+    addColToRow(rows[0], "Rank", "th");
+    
+    for (let i = 0; i < cup.players.length; i++) {
+        const player = cup.players[i];
 
-    // Sum row head
-    let sumItem = document.createElement("th");
-    sumItem.innerText = "Net points";
-    rows[0].appendChild(sumItem);
-    // Sum
-    let index = 1;
-    for (let p of players) {
-        let newItem = document.createElement("td");
-        newItem.innerText = cup.sum[p];
+        addColToRow(rows[i + 1], player.name);
 
-        rows[index].appendChild(newItem);
-        index++;
+        for (let pos of player.pos) {
+            addColToRow(rows[i + 1], pos)
+        }
+        addColToRow(rows[i + 1], player.netPoints);
+        addColToRow(rows[i + 1], player.totalPoints);
+        addColToRow(rows[i + 1], i + 1);
     }
 
     rv.className = "table table-hover table-bordered text-center";
+    rv.style = "table-layout: fixed";
 
     return rv;
+}
+
+function addColToRow(row, text, colType = "td", className = "") {
+    newItem = document.createElement(colType);
+    newItem.innerText = text;
+    newItem.className = className;
+    row.appendChild(newItem);
 }
 
 function random(max) {
