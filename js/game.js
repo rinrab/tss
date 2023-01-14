@@ -1063,8 +1063,8 @@ function getCupHtml(cup) {
     }
 
     addColToRow(rows[0], "Points", "th", "", 2);
-    addColToRow(rows[1], "Net", "th", "");
-    addColToRow(rows[1], "Total", "th", "");
+    addColToRow(rows[1], "Net", "th", "", 1, "min-width: 4rem");
+    addColToRow(rows[1], "Total", "th", "", 1, "min-width: 4rem");
 
     
     for (let i = 0; i < cup.players.length; i++) {
@@ -1087,11 +1087,12 @@ function getCupHtml(cup) {
     return rv;
 }
 
-function addColToRow(row, text, colType = "td", className = "", colspan = 1) {
+function addColToRow(row, text, colType = "td", className = "", colspan = 1, style = "") {
     newItem = document.createElement(colType);
     newItem.innerText = text;
-    newItem.className = className;
+    newItem.className = "p-2 " + className;
     newItem.setAttribute("colspan", colspan);
+    newItem.style = style;
     row.appendChild(newItem);
 }
 
