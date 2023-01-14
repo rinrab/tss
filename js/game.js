@@ -946,11 +946,11 @@ function sortCup(cup) {
 
         for (let key of players) {
             if (race[key] == -1) {
-                newRace[key] = `DNF ${players.length + 1}`;
+                newRace[key] = `DNF`;
             } else if (race[key]) {
                 newRace[key] = race[key];
             } else {
-                newRace[key] = `DNC ${players.length + 1}`;
+                newRace[key] = `DNC`;
             }
         }
 
@@ -965,25 +965,45 @@ function sortCup(cup) {
         let newPos = [];
         let exPos = [];
 
-        for (let race of cup.races) {
+        for (let i = 0; i < cup.races.length; i++) {
+            const race = cup.races[i];
             if (race[key] == -1) {
                 newSumNet += players.length + 1;
-                exPos.push(players.length + 1);
+                exPos.push({ pos: players.length + 1, index: i });
             } else if (race[key]) {
-                exPos.push(race[key]);
+                exPos.push({ pos: race[key], index: i });
                 newSumNet += race[key];
             } else {
                 newSumNet += players.length + 1;
-                exPos.push(players.length + 1);
+                exPos.push({ pos: players.length + 1, index: i });
             }
         }
         exPos.sort(function (a, b) {
-            return a - b;
+            return a.pos - b.pos;
         });
         console.log(exPos);
 
-        for (let i = 0; i < exPos.length - cup.excludingCount; i++) {
-            newSumTotal += exPos[i];
+        let i = 0;
+        while (i < exPos.length - cup.excludingCount) {
+            newSumTotal += exPos[i].pos;
+            let pos = races[exPos[i].index][key];
+            if (pos == "DNF" || pos == "DNC") {
+                pos = players.length + 1;
+            }
+
+            races[exPos[i].index][key] = `${races[exPos[i].index][key]} \n ${pos}.0`
+
+            i++;
+        }
+        while (i < exPos.length) {
+            let pos = races[exPos[i].index][key];
+            if (pos == "DNF" || pos == "DNC") {
+                pos = players.length + 1;
+            }
+
+            races[exPos[i].index][key] = `${races[exPos[i].index][key]} \n (${pos}.0)`
+
+            i++;
         }
 
         for (let race of races) {
