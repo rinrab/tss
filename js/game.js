@@ -1089,7 +1089,7 @@ function getCupHtml(cup) {
 function addColToRow(row, text, colType = "td", className = "", colspan = 1, style = "") {
     newItem = document.createElement(colType);
     newItem.innerText = text;
-    newItem.className = "p-2 " + className;
+    newItem.className = "px-2 " + className;
     newItem.setAttribute("colspan", colspan);
     newItem.style = style;
     row.appendChild(newItem);
