@@ -1037,7 +1037,7 @@ function getCupHtml(cup) {
     let players = getPlayers(cup);
 
     // Rows init
-    for (let i = 0; i < players.length + 1; i++) {
+    for (let i = 0; i < players.length + 2; i++) {
         let newRow = document.createElement("tr");
         newRow.className = "align-middle";
 
@@ -1047,26 +1047,32 @@ function getCupHtml(cup) {
     console.log(cup);
 
     // First col
-    addColToRow(rows[0], "Name", "th");
-    
+    addColToRow(rows[0], "Info", "th", "", 2);
+    addColToRow(rows[1], "Rank", "th");
+    addColToRow(rows[1], "Name", "th", "");
+
+    addColToRow(rows[0], "Races", "th", "", cup.races.length);
     for (let i = 0; i < cup.races.length; i++) {
-        addColToRow(rows[0], "Race " + (i + 1), "th");
+        addColToRow(rows[1], (i + 2), "th");
     }
-    addColToRow(rows[0], "Net points", "th");
-    addColToRow(rows[0], "Total points", "th");
-    addColToRow(rows[0], "Rank", "th");
+
+    addColToRow(rows[0], "Points", "th", "", 2);
+    addColToRow(rows[1], "Net", "th", "");
+    addColToRow(rows[1], "Total", "th", "");
+
     
     for (let i = 0; i < cup.players.length; i++) {
         const player = cup.players[i];
 
-        addColToRow(rows[i + 1], player.name);
+        addColToRow(rows[i + 2], i + 1);
+
+        addColToRow(rows[i + 2], player.name);
 
         for (let pos of player.pos) {
-            addColToRow(rows[i + 1], pos)
+            addColToRow(rows[i + 2], pos)
         }
-        addColToRow(rows[i + 1], player.netPoints);
-        addColToRow(rows[i + 1], player.totalPoints);
-        addColToRow(rows[i + 1], i + 1);
+        addColToRow(rows[i + 2], player.netPoints);
+        addColToRow(rows[i + 2], player.totalPoints);
     }
 
     rv.className = "table table-hover table-bordered text-center";
@@ -1075,10 +1081,11 @@ function getCupHtml(cup) {
     return rv;
 }
 
-function addColToRow(row, text, colType = "td", className = "") {
+function addColToRow(row, text, colType = "td", className = "", colspan = 1) {
     newItem = document.createElement(colType);
     newItem.innerText = text;
     newItem.className = className;
+    newItem.setAttribute("colspan", colspan);
     row.appendChild(newItem);
 }
 
