@@ -983,12 +983,12 @@ function sortCup(cup) {
             }
         }
         exPos.sort(function (a, b) {
-            return a.pos - b.pos;
+            return b.pos - a.pos;
         });
         console.log(exPos);
 
-        let i = 0;
-        while (i < exPos.length - cup.excludingCount) {
+        let i = exPos.length - 1;
+        while (i > cup.excludingCount - 1) {
             newSumTotal += exPos[i].pos;
             let pos = races[exPos[i].index][key];
             if (pos == "DNF" || pos == "DNC") {
@@ -998,9 +998,9 @@ function sortCup(cup) {
                 races[exPos[i].index][key] = `${races[exPos[i].index][key]}`
             }
 
-            i++;
+            i--;
         }
-        while (i < exPos.length) {
+        while (i >= 0) {
             let pos = races[exPos[i].index][key];
             if (pos == "DNF" || pos == "DNC") {
                 pos = players.length + 1;
@@ -1009,7 +1009,7 @@ function sortCup(cup) {
                 races[exPos[i].index][key] = `(${races[exPos[i].index][key]})`
             }
 
-            i++;
+            i--;
         }
 
         for (let race of races) {
