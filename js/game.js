@@ -1088,7 +1088,7 @@ function getCupHtml(cup) {
         addColToRow(rows[i + 2], player.name, "td", "text-nowrap");
 
         for (let pos of player.pos) {
-            addColToRow(rows[i + 2], pos)
+            addColToRow(rows[i + 2], pos, "td", "", 1, "min-width: 4rem")
         }
         addColToRow(rows[i + 2], player.netPoints);
         addColToRow(rows[i + 2], player.totalPoints);
