@@ -1081,7 +1081,7 @@ function getCupHtml(cup) {
         addColToRow(rows[i + 2], player.totalPoints);
     }
 
-    rv.className = "table table-hover table-bordered text-center";
+    rv.className = "table table-hover table-bordered text-center table-sm";
     rv.style = "";
 
     return rv;
