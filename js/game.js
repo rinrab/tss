@@ -778,7 +778,7 @@ function cupInit() {
     const excludingSelect = document.getElementById("cup-excluding");
     excludingSelect.selectedIndex = cup.excludingCount;
     excludingSelect.addEventListener("change", function () {
-        cup.excludingCount = parseInt(excludingSelect.value);
+        cup.excludingCount = excludingSelect.selectedIndex;
         updateCup();
         saveAllCups();
     });
@@ -791,6 +791,10 @@ function updateCup() {
 
     cupContainer.innerHTML = "";
     cupContainer.appendChild(getCupHtml(sortCup(cup)));
+
+    const printExcludingCount = document.getElementById("print-excluding");
+    const excludingSelect = document.getElementById("cup-excluding");
+    printExcludingCount.innerText = excludingSelect.value;
 
     updateRaceCount();
 }

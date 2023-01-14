@@ -260,10 +260,18 @@
       cursor: auto;
     }
 
+    .print-only {
+      visibility: hidden;
+    }
+
     @media print {
       table * {
         border-color: black !important;
         border-width: 1.5px !important;
+      }
+
+      .print-only {
+        visibility: visible;
       }
     }
   </style>
@@ -664,6 +672,12 @@
         </div>
         <div class="modal-body">
           <div id="cup-container"></div>
+          <div class="row">
+            <div class="col"></div>
+            <header class="col-auto fw-bold print-only">
+              <span id="print-excluding"></span>
+            </header>
+          </div>
         </div>
         <div class="modal-footer d-print-none row g-1">
           <div class="col-auto">
@@ -674,9 +688,9 @@
 
           <div class="col-auto">
             <select id="cup-excluding" class="form-select col-auto" style="width: 300px">
-              <option value="0">No excluding</option>
-              <option value="1">1 excluding</option>
-              <option value="2">2 excluding</option>
+              <option>No excluding</option>
+              <option>1 excluding</option>
+              <option>2 excluding</option>
             </select>
           </div>
           <div class="col-auto">
