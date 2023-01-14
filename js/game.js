@@ -1057,7 +1057,7 @@ function getCupHtml(cup) {
 
     addColToRow(rows[0], "Races", "th", "", cup.races.length);
     for (let i = 0; i < cup.races.length; i++) {
-        addColToRow(rows[1], (i + 2), "th");
+        addColToRow(rows[1], (i + 1), "th");
     }
 
     addColToRow(rows[0], "Points", "th", "", 2);
