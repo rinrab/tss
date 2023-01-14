@@ -542,6 +542,7 @@ function init() {
                 addPlayer();
                 drawAll();
             }
+            e.preventDefault();
         }
         if (!game.isStart) {
             if (e.code == "Digit1" && e.ctrlKey) {
@@ -550,6 +551,7 @@ function init() {
                         p.forwardBtn.checked = true;
                     }
                 }
+                e.preventDefault();
             }
             if (e.code == "Digit2" && e.ctrlKey) {
                 for (let p of game.players) {
@@ -557,6 +559,7 @@ function init() {
                         p.tackBtn.checked = true;
                     }
                 }
+                e.preventDefault();
             }
             if (e.code == "Digit3" && e.ctrlKey) {2
                 for (let p of game.players) {
@@ -564,6 +567,7 @@ function init() {
                         p.toMarkBtn.checked = true;
                     }
                 }
+                e.preventDefault();
             }
         }
         if (e.code == "Backspace") {
