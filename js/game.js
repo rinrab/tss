@@ -889,6 +889,8 @@ function saveAllCups() {
     saveCup(cup, "cup");
 }
 
+const dsqTime = 10000000; // 10 milions
+
 function addRaceToCup() {
     let newRaceArr = [];
     let newRace = {};
@@ -899,7 +901,7 @@ function addRaceToCup() {
 
         if (player.finished == false) {
             // TODO: DNC
-            newPlayer.time = -1;
+            newPlayer.time = dsqTime;
         } else {
             newPlayer.time = player.finished;
         }
@@ -923,7 +925,7 @@ function addRaceToCup() {
     for (let i = 0; i < newRaceArr.length; i++) {
         const p = newRaceArr[i];
 
-        if (p.time == -1) {
+        if (p.time == dsqTime) {
             newRace[p.name] = -1;
         } else {
             newRace[p.name] = i + 1;
