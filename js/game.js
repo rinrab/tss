@@ -1083,7 +1083,7 @@ function getCupHtml(cup) {
     for (let i = 0; i < cup.players.length; i++) {
         const player = cup.players[i];
 
-        addColToRow(rows[i + 2], player.rank);
+        addColToRow(rows[i + 2], player.rank, "td", "", 1, "width:2rem");
 
         addColToRow(rows[i + 2], player.name, "td", "text-nowrap");
 
