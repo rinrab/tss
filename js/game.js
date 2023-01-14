@@ -1066,7 +1066,6 @@ function getCupHtml(cup) {
     addColToRow(rows[1], "Net", "th", "", 1, "min-width: 4rem");
     addColToRow(rows[1], "Total", "th", "", 1, "min-width: 4rem");
 
-    
     for (let i = 0; i < cup.players.length; i++) {
         const player = cup.players[i];
 
