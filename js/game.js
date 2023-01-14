@@ -1067,7 +1067,7 @@ function getCupHtml(cup) {
     console.log(cup);
 
     // First col
-    addColToRow(rows[0], "Info", "th", "", 2);
+    addColToRow(rows[0], "", "th", "", 2);
     addColToRow(rows[1], "#", "th");
     addColToRow(rows[1], "Name", "th", "");
 
