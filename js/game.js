@@ -1025,6 +1025,20 @@ function sortCup(cup) {
         return a.totalPoints - b.totalPoints;
     });
 
+    let pos = 1;
+    let oldScore = newPlayers[0].totalPoints;
+    for (let i = 0; i < newPlayers.length; i++) {
+        const player = newPlayers[i];
+
+        if (player.totalPoints != oldScore) {
+            pos++;
+        }
+
+        player.rank = pos;
+
+        oldScore = player.totalPoints;
+    }
+
     return rv = {
         races: races,
         name: cup.name,
@@ -1069,7 +1083,7 @@ function getCupHtml(cup) {
     for (let i = 0; i < cup.players.length; i++) {
         const player = cup.players[i];
 
-        addColToRow(rows[i + 2], i + 1);
+        addColToRow(rows[i + 2], player.rank);
 
         addColToRow(rows[i + 2], player.name, "td", "text-nowrap");
 
