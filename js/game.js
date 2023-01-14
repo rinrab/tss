@@ -993,9 +993,10 @@ function sortCup(cup) {
             let pos = races[exPos[i].index][key];
             if (pos == "DNF" || pos == "DNC") {
                 pos = players.length + 1;
+                races[exPos[i].index][key] = `${races[exPos[i].index][key]} (${players.length})`
+            } else {
+                races[exPos[i].index][key] = `${races[exPos[i].index][key]}`
             }
-
-            races[exPos[i].index][key] = `${races[exPos[i].index][key]} \n ${pos}.0`
 
             i++;
         }
@@ -1003,9 +1004,10 @@ function sortCup(cup) {
             let pos = races[exPos[i].index][key];
             if (pos == "DNF" || pos == "DNC") {
                 pos = players.length + 1;
+                races[exPos[i].index][key] = `${races[exPos[i].index][key]} (${players.length})`
+            } else {
+                races[exPos[i].index][key] = `(${races[exPos[i].index][key]})`
             }
-
-            races[exPos[i].index][key] = `${races[exPos[i].index][key]} \n (${pos}.0)`
 
             i++;
         }
