@@ -1070,7 +1070,7 @@ function getCupHtml(cup) {
 
         addColToRow(rows[i + 2], i + 1);
 
-        addColToRow(rows[i + 2], player.name);
+        addColToRow(rows[i + 2], player.name, "td", "text-nowrap");
 
         for (let pos of player.pos) {
             addColToRow(rows[i + 2], pos)
