@@ -753,9 +753,9 @@ function getPrototypeCup() {
 }
 
 function cupInit() {
-    //try {
+    try {
         cup = loadCup("cup");
-    //} catch { }
+    } catch { }
 
     const cupModal = document.getElementById("cup-modal");
     const resetBtn = document.getElementById("cup-reset-btn");
