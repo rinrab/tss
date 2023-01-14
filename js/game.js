@@ -468,6 +468,7 @@ function init() {
 
     document.getElementById("btn-nowember").addEventListener("click", function () {
         game.turncount = 0;
+        addRaceToCup();
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
             player.tack = false;
@@ -486,6 +487,8 @@ function init() {
         game.isStart = true;
         game.placeBoatsOnStart();
         drawAll();
+        updateRaceCount();
+        saveAllCups();
     });
     windInit();
     settingsInit();
@@ -526,6 +529,8 @@ function init() {
         renderGridSize();
         drawAll();
     });
+
+    cupInit();
 
     var track = document.getElementById("track");
     track.setAttribute("viewBox", formatSvgViewBox(0, 0, game.width, game.height));
@@ -730,6 +735,382 @@ function isFullscreenMode() {
 
 function isFullscreenSupported() {
     return (document.fullscreenEnabled || document.webkitFullscreenEnabled);
+}
+
+function updateRaceCount() {
+    var raceCount = document.getElementById("cup-race-count");
+
+    if (cup.races.length == 0) {
+        raceCount.hidden = true;
+    } else {
+        raceCount.innerText = cup.races.length;
+        raceCount.hidden = false;
+    }
+}
+
+function getPrototypeCup() {
+    return {
+        races: [],
+        name: "name",
+        excludingCount: 0
+    };
+}
+
+function cupInit() {
+    try {
+        cup = loadCup("cup");
+    } catch { }
+
+    const cupModal = document.getElementById("cup-modal");
+    const resetBtn = document.getElementById("cup-reset-btn");
+
+    const printBtn = document.getElementById("cup-print");
+    printBtn.addEventListener("click", function () {
+        window.print();
+    })
+
+    cupModal.addEventListener("show.bs.modal", function () {
+        updateCup();
+    });
+
+    resetBtn.addEventListener("click", function () {
+        cup = getPrototypeCup();
+        updateCup();
+        saveAllCups();
+    });
+
+    const excludingSelect = document.getElementById("cup-excluding");
+    excludingSelect.selectedIndex = cup.excludingCount;
+    excludingSelect.addEventListener("change", function () {
+        cup.excludingCount = excludingSelect.selectedIndex;
+        updateCup();
+        saveAllCups();
+    });
+
+    updateRaceCount();
+}
+
+function updateCup() {
+    const cupContainer = document.getElementById("cup-container");
+
+    cupContainer.innerHTML = "";
+    cupContainer.appendChild(getCupHtml(sortCup(cup)));
+
+    const printExcludingCount = document.getElementById("print-excluding");
+    const excludingSelect = document.getElementById("cup-excluding");
+    printExcludingCount.innerText = excludingSelect.value;
+
+    updateRaceCount();
+}
+
+function getPlayers(cup) {
+    let rv = [];
+
+    for (let race of cup.races) {
+        for (let key of Object.keys(race)) {
+            if (!rv.includes(key)) {
+                rv.push(key)
+            }
+        }
+    }
+
+    for (let i = 0; i < game.players.length; i++) {
+        if (!rv.includes(game.getPlayerName(i))) {
+            rv.push(game.getPlayerName(i))
+        };
+    }
+
+    return rv;
+}
+
+let cup = getPrototypeCup();
+
+function loadCup(name) {
+    let parsedData;
+
+    try {
+        parsedData = JSON.parse(localStorage.getItem(name));
+    } catch {
+        throw "Parse error";
+    }
+    if (!parsedData) {
+        throw "Parse error";
+    }
+
+    let races = [];
+
+    for (let race of parsedData.races) {
+        let newRace = {};
+
+        for (let key of Object.keys(race)) {
+            if (race[key]) {
+                newRace[key] = race[key];
+            } else {
+                throw "Parse error";
+            }
+        }
+
+        races.push(newRace);
+    }
+    let newName;
+    let newExcludingCount; 
+
+    if (parsedData.name) {
+        newName = parsedData.name;
+    } else {
+        throw "Parse error";
+    }
+    if (parsedData.excount == undefined) {
+        throw "Parse error";
+    } else {
+        newExcludingCount = parsedData.excount;
+    }
+
+    return {
+        races: races,
+        name: newName,
+        excludingCount: newExcludingCount
+    };
+}
+
+function saveCup(cup, name) {
+    let races = [];
+
+    for (let race of cup.races) {
+        let newRace = {};
+
+        for (let key of Object.keys(race)) {
+            newRace[key] = race[key];
+        }
+
+        races.push(newRace);
+    }
+
+    localStorage.setItem(name, JSON.stringify({
+        races: races,
+        name: name,
+        excount: cup.excludingCount
+    }));
+}
+
+function saveAllCups() {
+    saveCup(cup, "cup");
+}
+
+const dsqTime = 10000000; // 10 milions
+
+function addRaceToCup() {
+    let newRaceArr = [];
+    let newRace = {};
+
+    for (let i = 0; i < game.players.length; i++) {
+        const player = game.players[i];
+        let newPlayer = { index: i };
+
+        if (player.finished == false) {
+            // TODO: DNC
+            newPlayer.time = dsqTime;
+        } else {
+            newPlayer.time = player.finished;
+        }
+
+        let name = player.name;
+
+        while (newRaceArr.includes(name)) {
+            name += "A";
+        }
+
+        newPlayer.name = name;
+
+        newRaceArr.push(newPlayer);
+    }
+
+    newRaceArr.sort(function (a, b) {
+        return a.time - b.time;
+    });
+
+    console.log(newRaceArr);
+    for (let i = 0; i < newRaceArr.length; i++) {
+        const p = newRaceArr[i];
+
+        if (p.time == dsqTime) {
+            newRace[p.name] = -1;
+        } else {
+            newRace[p.name] = i + 1;
+        }
+    }
+
+    cup.races.push(newRace);
+}
+
+function sortCup(cup) {
+    let players = getPlayers(cup);
+
+    let races = [];
+    let sum = {};
+
+    for (let race of cup.races) {
+        let newRace = [];
+
+        for (let key of players) {
+            if (race[key] == -1) {
+                newRace[key] = `DNF`;
+            } else if (race[key]) {
+                newRace[key] = race[key];
+            } else {
+                newRace[key] = `DNC`;
+            }
+        }
+
+        races.push(newRace);
+    }
+
+    let newPlayers = [];
+
+    for (let key of players) {
+        let newSumNet = 0;
+        let newSumTotal = 0;
+        let newPos = [];
+        let exPos = [];
+
+        for (let i = 0; i < cup.races.length; i++) {
+            const race = cup.races[i];
+            if (race[key] == -1) {
+                newSumNet += players.length + 1;
+                exPos.push({ pos: players.length + 1, index: i });
+            } else if (race[key]) {
+                exPos.push({ pos: race[key], index: i });
+                newSumNet += race[key];
+            } else {
+                newSumNet += players.length + 1;
+                exPos.push({ pos: players.length + 1, index: i });
+            }
+        }
+        exPos.sort(function (a, b) {
+            return b.pos - a.pos;
+        });
+        console.log(exPos);
+
+        let i = exPos.length - 1;
+        while (i > cup.excludingCount - 1) {
+            newSumTotal += exPos[i].pos;
+            let pos = races[exPos[i].index][key];
+            if (pos == "DNF" || pos == "DNC") {
+                pos = players.length + 1;
+                races[exPos[i].index][key] = `${races[exPos[i].index][key]} ${players.length}`
+            } else {
+                races[exPos[i].index][key] = `${races[exPos[i].index][key]}`
+            }
+
+            i--;
+        }
+        while (i >= 0) {
+            let pos = races[exPos[i].index][key];
+            if (pos == "DNF" || pos == "DNC") {
+                pos = players.length + 1;
+                races[exPos[i].index][key] = `${races[exPos[i].index][key]} (${players.length})`
+            } else {
+                races[exPos[i].index][key] = `(${races[exPos[i].index][key]})`
+            }
+
+            i--;
+        }
+
+        for (let race of races) {
+            newPos.push(race[key]);
+        }
+
+        newPlayers.push({ pos: newPos, netPoints: newSumNet, totalPoints: newSumTotal, name: key });
+
+        sum[key] = newSumNet;
+    }
+
+    newPlayers.sort(function (a, b) {
+        return a.totalPoints - b.totalPoints;
+    });
+
+    let pos = 1;
+    let oldScore = newPlayers[0].totalPoints;
+    for (let i = 0; i < newPlayers.length; i++) {
+        const player = newPlayers[i];
+
+        if (player.totalPoints != oldScore) {
+            pos++;
+        }
+
+        player.rank = pos;
+
+        oldScore = player.totalPoints;
+    }
+
+    return rv = {
+        races: races,
+        name: cup.name,
+        sum: sum,
+        players: newPlayers
+    }
+}
+
+function getCupHtml(cup) {
+    let rv = document.createElement("table");
+    let tbody = document.createElement("tbody");
+    rv.appendChild(tbody);
+
+    let rows = [];
+
+    let players = getPlayers(cup);
+
+    // Rows init
+    for (let i = 0; i < players.length + 2; i++) {
+        let newRow = document.createElement("tr");
+        newRow.className = "align-middle";
+
+        rows.push(newRow);
+        tbody.appendChild(newRow);
+    }
+    console.log(cup);
+
+    // First col
+    addColToRow(rows[0], "", "th", "", 2);
+    addColToRow(rows[1], "#", "th");
+    addColToRow(rows[1], "Name", "th", "");
+
+    addColToRow(rows[0], "Races", "th", "", cup.races.length);
+    for (let i = 0; i < cup.races.length; i++) {
+        addColToRow(rows[1], (i + 1), "th");
+    }
+
+    addColToRow(rows[0], "Points", "th", "", 2);
+    addColToRow(rows[1], "Net", "th", "", 1, "min-width: 4rem");
+    addColToRow(rows[1], "Total", "th", "", 1, "min-width: 4rem");
+
+    for (let i = 0; i < cup.players.length; i++) {
+        const player = cup.players[i];
+
+        addColToRow(rows[i + 2], player.rank, "td", "", 1, "width:2rem");
+
+        addColToRow(rows[i + 2], player.name, "td", "text-nowrap");
+
+        for (let pos of player.pos) {
+            addColToRow(rows[i + 2], pos, "td", "", 1, "min-width: 4rem");
+        }
+        addColToRow(rows[i + 2], player.netPoints);
+        addColToRow(rows[i + 2], player.totalPoints);
+    }
+
+    rv.className = "table table-hover table-bordered text-center table-sm";
+    rv.style = "";
+
+    return rv;
+}
+
+function addColToRow(row, text, colType = "td", className = "", colspan = 1, style = "") {
+    newItem = document.createElement(colType);
+    newItem.innerText = text;
+    newItem.className = "px-2 " + className;
+    newItem.setAttribute("colspan", colspan);
+    newItem.style = style;
+    row.appendChild(newItem);
 }
 
 function random(max) {
