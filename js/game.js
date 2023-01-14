@@ -1048,7 +1048,7 @@ function getCupHtml(cup) {
 
     // First col
     addColToRow(rows[0], "Info", "th", "", 2);
-    addColToRow(rows[1], "Rank", "th");
+    addColToRow(rows[1], "#", "th");
     addColToRow(rows[1], "Name", "th", "");
 
     addColToRow(rows[0], "Races", "th", "", cup.races.length);
@@ -1076,7 +1076,7 @@ function getCupHtml(cup) {
     }
 
     rv.className = "table table-hover table-bordered text-center";
-    rv.style = "table-layout: fixed";
+    rv.style = "";
 
     return rv;
 }
