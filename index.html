@@ -251,7 +251,8 @@
       height: 100%;
     }
 
-    .dropdown-arrow-hidden::before {
+    .dropdown-arrow-hidden::before,
+    .dropdown-arrow-hidden::after{
       display: none !important;
     }
 
@@ -687,7 +688,20 @@
           <div class="col"></div>
 
           <div class="col-auto">
-            <button id="cup-reset-btn" class="btn btn-outline-primary">Reset</button>
+            <div class="btn-group dropstart">
+              <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-arrow-hidden" data-bs-toggle="dropdown">Reset</button>
+              <div class="dropdown-menu p-3" style="width: 15rem">
+                <span>Do you want to reset cup?</span>
+                <div class="row m-0 p-0 gx-1">
+                  <div class="col">
+                    <button class="btn btn-danger w-100" id="cup-reset-btn">Reset</button>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-primary w-100">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-body">
