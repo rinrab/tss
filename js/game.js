@@ -766,7 +766,7 @@ function getPrototypeCup() {
 
 function cupInit() {
     try {
-        cup = loadCup("cup");
+        cup = loadCup(localStorage.getItem("cup"));
     } catch { }
 
     const cupModal = document.getElementById("cup-modal");
@@ -794,6 +794,37 @@ function cupInit() {
         updateCup();
         saveAllCups();
     });
+
+    const exportBtn = document.getElementById("cup-export");
+    exportBtn.addEventListener("click", function () {
+        var name = "cup";
+        var file = new Blob([saveCup(cup, name)], { type: "data:text/json" });
+        var name = `${name}.tsscup`;
+        var url = URL.createObjectURL(file);
+        console.log(file)
+        try {
+            var linkElem = document.createElement("a");
+            linkElem.href = url;
+            linkElem.download = name;
+            linkElem.click();
+        }
+        finally {
+            URL.revokeObjectURL(url);
+        }
+    });
+
+    const importInput = document.getElementById("cup-import");
+    importInput.addEventListener("change", function () {
+        if (importInput.files.length > 0) {
+            var fileReader = new FileReader();
+            fileReader.readAsText(importInput.files[0]);
+            fileReader.addEventListener("load", () => {
+                cup = loadCup(fileReader.result);
+                updateCup();
+                saveAllCups();
+            });
+        }
+    })
 
     updateRaceCount();
 }
@@ -837,11 +868,11 @@ function getPlayers(cup) {
 
 let cup = getPrototypeCup();
 
-function loadCup(name) {
+function loadCup(str) {
     let parsedData;
 
     try {
-        parsedData = JSON.parse(localStorage.getItem(name));
+        parsedData = JSON.parse(str);
     } catch {
         throw "Parse error";
     }
@@ -898,15 +929,15 @@ function saveCup(cup, name) {
         races.push(newRace);
     }
 
-    localStorage.setItem(name, JSON.stringify({
+    return JSON.stringify({
         races: races,
         name: name,
         excount: cup.excludingCount
-    }));
+    })
 }
 
 function saveAllCups() {
-    saveCup(cup, "cup");
+    localStorage.setItem("cup", saveCup(cup, "cup"));
 }
 
 const dsqTime = 10000000; // 10 milions

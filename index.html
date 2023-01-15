@@ -713,9 +713,17 @@
             </header>
           </div>
         </div>
-        <div class="modal-footer d-print-none row g-1">
+        <div class="modal-footer d-print-none row g-0">
           <div class="col-auto">
             <button class="btn btn-secondary" id="cup-print">Print</button>
+          </div>
+          <div class="col-auto mx-2"></div>
+          <div class="col-auto">
+            <button class="btn btn-primary" id="cup-export">Export</button>
+          </div>
+          <div class="col-auto">
+            <label class="btn btn-primary" for="cup-import">Import</label>
+            <input type="file" accept=".tsscup" id="cup-import" hidden />
           </div>
 
           <div class="col"></div>
