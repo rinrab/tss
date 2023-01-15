@@ -829,15 +829,27 @@ function cupInit() {
     updateRaceCount();
 }
 
+const cupActionFunctions = {
+    delete: function (index) {
+        cup.races.splice(index, 1);
+        updateCup();
+        saveAllCups();
+    },
+    rename: function (oldName, newName) {
+        for (let race of cup.races) {
+            if (race[oldName]) {
+                race[newName] = race[oldName];
+                delete race[key];
+            }
+        }
+    }
+}
+
 function updateCup() {
     const cupContainer = document.getElementById("cup-container");
 
     cupContainer.innerHTML = "";
-    cupContainer.appendChild(getCupHtml(sortCup(cup), function (index) {
-        cup.races.splice(index, 1);
-        updateCup();
-        saveAllCups();
-    }));
+    cupContainer.appendChild(getCupHtml(sortCup(cup), cupActionFunctions));
 
     const printExcludingCount = document.getElementById("print-excluding");
     const excludingSelect = document.getElementById("cup-excluding");
@@ -1094,7 +1106,7 @@ function sortCup(cup) {
     }
 }
 
-function getCupHtml(cup, deleteFunc) {
+function getCupHtml(cup, actionFunctions) {
     let rv = document.createElement("table");
     let tbody = document.createElement("tbody");
     rv.appendChild(tbody);
@@ -1136,7 +1148,7 @@ function getCupHtml(cup, deleteFunc) {
         newBtn.className = "btn btn-sm btn-outline-danger col-auto py-0 px-1 d-print-none mx-2";
         var index = i;
         newBtn.addEventListener("click", function () {
-            deleteFunc(index);
+            actionFunctions.delete(index);
         });
         newCol.appendChild(newBtn);
 
