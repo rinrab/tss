@@ -1190,7 +1190,7 @@ function getCupHtml(cup, actionFunctions) {
                 isPlayerExist = true;
             }
         }
-        newEditBtn.disabled = !isPlayerExist;
+        newEditBtn.hidden = !isPlayerExist;
         newEditBtn.addEventListener("click", function () {
             rows[i + 2].classList.add("cup-edit-name");
         });
