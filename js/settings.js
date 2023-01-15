@@ -99,9 +99,9 @@ function applySettings() {
     }
     setShowLanelinesCheck.checked = settings.showLanelines;
     if (settings.showLanelines) {
-        upMarkLanelines.hidden = false;
+        upMarkLanelines.style.opacity = "1";
     } else {
-        upMarkLanelines.hidden = true;
+        upMarkLanelines.style.opacity = "0";
     }
     setShowBoatsCheck.checked = settings.showBoats;
 
