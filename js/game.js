@@ -459,6 +459,29 @@ const zoomTypes = {
 
 let zoomType = zoomTypes.race;
 
+function reset() {
+    game.turncount = 0;
+    addRaceToCup();
+    for (var i = 0; i < game.players.length; i++) {
+        var player = game.players[i];
+        player.tack = false;
+        player.rotation = -45;
+        player.turns = [];
+        player.isStart = true;
+        player.finished = false;
+        player.startInputs[1].checked = true;
+        player.startPos = 1;
+        player.startPriority = game.currentStartPriority++;
+        player.saveTurn(turnTupes.forward, [{ x: player.x, y: player.y }]);
+        player.track.setAttribute("points", "");
+    }
+    windChange();
+    document.body.className = "start";
+    game.isStart = true;
+    game.placeBoatsOnStart();
+    drawAll();
+}
+
 function init() {
     windscenario = readIntSetting(localStorageNames.selectedWind, 0);
     windscenariocontrol = document.getElementById("select-wind");
@@ -466,30 +489,15 @@ function init() {
 
     upMarkLanelines = document.getElementById("upmarklines");
 
-    document.getElementById("btn-nowember").addEventListener("click", function () {
-        game.turncount = 0;
-        addRaceToCup();
-        for (var i = 0; i < game.players.length; i++) {
-            var player = game.players[i];
-            player.tack = false;
-            player.rotation = -45;
-            player.turns = [];
-            player.isStart = true;
-            player.finished = false;
-            player.startInputs[1].checked = true;
-            player.startPos = 1;
-            player.startPriority = game.currentStartPriority++;
-            player.saveTurn(turnTupes.forward, [{ x: player.x, y: player.y }]);
-            player.track.setAttribute("points", "");
-        }
-        windChange();
-        document.body.className = "start";
-        game.isStart = true;
-        game.placeBoatsOnStart();
-        drawAll();
+    document.getElementById("btn-reset").addEventListener("click", function () {
+        reset();
+    });
+    document.getElementById("btn-reset-and-addtocup").addEventListener("click", function () {
+        reset();
         updateRaceCount();
         saveAllCups();
     });
+
     windInit();
     settingsInit();
     createGame(2);

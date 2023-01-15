@@ -158,7 +158,7 @@
       overflow: hidden;
     }
 
-    #btn-nowember {
+    .btn-november {
       width: 3em;
       height: 2em;
     }
@@ -388,7 +388,7 @@
                 Race:
                 <span id="wind-scenario-name-inrace-alert"></span>
               </div>
-              <input type="image" class="btn btn-outline-primary btn-sm col-auto" id="btn-nowember" src="img/november.svg">
+              <input type="image" class="btn btn-outline-primary btn-sm col-auto btn-november" data-bs-target="#end-race-modal" data-bs-toggle="modal" src="img/november.svg">
             </div>
           </div>
         </div>
@@ -542,6 +542,23 @@
               </svg>
             </label>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-sm fade" tabindex="-1" id="end-race-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Do you want to end race?</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body g-1 row">
+          <button class="btn btn-danger" data-bs-dismiss="modal" id="btn-reset">Yes, do <b>not</b> add to cup</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="btn-reset-and-addtocup">Yes, add to cup</button>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
