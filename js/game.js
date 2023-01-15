@@ -839,9 +839,11 @@ const cupActionFunctions = {
         for (let race of cup.races) {
             if (race[oldName]) {
                 race[newName] = race[oldName];
-                delete race[key];
+                delete race[oldName];
             }
         }
+        saveAllCups();
+        updateCup();
     }
 }
 
@@ -1164,7 +1166,64 @@ function getCupHtml(cup, actionFunctions) {
 
         addColToRow(rows[i + 2], player.rank, "td", "", 1, "width:2rem");
 
-        addColToRow(rows[i + 2], player.name, "td", "text-nowrap");
+        let newNameCol = document.createElement("td");
+        rows[i + 2].appendChild(newNameCol);
+
+        let viewContainer = document.createElement("span");
+        viewContainer.className = "hide-cup-edit-name d-print-unset";
+        newNameCol.appendChild(viewContainer);
+        let newSpan = document.createElement("span");
+        newSpan.innerText = player.name;
+        newSpan.className = "cup-name-text";
+        viewContainer.appendChild(newSpan);
+        let newEditBtn = document.createElement("button");
+        newEditBtn.className = "btn btn-sm btn-outline-primary mx-2 d-print-none cup-rename-btn hide-cup-edit-name px-1 py-0";
+        newEditBtn.innerHTML =
+            `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <use href="#edit-icon"></use>
+            </svg>
+            `;
+        let isPlayerExist = false;
+        for (let race of cup.races) {
+            if (!race[player.name].includes("DNC")) {
+                isPlayerExist = true;
+            }
+        }
+        newEditBtn.disabled = !isPlayerExist;
+        newEditBtn.addEventListener("click", function () {
+            rows[i + 2].classList.add("cup-edit-name");
+        });
+        viewContainer.appendChild(newEditBtn);
+
+        let editContainer = document.createElement("div");
+        editContainer.className = "show-cup-edit-name d-print-none";
+        editContainer.style = "width: 15rem; margin-left: calc(50% - 7.5rem)";
+        newNameCol.appendChild(editContainer);
+        let editGroup = document.createElement("div");
+        editGroup.className = "input-group";
+        editContainer.appendChild(editGroup);
+        let newNameInput = document.createElement("input");
+        newNameInput.className = "form-control";
+        newNameInput.type = "text";
+        newNameInput.value = player.name;
+        editGroup.appendChild(newNameInput);
+        let applyBtn = document.createElement("button");
+        applyBtn.innerText = "Ok";
+        applyBtn.className = "btn btn-outline-primary";
+        const oldName = player.name;
+        applyBtn.addEventListener("click", function () {
+            actionFunctions.rename(oldName, newNameInput.value);
+        });
+        editGroup.appendChild(applyBtn);
+        let cancelBtn = document.createElement("button");
+        cancelBtn.innerText = "Cancel";
+        cancelBtn.className = "btn btn-outline-primary";
+        cancelBtn.addEventListener("click", function () {
+            updateCup();
+        });
+        editGroup.appendChild(cancelBtn);
+
 
         for (let pos of player.pos) {
             addColToRow(rows[i + 2], pos, "td", "", 1, "min-width: 4rem");
