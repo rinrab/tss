@@ -794,7 +794,11 @@ function updateCup() {
     const cupContainer = document.getElementById("cup-container");
 
     cupContainer.innerHTML = "";
-    cupContainer.appendChild(getCupHtml(sortCup(cup)));
+    cupContainer.appendChild(getCupHtml(sortCup(cup), function (index) {
+        cup.races.splice(index, 1);
+        updateCup();
+        saveAllCups();
+    }));
 
     const printExcludingCount = document.getElementById("print-excluding");
     const excludingSelect = document.getElementById("cup-excluding");
@@ -1051,7 +1055,7 @@ function sortCup(cup) {
     }
 }
 
-function getCupHtml(cup) {
+function getCupHtml(cup, deleteFunc) {
     let rv = document.createElement("table");
     let tbody = document.createElement("tbody");
     rv.appendChild(tbody);
@@ -1077,7 +1081,27 @@ function getCupHtml(cup) {
 
     addColToRow(rows[0], "Races", "th", "", cup.races.length);
     for (let i = 0; i < cup.races.length; i++) {
-        addColToRow(rows[1], (i + 1), "th");
+        let newCol = document.createElement("th");
+        newCol.className = "";
+
+        let newSpan = document.createElement("span");
+        newSpan.innerText = (i + 1);
+        newSpan.className = "col w-100";
+        newCol.appendChild(newSpan);
+
+        let newBtn = document.createElement("button");
+        newBtn.innerHTML =
+            `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16" style="scale:0.8">
+              <use href="#delete-svg"></use>
+            </svg>`;
+        newBtn.className = "btn btn-sm btn-outline-danger col-auto py-0 px-1 d-print-none mx-2";
+        var index = i;
+        newBtn.addEventListener("click", function () {
+            deleteFunc(index);
+        });
+        newCol.appendChild(newBtn);
+
+        rows[1].appendChild(newCol);
     }
 
     addColToRow(rows[0], "Points", "th", "", 2);
