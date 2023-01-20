@@ -466,7 +466,7 @@ class Game {
         try {
             parsedData = JSON.parse(jsonString);
         }
-        catch {
+        catch (ex) {
             throw "Parse Error";
         }
         if (parsedData["magic"] != saveGameMagicString) {

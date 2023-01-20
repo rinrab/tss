@@ -678,8 +678,8 @@ function tryGetVal(val) {
 function loadGameFromFile(result) {
     try {
         newGame = Game.load(result);
-    } catch (e) {
-        alert(e);
+    } catch (ex) {
+        alert(ex);
         return;
     }
 
@@ -767,7 +767,7 @@ function getPrototypeCup() {
 function cupInit() {
     try {
         cup = loadCup(localStorage.getItem("cup"));
-    } catch { }
+    } catch (ex) { }
 
     const cupModal = document.getElementById("cup-modal");
     const resetBtn = document.getElementById("cup-reset-btn");
@@ -887,7 +887,7 @@ function loadCup(str) {
 
     try {
         parsedData = JSON.parse(str);
-    } catch {
+    } catch (ex) {
         throw "Parse error";
     }
     if (!parsedData) {

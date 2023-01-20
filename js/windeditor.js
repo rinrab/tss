@@ -371,8 +371,8 @@ function loadWindFromURL() {
             document.getElementById("add-wind-text").value = text;
             document.getElementById("add-wind-name").value = newwind.name;
             addWindModal.show();
-        } catch (err) {
-            console.log(err);
+        } catch (ex) {
+            console.log(ex);
         }
     }
 
