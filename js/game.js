@@ -648,6 +648,16 @@ function init() {
         fileReader.addEventListener("load", () => {
             loadGameFromFile(fileReader.result);
         });
+        if (Math.random() < 0.1) {
+            const modal = new bootstrap.Modal("#install-tsspreview-modal");
+            modal.show();
+        }
+    });
+
+    document.getElementById("install-tsspreview-btn").addEventListener("click", function () {
+        const modal = document.getElementById("install-tsspreview-modal");
+        modal.remove();
+        document.querySelector(".modal-backdrop").remove();
     });
 
     document.getElementById("save-game-btn").addEventListener("click", function () {
