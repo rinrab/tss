@@ -675,6 +675,10 @@ function init() {
             URL.revokeObjectURL(url);
         }
     });
+
+    for (var e of document.querySelectorAll(".tsspreview")) {
+        e.href = "https://github.com/rinrab/TssPreview/releases/download/tss/TssPreview.exe";
+    };
 }
 
 function tryGetVal(val) {
