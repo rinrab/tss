@@ -677,7 +677,7 @@ function init() {
     });
 
     for (var e of document.querySelectorAll(".tsspreview")) {
-        e.href = "https://github.com/rinrab/TssPreview/releases/download/tss/TssPreview.exe";
+        e.href = "https://github.com/rinrab/TssPreview/releases/download/v0.1.1/TssPreview.exe";
     };
 }
 
