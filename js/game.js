@@ -14,30 +14,22 @@ function confirmation(state) {
 
 const startLineSize = 15;
 
-var boatsvg =
+const boatsvg =
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -10 14 20" class="boat-full-svg">
-        <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="gray" stroke-width=".5" fill="currentColor" />
-        <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="white" fill="none" stroke-width="1" />
-        <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" />
-    </svg>
-    `;
-var boathidesvg = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -10 14 20" class="boat-hidden-svg">
-        <g>
-            <ellipse rx="2" ry="2" cx="0" cy="0" stroke-width="3" fill="currentColor"
-                stroke="currentColor"></ellipse>
-        </g>
-    </svg>`
-var marksvg =
-    `<g>
-        <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
-        <ellipse cx="8" cy="8" rx="2" ry="2" fill="#6d2121"/>
-    </g>`;
-var upMarkSvg =
-    `<g>
-        <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25" stroke-dasharray="0.5" />
-        <ellipse cx="8" cy="8" rx="1.5" ry="1.5" fill="#6d2121" />
-    </g>`;
+      <path d="M -4 7.5 L 4 7.5 C 5 1.5 5 -2.5 2.5 -9 L -2.5 -9 C -5 -2.5 -5 1.5 -4 7.5 Z" stroke="gray" stroke-width=".5" fill="currentColor" />
+      <path d="M 0 -6 C 2 -4 3 -1 2 6" stroke="white" fill="none" stroke-width="1" />
+      <ellipse rx="0.7" ry="0.7" cx="0" cy="-6" />
+    </svg>`;
+const boathidesvg = 
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -10 14 20" class="boat-hidden-svg">
+      <ellipse rx="2" ry="2" cx="0" cy="0" stroke-width="3" fill="currentColor" stroke="currentColor"></ellipse>
+    </svg>`;
+const marksvg =
+    `<ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
+    <ellipse cx="8" cy="8" rx="2" ry="2" fill="#6d2121"/>`;
+const upMarkSvg =
+    `<ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25" stroke-dasharray="0.5" />
+    <ellipse cx="8" cy="8" rx="1.5" ry="1.5" fill="#6d2121" />`;
 
 var startx = 6;
 var starty = 28;
