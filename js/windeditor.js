@@ -31,7 +31,7 @@ function windInit() {
             wind.push({
                 wind: w.wind,
                 name: w.name,
-                probability: w.probability,
+                count: w.count,
                 israndom: w.israndom,
                 stepscount: w.stepscount,
                 width: w.width,

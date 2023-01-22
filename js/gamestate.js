@@ -311,8 +311,8 @@ class Game {
 
         let cards = [];
         while (cards.length < 50) {
-            for (var i = 0; i < this.windscenario.probability.length; i++) {
-                for (var j = 0; j < this.windscenario.probability[i]; j++) {
+            for (var i = 0; i < this.windscenario.count.length; i++) {
+                for (var j = 0; j < this.windscenario.count[i]; j++) {
                     cards.push(this.windscenario.wind[i]);
                 }
             }
