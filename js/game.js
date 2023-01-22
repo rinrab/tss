@@ -875,6 +875,11 @@ const cupActionFunctions = {
         }
         saveAllCups();
         updateCup();
+    },
+    goRace: function (name) {
+        addPlayer();
+        game.players[game.players.length - 1].nameInput.value = name;
+        drawAll();
     }
 }
 
@@ -1201,16 +1206,22 @@ function getCupHtml(cup, actionFunctions) {
         rows[i + 2].appendChild(newNameCol);
 
         let viewContainer = document.createElement("span");
-        viewContainer.className = "hide-cup-edit-name d-print-unset row px-1";
+        viewContainer.className = "hide-cup-edit-name d-print-unset row px-3";
         newNameCol.appendChild(viewContainer);
+        let newGoRaceBtn = document.createElement("button");
+        newGoRaceBtn.className = "btn btn-sm btn-outline-primary d-print-none hide-cup-edit-name px-1 py-0 col-auto rounded-end-0";
+        newGoRaceBtn.innerText = "Go Race";
+        const name = player.name;
+        newGoRaceBtn.addEventListener("click", function () {
+            actionFunctions.goRace(name);
+        })
+        viewContainer.appendChild(newGoRaceBtn);
         let newEditBtn = document.createElement("button");
-        newEditBtn.className = "btn btn-sm btn-outline-primary mx-2 d-print-none cup-rename-btn hide-cup-edit-name px-1 py-0 col-auto";
+        newEditBtn.className = "btn btn-sm btn-outline-primary d-print-none cup-rename-btn hide-cup-edit-name px-1 py-0 col-auto rounded-start-0 border-start-0";
         newEditBtn.innerHTML =
-            `
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                 <use href="#edit-icon"></use>
-            </svg>
-            `;
+            </svg>`;
         let isPlayerExist = false;
         for (let race of cup.races) {
             if (!race[player.name].includes("DNC")) {
@@ -1218,6 +1229,7 @@ function getCupHtml(cup, actionFunctions) {
             }
         }
         newEditBtn.hidden = !isPlayerExist;
+        newGoRaceBtn.hidden = !isPlayerExist;
         newEditBtn.addEventListener("click", function () {
             rows[i + 2].classList.add("cup-edit-name");
         });
