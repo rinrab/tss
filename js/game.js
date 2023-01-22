@@ -843,6 +843,20 @@ function cupInit() {
         }
     })
 
+    const addPlayersToRaceBtn = document.getElementById("add-players-to-race-btn");
+    addPlayersToRaceBtn.addEventListener("click", function () {
+        game.players = [];
+        document.getElementById("controlls").innerHTML = "";
+        document.getElementById("boats").innerHTML = "";
+        const players = getPlayers(cup);
+        for (let i = 0; i < players.length; i++) {
+            addPlayer();
+            game.players[i].nameInput.value = players[i];
+        }
+
+        drawAll();
+    });
+
     updateRaceCount();
 }
 
