@@ -1252,6 +1252,25 @@ function getCupHtml(cup, actionFunctions) {
     return rv;
 }
 
+addEventListener("beforeprint", function () {
+    printResults();
+});
+
+function printResults() {
+    const newA = document.createElement("a");
+    newA.href = "#c" + JSON.stringify({});
+    newA.target = "_blank";
+    document.getElementById("cup-modal").classList.remove("show");
+    const bg = document.querySelector(".modal-backdrop")
+    if (bg) {
+        bg.remove();
+    }
+
+    const printArea = document.getElementById("print-area");
+    printArea.innerHTML = "";
+    printArea.appendChild(getCupHtml(sortCup(cup)));
+}
+
 function addColToRow(row, text, colType = "td", className = "", colspan = 1, style = "") {
     newItem = document.createElement(colType);
     newItem.innerText = text;
