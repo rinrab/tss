@@ -1289,16 +1289,13 @@ function printResults() {
     const newA = document.createElement("a");
     newA.href = "#c" + JSON.stringify({});
     newA.target = "_blank";
-    document.getElementById("cup-modal").classList.remove("show");
-    const bg = document.querySelector(".modal-backdrop")
-    if (bg) {
-        bg.remove();
+    if (document.querySelector(".modal-backdrop")) {
+        document.querySelector(".modal-backdrop").className = "d-print-none";
     }
-
     const printArea = document.getElementById("print-area");
     printArea.innerHTML = "";
     updateCup(cup);
-    printArea.appendChild(document.getElementById("cup-modal").querySelector(".modal-body"));
+    printArea.innerHTML = document.getElementById("cup-modal").querySelector(".modal-body").innerHTML;
 }
 
 function addColToRow(row, text, colType = "td", className = "", colspan = 1, style = "") {
