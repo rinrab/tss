@@ -97,29 +97,6 @@ function windInit() {
 
     var editModal = document.getElementById("wind-editor-window");
     editModal.addEventListener("hide.bs.modal", function (e) {
-        // var areEqual = true;
-        // var splitedWind = splitWind(windtext.value);
-        // if (splitedWind.length != game.windscenario.wind.length) {
-        //     areEqual = false;
-        // } else if (editIndex == -1) {
-        //     areEqual = false;
-        // } else if (nameinput.value != game.windscenario.name) {
-        //     areEqual = false;
-        // } else {
-        //     for (var i in splitedWind) {
-        //         var parsedWind = parseInt(splitedWind[i]);
-
-        //         if (parsedWind != game.windscenario.wind[i]) {
-        //             areEqual = false;
-        //         }
-        //     }
-        // }
-        // if (!areEqual) {
-        //     if (!confirm("Do you want to close. All changes will reset")) {
-        //         e.preventDefault();
-        //     }
-        // }
-
         removeEventListener("resize", updatePreview);
     })
 }
