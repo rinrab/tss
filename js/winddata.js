@@ -102,7 +102,7 @@ var windPresets =
             "width": 40,
             "height": 30,
             "stepscount": 50,
-            startsize: 15,
+            "startsize": 15,
         },
         {
             "name": "Pendulum 2",
@@ -167,15 +167,6 @@ var windPresets =
             "stepscount": 48,
             "allowedit": true
         },
-        // {
-        //     "name": "Bodrum Yalikovak 1",
-        //     "type": "Presets",
-        //     "wind": [0, 5, 10, 10, 15, 20, 20, 15, 15, 10, 5, 0, -5, -20, -15, -15, -10, 0, -5, 0, 5, 0, 0, 5, 5, 15, 20, 20, 10, 10, 15, 10, 5, -10, -20, -15, -10, -5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -5],
-        //     "width": 40, "height": 30,
-        //     "stepscount": 47,
-        //     "allowedit": false,
-        //     "startsize": 15
-        // },
         {
             "name": "Bodrum Yalikovak",
             "type": "Presets",
