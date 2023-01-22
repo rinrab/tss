@@ -1,4 +1,3 @@
-
 function createContolls() {
     document.getElementById("select-wind").addEventListener("change", function () {
         windChange()
