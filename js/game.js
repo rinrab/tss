@@ -1184,14 +1184,10 @@ function getCupHtml(cup, actionFunctions) {
         rows[i + 2].appendChild(newNameCol);
 
         let viewContainer = document.createElement("span");
-        viewContainer.className = "hide-cup-edit-name d-print-unset";
+        viewContainer.className = "hide-cup-edit-name d-print-unset row px-1";
         newNameCol.appendChild(viewContainer);
-        let newSpan = document.createElement("span");
-        newSpan.innerText = player.name;
-        newSpan.className = "cup-name-text";
-        viewContainer.appendChild(newSpan);
         let newEditBtn = document.createElement("button");
-        newEditBtn.className = "btn btn-sm btn-outline-primary mx-2 d-print-none cup-rename-btn hide-cup-edit-name px-1 py-0";
+        newEditBtn.className = "btn btn-sm btn-outline-primary mx-2 d-print-none cup-rename-btn hide-cup-edit-name px-1 py-0 col-auto";
         newEditBtn.innerHTML =
             `
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -1209,6 +1205,10 @@ function getCupHtml(cup, actionFunctions) {
             rows[i + 2].classList.add("cup-edit-name");
         });
         viewContainer.appendChild(newEditBtn);
+        let newSpan = document.createElement("span");
+        newSpan.innerText = player.name;
+        newSpan.className = "cup-name-text col";
+        viewContainer.appendChild(newSpan);
 
         let editContainer = document.createElement("div");
         editContainer.className = "show-cup-edit-name d-print-none";
