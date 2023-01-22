@@ -309,26 +309,26 @@ class Game {
     setWindFromRandom() {
         this.wind = [];
 
-        var windnow = 0;
-        windhennums = []
-        for (var i = 0; i < this.windscenario.probability.length; i++) {
-            for (var j = 0; j < this.windscenario.probability[i]; j++) {
-                windhennums[windhennums.length] = this.windscenario.wind[i];
+        let cards = [];
+        while (cards.length < 50) {
+            for (var i = 0; i < this.windscenario.probability.length; i++) {
+                for (var j = 0; j < this.windscenario.probability[i]; j++) {
+                    cards.push(this.windscenario.wind[i]);
+                }
             }
         }
-
-        for (var i = 0; i < this.windscenario.stepscount; i++) {
-            windnow += windhennums[random(windhennums.length)];
-            if (windnow > this.windscenario.maxwindsetting) {
-                windnow = this.windscenario.maxwindsetting;
+        cards.sort(function (a, b) {
+            if (Math.random() < 0.5) {
+                return -1;
+            } else {
+                return 1;
             }
-            if (windnow < -this.windscenario.maxwindsetting) {
-                windnow = -this.windscenario.maxwindsetting;
-            }
+        });
 
-            this.wind[i] = windnow;
+        for (let card of cards) {
+            this.wind.push(card);
         }
-
+        
         this.setMapData();
     }
 

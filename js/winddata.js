@@ -14,19 +14,7 @@ var windPresets =
     [
         {
             name: "Random",
-            probability: [4, 3, 3, 2, 2, 1, 1],
-            wind: [0, 5, -5, 10, -10, 15, -15],
-            israndom: true,
-            stepscount: 50,
-            width: 40,
-            height: 30,
-            maxwindsetting: 20,
-            type: windTypes.presets,
-            startsize: 15,
-        },
-        {
-            name: "High Random",
-            probability: [8, 4, 4, 3, 3, 2, 2, 1, 1],
+            probability: [4, 4, 4, 3, 3, 2, 2, 1, 1],
             wind: [0, 5, -5, 10, -10, 15, -15, 20, -20],
             israndom: true,
             stepscount: 50,
@@ -38,7 +26,7 @@ var windPresets =
         },
         {
             name: "Random Moscow",
-            probability: [1, 1, 1, 1, 1, 1, 1, 1, 1],
+            probability: [3, 3, 3, 3, 3, 3, 3, 3, 3],
             wind: [5, 10, 15, 20, 0, -5, -10, -15, -20],
             israndom: true,
             stepscount: 50,
