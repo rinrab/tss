@@ -619,8 +619,7 @@ function init() {
     });
 
     addEventListener("beforeunload", function (e) {
-        if (localStorage.getItem(localStorageNames.confirmation) == true ||
-            localStorage.getItem(localStorageNames.confirmation) == undefined) {
+        if (localStorage.getItem(localStorageNames.confirmation) != "false") {
             e.preventDefault();
         }
     })
