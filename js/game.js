@@ -33,6 +33,11 @@ var marksvg =
         <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25"/>
         <ellipse cx="8" cy="8" rx="2" ry="2" fill="#6d2121"/>
     </g>`;
+var upMarkSvg =
+    `<g>
+        <ellipse cx="8" cy="8" rx="7" ry="7" fill="none" stroke="#000" stroke-width="0.25" stroke-dasharray="0.5" />
+        <ellipse cx="8" cy="8" rx="1.5" ry="1.5" fill="#6d2121" />
+    </g>`;
 
 var startx = 6;
 var starty = 28;
@@ -315,7 +320,11 @@ function drawMarks() {
     for (var i = 0; i < game.marks.length; i++) {
         var newmark = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         var newmarkcont = document.createElement("div");
-        newmark.innerHTML = marksvg;
+        if (i == 2) {
+            newmark.innerHTML = upMarkSvg;
+        } else {
+            newmark.innerHTML = marksvg;
+        }
         newmark.setAttribute("viewBox", formatSvgViewBox(0, 0, 16, 16));
         newmarkcont.style.left = formatCssPx(game.marks[i].x * gridsize);
         newmarkcont.style.top = formatCssPx(game.marks[i].y * gridsize);
