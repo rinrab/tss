@@ -1271,7 +1271,8 @@ function printResults() {
 
     const printArea = document.getElementById("print-area");
     printArea.innerHTML = "";
-    printArea.appendChild(getCupHtml(sortCup(cup)));
+    updateCup(cup);
+    printArea.appendChild(document.getElementById("cup-modal").querySelector(".modal-body"));
 }
 
 function addColToRow(row, text, colType = "td", className = "", colspan = 1, style = "") {
