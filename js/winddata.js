@@ -6,10 +6,6 @@ function getWind(scenario, index) {
     }
 }
 
-var windTypes = {
-    presets: "Presets",
-    userdefined: "User defined"
-}
 var windPresets =
     [
         {
@@ -21,7 +17,7 @@ var windPresets =
             width: 40,
             height: 30,
             maxwindsetting: 20,
-            type: windTypes.presets,
+            type: "Presets",
             startsize: 15,
         },
         {
@@ -33,14 +29,14 @@ var windPresets =
             maxwindsetting: 20,
             width: 40,
             height: 30,
-            type: windTypes.presets,
+            type: "Presets",
             startsize: 15,
         },
         {
             name: "default",
             width: 40,
             height: 30,
-            type: windTypes.presets,
+            type: "Presets",
             wind: [0, 5, 0, 5, 5, 10, 5, 0, -5, 0, 5, 10, 15, 15, 15, 10, 5, 0, 5, -5, -10, -20, -10, -5, -5, 0, 5, 10, 10, 5, 10, 5, 0, 10],
             stepscount: 50,
             startsize: 15,
@@ -49,14 +45,14 @@ var windPresets =
             name: "by fokey",
             width: 40,
             height: 30,
-            type: windTypes.presets,
+            type: "Presets",
             wind: [0, 5, 5, 5, 10, 10, 5, 0, 0, 0, 5, 5, 10, 10, 10, 10, 15, 20, 20, 20, 20, 15, 10, 5, 0, 0, -5, -10, -15, -20, -20, -20, -15, -15, -10, -5, 0, 0, 0, 0, 0, -5, -5, -5, -10, -15, -10, -5, 0],
             stepscount: 50,
             startsize: 15,
         },
         {
             name: "andy",
-            type: windTypes.presets,
+            type: "Presets",
             height: 30,
             width: 40,
             stepscount: 48,
@@ -65,7 +61,7 @@ var windPresets =
         },
         {
             name: "timoxa",
-            type: windTypes.presets,
+            type: "Presets",
             height: 30,
             width: 40,
             stepscount: 48,
@@ -74,7 +70,7 @@ var windPresets =
         },
         {
             name: "static 0",
-            type: windTypes.presets,
+            type: "Presets",
             height: 30,
             width: 40,
             stepscount: 50,
@@ -83,7 +79,7 @@ var windPresets =
         },
         {
             name: "static +5",
-            type: windTypes.presets,
+            type: "Presets",
             height: 30,
             width: 40,
             stepscount: 50,
@@ -92,7 +88,7 @@ var windPresets =
         },
         {
             name: "static -5",
-            type: windTypes.presets,
+            type: "Presets",
             height: 30,
             width: 40,
             stepscount: 50,
@@ -101,7 +97,7 @@ var windPresets =
         },
         {
             "name": "Pendulum 1",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 5, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5],
             "width": 40,
             "height": 30,
@@ -110,7 +106,7 @@ var windPresets =
         },
         {
             "name": "Pendulum 2",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [-5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -15, -10],
             "width": 40, "height": 30,
             "startsize": 15,
@@ -119,7 +115,7 @@ var windPresets =
         },
         {
             "name": "Pendulum 3",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 5, 10, 15, 20, 15, 10, 5, 0, 5, 10, 15, 20, 15, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5, 0, -5, -10, -15, -20, -15, -10, -5, 0],
             "width": 60, "height": 50,
             "startsize": 15,
@@ -128,7 +124,7 @@ var windPresets =
         },
         {
             "name": "Pendulum 4",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 5, 10, 15, 20, 15, 10, 5, 0],
             "width": 40, "height": 30,
             "startsize": 15,
@@ -137,7 +133,7 @@ var windPresets =
         },
         {
             "name": "Double Pendulum",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 5, 0, 10, 5, 15, 10, 20, 15, 20, 10, 15, 5, 10, 0, 5, -5, 0, -10, -5, -15, -10, -20, -15, -20, -10, -15, -5, -10, 0, -5, 0, 0],
             "width": 40, "height": 30,
             "startsize": 15,
@@ -146,7 +142,7 @@ var windPresets =
         },
         {
             "name": "Global Change 1",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 0, 0, 5, 0, 5, 5, 10, 5, 10, 10, 15, 10, 15, 15, 15, 10, 15, 15, 20, 20, 15, 20, 20, 20, 15, 20, 20, 20, 15, 20, 20, 20, 15, 15, 15, 10, 15, 15, 15, 10, 15, 15, 15, 10, 15, 15, 10, 10, 10, 5, 5, 5],
             "width": 40, "height": 30,
             "stepscount": 53,
@@ -155,7 +151,7 @@ var windPresets =
         },
         {
             "name": "Global Change 2",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 0, 0, -5, 0, -5, -5, -10, -5, -10, -10, -15, -10, -15, -15, -15, -10, -15, -15, -20, -20, -15, -20, -20, -20, -15, -20, -20, -20, -15, -20, -20, -20, -15, -15, -15, -10, -15, -15, -15, -10, -15, -15, -15, -10, -15, -15, -10, -10, -10, -5, -5, -5],
             "width": 40, "height": 30,
             "stepscount": 53,
@@ -164,7 +160,7 @@ var windPresets =
         },
         {
             "name": "Global change 3",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 5, 5, 10, 5, 10, 15, 20, 15, 20, 15, 10, 15, 20, 15, 10, 15, 10, 5, 0, 0, 0, -5, -10, -5, 0, 5, 0, 5, 0, 0, 0, -5, -15, -20, -15, -10, -5, 0, 5, 10, 5, 0, 0, 0, 5, 0, 0],
             "width": 40, "height": 30,
             "startsize": 15,
@@ -173,7 +169,7 @@ var windPresets =
         },
         // {
         //     "name": "Bodrum Yalikovak 1",
-        //     "type": windTypes.presets,
+        //     "type": "Presets",
         //     "wind": [0, 5, 10, 10, 15, 20, 20, 15, 15, 10, 5, 0, -5, -20, -15, -15, -10, 0, -5, 0, 5, 0, 0, 5, 5, 15, 20, 20, 10, 10, 15, 10, 5, -10, -20, -15, -10, -5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -5],
         //     "width": 40, "height": 30,
         //     "stepscount": 47,
@@ -182,7 +178,7 @@ var windPresets =
         // },
         {
             "name": "Bodrum Yalikovak",
-            "type": windTypes.presets,
+            "type": "Presets",
             "wind": [0, 5, 10, 10, 15, 20, 20, 15, 15, 10, 5, 0, -5, -20, -15, -15, -10, 0, -5, -10, -20, -15, -10, -5, 0, 5, 0, 0, 5, 5, 15, 20, 20, 10, 10, 15, 10, 5, -10, -20, -15, -10, -5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -5, 0],
             "width": 40, "height": 30,
             "stepscount": 52,

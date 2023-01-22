@@ -53,7 +53,7 @@ function windInit() {
             stepscount: w.wind.length,
             width: w.width,
             height: w.height,
-            type: windTypes.userdefined,
+            type: "User defined",
             startsize: w.startsize,
         });
 
@@ -207,7 +207,7 @@ function editorSaveClick() {
     var windIndex = editIndex;
 
     newwind.name = nameinput.value;
-    newwind.type = windTypes.userdefined;
+    newwind.type = "User defined";
     newwind.wind = splitWind(windtext.value);
     for (var i = 0; i < newwind.wind.length; i++) {
         var parsedValue = parseInt(newwind.wind[i]);
@@ -303,7 +303,7 @@ function windEditorStart(iscreate) {
         copyBtn.hidden = true;
     } else {
         editIndex = windscenario;
-        if (wind[windscenariocontrol.selectedIndex].type == windTypes.userdefined) {
+        if (wind[windscenariocontrol.selectedIndex].type == "User defined") {
             editorSetReadonlyState(false);
             shareBtn.hidden = false;
             copyBtn.hidden = false;
