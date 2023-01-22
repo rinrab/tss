@@ -41,12 +41,12 @@ function apply() {
     renderGridSize();
 }
 
-function addControll(player) {
-    var controlls = document.getElementById("controlls");
+function addControl(player) {
+    var controls = document.getElementById("controlls");
 
     var newControlGroup1 = document.createElement("div");
     player.controlGroup = newControlGroup1;
-    controlls.insertBefore(newControlGroup1, document.getElementById("last-controll"));
+    controls.insertBefore(newControlGroup1, document.getElementById("last-controll"));
 
     const labelsStart = ["L", "M", "R"];
     const tooltipStart = ["Start left", "Start middle", "Start right"];

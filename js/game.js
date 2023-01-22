@@ -431,7 +431,7 @@ function addPlayer() {
     gamearea.appendChild(newboatcont);
 
     applySettings();
-    addControll(newPlayer);
+    addControl(newPlayer);
     newPlayer.tackBtn.checked = true;
 
     newPlayer.startPositionChange();
@@ -710,7 +710,7 @@ function loadGameFromFile(result) {
             var player = game.players[i];
 
             player.html = getNewBoat(player);
-            addControll(player);
+            addControl(player);
             player.setTurn(player.turntype)
             if (game.isStart) {
                 player.startInputs[player.startPos].checked = true;
