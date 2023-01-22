@@ -112,10 +112,15 @@
     }
 
     .pn-mark {
-      width: 20px;
-      height: 20px;
-      margin-left: -10px;
-      margin-top: -10px;
+      --mark-scale: 1;
+      width: calc(20px * var(--mark-scale));
+      height: calc(20px * var(--mark-scale));
+      margin-left: calc(-10px * var(--mark-scale));
+      margin-top: calc(-10px * var(--mark-scale));
+    }
+
+    .pn-up-mark {
+      --mark-scale: 2!important;
     }
 
     #btn-add-player {

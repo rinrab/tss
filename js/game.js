@@ -320,6 +320,9 @@ function drawMarks() {
         newmarkcont.style.left = formatCssPx(game.marks[i].x * gridsize);
         newmarkcont.style.top = formatCssPx(game.marks[i].y * gridsize);
         newmarkcont.className = "game-elem pn-mark";
+        if (i == 2) {
+            newmarkcont.classList.add("pn-up-mark");
+        }
         newmarkcont.appendChild(newmark);
         marksHtmlelem.appendChild(newmarkcont);
     }
