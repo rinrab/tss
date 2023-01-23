@@ -1203,6 +1203,9 @@ function getCupHtml(cup, actionFunctions) {
         addColToRow(rows[i + 2], player.rank, "td", "", 1, "width:2rem");
 
         let newNameCol = document.createElement("td");
+        newNameCol.style.width = "20%";
+        newNameCol.style.minWidth = "15rem";
+        newNameCol.className = "text-nowrap";
         rows[i + 2].appendChild(newNameCol);
 
         let viewContainer = document.createElement("span");
