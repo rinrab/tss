@@ -857,11 +857,26 @@ function cupInit() {
 
             drawAll();
         }
-
-        drawAll();
     });
 
     updateRaceCount();
+}
+
+function showAddPlayerAlert() {
+    const toast = document.getElementById("add-player-alert");
+    const toastBody = toast.querySelector(".toast-body");
+    toastBody.innerHTML = "";
+    for (let i = 0; i < game.players.length; i++) {
+        const player = game.players[i];
+        const newRow = document.createElement("div");
+        name = player.nameInput.value;
+        if (name == "") {
+            name = "Player " + (i + 1);
+        }
+        newRow.innerText = name;
+        toastBody.appendChild(newRow);
+    }
+    new bootstrap.Toast(toast).show();
 }
 
 const cupActionFunctions = {
@@ -885,6 +900,7 @@ const cupActionFunctions = {
             addPlayer();
             game.players[game.players.length - 1].nameInput.value = name;
             drawAll();
+            showAddPlayerAlert();
         }
     }
 }
