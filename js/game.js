@@ -463,9 +463,11 @@ const zoomTypes = {
 
 let zoomType = zoomTypes.race;
 
-function reset() {
+function reset(addToCup) {
     game.turncount = 0;
-    addRaceToCup();
+    if (addToCup) {
+        addRaceToCup();
+    }
     for (var i = 0; i < game.players.length; i++) {
         var player = game.players[i];
         player.tack = false;
@@ -494,10 +496,10 @@ function init() {
     upMarkLanelines = document.getElementById("upmarklines");
 
     document.getElementById("btn-reset").addEventListener("click", function () {
-        reset();
+        reset(false);
     });
     document.getElementById("btn-reset-and-addtocup").addEventListener("click", function () {
-        reset();
+        reset(true);
         updateRaceCount();
         saveAllCups();
     });
