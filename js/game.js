@@ -881,9 +881,11 @@ const cupActionFunctions = {
         updateCup();
     },
     goRace: function (name) {
-        addPlayer();
-        game.players[game.players.length - 1].nameInput.value = name;
-        drawAll();
+        if (game.isStart) {
+            addPlayer();
+            game.players[game.players.length - 1].nameInput.value = name;
+            drawAll();
+        }
     }
 }
 
