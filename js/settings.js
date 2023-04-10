@@ -40,6 +40,7 @@ function settingsInit() {
     setShowTracksCheck.addEventListener("click", settingsChanged);
     setShowLanelinesCheck.addEventListener("click", settingsChanged);
     setShowEqualLines.addEventListener("click", settingsChanged);
+   // document.getElementById("set-projector-mode").addEventListener("click", settingsChanged);
 }
 
 function saveSettings() {
@@ -120,6 +121,12 @@ function applySettings() {
     } else {
         document.getElementById("lines-container").hidden = true;
     }
+
+    //if (document.getElementById("set-projector-mode").checked) {
+    //    document.body.setAttribute("prmode", "true");
+    //} else {
+    //    document.body.setAttribute("prmode", "false");
+    //}
 }
 
 function readIntSetting(settingName, defaultValue) {

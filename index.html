@@ -474,7 +474,7 @@
           </div>
         </div>
         <div class="settings-container row g-1">
-          <div class="col btn-group">
+          <div class="btn-group w-100">
             <a class="btn btn-outline-primary" id="save-game-btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download"
                    viewBox="0 0 16 16">
@@ -512,7 +512,7 @@
               </svg>
             </button>
           </div>
-          <div class="btn-group w-100" role="group" aria-label="Settings">
+          <div class="btn-group col w-100" role="group" aria-label="Settings">
             <input class="btn-check" type="checkbox" id="set-show-tracks" />
             <label class="btn btn-outline-secondary" for="set-show-tracks" title="Show tracks">
               <svg xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.5);" width="16" height="16" viewBox="0 0 16 16"
@@ -535,7 +535,6 @@
                 <ellipse rx="1" ry="1" cx="0" cy="-6" />
               </svg>
             </label>
-
             <input class="btn-check" type="checkbox" id="set-show-lanelines" />
             <label class="btn btn-outline-secondary" for="set-show-lanelines" title="Show lanelines">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="transform: scale(1.5);" viewBox="-8 0 16 16"
@@ -544,7 +543,6 @@
                 <ellipse rx="1.5" ry="1.5" cx="0" cy="4" fill="currentColor"></ellipse>
               </svg>
             </label>
-
             <input type="checkbox" class="btn-check" id="set-show-equal-lines" />
             <label class="btn btn-outline-secondary show-future-wind" for="set-show-equal-lines"
                    title="Show equal lines">
@@ -561,7 +559,8 @@
                 <use href="#boat" transform="translate(7, 7) rotate(-45)" />
               </svg>
             </label>
-
+          </div>
+          <div class="btn-group">
             <input type="checkbox" class="btn-check" id="zoom-check" />
             <label class="btn btn-outline-secondary show-future-wind" for="zoom-check"
                    title="Zoom to up mark zone">
@@ -581,6 +580,13 @@
                 <use href="#arrow" transform="scale(0.5) translate(23, 0) rotate(20)"></use>
               </svg>
             </label>
+            <!--<input class="btn-check" type="checkbox" id="set-projector-mode" />
+            <label class="btn btn-outline-secondary" for="set-projector-mode" title="Projector Mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-projector" viewBox="0 0 16 16">
+                <path d="M14 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM2.5 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Z" />
+                <path d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1H5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1 2 2 0 0 1-2-2V6Zm2-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H2Z" />
+              </svg>
+            </label>-->
             <input type="checkbox" class="btn-check" id="full-screen" />
             <label class="btn btn-outline-secondary" for="full-screen" title="Fullscreen mode">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
