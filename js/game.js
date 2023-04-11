@@ -544,6 +544,9 @@ function init() {
         drawAll();
     });
 
+    const manangeWindsModal = document.getElementById("manange-winds-modal");
+    manangeWindsModal.addEventListener("show.bs.modal", wmUpdate);
+
     cupInit();
 
     var track = document.getElementById("track");
@@ -684,6 +687,93 @@ function init() {
     for (var e of document.querySelectorAll(".tsspreview")) {
         e.href = "https://github.com/rinrab/TssPreview/releases/download/v0.1.1/TssPreview.exe";
     };
+}
+
+function wmUpdate() {
+    const wmlist = document.getElementById("wm-list");
+    wmlist.innerHTML = "";
+    winds = {};
+    idx = {};
+    let i = 0;
+    for (const w of wind) {
+        if (!winds[w.type]) {
+            winds[w.type] = [];
+            idx[w.type] = {};
+        }
+        winds[w.type].push(w);
+        idx[w.type][w.name] = i;
+        i++;
+    }
+
+    const addFolder = (type) => {
+        const nf = document.createElement("div");
+        nf.className = "list-group mb-2";
+        wmlist.appendChild(nf);
+
+        const ne = document.createElement("li");
+        ne.className = "list-group-item text-center fw-bold";
+        ne.innerText = type;
+        nf.appendChild(ne);
+
+        for (const w of winds[type]) {
+            const ne = document.createElement("li");
+            ne.className = "list-group-item list-group-item-action pl-3";
+            nf.appendChild(ne);
+
+            const rightContainer = document.createElement("div");
+            rightContainer.className = "position-absolute end-0 px-2";
+            let btns = "";
+            let editBtnId = getRandomId();
+            let rmBtnId = getRandomId();
+            if (w.type != "Presets") {
+                btns = `
+                    <button class="btn btn-primary btn-sm wm-btn" id="${editBtnId}" data-bs-dismiss="modal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+                           fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <use href="#edit-icon"></use>
+                      </svg>
+                    </button>
+                    <button class="btn btn-danger btn-sm wm-btn" id="${rmBtnId}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                        <use href="#delete-svg"></use>
+                      </svg>
+                    </button>`
+            }
+            rightContainer.innerHTML = `
+                <div class="btn-group">
+                  ${btns}
+                </div>
+                <span class="text-body-secondary text-end" style="width: 4rem;display: inline-block;">${w.width} x ${w.height}<span>`;
+            ne.appendChild(rightContainer);
+
+            const ns = document.createElement("span");
+            ns.innerText = w.name;
+            ne.appendChild(ns);
+
+            if (w.type != "Presets") {
+                document.getElementById(editBtnId).addEventListener("click", () => {
+                    windscenariocontrol.selectedIndex = idx[type][w.name];
+                    windChange();
+                    document.getElementById("edit-btn").click();
+                });
+
+                document.getElementById(rmBtnId).addEventListener("click", () => {
+                    const windscenario = idx[type][w.name];
+                    wind.splice(windscenario, 1);
+                    const scenario = windscenario - 1;
+                    saveWind();
+                    windChange();
+                    addWind();
+                    windscenariocontrol.selectedIndex = scenario;
+                    wmUpdate();
+                });
+            }
+        }
+    }
+
+    for (const wind in winds) {
+        addFolder(wind);
+    }
 }
 
 function tryGetVal(val) {
