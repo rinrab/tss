@@ -774,6 +774,72 @@ function wmUpdate() {
     for (const wind in winds) {
         addFolder(wind);
     }
+
+    const customContainer = document.createElement("div");
+    customContainer.className = "list-group mb-2";
+    customContainer.innerHTML = `
+      <li class="list-group-item text-center fw-bold">Custom Packs</li>`;
+    wmlist.appendChild(customContainer);
+
+    for (const pack of packs) {
+        const np = document.createElement("li");
+        np.className = "list-group-item list-group-item-action";
+        const addBtnId = getRandomId();
+        const typeExist = wind.find((v) => v.type == pack.name) != undefined;
+        const symbol = (typeExist) ?
+            '<path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>' :
+            '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>';
+
+        np.innerHTML = `
+          <span style="display:inline-block">${pack.name}: ${pack.description}</span>
+          <span class="position-absolute end-0 px-2 text-muted">
+            <button class="btn btn-primary btn-sm wm-btn" id="${addBtnId}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="transform: scale(1.3);" class="bi bi-plus" viewBox="0 0 16 16">
+                ${symbol}
+              </svg>
+            </button>
+            <span>${pack.winds.length}x
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16" style="margin-bottom:-2.5px">
+                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+            </span>
+          </span>`;
+        customContainer.appendChild(np);
+        document.getElementById(addBtnId).addEventListener("click", () => {
+            if (typeExist) {
+                for (let i = wind.length - 1; i >= 0; i--) {
+                    if (wind[i].type == pack.name) {
+                        wind.splice(i, 1);
+                    }
+                }
+            } else {
+                const index = wind.findLastIndex((v) => v.type == "Presets") + 1;
+                const toAdd = [];
+                for (const w of pack.winds) {
+                    toAdd.push({
+                        name: w.name,
+                        type: pack.name,
+                        height: w.height,
+                        width: w.width,
+                        stepscount: w.stepscount,
+                        wind: w.wind,
+                        startsize: w.startsize,
+                        allowedit: true
+                    });
+                }
+                wind = [
+                    ...wind.slice(0, index),
+                    ...toAdd,
+                    ...wind.slice(index),
+                ];
+                
+            }
+            addWind();
+            saveWind();
+            windChange();
+            wmUpdate();
+        });
+    }
 }
 
 function tryGetVal(val) {
