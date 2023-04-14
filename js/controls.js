@@ -18,9 +18,9 @@ function apply() {
     for (var i = 0; i < game.players.length; i++) {
         var player = game.players[i];
         if (player.nameInput.value == "") {
-            player.nameText.innerText = "Player " + (i + 1);
-            player.nameTextFinish.innerText = "Player " + (i + 1);
-            player.name = "Player " + (i + 1);
+            player.nameText.innerText = getText("player-x") + (i + 1);
+            player.nameTextFinish.innerText = getText("player-x") + (i + 1);
+            player.name = getText("player-x") + (i + 1);
         } else {
             player.nameText.innerText = player.nameInput.value;
             player.nameTextFinish.innerText = player.nameInput.value;
@@ -32,8 +32,8 @@ function apply() {
 
     game.isStart = false;
 
-    document.getElementById("wind-scenario-name-inrace-alert").innerText =
-        wind[windscenario].name.toLowerCase();
+    document.getElementById("wind-scenario-name-inrace-alert").innerText = (curLang == "ru" && wind[windscenario].name_ru) ?
+        wind[windscenario].name_ru.toLowerCase() : wind[windscenario].name.toLowerCase();
 
     document.body.className = "race";
 
@@ -47,15 +47,15 @@ function addControl(player) {
     player.controlGroup = newControlGroup1;
     controls.insertBefore(newControlGroup1, document.getElementById("last-controll"));
 
-    const labelsStart = ["L", "M", "R"];
-    const tooltipStart = ["Start left", "Start middle", "Start right"];
+    const labelsStart = [getText("start-l"), getText("start-m"), getText("start-r")];
+    const tooltipStart = [getText("start-left"), getText("start-middle"), getText("start-right")];
     const labelsRace = [
         '<svg xmlns="http://www.w3.org/2000/svg" class="port-forward-btn icon-sm"><use href="#icon-port-forward"></use></svg>' +
         '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-forward-btn icon-sm"><use href="#icon-starboard-forward"></use></svg>',
         '<svg xmlns="http://www.w3.org/2000/svg" class="port-tack-btn icon-sm"><use href="#icon-port-tack"></use></svg>' +
         '<svg xmlns="http://www.w3.org/2000/svg" class="starboard-tack-btn icon-sm"><use href="#icon-starboard-tack"></use></svg>',
         '<svg xmlns="http://www.w3.org/2000/svg" class="icon-lg"><use href="#icon-tomark"></use></svg>'];
-    const tooltipRace = ["Forward", "Tack", "To Mark"];
+    const tooltipRace = [getText("forward"), getText("tack"), getText("tomark")];
 
     var nc = document.createElement("div");
     nc.className = "input-group my-1 start-controls";
@@ -72,7 +72,7 @@ function addControl(player) {
 
     var nnameinput = document.createElement("input");
     nnameinput.type = "text";
-    nnameinput.placeholder = "Name";
+    nnameinput.placeholder = getText("name");
     nnameinput.className = "form-control";
     nc.appendChild(nnameinput);
     player.nameInput = nnameinput;

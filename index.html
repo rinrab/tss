@@ -3,6 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=.8, maximum-scale=0.8">
 
+  <script type="text/javascript" src="js/lang.js"></script>
   <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="js/winddata.js"></script>
   <script type="text/javascript" src="js/packs.js"></script>
@@ -437,13 +438,13 @@
             <div class="row align-items-center p-0 m-0">
 
               <!-- <input type="file" id="load-race-file" /> -->
-              <label class="col">Start procedure</label>
+              <label class="col" pn-text="start-procedure">Start procedure</label>
             </div>
           </div>
           <div id="game-alert" class="alert alert-info text-center">
             <div class="row align-items-center p-0 m-0">
               <div class="col">
-                Race:
+                <span pn-text="race">Race: </span>
                 <span id="wind-scenario-name-inrace-alert"></span>
               </div>
               <input type="image" class="btn btn-outline-primary btn-sm col-auto btn-november" data-bs-target="#end-race-modal" data-bs-toggle="modal" src="img/november.svg">
@@ -476,12 +477,12 @@
           </div>
         </div>
         <div class="w-100 mb-1 input-group start-control-header">
-          <button class="btn btn-outline-secondary" id="btn-add-player">Add player</button>
-          <button class="btn btn-outline-primary" id="btn-apply">Start!</button>
+          <button class="btn btn-outline-secondary" id="btn-add-player" pn-text="add-player">Add player</button>
+          <button class="btn btn-outline-primary" id="btn-apply" pn-text="start">Start!</button>
         </div>
         <div class="w-100 mb-1 input-group race-control-header">
-          <button class="btn btn-outline-primary" id="back-btn">Back</button>
-          <button class="btn btn-outline-primary" id="btn-done">Next</button>
+          <button class="btn btn-outline-primary" id="back-btn" pn-text="back">Back</button>
+          <button class="btn btn-outline-primary" id="btn-done" pn-text="next">Next</button>
         </div>
         <div class="flex-grow-1 flex-shrink-1 mb-2 overflow-auto">
           <div id="controlls" style="width: 100%;">
@@ -496,7 +497,7 @@
                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                 <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
               </svg>
-              Save
+              <span pn-text="save">Save</span>
             </a>
             <label class="btn btn-outline-primary col" for="load-race-file">
               <span class="glyphicon glyphicon-folder-open" aria-hidden="true">
@@ -506,7 +507,7 @@
                   <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
                 </svg>
               </span>
-              Load
+              <span pn-text="load">Load</span>
               <input type="file" id="load-race-file" accept=".tss" style="display:none">
             </label>
           </div>

@@ -410,12 +410,13 @@ function addWind() {
             oldtype = wind[i].type;
         }
         var newoption = document.createElement("option");
-        newoption.innerText = wind[i].name;
+        newoption.innerText = (curLang == "ru" && wind[i].name_ru) ?  wind[i].name_ru : wind[i].name;
         optgroup.appendChild(newoption);
     }
 
-
+    console.log(wind);
 }
+
 function addPlayer() {
     var gamearea = document.getElementById("boats");
 
@@ -747,7 +748,7 @@ function wmUpdate() {
             ne.appendChild(rightContainer);
 
             const ns = document.createElement("span");
-            ns.innerText = w.name;
+            ns.innerText = (curLang == "ru" && w.name_ru) ? w.name_ru : w.name;
             ne.appendChild(ns);
 
             if (w.type != "Presets") {
@@ -818,6 +819,7 @@ function wmUpdate() {
                 for (const w of pack.winds) {
                     toAdd.push({
                         name: w.name,
+                        name_ru: w.name_ru,
                         type: pack.name,
                         height: w.height,
                         width: w.width,
@@ -1029,7 +1031,7 @@ function showAddPlayerAlert() {
         const newRow = document.createElement("div");
         name = player.nameInput.value;
         if (name == "") {
-            name = "Player " + (i + 1);
+            name = getText("player-x") + (i + 1);
         }
         newRow.innerText = name;
         toastBody.appendChild(newRow);

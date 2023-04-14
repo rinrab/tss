@@ -406,7 +406,7 @@ class Game {
 
     getPlayerName(index) {
         if (this.players[index].nameInput.value == "") {
-            return "Player " + (index + 1);
+            return getText("player-x") + (index + 1);
         } else {
             return this.players[index].nameInput.value;
         }
