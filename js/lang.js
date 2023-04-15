@@ -1,5 +1,5 @@
 ﻿const _lang = navigator.language || navigator.userLanguage;
-const curLang = (lang = "ru" || lang == "ru-RU") ? "ru" : "en";
+const curLang = (_lang == "ru" || _lang == "ru-RU") ? "ru" : "en";
 
 const langText = {
     "start-procedure": { "en": "Start procedure", "ru": "Стартовая процедура" },
