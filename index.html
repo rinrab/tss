@@ -462,13 +462,17 @@
             <div class="row align-items-center p-0 m-0">
 
               <!-- <input type="file" id="load-race-file" /> -->
-              <label class="col" pn-text="start-procedure">Start procedure</label>
+              <label class="col">
+                <span lang="en">Start procedure</span>
+                <span lang="ru">Стартовая процедура</span>
+              </label>
             </div>
           </div>
           <div id="game-alert" class="alert alert-info text-center">
             <div class="row align-items-center p-0 m-0">
               <div class="col">
-                <span pn-text="race">Race: </span>
+                <span lang="en">Race: </span>
+                <span lang="ru">Гонка: </span>
                 <span id="wind-scenario-name-inrace-alert"></span>
               </div>
               <input type="image" class="btn btn-outline-primary btn-sm col-auto btn-november" data-bs-target="#end-race-modal" data-bs-toggle="modal" src="img/november.svg">
@@ -501,12 +505,24 @@
           </div>
         </div>
         <div class="w-100 mb-1 input-group start-control-header">
-          <button class="btn btn-outline-secondary" id="btn-add-player" pn-text="add-player">Add player</button>
-          <button class="btn btn-outline-primary" id="btn-apply" pn-text="start">Start!</button>
+          <button class="btn btn-outline-secondary" id="btn-add-player">
+            <span lang="en">Add player</span>
+            <span lang="ru">Добавить игорока</span>
+          </button>
+          <button class="btn btn-outline-primary" id="btn-apply">
+            <span lang="en">Start!</span>
+            <span lang="ru">Старт!</span>
+          </button>
         </div>
         <div class="w-100 mb-1 input-group race-control-header">
-          <button class="btn btn-outline-primary" id="back-btn" pn-text="back">Back</button>
-          <button class="btn btn-outline-primary" id="btn-done" pn-text="next">Next</button>
+          <button class="btn btn-outline-primary" id="back-btn">
+            <span lang="en">Back</span>
+            <span lang="ru">Назад</span>
+          </button>
+          <button class="btn btn-outline-primary" id="btn-done">
+            <span lang="en">Next</span>
+            <span lang="ru">Вперед</span>
+          </button>
         </div>
         <div class="flex-grow-1 flex-shrink-1 mb-2 overflow-auto">
           <div id="controlls" style="width: 100%;">
@@ -521,7 +537,8 @@
                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                 <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
               </svg>
-              <span pn-text="save">Save</span>
+              <span lang="en">Save</span>
+              <span lang="ru">Сохранить</span>
             </a>
             <label class="btn btn-outline-primary col" for="load-race-file">
               <span class="glyphicon glyphicon-folder-open" aria-hidden="true">
@@ -531,7 +548,8 @@
                   <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
                 </svg>
               </span>
-              <span pn-text="load">Load</span>
+              <span lang="en">Load</span>
+              <span lang="ru">Загрузить</span>
               <input type="file" id="load-race-file" accept=".tss" style="display:none">
             </label>
           </div>
@@ -643,15 +661,27 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" pn-text="do you want to end race">Do you want to end race?</h5>
+          <h5 class="modal-title">
+            <span lang="en">Do you want to end race?</span>
+            <span lang="ru">Вы хотите закончить гонку?</span>
+          </h5>
           <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body g-1 row">
-          <button class="btn btn-primary" data-bs-dismiss="modal" id="btn-reset-and-addtocup" pn-text="add to cup">Add to cup</button>
-          <button class="btn btn-danger" data-bs-dismiss="modal" id="btn-reset" pn-html="do NOT add to cup">Do <b>not</b> add to cup</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="btn-reset-and-addtocup">
+            <span lang="en">Add to cup</span>
+            <span lang="ru">Добавить в кубок</span>
+          </button>
+          <button class="btn btn-danger" data-bs-dismiss="modal" id="btn-reset" pn-html="do NOT add to cup">
+            <span lang="en">Do <b>not</b> add to cup</span>
+            <span lang="ru"><b>Не</b> добавлять в кубок</span>
+          </button>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal" pn-text="cancel">Cancel</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            <span lang="en">Cancel</span>
+            <span lang="ru">Отмена</span>
+          </button>
         </div>
       </div>
     </div>
@@ -773,27 +803,43 @@
                 <use href="#cup-svg"></use>
               </svg>
               <span class="m-1"></span>
-              <span pn-text="cup"></span>
+              <span lang="en">Cup</span>
+              <span lang="ru">Кубок</span>
             </h1>
           </div>
           <div class="col-1"></div>
           <div class="col-auto">
-            <button class="btn btn-outline-primary" data-bs-dismiss="modal" id="add-players-to-race-btn" pn-text="add players to race">Add players to race</button>
+            <button class="btn btn-outline-primary" data-bs-dismiss="modal" id="add-players-to-race-btn">
+              <span lang="en">Add players to race</span>
+              <span lang="ru">Добавить яхты в гонку</span>
+            </button>
           </div>
 
           <div class="col"></div>
 
           <div class="col-auto">
             <div class="btn-group dropstart">
-              <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-arrow-hidden" data-bs-toggle="dropdown" pn-text="reset">Reset</button>
+              <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-arrow-hidden" data-bs-toggle="dropdown">
+                <span lang="en">Reset</span>
+                <span lang="ru">Сбросить</span>
+              </button>
               <div class="dropdown-menu p-3" style="width: 15rem">
-                <div class="mb-1 text-center fw-semibold" pn-text="do you want to reset cup">Do you want to reset cup?</div>
+                <div class="mb-1 text-center fw-semibold">
+                  <span lang="en">Do you want to reset cup?</span>
+                  <span lang="ru">Вы хотите сбросить кубок?</span>
+                </div>
                 <div class="row m-0 p-0 gx-1">
                   <div class="col">
-                    <button class="btn btn-danger w-100" id="cup-reset-btn" pn-text="reset">Reset</button>
+                    <button class="btn btn-danger w-100" id="cup-reset-btn">
+                      <span lang="en">Reset</span>
+                      <span lang="ru">Сбросить</span>
+                    </button>
                   </div>
                   <div class="col">
-                    <button class="btn btn-primary w-100" pn-text="cancel">Cancel</button>
+                    <button class="btn btn-primary w-100">
+                      <span lang="en">Cancel</span>
+                      <span lang="ru">Отмена</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -813,14 +859,23 @@
         </div>
         <div class="modal-footer d-print-none row g-0">
           <div class="col-auto">
-            <button class="btn btn-secondary" id="cup-print" pn-text="print">Print</button>
+            <button class="btn btn-secondary" id="cup-print">
+              <span lang="en">Print</span>
+              <span lang="ru">Печать</span>
+            </button>
           </div>
           <div class="col-auto mx-2"></div>
           <div class="col-auto">
-            <button class="btn btn-primary" id="cup-export" pn-text="export">Export</button>
+            <button class="btn btn-primary" id="cup-export">
+              <span lang="en">Export</span>
+              <span lang="ru">Экспортировать</span>
+            </button>
           </div>
           <div class="col-auto">
-            <label class="btn btn-primary" for="cup-import" pn-text="import">Import</label>
+            <label class="btn btn-primary" for="cup-import">
+              <span lang="en">Import</span>
+              <span lang="ru">Импортировать</span>
+            </label>
             <input type="file" accept=".tsscup" id="cup-import" hidden />
           </div>
 
@@ -828,13 +883,17 @@
 
           <div class="col-auto">
             <select id="cup-excluding" class="form-select col-auto" style="width: 300px">
-              <option pn-text="0 excluding">No excluding</option>
-              <option pn-text="1 excluding">1 excluding</option>
-              <option pn-text="2 excluding">2 excluding</option>
+              <option>No excluding</option>
+              <option>1 excluding</option>
+              <option>2 excluding</option>
+              <!-- TODO: translate -->
             </select>
           </div>
           <div class="col-auto">
-            <button class="btn btn-secondary" data-bs-dismiss="modal" pn-text="close">Close</button>
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              <span lang="en">Close</span>
+              <span lang="ru">Закрыть</span>
+            </button>
           </div>
         </div>
       </div>

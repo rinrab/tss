@@ -59,15 +59,3 @@ function getText(text) {
         return text;
     }
 }
-
-addEventListener("load", () => {
-    let elems = document.querySelectorAll("[pn-text]");
-    for (let elem of elems) {
-        elem.innerText = getText(elem.getAttribute("pn-text"));
-    }
-
-    elems = document.querySelectorAll("[pn-html]");
-    for (let elem of elems) {
-        elem.innerHTML = getText(elem.getAttribute("pn-html"));
-    }
-});
