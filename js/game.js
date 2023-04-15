@@ -1348,9 +1348,9 @@ function getCupHtml(cup, actionFunctions) {
     // First col
     addColToRow(rows[0], "", "th", "", 2);
     addColToRow(rows[1], "#", "th");
-    addColToRow(rows[1], "Name", "th", "");
+    addColToRow(rows[1], getText("name"), "th", "");
 
-    addColToRow(rows[0], "Races", "th", "", cup.races.length);
+    addColToRow(rows[0], getText("races"), "th", "", cup.races.length);
     for (let i = 0; i < cup.races.length; i++) {
         let newCol = document.createElement("th");
         newCol.className = "";
@@ -1375,9 +1375,9 @@ function getCupHtml(cup, actionFunctions) {
         rows[1].appendChild(newCol);
     }
 
-    addColToRow(rows[0], "Points", "th", "", 2);
-    addColToRow(rows[1], "Net", "th", "", 1, "min-width: 4rem");
-    addColToRow(rows[1], "Total", "th", "", 1, "min-width: 4rem");
+    addColToRow(rows[0], getText("points"), "th", "", 2);
+    addColToRow(rows[1], getText("net"), "th", "", 1, "min-width: 4rem");
+    addColToRow(rows[1], getText("total"), "th", "", 1, "min-width: 4rem");
 
     for (let i = 0; i < cup.players.length; i++) {
         const player = cup.players[i];
@@ -1394,7 +1394,7 @@ function getCupHtml(cup, actionFunctions) {
         newNameCol.appendChild(viewContainer);
         let newGoRaceBtn = document.createElement("button");
         newGoRaceBtn.className = "btn btn-sm btn-outline-primary d-print-none hide-cup-edit-name px-1 py-0 col-auto rounded-end-0";
-        newGoRaceBtn.innerText = "Go Race";
+        newGoRaceBtn.innerText = getText("go race");
         const name = player.name;
         newGoRaceBtn.addEventListener("click", function () {
             actionFunctions.goRace(name);
@@ -1436,7 +1436,7 @@ function getCupHtml(cup, actionFunctions) {
         newNameInput.value = player.name;
         editGroup.appendChild(newNameInput);
         let applyBtn = document.createElement("button");
-        applyBtn.innerText = "Ok";
+        applyBtn.innerText = getText("ok");
         applyBtn.className = "btn btn-outline-primary";
         const oldName = player.name;
         applyBtn.addEventListener("click", function () {
@@ -1444,7 +1444,7 @@ function getCupHtml(cup, actionFunctions) {
         });
         editGroup.appendChild(applyBtn);
         let cancelBtn = document.createElement("button");
-        cancelBtn.innerText = "Cancel";
+        cancelBtn.innerText = getText("cancel");
         cancelBtn.className = "btn btn-outline-primary";
         cancelBtn.addEventListener("click", function () {
             updateCup();

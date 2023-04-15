@@ -619,15 +619,15 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Do you want to end race?</h5>
+          <h5 class="modal-title" pn-text="do you want to end race">Do you want to end race?</h5>
           <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body g-1 row">
-          <button class="btn btn-primary" data-bs-dismiss="modal" id="btn-reset-and-addtocup">Add to cup</button>
-          <button class="btn btn-danger" data-bs-dismiss="modal" id="btn-reset">Do <b>not</b> add to cup</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="btn-reset-and-addtocup" pn-text="add to cup">Add to cup</button>
+          <button class="btn btn-danger" data-bs-dismiss="modal" id="btn-reset" pn-html="do NOT add to cup">Do <b>not</b> add to cup</button>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal" pn-text="cancel">Cancel</button>
         </div>
       </div>
     </div>
@@ -749,27 +749,27 @@
                 <use href="#cup-svg"></use>
               </svg>
               <span class="m-1"></span>
-              Cup
+              <span pn-text="cup"></span>
             </h1>
           </div>
           <div class="col-1"></div>
           <div class="col-auto">
-            <button class="btn btn-outline-primary" data-bs-dismiss="modal" id="add-players-to-race-btn">Add players to race</button>
+            <button class="btn btn-outline-primary" data-bs-dismiss="modal" id="add-players-to-race-btn" pn-text="add players to race">Add players to race</button>
           </div>
 
           <div class="col"></div>
 
           <div class="col-auto">
             <div class="btn-group dropstart">
-              <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-arrow-hidden" data-bs-toggle="dropdown">Reset</button>
+              <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-arrow-hidden" data-bs-toggle="dropdown" pn-text="reset">Reset</button>
               <div class="dropdown-menu p-3" style="width: 15rem">
-                <div class="mb-1 text-center fw-semibold">Do you want to reset cup?</div>
+                <div class="mb-1 text-center fw-semibold" pn-text="do you want to reset cup">Do you want to reset cup?</div>
                 <div class="row m-0 p-0 gx-1">
                   <div class="col">
-                    <button class="btn btn-danger w-100" id="cup-reset-btn">Reset</button>
+                    <button class="btn btn-danger w-100" id="cup-reset-btn" pn-text="reset">Reset</button>
                   </div>
                   <div class="col">
-                    <button class="btn btn-primary w-100">Cancel</button>
+                    <button class="btn btn-primary w-100" pn-text="cancel">Cancel</button>
                   </div>
                 </div>
               </div>
@@ -789,14 +789,14 @@
         </div>
         <div class="modal-footer d-print-none row g-0">
           <div class="col-auto">
-            <button class="btn btn-secondary" id="cup-print">Print</button>
+            <button class="btn btn-secondary" id="cup-print" pn-text="print">Print</button>
           </div>
           <div class="col-auto mx-2"></div>
           <div class="col-auto">
-            <button class="btn btn-primary" id="cup-export">Export</button>
+            <button class="btn btn-primary" id="cup-export" pn-text="export">Export</button>
           </div>
           <div class="col-auto">
-            <label class="btn btn-primary" for="cup-import">Import</label>
+            <label class="btn btn-primary" for="cup-import" pn-text="import">Import</label>
             <input type="file" accept=".tsscup" id="cup-import" hidden />
           </div>
 
@@ -804,13 +804,13 @@
 
           <div class="col-auto">
             <select id="cup-excluding" class="form-select col-auto" style="width: 300px">
-              <option>No excluding</option>
-              <option>1 excluding</option>
-              <option>2 excluding</option>
+              <option pn-text="0 excluding">No excluding</option>
+              <option pn-text="1 excluding">1 excluding</option>
+              <option pn-text="2 excluding">2 excluding</option>
             </select>
           </div>
           <div class="col-auto">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-secondary" data-bs-dismiss="modal" pn-text="close">Close</button>
           </div>
         </div>
       </div>
