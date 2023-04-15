@@ -858,30 +858,30 @@
     <div class="modal-dialog modal-fullscreen-lg-down">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Help</h5>
+          <h5 class="modal-title" id="exampleModalLabel" pn-ru="Справка">Help</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="row">
-            <h5 class="text-start">Keyboard shortcuts</h5>
+            <h5 class="text-start" pn-ru="Сочетания клавиш">Keyboard shortcuts</h5>
             <div class="col">
               <table class="table table-borderless">
                 <tbody>
                   <tr>
-                    <td class="text-end"><kbd>Space</kbd></td>
-                    <td>Next turn</td>
+                    <td class="text-end"><kbd pn-ru="Пробел">Space</kbd></td>
+                    <td pn-ru="Следующий ход">Next turn</td>
                   </tr>
                   <tr>
-                    <td class="text-end"><kbd>Backspace</kbd></td>
-                    <td>Previous turn</td>
+                    <td class="text-end"><kbd pn-ru="Назад">Backspace</kbd></td>
+                    <td pn-ru="Предидущий ход">Previous turn</td>
                   </tr>
                   <tr>
                     <td class="text-end"><kbd>1</kbd> - <kbd>9</kbd></td>
-                    <td>Change player turn selection</td>
+                    <td pn-ru="Изменить выбор игрока">Change player turn selection</td>
                   </tr>
                   <tr>
-                    <td class="text-end"><kbd>A</kbd></td>
-                    <td>Add player</td>
+                    <td class="text-end"><kbd pn-ru="Ф">A</kbd></td>
+                    <td pn-ru="Добавить игрока">Add player</td>
                   </tr>
                 </tbody>
               </table>
@@ -891,15 +891,15 @@
                 <tbody>
                   <tr>
                     <td class="text-end"><kbd>Ctr</kbd> + <kbd>1</kbd></td>
-                    <td>All forward</td>
+                    <td pn-ru="Всем вперед">All forward</td>
                   </tr>
                   <tr>
                     <td class="text-end"><kbd>Ctr</kbd> + <kbd>2</kbd></td>
-                    <td>All tack</td>
+                    <td pn-ru="Всем оверхштаг">All tack</td>
                   </tr>
                   <tr>
                     <td class="text-end"><kbd>Ctr</kbd> + <kbd>3</kbd></td>
-                    <td>All to mark</td>
+                    <td pn-ru="Всем на знак">All to mark</td>
                   </tr>
                 </tbody>
               </table>
@@ -911,27 +911,53 @@
             This trainer made for one device.
             Players sitting near the device and say to coach their turns: go forward or
             do take.
+            <ru>
+              Tactical Sail Simulator - это тренажер для стратегии парусных гонок.
+              Он сделан для совместных тренеровок на одном устройстве.
+              Идея в том, что спортсмены говорят тренеру свой ход (вперед или оверхштаг)
+              и пытаются выиграть на заходах ветра.
+            </ru>
           </p>
           <p>
-            <strong>Forward: </strong>
-            Move boat forward along with the wind.
+            <strong pn-ru="Вперед: ">Forward: </strong>
+            <span>
+              Move boat forward along with the wind.
+              <ru>Двигает все яхты вперед с учетом захода ветра.</ru>
+            </p>
           </p>
           <p>
-            <strong>Tack: </strong>
-            Change moving direction from left-top to right-top and back.
-            Tack is main command in control. Use it to optimize your path.
+            <strong pn-ru="Оверхштаг: ">Tack: </strong>
+            <span>
+              Change moving direction from left-top to right-top and back.
+              Tack is main command in control. Use it to optimize your path.
+              <ru>
+                Изменяет направление движения (с направления в левый верхний угол на направления в правый вехний угол и обратно).
+                Поворот оверхштаг - это основная команда в тренажере. Используйте ее для сокращения пути.
+              </ru>
+            </p>
           </p>
           <p>
-            <strong>To Mark: </strong>
-            If you are out lane line or near finish press it to take of.
+            <strong pn-ru="На знак: ">To Mark: </strong>
+            <span>
+              If you are out lane line or near finish press it to take of.
+              <ru>Используйте это команды если вы на лейн-лайне или рядом с финишем.</ru>
+            </p>
           </p>
-          <h5>Save your game</h5>
+          <h5 pn-ru="Как сохранить гонку">Save your game</h5>
           <p>
             After race you can save game for next analysis or to continue.
             Click to save button in bottom right of display to save your race.
             Then you can continue this race later, press to load then select file and continue race.
             To view race on windows PC you can use
             <a href="" target="_blank" class="text-decoration-none tsspreview">TSS Preview</a>.
+            <ru>
+              После того как вы прошли гонку, вы можете сохранить игру для анализа стратегии и продолжении гонки в будущем.
+              Для этого нажмите на кнопку "Сохранить" в правом-нижнем углу.
+              После этого вы можете продолжить гонку нажав загрузить и выбрав файл с игрой.
+              Чтобы быстро смотреть гонки изпользуйте программу
+              <a href="" target="_blank" class="text-decoration-none tsspreview">TSS Preview</a>
+              она сможет облегчить жизнь.
+            </ru>
           </p>
 
           <div class="row">
@@ -944,13 +970,16 @@
           </div>
           <br>
           <div id="changelog">
-            <h5>Changelog</h5>
+            <h5 pn-ru="Список изменений">Changelog</h5>
             <ul type="disc">
               <li>
                 <p><strong>v1.1.2</strong></p>
                 <ul type="circle">
                   <li>
-                    <p>Add "Manage Winds" window for watch list and edit winds quick</p>
+                    <p>
+                      Add "Manage Winds" window for watch wind list and edit it quick
+                      <ru>Добавлен диалог "Управлять ветрами" чтобы смотреть список ветров и быстро редактировать их</ru>
+                    </p>
                   </li>
                 </ul>
               </li>
@@ -958,7 +987,12 @@
                 <p><strong>v1.1.1</strong></p>
                 <ul type="circle">
                   <li>
-                    <p>Create <a class="text-decoration-none tsspreview" target="_blank" href="">TSS Preview</a> for preview .tss files</p>
+                    <p>
+                      Create <a class="text-decoration-none tsspreview" target="_blank" href="">TSS Preview</a> for preview *.tss files
+                      <ru>
+                        Создана программа <a class="text-decoration-none tsspreview" target="_blank" href="">TSS Preview</a> для предпросмотра *.tss файлов
+                      </ru>
+                    </p>
                   </li>
                 </ul>
               </li>
@@ -967,19 +1001,22 @@
                 <ul type="circle">
                   <li>
                     <p>
-                      Add cup
+                      <span pn-ru="Добавлен режим кубка">Add cup</span>
                       <span class="mx-1"></span>
 
                       <a href="https://youtu.be/YFyJAuS8ej4" class="text-decoration-none align-middle" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="scale: 1.2;" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
                           <use href="#youtube"></use>
                         </svg>
-                        See video
+                        <span pn-ru="Смотреть видео">See video</span>
                       </a>
                     </p>
                   </li>
                   <li>
-                    <p>Hotkeys to select turn of all boats to forward, tack or to mark</p>
+                    <p>
+                      Add hotkeys to select turn of all boats to forward, tack or to mark
+                      <ru>Добавлены сочетания клавиш для установки всех яхт "Вперед", "Оверхштаг" и "На знак"</ru>
+                    </p>
                   </li>
                 </ul>
               </li>
@@ -987,10 +1024,10 @@
                 <p><strong>v1.0.2</strong></p>
                 <ul type="circle">
                   <li>
-                    <p>Zoom to up mark zone</p>
+                    <p pn-ru="Добавлена функция чтоьы приблизить в зону знака">Zoom to up mark zone</p>
                   </li>
                   <li>
-                    <p>Add help</p>
+                    <p pn-ru="Добавлена справка">Add help</p>
                   </li>
                 </ul>
               </li>
@@ -998,7 +1035,7 @@
                 <p><strong>v1.0.0</strong></p>
                 <ul type="circle">
                   <li>
-                    <p>Initial release.</p>
+                    <p pn-ru="Первая версия">Initial release.</p>
                   </li>
                 </ul>
               </li>
