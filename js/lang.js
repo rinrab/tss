@@ -70,16 +70,4 @@ addEventListener("load", () => {
     for (let elem of elems) {
         elem.innerHTML = getText(elem.getAttribute("pn-html"));
     }
-
-    if (curLang == "ru") {
-        elems = document.querySelectorAll("[pn-ru]");
-        for (let elem of elems) {
-            elem.innerText = elem.getAttribute("pn-ru");
-        }
-
-        elems = document.querySelectorAll("ru");
-        for (let elem of elems) {
-            elem.parentElement.innerHTML = elem.innerHTML;
-        }
-    }
 });
