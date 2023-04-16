@@ -688,59 +688,6 @@ function init() {
     for (var e of document.querySelectorAll(".tsspreview")) {
         e.href = "https://github.com/rinrab/TssPreview/releases/download/v0.1.1/TssPreview.exe";
     };
-
-    const moreOWinds = document.getElementById("wm-more-owinds");
-    moreOWinds.addEventListener("click", () => {
-        moreOWinds.disabled = true;
-
-        const a = database.ref("winds");
-        a.on("value", (snapshot) => {
-            const data = snapshot.toJSON();
-            console.log(data);
-            for (const d of Object.values(data)) {
-                const w = d.wind;
-                const np = document.createElement("li");
-                np.className = "list-group-item";
-                const addBtnId = getRandomId();
-                const typeExist = wind.find((v) => v.name == w.name) != undefined;
-                const action = (typeExist) ? `
-                   ` : '';
-
-                np.innerHTML = `
-                  <span style="display:inline-block; width">${w.name}</span>
-                  <span class="position-absolute end-0 px-2 text-muted">
-                    <button class="btn btn-outline-primary btn-sm mx-2" style="margin-top: -8px;" id="${addBtnId}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="transform: scale(1.3);" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-                      </svg>
-                    </button>
-                    <span class="text-end">
-                      ${d.name}
-                    </span>
-                  </span>`;
-
-                moreOWinds.parentNode.appendChild(np);
-                if (typeExist) {
-                    document.getElementById(addBtnId).addEventListener("click", () => {
-                        const index = wind.findLastIndex((v) => v.type == "Presets") + 1;
-                        wind = [
-                            ...wind.slice(0),
-                            {
-                                name: w.name,
-                                wind: w.wind,
-                                width: w.width,
-                                height: w.height,
-                                type: "User defined",
-                                startsize: w.startsize,
-                            },
-                        ];
-                        wmUpdate();
-                    });
-                }
-            }
-            moreOWinds.remove();
-        });
-    });
 }
 
 function wmUpdate() {
