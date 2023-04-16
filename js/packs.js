@@ -1,7 +1,6 @@
 ﻿const packs = [
     {
         name: "Pendulum",
-        description: "Winds which change from side to side",
         winds: [
             {
                 "name": "Pendulum 1",

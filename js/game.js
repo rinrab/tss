@@ -792,7 +792,7 @@ function wmUpdate() {
             '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>';
 
         np.innerHTML = `
-          <span style="display:inline-block">${pack.name}: ${pack.description}</span>
+          <span style="display:inline-block">${pack.name}</span>
           <span class="position-absolute end-0 px-2 text-muted">
             <button class="btn btn-primary btn-sm wm-btn" id="${addBtnId}">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="transform: scale(1.3);" class="bi bi-plus" viewBox="0 0 16 16">
