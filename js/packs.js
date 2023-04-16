@@ -53,5 +53,59 @@
                 "allowedit": true
             },
         ]
+    },
+    {
+        name: "Tests",
+        winds: [
+            {
+                name: "First wind",
+                width: 40,
+                height: 30,
+                type: "Presets",
+                wind: [0, 5, 0, 5, 5, 10, 5, 0, -5, 0, 5, 10, 15, 15, 15, 10, 5, 0, 5, -5, -10, -20, -10, -5, -5, 0, 5, 10, 10, 5, 10, 5, 0, 10],
+                stepscount: 50,
+                startsize: 15,
+            },
+            {
+                name: "static 0",
+                name_ru: "Статичный 0",
+                type: "Presets",
+                height: 30,
+                width: 40,
+                stepscount: 50,
+                wind: [0],
+                startsize: 15,
+            },
+            {
+                name: "static +5",
+                name_ru: "Статичный +5",
+                type: "Presets",
+                height: 30,
+                width: 40,
+                stepscount: 50,
+                wind: [5],
+                startsize: 15,
+            },
+            {
+                name: "static -5",
+                name_ru: "Статичный -5",
+                type: "Presets",
+                height: 30,
+                width: 40,
+                stepscount: 50,
+                wind: [-5],
+                startsize: 15,
+            },
+            {
+                "name": "Global Change 1",
+                name_ru: "Глобальный заход 1",
+                "type": "Presets",
+                "wind": [0, 0, 0, 5, 0, 5, 5, 10, 5, 10, 10, 15, 10, 15, 15, 15, 10, 15, 15, 20, 20, 15, 20, 20, 20, 15, 20, 20, 20, 15, 20, 20, 20, 15, 15, 15, 10, 15, 15, 15, 10, 15, 15, 15, 10, 15, 15, 10, 10, 10, 5, 5, 5],
+                "width": 40, "height": 30,
+                "stepscount": 53,
+                "allowedit": false,
+                "startsize": 15
+            },
+        ]
     }
 ]

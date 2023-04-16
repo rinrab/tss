@@ -44,15 +44,7 @@ var windPresets =
             type: "Presets",
             startsize: 15,
         },
-        {
-            name: "default",
-            width: 40,
-            height: 30,
-            type: "Presets",
-            wind: [0, 5, 0, 5, 5, 10, 5, 0, -5, 0, 5, 10, 15, 15, 15, 10, 5, 0, 5, -5, -10, -20, -10, -5, -5, 0, 5, 10, 10, 5, 10, 5, 0, 10],
-            stepscount: 50,
-            startsize: 15,
-        },
+        
         {
             name: "by fokey",
             width: 40,
@@ -81,16 +73,6 @@ var windPresets =
             startsize: 15,
         },
         {
-            name: "static 0",
-            name_ru: "Статичный 0",
-            type: "Presets",
-            height: 30,
-            width: 40,
-            stepscount: 50,
-            wind: [0],
-            startsize: 15,
-        },
-        {
             name: "static +5",
             name_ru: "Статичный +5",
             type: "Presets",
@@ -98,16 +80,6 @@ var windPresets =
             width: 40,
             stepscount: 50,
             wind: [5],
-            startsize: 15,
-        },
-        {
-            name: "static -5",
-            name_ru: "Статичный -5",
-            type: "Presets",
-            height: 30,
-            width: 40,
-            stepscount: 50,
-            wind: [-5],
             startsize: 15,
         },
         {
