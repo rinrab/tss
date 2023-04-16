@@ -24,6 +24,19 @@ var shareBtn;
 
 var validtext;
 
+let PWStart;
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAL3-KW-kz5WO3LV54B1AGP7bavTwREmv8",
+    authDomain: "tss-rin.firebaseapp.com",
+    projectId: "tss-rin",
+    storageBucket: "tss-rin.appspot.com",
+    messagingSenderId: "999817740885",
+    appId: "1:999817740885:web:cabeedc772712fd54d0adc"
+};
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 function windInit() {
     if (localStorage.getItem(localStorageNames.windlist) == null) {
         for (var i in windPresets) {
@@ -79,6 +92,9 @@ function windInit() {
     saveWindBtn = document.getElementById("editor-save");
     deleteWindBtn = document.getElementById("delete-btn");
     shareBtn = document.getElementById("share-btn");
+    PWStart = document.getElementById("pw-start");
+
+
 
     saveWindBtn.addEventListener("click", editorSaveClick);
     deleteWindBtn.addEventListener("click", deleteClick);
@@ -100,6 +116,50 @@ function windInit() {
     editModal.addEventListener("hide.bs.modal", function (e) {
         removeEventListener("resize", updatePreview);
     })
+
+    const nickname = localStorage.getItem("nick");
+    const secret = localStorage.getItem("secret");
+    const pwNickname = document.getElementById("pw-nickname");
+    const pwSecret = document.getElementById("pw-secret");
+    const pwSelect = document.getElementById("pw-select");
+
+    PWStart.addEventListener("click", () => {
+        for (let i in wind) {
+            if (wind[i].type == "User defined") {
+                const ne = document.createElement("option");
+                ne.innerText = wind[i].name;
+                ne.value = i;
+                pwSelect.append(ne);
+            }
+        }
+    });
+
+    const randomId = (len) => {
+        let rv = "";
+        const alpha = "qwertyuiopasdfghjklzxcvbnm";
+        for (let i = 0; i < len; i++) {
+            rv += alpha[Math.floor(Math.random() * alpha.length)];
+        }
+        return rv;
+    }
+
+    document.getElementById("pw-publish").addEventListener("click", () => {
+        if (pwSelect.selectedIndex == -1) {
+            alert("wind is not selected")
+            return;
+        } else if (pwNickname.value.length < 3) {
+            alert("no nickname");
+            return;
+        } else {
+            const name = pwNickname.value;
+            const windToAdd = wind[pwSelect.value];
+            database.ref("winds").push().set({
+                name: name,
+                wind: windToAdd
+            });
+            console.log("Wind publish success");
+        }
+    });
 }
 
 function checkErrors() {
@@ -274,6 +334,7 @@ function windEditorStart(iscreate) {
 
     var copyBtn = document.getElementById("copy-btn");
 
+    PWStart.hidden = true;
     shareBtn.hidden = true;
     if (iscreate) {
         editIndex = -1
@@ -285,6 +346,7 @@ function windEditorStart(iscreate) {
             editorSetReadonlyState(false);
             shareBtn.hidden = false;
             copyBtn.hidden = false;
+            PWStart.hidden = false;
         } else {
             editorSetReadonlyState(true);
             copyBtn.hidden = false;
