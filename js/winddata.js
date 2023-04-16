@@ -44,34 +44,6 @@ var windPresets =
             type: "Presets",
             startsize: 15,
         },
-        
-        {
-            name: "by fokey",
-            width: 40,
-            height: 30,
-            type: "Presets",
-            wind: [0, 5, 5, 5, 10, 10, 5, 0, 0, 0, 5, 5, 10, 10, 10, 10, 15, 20, 20, 20, 20, 15, 10, 5, 0, 0, -5, -10, -15, -20, -20, -20, -15, -15, -10, -5, 0, 0, 0, 0, 0, -5, -5, -5, -10, -15, -10, -5, 0],
-            stepscount: 50,
-            startsize: 15,
-        },
-        {
-            name: "andy",
-            type: "Presets",
-            height: 30,
-            width: 40,
-            stepscount: 48,
-            wind: [0, 5, 0, -5, -10, -15, -15, -10, -15, -20, -15, -10, -5, 0, 5, 10, 15, 20, 15, 20, 15, 10, 5, 0, -5, -10, -15, -10, -5, 0, 5, 10, 10, 15, 20, 15, 10, 5, 0, -5, 0, 5, -5, -10, -5, 0, 5, 10],
-            startsize: 15,
-        },
-        {
-            name: "timoxa",
-            type: "Presets",
-            height: 30,
-            width: 40,
-            stepscount: 48,
-            wind: [0, 5, 10, 15, 15, 10, 20, 15, 10, 20, 20, 15, 15, 10, 5, 10, 5, 0, -5, -10, -15, -5, 0, -10, -5, 0, 5, 10, 15, 10, 5, 10, 15, 20, 20, 20, 20, 15, 10, 10, 10, 5, 5, 0, 0, -10, 0, 10],
-            startsize: 15,
-        },
         {
             name: "static +5",
             name_ru: "Статичный +5",
@@ -81,6 +53,15 @@ var windPresets =
             stepscount: 50,
             wind: [5],
             startsize: 15,
+        },
+        {
+            "name": "Bodrum Yalikovak",
+            "type": "Presets",
+            "wind": [0, 5, 10, 10, 15, 20, 20, 15, 15, 10, 5, 0, -5, -20, -15, -15, -10, 0, -5, -10, -20, -15, -10, -5, 0, 5, 0, 0, 5, 5, 15, 20, 20, 10, 10, 15, 10, 5, -10, -20, -15, -10, -5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -5, 0],
+            "width": 40, "height": 30,
+            "stepscount": 52,
+            "allowedit": false,
+            "startsize": 15
         },
         {
             "name": "Global Change 1",
@@ -111,15 +92,6 @@ var windPresets =
             "startsize": 15,
             "stepscount": 48,
             "allowedit": true
-        },
-        {
-            "name": "Bodrum Yalikovak",
-            "type": "Presets",
-            "wind": [0, 5, 10, 10, 15, 20, 20, 15, 15, 10, 5, 0, -5, -20, -15, -15, -10, 0, -5, -10, -20, -15, -10, -5, 0, 5, 0, 0, 5, 5, 15, 20, 20, 10, 10, 15, 10, 5, -10, -20, -15, -10, -5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -5, 0],
-            "width": 40, "height": 30,
-            "stepscount": 52,
-            "allowedit": false,
-            "startsize": 15
         },
     ];
 
