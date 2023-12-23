@@ -410,7 +410,7 @@ function addWind() {
             oldtype = wind[i].type;
         }
         var newoption = document.createElement("option");
-        newoption.innerText = (curLang == "ru" && wind[i].name_ru) ?  wind[i].name_ru : wind[i].name;
+        newoption.innerText = (lang == "ru" && wind[i].name_ru) ?  wind[i].name_ru : wind[i].name;
         optgroup.appendChild(newoption);
     }
 
@@ -748,7 +748,7 @@ function wmUpdate() {
             ne.appendChild(rightContainer);
 
             const ns = document.createElement("span");
-            ns.innerText = (curLang == "ru" && w.name_ru) ? w.name_ru : w.name;
+            ns.innerText = (lang == "ru" && w.name_ru) ? w.name_ru : w.name;
             ne.appendChild(ns);
 
             if (w.type != "Presets") {

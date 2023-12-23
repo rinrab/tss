@@ -32,7 +32,7 @@ function apply() {
 
     game.isStart = false;
 
-    document.getElementById("wind-scenario-name-inrace-alert").innerText = (curLang == "ru" && wind[windscenario].name_ru) ?
+    document.getElementById("wind-scenario-name-inrace-alert").innerText = (lang == "ru" && wind[windscenario].name_ru) ?
         wind[windscenario].name_ru.toLowerCase() : wind[windscenario].name.toLowerCase();
 
     document.body.className = "race";

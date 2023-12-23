@@ -1,5 +1,16 @@
-﻿const _lang = navigator.language || navigator.userLanguage;
-const curLang = (_lang == "ru" || _lang == "ru-RU") ? "ru" : "en";
+﻿let lang;
+(function () {
+    var langs = ["en", "fr", "ru"];
+    for (var lang1 of navigator.languages) {
+        for (var lang2 of langs) {
+            if (lang1.match(lang2)) {
+                lang = lang2;
+                document.documentElement.lang = lang2;
+                return;
+            }
+        }
+    }
+}());
 
 const langText = {
     "start-procedure": { "en": "Start procedure", "ru": "Стартовая процедура" },
@@ -48,8 +59,8 @@ const langText = {
 
 function getText(text) {
     if (langText[text]) {
-        if (langText[text][curLang]) {
-            return langText[text][curLang];
+        if (langText[text][lang]) {
+            return langText[text][lang];
         } else {
             console.warn("Can't find translation for your lang: ", text);
             return langText[text]["en"];
