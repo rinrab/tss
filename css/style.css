@@ -1,0 +1,315 @@
+body {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    touch-action: manipulation;
+}
+
+@page {
+    size: landscape;
+}
+
+body>* {
+    position: unset;
+}
+
+.bi {
+    display: inline-block;
+    vertical-align: -.125em;
+    fill: currentcolor;
+}
+
+.game-elem {
+    position: absolute;
+}
+
+.pn-lines {
+    width: 500%;
+    margin-left: -250%;
+    transform-origin: center top;
+    transition: rotate 0.5s ease-in-out;
+}
+
+#wind {
+    transition: all 0.5s ease-in-out;
+    width: 50px;
+    left: 20px;
+    transform-origin: center 40%;
+}
+
+#boats>.game-elem {
+    transition: top 0.5s ease-in-out, left 0.5s ease-in-out, rotate 0.2s ease-in-out;
+}
+
+#game-area>* {
+    position: absolute;
+}
+
+.list-group-item {
+    height: 35px;
+    font-size: 15px;
+}
+
+.pn-wind-hide,
+.wind-data-arrow {
+    position: absolute;
+}
+
+.wind-data-arrow {
+    height: 50px;
+    right: 15px;
+    margin-top: -10px;
+}
+
+.pn-wind-hide {
+    height: 15px;
+    right: 10px;
+}
+
+.pn-boat {
+    width: calc(14px * var(--boat-scale));
+    height: calc(20px * var(--boat-scale));
+    margin-left: calc(-7px * var(--boat-scale));
+    margin-top: calc(-10px * var(--boat-scale));
+    transform-origin: center;
+}
+
+.pn-control-color,
+.pn-control-finish-time {
+    border-radius: 4px;
+    margin: -5px;
+    width: 1.5em;
+    height: 1.5em;
+    color: white;
+}
+
+.pn-control-finish-time {
+    width: 5em;
+    color: black;
+}
+
+.pn-mark {
+    --mark-scale: 1;
+    width: calc(20px * var(--mark-scale));
+    height: calc(20px * var(--mark-scale));
+    margin-left: calc(-10px * var(--mark-scale));
+    margin-top: calc(-10px * var(--mark-scale));
+}
+
+.pn-up-mark {
+    --mark-scale: 2 !important;
+}
+
+#btn-add-player {
+    width: auto;
+}
+
+#back-btn {
+    width: 25%;
+}
+
+#btn-done {
+    flex: auto;
+}
+
+#btn-apply {
+    flex: auto;
+}
+
+#lines-img {
+    width: 100%;
+}
+
+.svg-round-line {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#game-area {
+    transform-origin: left top;
+    overflow: hidden;
+}
+
+#game-area svg {
+    display: block;
+}
+
+#game-cont {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.btn-november {
+    width: 3em;
+    height: 2em;
+}
+
+.pn-start-line {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-top: -10px;
+}
+
+.wind-data-scroller {
+    height: 100vh;
+    overflow: auto;
+}
+
+#lines-container {
+    height: 200%;
+    width: 200%;
+    transform-origin: center;
+    margin-top: -50%;
+    margin-left: -50%;
+    transition: all 0.5s ease-in-out;
+}
+
+#wind-label {
+    left: 50px;
+    top: 30px;
+    font-family: monospace;
+    text-align: right;
+    width: 100px;
+}
+
+.start .race-control-header,
+.start .race-controls,
+.start #game-alert,
+.race #start-alert,
+.race #create,
+.race .start-controls,
+.race .start-control-header,
+.race #create,
+.race .start-controls,
+#game-area[data-show-boats="dot"] .boat-full-svg,
+#game-area[data-show-boats="full"] .boat-hidden-svg {
+    display: none;
+}
+
+[data-current-tack="port"] .starboard-forward-btn,
+[data-current-tack="port"] .starboard-tack-btn {
+    display: none;
+}
+
+[data-current-tack="starboard"] .port-forward-btn,
+[data-current-tack="starboard"] .port-tack-btn {
+    display: none;
+}
+
+.icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-lg {
+    width: 16px;
+    height: 16px;
+    transform: scale(1.5);
+}
+
+.copyright {
+    width: 100%;
+    bottom: 0px;
+    font-size: x-small;
+}
+
+.finished .race-controls,
+.finished .start-controls {
+    display: none;
+}
+
+.race .finish-controls,
+.start .finish-controls {
+    display: none;
+}
+
+.finished .finish-controls {
+    display: flex;
+}
+
+#editor-preview>svg {
+    height: 100%;
+}
+
+.dropdown-arrow-hidden::before,
+.dropdown-arrow-hidden::after {
+    display: none !important;
+}
+
+.name-input {
+    padding-left: .5rem;
+    cursor: auto;
+}
+
+.print-only {
+    visibility: hidden;
+}
+
+@media print {
+    table * {
+        border-color: black !important;
+        border-width: 1.5px !important;
+    }
+
+    .print-only {
+        visibility: visible;
+    }
+
+    body {
+        overflow: auto;
+        position: unset;
+    }
+}
+
+.cup-edit-name .cup-name-text {
+    display: none;
+}
+
+.cup-name-input {
+    display: none;
+    width: 5rem;
+}
+
+.cup-edit-name .cup-edit-container {
+    display: flex;
+    width: 10rem;
+}
+
+.cup-edit-name .hide-cup-edit-name {
+    display: none;
+}
+
+.show-cup-edit-name {
+    display: none;
+}
+
+.cup-edit-name .show-cup-edit-name {
+    display: flex;
+}
+
+#changelog p {
+    margin-bottom: 0;
+}
+
+.wm-btn {
+    margin-top: -9px;
+}
+
+.list-group-item:not(:hover) .wm-btn {
+    display: none;
+}
+
+html[lang] [lang] {
+    display: none;
+}
+
+html[lang="en"] [lang="en"] {
+    display: unset;
+}
+
+html[lang="ru"] [lang="ru"] {
+    display: unset;
+}
