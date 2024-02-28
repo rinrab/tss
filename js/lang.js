@@ -1,6 +1,6 @@
 ﻿let lang;
 (function () {
-    var langs = ["en", "fr", "ru"];
+    var langs = ["en", "ru"];
     for (var lang1 of navigator.languages) {
         for (var lang2 of langs) {
             if (lang1.match(lang2)) {
