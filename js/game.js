@@ -565,7 +565,6 @@ function init() {
                 addPlayer();
                 drawAll();
             }
-            e.preventDefault();
         }
         if (!game.isStart) {
             if (e.code == "Digit1" && e.ctrlKey) {
@@ -574,7 +573,6 @@ function init() {
                         p.forwardBtn.checked = true;
                     }
                 }
-                e.preventDefault();
             }
             if (e.code == "Digit2" && e.ctrlKey) {
                 for (let p of game.players) {
@@ -582,7 +580,6 @@ function init() {
                         p.tackBtn.checked = true;
                     }
                 }
-                e.preventDefault();
             }
             if (e.code == "Digit3" && e.ctrlKey) {2
                 for (let p of game.players) {
@@ -590,17 +587,14 @@ function init() {
                         p.toMarkBtn.checked = true;
                     }
                 }
-                e.preventDefault();
             }
         }
         if (e.code == "Backspace") {
             if (!game.isStart) {
-                e.preventDefault();
                 backTurn();
             }
         } else if (e.code == "Space") {
             if (!game.isStart) {
-                e.preventDefault();
                 turn();
             }
         } else if (e.code == "Slash") {
@@ -613,7 +607,6 @@ function init() {
                 var player = game.players[index];
             
                 if (player != undefined) {
-                    e.preventDefault();
                     if (player.tackBtn.checked) {
                         player.forwardBtn.checked = true;
                     } else {
