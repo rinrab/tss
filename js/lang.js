@@ -23,7 +23,7 @@ const langText = {
     "start-middle": { "en": "Start middle", "ru": "Стартовать с центра" },
     "start-right": { "en": "Start right", "ru": "Стартовать справа" },
     "forward": { "en": "Forward", "ru": "Вперед" },
-    "tack": { "en": "Tack", "ru": "Оверхштаг" },
+    "tack": { "en": "Tack", "ru": "Оверштагус" },
     "tomark": { "en": "To mark", "ru": "На знак" },
     "player-x": { "en": "Player ", "ru": "Игрок " },
     "name": { "en": "Name", "ru": "Имя" },
